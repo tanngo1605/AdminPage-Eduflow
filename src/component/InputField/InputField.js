@@ -1,5 +1,5 @@
 import React from "react";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
 import { FaUserAlt } from "react-icons/fa";
 import { GoKey } from "react-icons/go";
 import { RiBarcodeBoxLine } from "react-icons/ri";
