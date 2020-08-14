@@ -101,7 +101,8 @@ class createEvent extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {state}
+  console.log(state);
+  return state.ticket
 }
 export default connect(mapStateToProps)(createEvent);
 
