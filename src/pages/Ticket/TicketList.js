@@ -26,7 +26,7 @@ class TicketList extends Component {
   filterByInput=(event)=>{
     event.preventDefault()
     setTimeout(()=>{
-      this.props.ticket.dispatch(filterByValue({text: this.state.text, status:this.state.status}))}, 50);
+      this.props.dispatch(filterByValue({text: this.state.text, status:this.state.status}))}, 50);
   }
   changetextstatus = (status) => {
     if (status==='Pending')
@@ -52,7 +52,7 @@ class TicketList extends Component {
   
   render() {
 
-      let tickets = this.props.state.filteredTickets;
+      let tickets = this.props.ticket.filteredTickets;
       
       return (
           <div className="dashboard">
@@ -80,7 +80,7 @@ class TicketList extends Component {
                   <div className="ticketList" style={{marginTop:"10%"}}>
                     <div className="headerticketList">
                       <a style={{width:"75px",textAlign:'center'}}>ID</a>
-                      <a style={{width:"180px",textAlign:'center'}}>Name</a>
+                      <a style={{width:"150px",textAlign:'center'}}>Name</a>
                       <a style={{width:"180px",textAlign:'center'}}>Date</a>
                       <a style={{width:"120px",textAlign:'center'}}>Issue</a>
                       <a style={{width:"120px",textAlign:'center'}}>Details</a>
@@ -93,7 +93,7 @@ class TicketList extends Component {
                         <div style={{paddingLeft:"20px",height:"70px",display:"flex",alignItems:'center'}}>
                         
                           <div style={{width:"75px",textAlign:'center'}}>{ticket.serialno}</div>
-                          <a style={{width:"180px",textAlign:'center'}}>{ticket.name}</a>
+                          <a style={{width:"150px",textAlign:'center'}}>{ticket.name}</a>
                           <a style={{width:"180px",textAlign:'center'}}>{ticket.date}</a>
                           <a style={{width:"120px",textAlign:'center'}}>{ticket.subject}</a>
                           <a style={{width:"120px",textAlign:'center'}}>{ticket.problem}</a>
@@ -117,8 +117,8 @@ class TicketList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = (state)=> ({
+  ticket: state.ticket
+})
 
 export default connect(mapStateToProps)(TicketList);

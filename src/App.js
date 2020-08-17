@@ -13,7 +13,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <TicketList/>
-
+        <RaiseTicket/>
+        <EventList/>
+        <Route exact path='/dashboard/student' component={Homescreen}/>
+        <Route exact path='/dashboard/event' component={Events}/>
         
       </div>
     </BrowserRouter>
@@ -21,5 +24,3 @@ function App() {
 }
 
 export default App;
-//<Route exact path='/dashboard/student' component={Homescreen}/>
-         // <Route exact path='/dashboard/event' component={Events}/>

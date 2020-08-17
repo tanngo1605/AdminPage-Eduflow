@@ -35,7 +35,7 @@ const initialState = {
         let textvalue = action.payload.text;
         let classvalue = action.payload.class;
         let eventvalue = action.payload.event;
-        console.log(textvalue);
+        
         let filteredValues = state.events.filter(event => {
             
           return (

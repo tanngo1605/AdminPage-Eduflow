@@ -42,20 +42,20 @@ class Drawer extends Component {
         <div className="drawer">
             <div className="outer">
                 <div className="inner">
-                    <img src={require("../../assets/Ellipse.png")} style={{width:90,height:90,marginLeft:12,marginTop:13}}/>
+                    <img src={require("../../assets/Ellipse.png")} alt={'ava'} style={{width:90,height:90,marginLeft:12,marginTop:13}}/>
                 </div>
             </div>
             <div style={{textAlign:'center',color:'#FFFFFF',fontSize:12,marginTop:10}}>Hello Admin!</div>
             <div style={{textAlign:'center',color:'#FFFFFF',fontSize:22,marginBottom:10}}>Akhil</div>
             {drawercontent.map((item,index)=>
                 (item.clicked)?(
-                    <div className="activedrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
+                    <div key={item.key} className="activedrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
                         <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
                         <NavLink exact to={'/dashboard/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink> 
                         {this.Show(item.content)}
                     </div>
                 ):(
-                    <div onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
+                    <div key={item.key} onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
                     <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
                         <NavLink exact to={'/dashboard/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink>
                         {this.Show(item.content)}

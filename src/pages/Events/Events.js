@@ -4,8 +4,10 @@ import { NavLink} from 'react-router-dom'
 import {addEvent} from "../../redux/Stores/EventReducer";
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/Header"
-
+import Dropzone from 'react-dropzone'
+import { MdClose } from "react-icons/md";
 import "./Events.styles.css"
+
 class createEvent extends Component {
   constructor (props) {
     super(props)
@@ -16,12 +18,21 @@ class createEvent extends Component {
       timefrom:'',
       timeto:'',
       eventtitle:'',
-      file:'',  
+      files:[],  
       description:'',
  
     }
+    
   }
-  
+  onDrop = (files,event) => {
+    this.setState({files})
+  }
+
+  removeItem=(file)=>{
+    const files = this.state.files;
+    files.splice(file, 1);
+    this.setState({ files });
+  }
 
   handleChange = (event) => {
     this.setState({
@@ -35,6 +46,7 @@ class createEvent extends Component {
   }
 
   render() {
+    
     return (
       <div className="dashboard">
         <div style={{display: "flex"}}>
@@ -43,8 +55,8 @@ class createEvent extends Component {
             <Header/>
             <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
               <div style={{marginLeft:25}}>
-              <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"30px",marginTop:"20px"}}>Create an event for your class</div>
-                <div style={{marginBottom:20,marginTop:40}}>
+              <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"10px",marginTop:"20px"}}>Create an event for your class</div>
+                <div style={{marginBottom:20,marginTop:20}}>
                   <label htmlFor="class" className='section'>Class</label>
                   <input type="text" id='class' className="box" placeholder='Maths' onChange={this.handleChange} />
                 </div>
@@ -78,10 +90,27 @@ class createEvent extends Component {
                 </div>
                 <div style={{marginBottom:20,display:'flex'}}>
                   <a className='section'>Attachment </a>
-                  <label className='attachment' for="files">
-                    <a >Choose File</a>
-                  </label>
-                  <input type="file" id='files' onChange={this.handleChange} multiple/>
+                  
+                  <Dropzone onDrop={this.onDrop}>
+                    {({getRootProps, getInputProps}) => (
+                      <section style={{display:'flex'}}>
+                        <div {...getRootProps({className: 'dropzone'})}>
+                          <input {...getInputProps()} />
+                              <a className='attachment'>Choose File</a>
+                        </div>
+                        <div>
+                        {this.state.files.map((file)=>(
+                          <div style={{marginLeft:20}}>
+                            <a key={file.name}> {file.name} </a>
+                            <MdClose onClick={()=>this.removeItem(file)}/>
+                            
+                          </div>
+                        ))} 
+                        </div>
+                      </section>
+                    )}
+                  </Dropzone>
+                  
                 </div>
 
                 <div style={{marginLeft:150,marginTop:20,display:'flex'}}>
@@ -100,9 +129,8 @@ class createEvent extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  console.log(state);
-  return state.ticket
-}
+const mapStateToProps = (state) => ({
+  event: state.event
+})
 export default connect(mapStateToProps)(createEvent);
 

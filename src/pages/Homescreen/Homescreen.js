@@ -1,4 +1,4 @@
-import React,{Component } from "react";
+import React,{Component} from "react";
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/Header"
 import DayPicker from 'react-day-picker';
@@ -131,7 +131,7 @@ class Homescreen extends Component {
 
               </div>
             </div>
-            <div className="ticket" ref={this.chatContainer}>
+            <div className="ticket">
               <Scrollbars>
                 {ticket&&ticket.map((item,index)=>
                   (item.clicked)?(

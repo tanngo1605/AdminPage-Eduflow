@@ -20,6 +20,7 @@ class TicketList extends Component {
   }
 
   handleChange = (event) => {
+    console.log(this.state);
     this.setState({
       [event.target.id]: event.target.value
     })
@@ -31,7 +32,7 @@ class TicketList extends Component {
   
   render() {
 
-      let events = this.props.state.filteredEvents;
+      let events = this.props.event.filteredEvents;
       
       return (
           <div className="dashboard">
@@ -49,8 +50,17 @@ class TicketList extends Component {
                         <input type='text' id='class' className='box' placeholder='Type here' onChange={this.handleChange} />
                       </div>
                       <div style={{marginBottom:20}}> 
-                        <label htmlFor="event" className='section'>Events</label>
-                        <input type='text' id='event' className='box' placeholder='Search' onChange={this.handleChange} />
+                        <label className='section'>Events</label>
+                        <input type="radio" id="event" value="upcoming" style={{marginLeft:25}}/>
+                        <label htmlFor="event" style={{marginLeft:15}}>Upcoming</label>
+                        <input type="radio" id="event" value="past" style={{marginLeft:25}}/>
+                        <label htmlFor="event" style={{marginLeft:15}}>Past due</label>
+                        <input type="radio" id="event" value="all" style={{marginLeft:25}}/>
+                        <label htmlFor="event" style={{marginLeft:15}}>All</label>
+                        <input type="radio" id="event" value="custom" style={{marginLeft:"125px"}}/>
+                        <label htmlFor="event" style={{marginLeft:15}}>Custom date</label>
+                          
+        
                       </div>
                       <div style={{marginBottom:20,display:'flex'}}>
                         <label htmlFor="text" className='section'>Search text</label>
@@ -100,8 +110,8 @@ class TicketList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = (state) => ({
+  event: state.event
+})
 
 export default connect(mapStateToProps)(TicketList);

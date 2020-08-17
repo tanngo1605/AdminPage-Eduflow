@@ -89,9 +89,9 @@ class RaiseTicket extends Component {
   );}
 }
 
-function mapStateToProps(state) {
-  return {state}
-}
+const mapStateToProps = (state)=> ({
+  ticket: state.ticket
+})
 
 export default connect(mapStateToProps)(RaiseTicket);
 
