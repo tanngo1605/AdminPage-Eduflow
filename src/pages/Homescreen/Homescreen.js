@@ -86,17 +86,19 @@ class Homescreen extends Component {
   }
 
   render(){
+    const {trigger} = this.state;
+    console.log(trigger);
    return(
    <div className="dashboard">
-    <div style={{display: "flex"}}>
+    <div className="flexrow">
       <Drawer/>
-      <div style={{display:"flex",flexDirection:'column'}}>
+      <div className="flexcolumn">
           <Header/>
-          <div style={{display:'flex',marginTop:20}}>
+          <div className="flexrow" style={{marginTop:20}}>
           {sections&&sections.map(item=>
             <div className="total">
               <a style={{textAlign:'center',marginTop:10}}>Total NO of {item.roles}:</a>
-              <div style={{display:'flex',marginTop:10}}>
+              <div className="flexrow" style={{marginTop:10}}>
                 <div className="smallbox">
                   <img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:20,height:20,marginLeft:"31%",marginTop:"28%"}}/>
                 </div>
@@ -105,7 +107,7 @@ class Homescreen extends Component {
             </div>
           )}
           </div>
-          <div style={{display:'flex',marginTop:20}}>
+          <div className="flexrow" style={{marginTop:20}}>
             <div className='calendar'>
               <div style={{marginLeft:5}}>
                 <DayPicker
@@ -117,9 +119,9 @@ class Homescreen extends Component {
                  <Scrollbars >
                 
                   {Object.keys(modifiers).map((key, value) => 
-                    <div style={{display:'flex',flexDirection:'column'}}>
+                    <div className='flexcolumn'>
                       <a style={{color:"#A2ABBF",fontSize:12,marginBottom:5}}>Events</a>
-                      <div style={{display:'flex',marginBottom:10}}>
+                      <div className="flexrow" style={{marginBottom:10}}>
                         <div style={{width:25,height:25,borderRadius:15,background:modifiersStyles[key]['background']}}></div>
                         <a style={{color:"#A2ABBF",fontSize:12,marginLeft:5}}>{key}</a>
                         <a style={{color:"#A2ABBF",fontSize:12,marginLeft:'auto',marginRight:45}}>date</a>
@@ -137,7 +139,7 @@ class Homescreen extends Component {
                   (item.clicked)?(
                     <div className="ticketcolumn" onClick={(e)=>this.handleClick(e,item.clicked,index,ticket)} style={{backgroundColor:'#04044E',marginLeft:70}}>
                       <a style={{color:'#FFFFFF',marginLeft:20,margintop:20,fontSize:30}}>{index+1}</a>
-                      <div style={{display:'flex',flexDirection:'column',marginLeft:15,marginTop:10}}>
+                      <div className="flexcolumn" style={{marginLeft:15,marginTop:10}}>
                         <a style={{fontSize:10,color:'#FFFFFF'}}>{item.date}</a>
                         <a style={{fontSize:10,color:'#FFFFFF'}}> {item.personincharge}</a>
                       </div>
@@ -149,7 +151,7 @@ class Homescreen extends Component {
                   ):(
                     <div className="ticketcolumn" onClick={(e)=>this.handleClick(e,item.clicked,index,ticket)} style={{backgroundColor:'#FFFFFF',marginLeft:50}}>
                       <a style={{color:'#8C96AB',marginLeft:10,margintop:20,fontSize:30}}>{index+1}</a>
-                      <div style={{display:'flex',flexDirection:'column',marginLeft:15,marginTop:10}}>
+                      <div className="flexcolumn" style={{marginLeft:15,marginTop:10}}>
                         <a style={{fontSize:10,color:'#6B7897'}}>{item.date}</a>
                         <a style={{fontSize:10,color:'#8C96AB'}}> {item.personincharge}</a>
                       </div>

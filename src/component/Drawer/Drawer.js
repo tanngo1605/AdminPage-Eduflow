@@ -42,7 +42,7 @@ class Drawer extends Component {
         <div className="drawer">
             <div className="outer">
                 <div className="inner">
-                    <img src={require("../../assets/Ellipse.png")} alt={'ava'} style={{width:90,height:90,marginLeft:12,marginTop:13}}/>
+                    <img src={require("../../assets/Ellipse.png")} alt={'ava'} style={{width:"82%",height:"82%",marginLeft:"10%",marginTop:"10%"}}/>
                 </div>
             </div>
             <div style={{textAlign:'center',color:'#FFFFFF',fontSize:12,marginTop:10}}>Hello Admin!</div>

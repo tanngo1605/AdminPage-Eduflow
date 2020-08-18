@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import {connect} from 'react-redux';
 import {addTicket} from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
+
 class RaiseTicket extends Component {
   constructor (props) {
     super(props)
@@ -16,9 +18,13 @@ class RaiseTicket extends Component {
       status:'',  
     }
   }
-
+ 
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value})
+  }
+
+  handleDayChange(day) {
+    this.setState({date: day.toLocaleDateString()});
   }
   handleSubmit = (event) => {
     console.log(this.state);
@@ -32,12 +38,12 @@ class RaiseTicket extends Component {
   render() {
     return (
       <div className="dashboard">
-        <div style={{display: "flex"}}>
+        <div className="flexrow">
           <Drawer/>
-          <div className='display'>
+          <div className='flexcolumn'>
             <Header/>
             <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
-              <div className="display" style={{marginLeft:25}}>
+              <div className="flexcolumn" style={{marginLeft:25}}>
 
                 <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"30px",marginTop:"20px"}}>Raise a ticket</div>
                 
@@ -48,7 +54,8 @@ class RaiseTicket extends Component {
 
                 <div style={{marginBottom:'20px'}}>
                   <label htmlFor="date" className='section' style={sectionStyle}>Date</label>
-                  <input type="date" id='date' className="box" style={shortbox} onChange={this.handleChange} />
+                  <DayPickerInput className="box"  onDayChange={(day)=>this.handleDayChange(day)} />
+                  
                 </div>
 
                 <div style={{marginBottom:'20px'}}>
@@ -64,9 +71,9 @@ class RaiseTicket extends Component {
                 <div style={{marginBottom:'20px'}}>
                   <label htmlFor="name" className='section' style={sectionStyle}>Name</label>
                   <input type="text" id='name' className="box" style={longbox} placeholder='Type here' onChange={this.handleChange} />
-                </div>
+                </div> 
 
-                <div style={{marginBottom:'20px',display:'flex'}}>
+                <div className="flexrow" style={{marginBottom:'20px'}}>
                   <label htmlFor="problem" className='section' style={sectionStyle}>Problem</label>
                   <textarea type="text" id='problem' className="box" placeholder='Type here' onChange={this.handleChange} style={{height:100,width:"400px"}}></textarea>
                 </div>
@@ -76,7 +83,7 @@ class RaiseTicket extends Component {
                   <input type="text" id='status' className="box" style={longbox} placeholder='Type here' onChange={this.handleChange} />
                 </div>
 
-                <div style={{display:'flex'}} >
+                <div className="flexrow" >
                     <input type="submit" value="Save" className="button" style={{marginLeft:"18%"}}/>
                     <input type="reset" value="Reset" className="button" />        
                 </div>

@@ -5,7 +5,7 @@ import {loadData, filterByValue} from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/Header"
 import './TicketList.styles.css'
-
+ 
 class TicketList extends Component {
   constructor (props) {
     super(props)
@@ -57,14 +57,14 @@ class TicketList extends Component {
       return (
           <div className="dashboard">
               
-            <div style={{display: "flex"}}>
+            <div className="flexrow">
               <Drawer/>
-              <div className='display'>
+              <div className='flexcolumn'>
                 <Header/>
                 <div className="form" >
                   <div style={{marginLeft:25}}>
                     <div style={{color:'#262F56',fontSize:18,marginBottom:"10px",marginTop:"20px"}}>Raise a ticket</div>
-                    <form style={{display:'flex'}} onChange={this.filterByInput}>
+                    <form className="flexrow" onChange={this.filterByInput}>
                       <div className='searchBox'>
                         <input type='text' id='text' className='searchBox' placeholder='Search' onChange={this.handleChange} style={{color:"#FFFFFF",paddingLeft:'20px'}} />
                       </div>
@@ -79,12 +79,12 @@ class TicketList extends Component {
                     </form>
                   <div className="ticketList" style={{marginTop:"10%"}}>
                     <div className="headerticketList">
-                      <a style={{width:"75px",textAlign:'center'}}>ID</a>
-                      <a style={{width:"150px",textAlign:'center'}}>Name</a>
-                      <a style={{width:"180px",textAlign:'center'}}>Date</a>
-                      <a style={{width:"120px",textAlign:'center'}}>Issue</a>
-                      <a style={{width:"120px",textAlign:'center'}}>Details</a>
-                      <a style={{width:"100px",textAlign:'center'}}>File</a>
+                      <a style={{width:"13%",textAlign:'center'}}>ID</a>
+                      <a style={{width:"18%",textAlign:'center'}}>Name</a>
+                      <a style={{width:"18%",textAlign:'center'}}>Date</a>
+                      <a style={{width:"13%",textAlign:'center'}}>Issue</a>
+                      <a style={{width:"13%",textAlign:'center'}}>Details</a>
+                      <a style={{width:"10%",textAlign:'center'}}>File</a>
                       <a style={{width:"120px",textAlign:'center'}}>Status</a>
                     </div>
                     <div style={{height:"55vh"}}>
@@ -92,12 +92,12 @@ class TicketList extends Component {
                       {tickets && tickets.map(ticket => (        
                         <div style={{paddingLeft:"20px",height:"70px",display:"flex",alignItems:'center'}}>
                         
-                          <div style={{width:"75px",textAlign:'center'}}>{ticket.serialno}</div>
-                          <a style={{width:"150px",textAlign:'center'}}>{ticket.name}</a>
-                          <a style={{width:"180px",textAlign:'center'}}>{ticket.date}</a>
-                          <a style={{width:"120px",textAlign:'center'}}>{ticket.subject}</a>
-                          <a style={{width:"120px",textAlign:'center'}}>{ticket.problem}</a>
-                          <a style={{width:"100px",textAlign:'center'}}>File</a>
+                          <a style={{width:"13%",textAlign:'center'}}>{ticket.serialno}</a>
+                          <a style={{width:"18%",textAlign:'center'}}>{ticket.name}</a>
+                          <a style={{width:"18%",textAlign:'center'}}>{ticket.date}</a>
+                          <a style={{width:"13%",textAlign:'center'}}>{ticket.subject}</a>
+                          <a style={{width:"13%",textAlign:'center'}}>{ticket.problem}</a>
+                          <a style={{width:"10%",textAlign:'center'}}>File</a>
                           {this.changetextstatus(ticket.status)}
                           
                         </div>

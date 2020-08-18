@@ -49,18 +49,18 @@ class createEvent extends Component {
     
     return (
       <div className="dashboard">
-        <div style={{display: "flex"}}>
+        <div className="flexrow">
           <Drawer/>
-          <div style={{display:"flex",flexDirection:'column'}}>
+          <div className="flexcolumn">
             <Header/>
             <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
               <div style={{marginLeft:25}}>
-              <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"10px",marginTop:"20px"}}>Create an event for your class</div>
+                <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"10px",marginTop:"20px"}}>Create an event for your class</div>
                 <div style={{marginBottom:20,marginTop:20}}>
                   <label htmlFor="class" className='section'>Class</label>
                   <input type="text" id='class' className="box" placeholder='Maths' onChange={this.handleChange} />
                 </div>
-                <div style={{display:'flex',marginBottom:20}}>
+                <div className="flexrow" style={{marginBottom:20}}>
                   <div>
                     <label htmlFor="datefrom" className='section'>Date from: </label>
                     <input type="date" id='datefrom' className="box" onChange={this.handleChange} />
@@ -70,7 +70,7 @@ class createEvent extends Component {
                     <input type="date" id='dateto' className="box" onChange={this.handleChange} />
                   </div>
                 </div>
-                <div style={{display:'flex',marginBottom:20}}>
+                <div className="flexrow" style={{marginBottom:20}}>
                   <div>
                     <label htmlFor="timefrom" className='section'>Time from: </label>
                     <input type="time" id='timefrom' className="box"  onChange={this.handleChange} />
@@ -84,16 +84,16 @@ class createEvent extends Component {
                   <label htmlFor="eventtitle" className='section'>Event title </label>
                   <input type="text" id='eventtitle' className="box" placeholder='Type here' onChange={this.handleChange} />
                 </div>
-                <div style={{marginBottom:20,display:'flex'}}>
+                <div className="flexrow" style={{marginBottom:20}}>
                   <label htmlFor="description" className='section'>Description </label>
                   <textarea type="text" id='description' className="box" placeholder='Type here' onChange={this.handleChange} style={{height:150,width:"83%"}}></textarea>
                 </div>
-                <div style={{marginBottom:20,display:'flex'}}>
+                <div className="flexrow" style={{marginBottom:20}}>
                   <a className='section'>Attachment </a>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
-                      <section style={{display:'flex'}}>
+                      <section className="flexrow">
                         <div {...getRootProps({className: 'dropzone'})}>
                           <input {...getInputProps()} />
                               <a className='attachment'>Choose File</a>
@@ -113,7 +113,7 @@ class createEvent extends Component {
                   
                 </div>
 
-                <div style={{marginLeft:150,marginTop:20,display:'flex'}}>
+                <div className="flexrow" style={{marginLeft:150,marginTop:20}}>
                   <input type="submit" value="Create" className="button"/>
                   <input type="reset" value="Reset" className="button"/>
                   <div className="button">

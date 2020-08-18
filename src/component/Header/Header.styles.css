@@ -1,6 +1,30 @@
-.title{
+.header{
     background-color: #FFFFFF;
     width: 85vw;
     height: 15vh;
+    display:flex;
+    flex-direction: row;
     
+}
+.setting{
+    display:flex;
+    flex-direction: column;
+    width: 225px;
+    height: 200px;
+    background: #FFFFFF;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    box-shadow: 2px 3px 2px #E4E6E9;
+    border-radius: 15px;
+    z-index: 1;
+    
+}
+.headersetting{
+    width: 225px;
+    height: 40px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    background: #66C4E1;
+    display: flex;
+    align-items: center;
 }

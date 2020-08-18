@@ -37,9 +37,9 @@ class TicketList extends Component {
       return (
           <div className="dashboard">
               
-            <div style={{display: "flex"}}>
+            <div className="flexrow">
               <Drawer/>
-              <div className='display'>
+              <div className='flexcolumn'>
                 <Header/>
                 <div className="form" >
                   <div style={{marginLeft:25}}>
@@ -62,7 +62,7 @@ class TicketList extends Component {
                           
         
                       </div>
-                      <div style={{marginBottom:20,display:'flex'}}>
+                      <div className="flexrow" style={{marginBottom:20}}>
                         <label htmlFor="text" className='section'>Search text</label>
                         <input type='text' id='text' className='box' style={{width:'400px'}} placeholder='Type here' onChange={this.handleChange} />
                         <input type="submit" value="Search" className="button" style={{width:"150px",marginTop:"-5px"}}/>
@@ -81,13 +81,13 @@ class TicketList extends Component {
                     <div style={{height:"35vh"}}>
                      <Scrollbars>      
                       {events && events.map(event => (        
-                        <div style={{paddingLeft:"15px",height:"20px",display:"flex",alignItems:'center'}}>
+                        <div className="flexrow" style={{paddingLeft:"15px",height:"20px",alignItems:'center'}}>
                         
                           <a style={{width:"100px",textAlign:'center'}}>id</a>
                           <a style={{width:"180px",textAlign:'center'}}>{event.datefrom}</a>
                           <a style={{width:"75px",textAlign:'center'}}>{event.dateto}</a>
                           <a style={{width:"180px",textAlign:'center'}}>no</a>
-                          <div style={{width:"180px",display:'flex',justifyContent:'space-around'}}>
+                          <div className="flexrow" style={{width:"180px",justifyContent:'space-around'}}>
                             <img src={require('../../assets/delete.png')} alt={'dete'} style={{width:15,height:15,marginTop:'1px'}}/>
                             <img src={require('../../assets/edit.png')} alt={'edit'} style={{width:10,height:10,marginTop:'3px'}}/>
                             <a  style={{width:10,height:10,marginTop:'-3px'}}>...</a>

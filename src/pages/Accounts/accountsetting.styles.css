@@ -9,3 +9,6 @@
     padding: 20px;
     
 }
+input[type="file"] {
+    display: none;
+}

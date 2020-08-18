@@ -39,9 +39,9 @@ const initialState = {
         let filteredValues = state.events.filter(event => {
             
           return (
-            (event.datefrom.toLowerCase().includes(eventvalue) &&
-            event.class.toLowerCase().includes(classvalue) &&
-            event.description.toLowerCase().includes(textvalue))
+            (event.datefrom.toLowerCase().includes(eventvalue.toLowerCase()) &&
+            event.class.toLowerCase().includes(classvalue.toLowerCase()) &&
+            event.description.toLowerCase().includes(textvalue.toLowerCase()))
           );
         });
         
