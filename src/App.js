@@ -10,14 +10,14 @@ import Events from "./pages/Events/Events";
 import EventList from "./pages/Events/EventList";
 import TeacherProfile from "./pages/TeacherProfile/TeacherProfile";
 import StudentProfile from "./pages/StudentProfile/StudentProfile";
+import Gallery from "./pages/Gallery/Gallery";
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        
         <Homescreen/>
-        <StudentProfile/>
-        
-        
+        <Gallery/>
       </div>
     </BrowserRouter>
   );

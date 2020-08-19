@@ -28,13 +28,14 @@ const ticketReducer = (state = initialState, action) => {
       
       let newState = Object.assign({}, state);
       let value = action.payload.text;
+      if (value===null) value='';
       let status = action.payload.status;
       let filteredValues = state.tickets.filter(ticket => {
-          
+      
         return (
-          (ticket.name.toLowerCase().includes(value.toLowerCase()) ||
-          ticket.subject.toLowerCase().includes(value.toLowerCase()) ||
-          ticket.problem.toLowerCase().includes(value.toLowerCase())) &&
+          (ticket.name.toLowerCase().includes(value) ||
+          ticket.subject.toLowerCase().includes(value) ||
+          ticket.problem.toLowerCase().includes(value)) &&
           (ticket.status.includes(status))
         );
       });

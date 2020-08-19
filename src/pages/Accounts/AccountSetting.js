@@ -36,7 +36,6 @@ class LoginForm extends Component {
           return (
               <div style={{width:'400px'}}>
                 <div className='image'>
-            
                 </div>
               </div>
           )
@@ -44,16 +43,10 @@ class LoginForm extends Component {
   }
 
   handleChange = (event) => {
-    
-    if (event.target.id=='image'){
-        this.setState({
-            image: URL.createObjectURL(event.target.files[0])
-          });
-    }
+    if (event.target.id=='image')
+        this.setState({image: URL.createObjectURL(event.target.files[0])});
     else
-    {
         this.setState({[event.target.id]: event.target.value})
-    }
   }
   handleSubmit = (event) => {
     console.log(this.state);
@@ -113,7 +106,7 @@ class LoginForm extends Component {
                     {this.displayImage()}
 
                     <div className="flexrow" style={{marginTop:10}}>
-                        <label className='attachment' htmlFor="image" style={{marginLeft:60}}> <a >Upload a photo</a> </label>
+                        <label className='attachment' htmlFor="image" style={{marginLeft:60,}}> <a >Upload a photo</a> </label>
                         <label className='attachment' htmlFor="image" style={{marginLeft:20}}> <a >Take a photo</a> </label>
                     </div>
                     <input type="file" id='image' onChange={this.handleChange} accept="image/*"/>

@@ -1,10 +1,9 @@
 .form{
     background: linear-gradient(180deg, rgba(244, 249, 255, 0.0001) 0%, #F4F9FF 26.23%);
-    width: 85vw;
+    width: 82vw;
     height: 92vh;
     margin-left: 15px;
     margin-top:15px;
-    
     display:flex;
 
 }
@@ -36,8 +35,7 @@
     border-radius: 6px;
     border: 0px solid white;
     margin-left: 30px;
-    display:flex;
-    align-items: center;
+    text-align: center;
 }
 .attachment{
     width:10vw;
@@ -48,9 +46,10 @@
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
     border: 0px solid white;
     border-radius: 4px;
-    padding-left:20px;
-    display:flex;
-    align-items: center;
+    padding-top: 5px;
+    text-align: center;
+   
+  
 }
 
 .eventList{
@@ -60,7 +59,6 @@
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-left: 17%;
-    
     font-family: Lato;
     font-style: normal;
     font-weight: normal;

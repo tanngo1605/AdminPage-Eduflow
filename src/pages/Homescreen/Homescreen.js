@@ -86,8 +86,7 @@ class Homescreen extends Component {
   }
 
   render(){
-    const {trigger} = this.state;
-    console.log(trigger);
+
    return(
    <div className="dashboard">
     <div className="flexrow">
@@ -116,7 +115,7 @@ class Homescreen extends Component {
                   modifiersStyles={modifiersStyles}
                 />
                 <div style={{marginLeft:10,height:"24%"}}>
-                 <Scrollbars >
+                 <Scrollbars>
                 
                   {Object.keys(modifiers).map((key, value) => 
                     <div className='flexcolumn'>

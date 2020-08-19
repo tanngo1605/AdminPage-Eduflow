@@ -50,7 +50,7 @@ class Drawer extends Component {
             {drawercontent.map((item,index)=>
                 (item.clicked)?(
                     <div key={item.key} className="activedrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
-                        <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
+                        <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{wgidth:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
                         <NavLink exact to={'/dashboard/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink> 
                         {this.Show(item.content)}
                     </div>
