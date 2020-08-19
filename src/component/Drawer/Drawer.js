@@ -14,7 +14,8 @@ class Drawer extends Component {
       }
     //show icon with the menu  
     Show(item){
-        const list = ['Students','Teacher','Calendar events']
+        const list = ['Students','Teacher','Calendar events'];
+        
         for (let i = 0 ; i < list.length;i++)
           {
             if (item === list[i])
@@ -32,9 +33,8 @@ class Drawer extends Component {
           array[index]['clicked']=true;
           this.setState({trigger:true});
         }
-        else {
+        else 
           this.setState({trigger:false});
-        }
     }
     render(){
     return (

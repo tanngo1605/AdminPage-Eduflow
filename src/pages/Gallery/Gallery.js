@@ -10,7 +10,7 @@ import './Gallery.styles.css'
 const todayDate=new Date();
 const imagegallery=[];
 
-class TeacherProfile extends Component {
+class Gallery extends Component {
 
   constructor (props) {
     super(props)
@@ -24,7 +24,7 @@ class TeacherProfile extends Component {
   }
 
   onDrop = (images) => {
-    this.setState({images:{image:images[0],imagesize:images[0].size},modal:true})
+    this.setState({images:{image:images[0],imagesize:images[0].size}})
   }
 
   displayImage = () =>{
@@ -76,21 +76,21 @@ class TeacherProfile extends Component {
                 <div className="flexcolumn" style={{marginLeft:"70px",marginTop:"10px"}}>
                     <div className="flexrow">
                         <AiOutlineExclamationCircle size={20} color='#8C96AB'/>
-                        <p style={{color:'#8C96AB',fontSize:16,marginTop:-2,marginLeft:30}}>{this.state.images.imagesize} bytes</p>
+                        <p style={modalContent}>{this.state.images.imagesize} bytes</p>
                     </div>
                     <div className="flexrow" >
                         <AiOutlineCalendar size={20} color='#8C96AB'/>
-                        <p style={{color:'#8C96AB',fontSize:16,marginTop:-2,marginLeft:30}}>{todayDate.toLocaleDateString()}</p>
+                        <p style={modalContent}>{todayDate.toLocaleDateString()}</p>
                     </div>
                     <div className="flexrow">
                         <AiOutlineFileText size={20} color='#8C96AB'/>
-                        <p style={{color:'#8C96AB',fontSize:16,marginTop:-2,marginLeft:30}}>Thong tin</p>
+                        <p style={modalContent}>Thong tin</p>
                     </div>
 
                 </div>
             </div>
             <div className="flexrow" style={{justifyContent:'space-around',marginTop:"10px"}}>
-                <Dropzone onDrop={this.onDrop}>
+                <Dropzone onDrop={this.onDrop} accept="image/*">
                     {({getRootProps, getInputProps}) => (
                         <section className="flexrow">
                             <div {...getRootProps({className: 'dropzone'})}>
@@ -117,9 +117,11 @@ class TeacherProfile extends Component {
   )}
 };
 
-export default TeacherProfile;
+export default Gallery;
 
-const boxStyle = {
-    fontSize: '15px',
-    width:'200px'
+const modalContent = {
+    color:'#8C96AB',
+    fontSize:16,
+    marginTop:-2,
+    marginLeft:30
 };

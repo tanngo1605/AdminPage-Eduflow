@@ -22,9 +22,8 @@
     padding-left:20px;
     
 }
-.box::after{
-    border: 0px solid white;
-}
+
+
 .button{
     width:200px;
     height:40px;
