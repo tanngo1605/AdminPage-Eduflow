@@ -1,32 +1,51 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {addData,loadData,modifyData} from "../../redux/Stores/TeacherReducer";
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-import DayPicker from 'react-day-picker';
+//import DayPicker from 'react-day-picker';
 import teacherprofiledata from '../../userData/TeacherProfileData'; 
 
-const teacher={
-    'Adam':{name:'Adam',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,edit:false},
-    'David':{name:'Adam',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,edit:false},
-}
+
 
 class TeacherProfile extends Component {
 
   constructor (props) {
     super(props)
-    this.state = teacher['Adam'];
+    if (props.location.teacherdata) 
+      this.state = {
+        teacher:props.location.teacherdata,
+        edit:false
+      }
+      
+    else {
+        this.state={
+          teacher:{
+            name:'',
+            dateofbirth:'',
+            gender:'',
+            address:'',
+            phone:'',
+            classteacher:'',
+            subject:'',
+            role:'',
+            image:'',
+            key:Math.random().toString(),
+          },
+          edit:true
+
+      }
+    }
   }
   componentDidMount(){
-    
-    
-      
+    this.props.dispatch(loadData());
   }
-  //<AiOutlineClose style={{width:'25px',height:'25px'}} onClick={()=>this.setState({image:null})}/>
   displayImage = () =>{
-    if (this.state.image!=null)
+    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.teacher.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></div>
+    if (this.state.teacher.image!=null)
         return ( 
             <div className='profileimage'>
-                <label htmlFor='image' className='profileimage'><img src={this.state.image} style={{width:'150px',height:'150px',borderRadius:'50%'}} /></label>
+                <label htmlFor='image'><img src={this.state.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></label>
                 <input type='file' id='image' onChange={this.handleChange} accept='image/*'/>   
             </div>
         )
@@ -38,20 +57,28 @@ class TeacherProfile extends Component {
         )
     }
   handleChange = (event) => {
-    if (event.target.id=='image')
-        this.setState({image: URL.createObjectURL(event.target.files[0])});
-    else
-        this.setState({[event.target.id]: event.target.value})
+    let update;
+
+    if (event.target.id==='image'){
+        update= Object.assign({},this.state.teacher,{image: URL.createObjectURL(event.target.files[0])})
+        this.setState({teacher:update})
+    }
+    else {
+        update= Object.assign({},this.state.teacher,{[event.target.id]: event.target.value})
+        this.setState({teacher:update})
+    }
   }
   handleSubmit = (event) => {
-    teacher['Adam']=this.state;
-    event.preventDefault();
-    document.getElementById('create-course-form').reset();
-    
-    this.setState({edit:true});
-    console.log(this.state.edit);
-
-  }
+    if (this.props.location.teacherdata) {
+        this.props.dispatch(modifyData({value:this.state.teacher}))
+        this.props.history.push('/teacher');
+      }
+      else {
+        
+        this.props.dispatch(addData({value:this.state.teacher}));
+        this.props.history.push('/teacher');
+      }
+    }
 
   render(){
    return(
@@ -64,48 +91,51 @@ class TeacherProfile extends Component {
             <div style={{marginLeft:25}}>
                 <div className='titleform'>Teacher Profile </div>
                 {(this.state.edit)?
-                    (
-                        <form className='flexrow' onSubmit={this.handleSubmit} id='create-course-form'>
-                                
-                            {this.displayImage()}
-                            <div className='flexcolumn' style={{marginLeft:100}}>
-                                <div className='flexcolumn'>
-                                    {teacherprofiledata.map((item)=>
-                                        <div className='flexrow' style={{marginBottom:'10px'}}>
-                                            <label htmlFor={item.id} className='section' style={boxStyle}>{item.content} </label>
-                                            <input type={item.type} id={item.id} placeholder={teacher['Adam'][item.id]} className='box' onChange={this.handleChange} />
-                                        </div>
-                                    )}
-                                </div>
-                                <div className='flexrow' style={{marginTop:'10%'}}>
-                                    <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{console.log('da chay')}}/>
-                                    <input type='submit' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} />
-                                </div>
-                            </div>
-                        </form>
-                    )
-                    :
-                    (
-                        <div className='flexrow'>
+                  (
+                      <div className='flexrow'>
+                              
+                          {this.displayImage()}
+                          <div className='flexcolumn' style={{marginLeft:100}}>
+                              <div className='flexcolumn'>
+                                  {teacherprofiledata.map((item)=>
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
+                                          <label htmlFor={item.id} className='section' style={boxStyle}>{item.content} </label>
+                                          <input type={item.type} id={item.id} placeholder={this.state.teacher[item.id]} className='box' onChange={this.handleChange} />
+                                      </div>
+                                  )}
+                              </div>
+                              <div className='flexrow' style={{marginTop:'2%'}}>
+                                  <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
+                                  
+                                <input type='button' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} onClick={(event)=>this.handleSubmit(event)}/>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                  )
+                  :
+                  (
+                      <div className='flexrow'>
+                  
+                          {this.displayImage()}
+                          <div className='flexcolumn' style={{marginLeft:100}}>
+                              <div className='flexcolumn'>
+                                  {teacherprofiledata.map((item)=>
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
+                                          <div className='section' style={boxStyle}>{item.content} </div>
+                                          <div className='box' style={{backgroundColor:'#F2F4F7'}}>{this.state.teacher[item.id]}</div> 
+                                      </div>
+                                  )}
+                              </div>
+                              <div className='flexrow' style={{marginTop:'2%'}}>
+                                  <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{this.setState({edit:true})}}/>
+                                  <input type='submit' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} onClick={()=>console.log('You are not editing yet')}/>
+                              </div>
+                          </div>
+                      </div>
+                  )
+              }
                     
-                            {this.displayImage()}
-                            <div className='flexcolumn' style={{marginLeft:100}}>
-                                <div className='flexcolumn'>
-                                    {teacherprofiledata.map((item)=>
-                                        <div className='flexrow' style={{marginBottom:'10px'}}>
-                                            <div className='section' style={boxStyle}>{item.content} </div>
-                                            <div className='box'><p>{teacher['Adam'][item.id]}</p></div> 
-                                        </div>
-                                    )}
-                                </div>
-                                <div className='flexrow' style={{marginTop:'10%'}}>
-                                    <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{this.setState({edit:true})}}/>
-                                    <input type='submit' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} />
-                                </div>
-                            </div>
-                        </div>
-                    )
-                }
                 
             </div>
           </div>

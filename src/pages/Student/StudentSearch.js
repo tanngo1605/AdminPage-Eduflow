@@ -18,13 +18,16 @@ class StudentSearch extends Component {
         class:'',
         section:'',
       },
+      files:null,
     }
   }
   componentDidMount() {
     this.props.dispatch(loadData());
 }
   onDrop = (files) => {
-    this.setState({files})
+    if (files.length===0||files.length>1) return ;
+    
+    this.setState({files:files})
   }
 
   removeItem=(student)=>{
@@ -57,21 +60,21 @@ class StudentSearch extends Component {
             <div className='form'>
               <div style={{marginLeft:25}}>
                 <div className='titleform'>Student Info</div>
-                <NavLink exact to={{pathname:'/dashboard/student/profile'}} className='button' style={{backgroundColor:'#04044E',width:"150px",paddingTop:'8px',marginLeft:"60vw"}}>
-                    <BsPlus color="white" size={18} style={{marginLeft:'15px',marginRight:'15px',marginTop:"1.5px"}}/>
+                <NavLink exact to={{pathname:'/student/profile'}} className='attachment' style={{backgroundColor:'#04044E',width:"150px",marginLeft:"60vw"}}>
+                    <BsPlus color="white" size={18} style={{marginLeft:'6px',marginRight:'15px'}}/>
                     <p style={{color:'#FFFFFF'}}> Add a student </p>
                 </NavLink>
                 <form className='flexrow' onChange={this.searchResult} style={{marginBottom:20,marginTop:10}}>
                   <div>
-                    <label htmlFor='datefrom' className='section'>Enter Stud Name: </label>
+                    <label htmlFor='name' className='section'>Enter Stud Name: </label>
                     <input type='text' id='name' className='box' onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:10}}>
-                    <label htmlFor='dateto' className='section'>Enter Section:</label>
+                    <label htmlFor='class' className='section'>Enter Class:</label>
                     <input type='text' id='class' className='box' onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:10}}>
-                    <label htmlFor='dateto' className='section'>Enter Class:</label>
+                    <label htmlFor='section' className='section'>Enter Section:</label>
                     <input type='text' id='section' className='box' onChange={this.handleChange} />
                   </div>
                 </form>
@@ -82,14 +85,14 @@ class StudentSearch extends Component {
                       <section className='flexrow'>
                         <div {...getRootProps({className: 'attachment'})}>
                           <input {...getInputProps()} />
-                              <BsPlus color="white" size={18} style={{marginRight:'5px',marginLeft:"6px",marginTop:"1px"}}/>
+                              <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
                               <p>Import file</p>
                         </div>
                       </section>
                     )}
                   </Dropzone>
                   <div className="attachment" style={{marginLeft:'5vw'}}>
-                    <BsPlus color="white" size={18} style={{marginRight:'5px',marginLeft:"6px",marginTop:"1px"}}/>
+                    <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
                     <p>Export file</p>
                   </div>
                 </div>
@@ -106,7 +109,7 @@ class StudentSearch extends Component {
                   <div className="flexcolumn" style={{height:'30vh'}}>
                       {students&&students.map((item)=>
 
-                        <div className="flexrow" style={{paddingLeft:'15px',height:'20px'}}  key={item.rollno} >
+                        <div className="flexrow" style={{paddingLeft:'15px',height:'20px'}}  key={item.key} >
                           
                           <p style={{width:'10%',textAlign:'center'}}>User ID</p>
                           <p style={{width:'30%',textAlign:'center'}}>{item.name}</p>
@@ -116,7 +119,7 @@ class StudentSearch extends Component {
                             <MdDeleteForever size={15} onClick={()=>this.removeItem(item)}/>
                           </div>
                           <div style={{width:"20%",marginTop:-1.5,display: 'flex',justifyContent:'center'}}>
-                            <NavLink exact to={{pathname:'/dashboard/student/profile',studentdata:item}}>
+                            <NavLink exact to={{pathname:'/student/profile',studentdata:item}}>
                               <BsPencilSquare size={15} color='black' />
                             </NavLink>
                           </div>

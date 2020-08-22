@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addData,loadData} from "../../redux/Stores/StudentReducer";
+import {addData,loadData,modifyData} from "../../redux/Stores/StudentReducer";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import studentprofiledata from '../../userData/StudentProfileData' ;
@@ -33,6 +33,7 @@ class StudentProfile extends Component {
             othermobileno:'',
             admission:'',
             image:null,
+            key:Math.random().toString()
           },
           edit:true
 
@@ -43,10 +44,12 @@ class StudentProfile extends Component {
 }
   
   displayImage = () =>{
-    if (this.state.image!=null)
+    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.student.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></div>
+    
+    if (this.state.student.image!=null)
         return ( 
             <div className='profileimage'>
-                <label htmlFor='image' className='profileimage'><img src={this.state.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></label>
+                <label htmlFor='image'><img src={this.state.student.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></label>
                 <input type='file' id='image' onChange={this.handleChange} accept='image/*'/>   
             </div>
         )
@@ -58,20 +61,25 @@ class StudentProfile extends Component {
         )
     }
   handleChange = (event) => {
-    if (event.target.id==='image')
-        this.setState({image: URL.createObjectURL(event.target.files[0])});
-    else
-        this.setState({[event.target.id]: event.target.value})
+    let update;
+    if (event.target.id==='image'){
+        update= Object.assign({},this.state.student,{image: URL.createObjectURL(event.target.files[0])})
+        this.setState({student:update});
+    }
+    else {
+        update= Object.assign({},this.state.student,{[event.target.id]: event.target.value})
+        this.setState({student:update})
+    }
   }
   handleSubmit = (event) => {
     
-    
     if (this.props.location.studentdata) {
-      this.props.history.push('/dashboard/student');
+      this.props.dispatch(modifyData({value:this.state.student}))
+      this.props.history.push('/student');
     }
     else {
       this.props.dispatch(addData({value:this.state.student}));
-      this.props.history.push('/dashboard/student');
+      this.props.history.push('/student');
     }
   }
 

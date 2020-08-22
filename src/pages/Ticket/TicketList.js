@@ -90,11 +90,11 @@ class TicketList extends Component {
                     <div style={{height:"55vh"}}>
                     <Scrollbars>      
                       {tickets && tickets.map(ticket => (        
-                        <div style={{paddingLeft:"20px",marginTop:"10px",height:"70px",display:"flex",alignItems:'center'}} key={ticket.serialno}>
+                        <div style={{paddingLeft:"20px",marginTop:"10px",height:"70px",display:"flex",alignItems:'center'}} key={ticket.key}>
                         
                           <p style={{width:"13%",textAlign:'center'}}>{ticket.serialno}</p>
                           <p style={{width:"18%",textAlign:'center'}}>{ticket.name}</p>
-                          <p style={{width:"18%",textAlign:'center'}}>{ticket.date}</p>
+                          <p style={{width:"18%",textAlign:'center'}}>{ticket.date.toLocaleDateString()}</p>
                           <p style={{width:"13%",textAlign:'center'}}>{ticket.subject}</p>
                           <p style={{width:"13%",textAlign:'center'}}>{ticket.problem}</p>
                           <p style={{width:"10%",textAlign:'center'}}>File</p>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import { AiOutlineClose } from 'react-icons/ai';
+import { BsPlus } from "react-icons/bs";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 
@@ -95,38 +96,41 @@ class LoginForm extends Component {
                         <input type='text' id='director' className='box' style={boxStyle} onChange={this.handleChange} />    
                     </div>
                 </div>
-                <div className='flexrow' style={{marginBottom:10}}>
+                <div className='flexrow' style={{marginBottom:20}}>
                   <div style={{marginBottom:10}}>
                     {this.displayImage()}
                     <div className='flexrow' style={{marginTop:10}}>
                       <Dropzone onDrop={this.onDrop} accept='image/*'>
                         {({getRootProps, getInputProps}) => (
-                          <section className='flexrow'>
-                            <div {...getRootProps({className: 'dropzone'})}>
+                          <section className='flexrow' style={{marginLeft:50}}>
+                            <div {...getRootProps({className: 'attachment'})}>
                               <input {...getInputProps()} />
-                                <button className='attachment' style={{marginLeft:70}}>Upload a photo</button>  
+                                <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                                <p>Upload a photo</p>  
                             </div>
                           </section>
                         )}
                       </Dropzone>
                 
-                    
-                      <button className='attachment' style={{marginLeft:20}}>Take a photo</button>
+                      <div className='attachment' style={{marginLeft:20}}>
+                        <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                        <p>Take a photo</p>  
+                      </div>
                         
                     </div>
                     
                   </div>
-                  <div className='flexcolumn'>
-                    <div className='flexcolumn' style={{marginLeft:40,marginBottom:10}}>
+                  <div className='flexcolumn' >
+                    <div className='flexcolumn' style={{marginLeft:40}}>
                         <label htmlFor='principle' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Principle</label>
                         <input type='text' id='principle' className='box' style={boxStyle} onChange={this.handleChange} />
                     </div>
                         
-                    <div className='flexcolumn' style={{marginLeft:40,marginBottom:10}}>
+                    <div className='flexcolumn' style={{marginLeft:40,marginTop:10}}>
                         <label htmlFor='viceprinciple' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Vice Principle</label>
                         <input type='text' id='viceprinciple' className='box' style={boxStyle} onChange={this.handleChange} />    
                     </div>
-                    <div className='flexcolumn' style={{marginLeft:40}}>
+                    <div className='flexcolumn' style={{marginLeft:40,marginTop:10}}>
                         <label htmlFor='admin' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Admin</label>
                         <input type='text' id='admin' className='box' style={boxStyle} onChange={this.handleChange} />    
                     </div>

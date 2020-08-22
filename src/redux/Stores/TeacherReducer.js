@@ -1,66 +1,91 @@
+let counterToActiviateLoadDataOnce = 0 ;
 
 const initialState = {
-    appliedFilters: []
+  appliedFilters: []
   };
   
-  export const addData = (payload) => ({
-     type: 'ADD_DATA', 
-     payload
-  });
+export const addData = (payload) => ({
+  type: 'ADD_DATA', 
+  payload
+});
   
-  export const loadData = (payload) => ({
-    type: 'LOAD_DATA', 
-    payload
-  });
-  export const deleteData = (payload) => ({
-    type: 'DELETE_DATA', 
-    payload
-  });
-  export const filterByValue = (payload) => ({
-      type: 'FILTER_BY_VALUE', 
-      payload 
-  });
+export const loadData = (payload) => ({
+  type: 'LOAD_DATA', 
+  payload
+});
+export const deleteData = (payload) => ({
+  type: 'DELETE_DATA', 
+  payload
+});
+export const modifyData = (payload) => ({
+  type: 'MODIFY_DATA', 
+  payload 
+});
+export const filterByValue = (payload) => ({
+  type: 'FILTER_BY_VALUE', 
+  payload 
+});
   
   
   
-  const ticketReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'FILTER_BY_VALUE':
+const ticketReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'FILTER_BY_VALUE':
         
-        let namevalue = action.payload.text;
-        let sectionvalue = action.payload.status;
-        let classvalue = action.payload.status;
-  
-        state.filteredTeacherss = state.teachers.filter(teacher => {
-            return (
-              teacher.name.toLowerCase().includes(namevalue) ||
-              teacher.section.toLowerCase().includes(sectionvalue) ||
-              teacher.class.toLowerCase().includes(classvalue)) 
-        });
+      let namevalue = action.payload.name;
+      let sectionvalue = action.payload.section;
+      let classvalue = action.payload.classteacher;
+      let subjectvalue = action.payload.subject;
         
-  
-        if (!(namevalue || sectionvalue||classvalue)) state.filteredTeacherss = state.teachers;
+        
+      state.filteredTeachers = state.teachers.filter(teacher => {
+        return (
+          teacher.name.toLowerCase().includes(namevalue) &&
+          teacher.subject.toLowerCase().includes(sectionvalue) &&
+          teacher.classteacher.toLowerCase().includes(classvalue)&&
+          teacher.subject.toLowerCase().includes(subjectvalue)) 
+      });
+        
+        
+      if (!(namevalue || sectionvalue||classvalue||subjectvalue)) state.filteredTeachers = state.teachers;
   
         
-        return (Object.assign({},state));
-      case 'ADD_TEACHER':
-          
-          return (Object.assign({},state,{filteredTeacherss:action.payload.value}));
-  
-      case 'LOAD_DATA':
-        const teachers=[
-            {name:'Adam',class:'V',section:'HI',rollno:'25',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'41321321',admission:'5464',image:null},
-            {name:'Akhil',class:'H',section:'TL',rollno:'24',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null},
-            {name:'Adin',class:'H',section:'TL',rollno:'23',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null},
-          ]
+      return (Object.assign({},state));
       
-        return (Object.assign({},state,{teachers,filteredTeacherss:teachers}));
+    case 'ADD_DATA':
+      state.filteredTeachers.push(action.payload.value)
+      return (Object.assign({},state,{filteredTeachers:state.filteredTeachers}));
+
+    case 'DELETE_DATA':
+      state.filteredTeachers.splice(action.payload.value, 1);
+      return (Object.assign({},state));
+    
+    case 'MODIFY_DATA':
+      let key=action.payload.value.key;
+              
+      state.filteredTeachers.map(teacher=>{
+        if (teacher.key===key) return Object.assign(teacher,action.payload.value)          
+        return teacher;
+      })
+              
+      return (Object.assign({},state));
+    case 'LOAD_DATA':
+      const teachers=[
+        {name:'Rine',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,key:'1'},
+        {name:'Sam',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,key:'2'},
+        {name:'Samuel',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,key:'3'},
+      ]
+
+      counterToActiviateLoadDataOnce ++; 
+      if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{teachers,filteredTeachers:teachers}));
+      
+      return (Object.assign({},state))
+
+    default:
+      return state;
+  }
+};
   
-      default:
-        return state;
-    }
-  };
-  
-  export default ticketReducer;
+export default ticketReducer;
   
   

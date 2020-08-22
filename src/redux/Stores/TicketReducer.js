@@ -49,10 +49,10 @@ const ticketReducer = (state = initialState, action) => {
 
     case 'LOAD_DATA':
       let tickets = [
-        {serialno:'1212231',date:'22/06/2010',subject:"Fee",topic:false,name:'Mr.Johns',problem:"bla bla bla",status:"Approved"},
-        {serialno:'2312',date:'22/06/2010',subject:"New Fee",topic:false,name:'Mr.Johns',problem:"bla bla new",status:"Denied"},
-        {serialno:'232',date:'22/06/2010',subject:"Not",topic:false,name:'Mr.Johns',problem:"bla bla die",status:"Pending"},
-        {serialno:'32',date:'22/06/2010',subject:"Tic",topic:false,name:'Mr.Johns',problem:"nothing",status:"Approved"},
+        {serialno:'1212231',date:new Date(2020, 6,22),subject:"Fee",topic:false,name:'Mr.Johns',problem:"bla bla bla",status:"Approved",key:'1'},
+        {serialno:'2312',date:new Date(2020,6,23),subject:"New Fee",topic:false,name:'Mr.Johns',problem:"bla bla new",status:"Denied",key:'2'},
+        {serialno:'232',date:new Date(2020,6,23),subject:"Not",topic:false,name:'Mr.Johns',problem:"bla bla die",status:"Pending",key:'3'},
+        {serialno:'32',date:new Date(2020,5,7),subject:"Tic",topic:false,name:'Mr.Johns',problem:"nothing",status:"Approved",key:'4'},
       ]
       counterToActiviateLoadDataOnce ++;
       if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{tickets:tickets,filteredTickets:tickets}));

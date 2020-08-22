@@ -11,6 +11,17 @@ class Drawer extends Component {
           trigger: false,   
         }
       }
+    componentDidMount(){
+        
+        drawercontent.map((item)=>{
+            if (item.web===this.props.location.pathname.slice(1)) {
+                item.clicked=true;
+                this.setState({trigger:true}
+            )}
+            return item
+        })
+        
+    }
     //show icon with the menu  
     Show(item){
         const list = ['Students','Teacher','Calendar events'];
@@ -44,19 +55,19 @@ class Drawer extends Component {
                     <img src={require("../../assets/Ellipse.png")} alt={'ava'} style={{width:"82%",height:"82%",marginLeft:"10%",marginTop:"10%"}}/>
                 </div>
             </div>
-            <div style={{textAlign:'center',color:'#FFFFFF',fontSize:12,marginTop:10}}>Hello Admin!</div>
-            <div style={{textAlign:'center',color:'#FFFFFF',fontSize:22,marginBottom:10}}>Akhil</div>
+            <p style={{textAlign:'center',color:'#FFFFFF',fontSize:12,marginTop:10}}>Hello Admin!</p>
+            <p style={{textAlign:'center',color:'#FFFFFF',fontSize:22,marginBottom:15}}>Akhil</p>
             {drawercontent.map((item,index)=>
                 (item.clicked)?(
                     <div key={item.key} className="activesubjectindrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
                         <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{wgidth:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
-                        <NavLink exact to={'/dashboard/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink> 
+                        <NavLink exact to={'/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink> 
                         {this.Show(item.content)}
                     </div>
                 ):(
                     <div key={item.key} onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
                     <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
-                        <NavLink exact to={'/dashboard/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink>
+                        <NavLink exact to={'/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink>
                         {this.Show(item.content)}
                     </div>
                 )

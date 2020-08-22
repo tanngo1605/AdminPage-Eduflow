@@ -1,6 +1,6 @@
 const drawercontent= [
     {content:'Students',web:'student',image:"Student.png",imagedescription:'gido',clicked:false,key:1},
-    {content:'Teacher',web:'teacher',image:"Teacher.png",imagedescription:'gido',clicked:true,key:2},
+    {content:'Teacher',web:'teacher',image:"Teacher.png",imagedescription:'gido',clicked:false,key:2},
     {content:'Gallery',web:'gallery',image:"Staff.png",imagedescription:'gido',clicked:false,key:3},
     {content:'Time table',web:'timetable',image:"Staff.png",imagedescription:'gido',clicked:false,key:4},
     {content:'Exams',web:'exam',image:"Staff.png",imagedescription:'gido',clicked:false,key:5},

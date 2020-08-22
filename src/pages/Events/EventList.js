@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {Scrollbars} from 'react-custom-scrollbars';
 import {connect} from 'react-redux';
-import {loadData, filterByValue} from '../../redux/Stores/TicketReducer';
+import {loadData, filterByValue,deleteData} from '../../redux/Stores/EventReducer';
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 
-class TicketList extends Component {
+class EventList extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -79,16 +79,16 @@ class TicketList extends Component {
                     <div style={{height:'35vh',marginTop:'5px'}}>
                      <Scrollbars>      
                       {events && events.map(event => (        
-                        <div className='flexrow' style={{paddingLeft:'15px',height:'20px'}}>
+                        <div key={event.key} className='flexrow' style={{paddingLeft:'15px',height:'20px'}}>
                         
                           <p style={{width:'100px',textAlign:'center'}}>id</p>
-                          <p style={{width:'180px',textAlign:'center'}}>{event.datefrom}</p>
-                          <p style={{width:'75px',textAlign:'center'}}>{event.dateto}</p>
+                          <p style={{width:'180px',textAlign:'center'}}>{event.datefrom.toLocaleDateString()}</p>
+                          <p style={{width:'75px',textAlign:'center'}}>{event.dateto.toLocaleDateString()}</p>
                           <p style={{width:'180px',textAlign:'center'}}>no</p>
                           <div className='flexrow' style={{width:'180px',justifyContent:'space-around'}}>
                             <BsPencilSquare size={15}/>
-                            <MdDeleteForever size={15}/>
-                            <p  style={{width:10,height:10,marginTop:'-3px'}}>...</p>
+                            <MdDeleteForever size={15} onClick={()=>this.props.dispatch(deleteData(event))}/>
+                            
                           </div>
                           
                         </div>
@@ -112,4 +112,4 @@ const mapStateToProps = (state) => ({
   event: state.event
 })
 
-export default connect(mapStateToProps)(TicketList);
+export default connect(mapStateToProps)(EventList);

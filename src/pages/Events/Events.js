@@ -1,50 +1,68 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
+import { BsPlus } from "react-icons/bs";
 import { connect } from 'react-redux'
-import { NavLink} from 'react-router-dom'
 import {loadData,addEvent} from '../../redux/Stores/EventReducer';
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
+import DayPicker from 'react-day-picker';
 import { MdClose } from 'react-icons/md';
 
 class createEvent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      class: '',
-      datefrom:'',
-      dateto:'',
-      timefrom:'',
-      timeto:'',
-      eventtitle:'',
-      files:[],  
-      description:'',
+      event:{
+        class: '',
+        datefrom:new Date(),
+        dateto:new Date(),
+        timefrom:'',
+        timeto:'',
+        eventtitle:'',
+        files:[],  
+        description:'',
+        key:Math.random().toString()
+      },
+      datefrompickershow:false,
+      datetopickershow:false,
+      openmodal:false
  
     }
     
   }
   componentDidMount() {
+
+    Modal.setAppElement('body');
     this.props.dispatch(loadData());
   }
-  onDrop = (files,event) => {
-    this.setState({files})
+  onDrop = (files) => {
+    console.log(files);
+    let update = Object.assign({},this.state.event,{files: files})
+    this.setState({event:update})
   }
 
-  removeItem=(file)=>{
-    const files = this.state.files;
-    files.splice(file, 1);
-    this.setState({ files });
+  showdatepicker=(datepickername)=>{
+    console.log(this.state[datepickername])
+    if (this.state[datepickername]===true) this.setState({[datepickername]:false})
+    else this.setState({[datepickername]:true})
   }
+  
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
+    let update = Object.assign({},this.state.event,{[event.target.id]: event.target.value})
+    this.setState({event:update})
+  }
+  handleDayChange(day,typeofpicker) {
+    let update= Object.assign({},this.state.event,{[typeofpicker]: day})
+    
+    this.setState({event: update});
   }
   handleSubmit = (event) => {
     event.preventDefault();
     document.getElementById('create-course-form').reset();
-    this.props.dispatch(addEvent({value: this.state}));
+    this.setState({openmodal:true})
+    setTimeout(()=>{ this.props.dispatch(addEvent({value: this.state.event})) },50)
   }
 
   render() {
@@ -63,13 +81,21 @@ class createEvent extends Component {
                   <input type='text' id='class' className='box' placeholder='Maths' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
-                  <div>
+                  <div className='flexrow' style={{height:'40px'}}>
                     <label htmlFor='datefrom' className='section'>Date from: </label>
-                    <input type='date' id='datefrom' className='box' onChange={this.handleChange} />
+                    <div className='flexcolumn'>
+                      <div style={{position:'relative'}}><div className='box' onClick={()=>this.showdatepicker('datefrompickershow')}>{this.state.event.datefrom.toLocaleDateString()}</div></div>
+                      <div style={{marginBottom:'15px'}}></div>
+                      {(this.state.datefrompickershow)? <DayPicker  onDayClick={(day)=>this.handleDayChange(day,'datefrom')} selectedDays={this.state.event.datefrom}/>: null}
+                    </div>
                   </div>
-                  <div style={{marginLeft:40}}>
+                  <div className='flexrow' style={{marginLeft:40,height:'40px'}}>
                     <label htmlFor='dateto' className='section'>Date to:</label>
-                    <input type='date' id='dateto' className='box' onChange={this.handleChange} />
+                    <div className='flexcolumn'>
+                    <div style={{position:'relative'}}><div className='box' onClick={()=>this.showdatepicker('datetopickershow')}>{this.state.event.dateto.toLocaleDateString()}</div></div>
+                      <div style={{marginBottom:'15px'}}></div>
+                      {(this.state.datetopickershow)? <DayPicker  onDayClick={(day)=>this.handleDayChange(day,'dateto')} selectedDays={this.state.event.dateto}/>: null}
+                    </div>
                   </div>
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
@@ -96,12 +122,14 @@ class createEvent extends Component {
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
                       <section className="flexrow">
-                        <div {...getRootProps({})}>
+                        <div {...getRootProps({ className:'attachment'})}>
                           <input {...getInputProps()} />
-                              <button className='attachment' >Choose File</button>
+                            <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                            <p>Choose File</p>
                         </div>
+                        
                         <div>
-                        {this.state.files.map((file)=>(
+                        {this.state.event.files.map((file)=>(
                           <div className='flexrow' style={{marginLeft:20}} key={file.name}>
                             <p> {file.name} </p>
                             <MdClose onClick={()=>this.removeItem(file)} style={{marginTop:7}}/>
@@ -118,16 +146,20 @@ class createEvent extends Component {
                 <div className='flexrow' style={{marginLeft:150,marginTop:20}}>
                   <input type='submit' value='Create' className='button'/>
                   <input type='reset' value='Reset' className='button'/>
-                  <div className='button'>
-                    <NavLink exact to={'/dashboard/student'} style={{color:'#FFFFFF',marginLeft:'40%',marginTop:'5%'}}>Cancel</NavLink> 
-                  </div>
+                  <button className='button' onClick={()=>this.props.history.push('/')} style={{color:'#FFFFFF'}}> Cancel</button>
                 </div>
               </div>
             </form>
+            <Modal isOpen={this.state.openmodal} onRequestClose={()=>this.setState({openmodal:false})} className='Modal'> 
+                <div className='headermodal' style={{textAlign:'center',color:'#262F56',fontWeight:'bold'}}>Events</div>
+                <p style={{marginTop:'15%',textAlign:'center'}}>Event saved successfully</p>
+                <button className='button' onClick={()=>this.props.history.push('/event')} style={{marginTop:'5%',marginLeft:'29%'}}> Ok</button>
+     
+            </Modal>
           </div>
         
       </div>  
-      </div>
+    </div>
     );
   }
 }

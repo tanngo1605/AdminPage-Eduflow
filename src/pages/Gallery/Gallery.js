@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import Dropzone from 'react-dropzone';
 import {Scrollbars} from 'react-custom-scrollbars';
 import {AiOutlineExclamationCircle,AiOutlineCalendar,AiOutlineFileText} from 'react-icons/ai';
+import { BsPlus } from "react-icons/bs";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 
@@ -17,7 +18,7 @@ class Gallery extends Component {
     super(props)
     this.state = {
         images:{image:null,imagesize:' ',description:''},
-        modal:false,
+        openmodal:false,
     }
   }
   componentDidMount() {
@@ -47,7 +48,7 @@ class Gallery extends Component {
 
     imagegallery.push({image:this.state.images.image,imagesize:this.state.images.imagesize,date:todayDate.toLocaleDateString()});
     
-    this.setState({images:{image:null,imagesize:''},modal:false})
+    this.setState({images:{image:null,imagesize:''},openmodal:false})
   }
   render(){
    return(
@@ -59,7 +60,10 @@ class Gallery extends Component {
           <div className='form'>
             <div style={{marginLeft:25}}>
                 <div className='titleform'> Gallery </div>
-                <button className='attachment' onClick={()=>this.setState({modal:true})}>Upload Photo</button>
+                <button className='attachment' onClick={()=>this.setState({openmodal:true})}>
+                    <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                    <p>Choose File</p>
+                </button>
                 <div style={{marginTop:'20px',height:'70vh',width:'80vw'}}>
                     <Scrollbars>
                      <div className='gallerylayout'>
@@ -77,8 +81,8 @@ class Gallery extends Component {
             </div>
           </div>
           <Modal 
-            isOpen={this.state.modal} 
-            onRequestClose={()=>this.setState({images:{image:null,imagesize:''},modal:false})} 
+            isOpen={this.state.openmodal} 
+            onRequestClose={()=>this.setState({images:{image:null,imagesize:''},openmodal:false})} 
             className='Modal'> 
             <div className='headermodal' style={{textAlign:'center',color:'#262F56',fontWeight:'bold'}}>Upload file</div>
             <div className='flexrow' style={{marginTop:'20px'}}>
@@ -103,7 +107,7 @@ class Gallery extends Component {
                 <Dropzone onDrop={this.onDrop} accept='image/*,video/*'>
                     {({getRootProps, getInputProps}) => (
                         <section className='flexrow'>
-                            <div {...getRootProps({className: 'dropzone'})}>
+                            <div {...getRootProps({})}>
                                 <input {...getInputProps()} />
                                     <button className='button' style={{width:'100px'}}>Upload</button>
                             </div>
@@ -113,11 +117,11 @@ class Gallery extends Component {
                 <button className='button' style={{width:'100px'}} onClick={()=>this.addImageToGallery()}>Save</button>
             </div>
 
-                        
-            
-                        
                     
-           </Modal>
+          
+                    
+                    
+        </Modal>
           
 
       </div>
