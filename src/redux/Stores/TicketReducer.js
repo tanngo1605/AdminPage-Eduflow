@@ -1,5 +1,4 @@
-
-
+let counterToActiviateLoadDataOnce = 0 ;
 const initialState = {
   appliedFilters: []
 };
@@ -26,11 +25,11 @@ const ticketReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FILTER_BY_VALUE':
       
-      let newState = Object.assign({}, state);
       let value = action.payload.text;
-      if (value===null) value='';
+      
       let status = action.payload.status;
-      let filteredValues = state.tickets.filter(ticket => {
+
+      state.filteredTickets = state.tickets.filter(ticket => {
       
         return (
           (ticket.name.toLowerCase().includes(value) ||
@@ -40,23 +39,11 @@ const ticketReducer = (state = initialState, action) => {
         );
       });
       
-      let appliedFilters = state.appliedFilters;
-      
-      if (value || status) {
-        
-        appliedFilters = addFilterIfNotExists('FILTER_BY_VALUE', appliedFilters);
-        newState.filteredTickets = filteredValues;
-      
 
-      } else {
-        appliedFilters = removeFilter('FILTER_BY_VALUE', appliedFilters);
-        
-          if (appliedFilters.length === 0) {
-            newState.filteredTickets = newState.tickets;
-          }
-      }
+      if (!(value || status)) state.filteredTickets = state.tickets;
+
       
-      return newState;
+      return (Object.assign({},state));
     case 'ADD_TICKET':
         return (Object.assign({},state,{filteredTickets:[...state.filteredTickets,action.payload.value]}));
 
@@ -67,9 +54,11 @@ const ticketReducer = (state = initialState, action) => {
         {serialno:'232',date:'22/06/2010',subject:"Not",topic:false,name:'Mr.Johns',problem:"bla bla die",status:"Pending"},
         {serialno:'32',date:'22/06/2010',subject:"Tic",topic:false,name:'Mr.Johns',problem:"nothing",status:"Approved"},
       ]
-    
-      return (Object.assign({},state,{tickets:tickets,filteredTickets:tickets}));
+      counterToActiviateLoadDataOnce ++;
+      if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{tickets:tickets,filteredTickets:tickets}));
 
+      return (Object.assign({},state))
+      
     default:
       return state;
   }
@@ -77,14 +66,3 @@ const ticketReducer = (state = initialState, action) => {
 
 export default ticketReducer;
 
-function addFilterIfNotExists(filter, appliedFilters) {
-  let index = appliedFilters.indexOf(filter);
-  if (index === -1) appliedFilters.push(filter);
-  return appliedFilters;
-}
-
-function removeFilter(filter, appliedFilters) {
-  let index = appliedFilters.indexOf(filter);
-  appliedFilters.splice(index, 1);
-  return appliedFilters;
-}

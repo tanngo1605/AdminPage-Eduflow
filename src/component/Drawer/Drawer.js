@@ -1,6 +1,5 @@
 import React,{Component} from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import './Drawer.styles.css';
 import drawercontent from "../../userData/DrawerUtils"
 import { NavLink, withRouter } from 'react-router-dom'
 
@@ -40,8 +39,8 @@ class Drawer extends Component {
     return (
       
         <div className="drawer">
-            <div className="outer">
-                <div className="inner">
+            <div className="outeravatarcircle">
+                <div className="inneravatarcircle">
                     <img src={require("../../assets/Ellipse.png")} alt={'ava'} style={{width:"82%",height:"82%",marginLeft:"10%",marginTop:"10%"}}/>
                 </div>
             </div>
@@ -49,7 +48,7 @@ class Drawer extends Component {
             <div style={{textAlign:'center',color:'#FFFFFF',fontSize:22,marginBottom:10}}>Akhil</div>
             {drawercontent.map((item,index)=>
                 (item.clicked)?(
-                    <div key={item.key} className="activedrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
+                    <div key={item.key} className="activesubjectindrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:10,alignItem:'center'}}>
                         <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{wgidth:15,height:15,marginLeft:10,marginTop:-5}}/> </div>
                         <NavLink exact to={'/dashboard/'+ item.web} style={{color:'#FFFFFF',marginLeft:15,fontSize:16}}>{item.content}</NavLink> 
                         {this.Show(item.content)}

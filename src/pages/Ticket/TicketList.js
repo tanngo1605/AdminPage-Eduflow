@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {loadData, filterByValue} from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/Header"
-import './TicketList.styles.css'
  
 class TicketList extends Component {
   constructor (props) {
@@ -23,28 +22,29 @@ class TicketList extends Component {
       [event.target.id]: event.target.value
     })
   }
-  filterByInput=(event)=>{
+  searchResult=(event)=>{
     event.preventDefault()
     setTimeout(()=>{
       this.props.dispatch(filterByValue({text: this.state.text, status:this.state.status}))}, 50);
   }
+
+
   changetextstatus = (status) => {
     if (status==='Pending')
         return (
-          <div style={{height:30,borderRadius:15,backgroundColor:'#F4E55E',marginTop:10,marginLeft:20}}>
-            <a style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:10}}>Pending</a>
+          <div style={{height:30,borderRadius:15,backgroundColor:'#F4E55E',marginLeft:30,marginTop:-15}}>
+            <p style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:5}}>Pending</p>
           </div>
         )
     else if (status === 'Approved')
         return (
-          <div style={{height:30,borderRadius:15,backgroundColor:'#27AE60',marginTop:10,marginLeft:15}}>
-            <a style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:10}}>Approved</a>
+          <div style={{height:30,borderRadius:15,backgroundColor:'#27AE60',marginLeft:25,marginTop:-15}}>
+            <p style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:5}}>Approved</p>
           </div>
         )
-    else 
-        return (
-          <div style={{height:30,borderRadius:15,backgroundColor:'#FF6260',marginTop:10,marginLeft:25}}>
-            <a style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:10}}>Denied</a>
+    return (
+          <div style={{height:30,borderRadius:15,backgroundColor:'#FF6260',marginLeft:35,marginTop:-15}}>
+            <p style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:5}}>Denied</p>
           </div>
         )
   }
@@ -63,8 +63,8 @@ class TicketList extends Component {
                 <Header/>
                 <div className="form" >
                   <div style={{marginLeft:25}}>
-                    <div style={{color:'#262F56',fontSize:18,marginBottom:"10px",marginTop:"20px"}}>Raise a ticket</div>
-                    <form className="flexrow" onChange={this.filterByInput}>
+                    <div className='titleform'>Raise a ticket</div>
+                    <form className="flexrow" onChange={this.searchResult}>
                       <div className='searchBox'>
                         <input type='text' id='text' className='searchBox' placeholder='Search' onChange={this.handleChange} style={{color:"#FFFFFF",paddingLeft:'20px'}} />
                       </div>
@@ -79,25 +79,25 @@ class TicketList extends Component {
                     </form>
                   <div className="ticketList" style={{marginTop:"10%"}}>
                     <div className="headerticketList">
-                      <a style={{width:"13%",textAlign:'center'}}>ID</a>
-                      <a style={{width:"18%",textAlign:'center'}}>Name</a>
-                      <a style={{width:"18%",textAlign:'center'}}>Date</a>
-                      <a style={{width:"13%",textAlign:'center'}}>Issue</a>
-                      <a style={{width:"13%",textAlign:'center'}}>Details</a>
-                      <a style={{width:"10%",textAlign:'center'}}>File</a>
-                      <a style={{width:"120px",textAlign:'center'}}>Status</a>
+                      <p style={{width:"13%",textAlign:'center'}}>ID</p>
+                      <p style={{width:"18%",textAlign:'center'}}>Name</p>
+                      <p style={{width:"18%",textAlign:'center'}}>Date</p>
+                      <p style={{width:"13%",textAlign:'center'}}>Issue</p>
+                      <p style={{width:"13%",textAlign:'center'}}>Details</p>
+                      <p style={{width:"10%",textAlign:'center'}}>File</p>
+                      <p style={{width:"120px",textAlign:'center'}}>Status</p>
                     </div>
                     <div style={{height:"55vh"}}>
                     <Scrollbars>      
                       {tickets && tickets.map(ticket => (        
-                        <div style={{paddingLeft:"20px",height:"70px",display:"flex",alignItems:'center'}}>
+                        <div style={{paddingLeft:"20px",marginTop:"10px",height:"70px",display:"flex",alignItems:'center'}} key={ticket.serialno}>
                         
-                          <a style={{width:"13%",textAlign:'center'}}>{ticket.serialno}</a>
-                          <a style={{width:"18%",textAlign:'center'}}>{ticket.name}</a>
-                          <a style={{width:"18%",textAlign:'center'}}>{ticket.date}</a>
-                          <a style={{width:"13%",textAlign:'center'}}>{ticket.subject}</a>
-                          <a style={{width:"13%",textAlign:'center'}}>{ticket.problem}</a>
-                          <a style={{width:"10%",textAlign:'center'}}>File</a>
+                          <p style={{width:"13%",textAlign:'center'}}>{ticket.serialno}</p>
+                          <p style={{width:"18%",textAlign:'center'}}>{ticket.name}</p>
+                          <p style={{width:"18%",textAlign:'center'}}>{ticket.date}</p>
+                          <p style={{width:"13%",textAlign:'center'}}>{ticket.subject}</p>
+                          <p style={{width:"13%",textAlign:'center'}}>{ticket.problem}</p>
+                          <p style={{width:"10%",textAlign:'center'}}>File</p>
                           {this.changetextstatus(ticket.status)}
                           
                         </div>

@@ -1,5 +1,4 @@
-
-let counterToActiviateLoadDataOnce = 0 ;
+import  {addFilterIfNotExists,removeFilter} from '../../component/FilterComponents/addRemoveFilter'
 
 const initialState = {
     appliedFilters: []
@@ -32,12 +31,12 @@ const initialState = {
     switch (action.type) {
       case 'FILTER_BY_VALUE':
         
-        
+        let newState = Object.assign({}, state);
         let textvalue = action.payload.text;
         let classvalue = action.payload.class;
         let eventvalue = action.payload.event;
         
-        state.filteredTickets = state.events.filter(event => {
+        let filteredValues = state.events.filter(event => {
             
           return (
             (event.datefrom.toLowerCase().includes(eventvalue) &&
@@ -46,13 +45,23 @@ const initialState = {
           );
         });
         
+        let appliedFilters = state.appliedFilters;
         
-        
-        if (textvalue || eventvalue|| classvalue) state.filteredEvents = state.events;
+        if (textvalue || eventvalue|| classvalue) {
           
-         
+          appliedFilters = addFilterIfNotExists('FILTER_BY_VALUE', appliedFilters);
+          newState.filteredEvents = filteredValues;
         
-        return Object.assign({}, state);
+  
+        } else {
+          appliedFilters = removeFilter('FILTER_BY_VALUE', appliedFilters);
+          
+            if (appliedFilters.length === 0) {
+              newState.filteredEvents = newState.events;
+            }
+        }
+        
+        return newState;
       case 'ADD_EVENT':
           return (Object.assign({},state,{filteredEvents:[...state.filteredEvents,action.payload.value]}));
   
@@ -64,9 +73,9 @@ const initialState = {
           {class:'Liter',datefrom:'21/06/2010',dateto:"22/06/2010",timefrom:'22/06/2010',timeto:'22/06/2010',eventtitle:'Mr.Johns',file:"bla bla bla",description:"Denied"},
           
         ]
-        counterToActiviateLoadDataOnce ++;
-        if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{events:events,filteredEvents:events}));
-        return (Object.assign({},state))
+      
+        return (Object.assign({},state,{events:events,filteredEvents:events}));
+  
       default:
         return state;
     }

@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { NavLink} from 'react-router-dom'
-import {addEvent} from "../../redux/Stores/EventReducer";
-import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import {loadData,addEvent} from '../../redux/Stores/EventReducer';
+import Drawer from '../../component/Drawer/Drawer'
+import Header from '../../component/Header/Header'
 import Dropzone from 'react-dropzone'
-import { MdClose } from "react-icons/md";
-import "./Events.styles.css"
+import { MdClose } from 'react-icons/md';
 
 class createEvent extends Component {
   constructor (props) {
@@ -23,6 +22,9 @@ class createEvent extends Component {
  
     }
     
+  }
+  componentDidMount() {
+    this.props.dispatch(loadData());
   }
   onDrop = (files,event) => {
     this.setState({files})
@@ -41,68 +43,68 @@ class createEvent extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    document.getElementById("create-course-form").reset();
+    document.getElementById('create-course-form').reset();
     this.props.dispatch(addEvent({value: this.state}));
   }
 
   render() {
     
     return (
-      <div className="dashboard">
-        <div className="flexrow">
+      <div className='dashboard'>
+        <div className='flexrow'>
           <Drawer/>
-          <div className="flexcolumn">
+          <div className='flexcolumn'>
             <Header/>
-            <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
+            <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
               <div style={{marginLeft:25}}>
-                <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"10px",marginTop:"20px"}}>Create an event for your class</div>
+                <div className='titleform'>Create an event for your class</div>
                 <div style={{marginBottom:20,marginTop:20}}>
-                  <label htmlFor="class" className='section'>Class</label>
-                  <input type="text" id='class' className="box" placeholder='Maths' onChange={this.handleChange} />
+                  <label htmlFor='class' className='section'>Class</label>
+                  <input type='text' id='class' className='box' placeholder='Maths' onChange={this.handleChange} />
                 </div>
-                <div className="flexrow" style={{marginBottom:20}}>
+                <div className='flexrow' style={{marginBottom:20}}>
                   <div>
-                    <label htmlFor="datefrom" className='section'>Date from: </label>
-                    <input type="date" id='datefrom' className="box" onChange={this.handleChange} />
+                    <label htmlFor='datefrom' className='section'>Date from: </label>
+                    <input type='date' id='datefrom' className='box' onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:40}}>
-                    <label htmlFor="dateto" className='section'>Date to:</label>
-                    <input type="date" id='dateto' className="box" onChange={this.handleChange} />
+                    <label htmlFor='dateto' className='section'>Date to:</label>
+                    <input type='date' id='dateto' className='box' onChange={this.handleChange} />
                   </div>
                 </div>
-                <div className="flexrow" style={{marginBottom:20}}>
+                <div className='flexrow' style={{marginBottom:20}}>
                   <div>
-                    <label htmlFor="timefrom" className='section'>Time from: </label>
-                    <input type="time" id='timefrom' className="box"  onChange={this.handleChange} />
+                    <label htmlFor='timefrom' className='section'>Time from: </label>
+                    <input type='time' id='timefrom' className='box'  onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:40}}>
-                    <label htmlFor="timeto" className='section'>Time To: </label>
-                    <input type="time" id='timeto' className="box" onChange={this.handleChange} />
+                    <label htmlFor='timeto' className='section'>Time To: </label>
+                    <input type='time' id='timeto' className='box' onChange={this.handleChange} />
                   </div>
                 </div>
                 <div style={{marginBottom:20}}>
-                  <label htmlFor="eventtitle" className='section'>Event title </label>
-                  <input type="text" id='eventtitle' className="box" placeholder='Type here' onChange={this.handleChange} />
+                  <label htmlFor='eventtitle' className='section'>Event title </label>
+                  <input type='text' id='eventtitle' className='box' placeholder='Type here' onChange={this.handleChange} />
                 </div>
-                <div className="flexrow" style={{marginBottom:20}}>
-                  <label htmlFor="description" className='section'>Description </label>
-                  <textarea type="text" id='description' className="box" placeholder='Type here' onChange={this.handleChange} style={{height:150,width:"83%"}}></textarea>
+                <div className='flexrow' style={{marginBottom:20}}>
+                  <label htmlFor='description' className='section'>Description </label>
+                  <textarea type='text' id='description' className='box' placeholder='Type here' onChange={this.handleChange} style={{height:150,width:'83%'}}></textarea>
                 </div>
-                <div className="flexrow" style={{marginBottom:20}}>
-                  <a className='section'>Attachment </a>
+                <div className='flexrow' style={{marginBottom:20}}>
+                  <p className='section'>Attachment </p>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
                       <section className="flexrow">
-                        <div {...getRootProps({className: 'dropzone'})}>
+                        <div {...getRootProps({})}>
                           <input {...getInputProps()} />
-                              <a className='attachment'>Choose File</a>
+                              <button className='attachment' >Choose File</button>
                         </div>
                         <div>
                         {this.state.files.map((file)=>(
-                          <div style={{marginLeft:20}}>
-                            <a key={file.name}> {file.name} </a>
-                            <MdClose onClick={()=>this.removeItem(file)}/>
+                          <div className='flexrow' style={{marginLeft:20}} key={file.name}>
+                            <p> {file.name} </p>
+                            <MdClose onClick={()=>this.removeItem(file)} style={{marginTop:7}}/>
                             
                           </div>
                         ))} 
@@ -113,11 +115,11 @@ class createEvent extends Component {
                   
                 </div>
 
-                <div className="flexrow" style={{marginLeft:150,marginTop:20}}>
-                  <input type="submit" value="Create" className="button"/>
-                  <input type="reset" value="Reset" className="button"/>
-                  <div className="button">
-                    <NavLink exact to={'/dashboard/student'} style={{color:'#FFFFFF',marginLeft:'40%'}}>Cancel</NavLink> 
+                <div className='flexrow' style={{marginLeft:150,marginTop:20}}>
+                  <input type='submit' value='Create' className='button'/>
+                  <input type='reset' value='Reset' className='button'/>
+                  <div className='button'>
+                    <NavLink exact to={'/dashboard/student'} style={{color:'#FFFFFF',marginLeft:'40%',marginTop:'5%'}}>Cancel</NavLink> 
                   </div>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import {connect} from 'react-redux';
-import {addTicket} from "../../redux/Stores/TicketReducer";
+import {loadData,addTicket} from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 
@@ -18,7 +18,10 @@ class RaiseTicket extends Component {
       status:'',  
     }
   }
- 
+  componentDidMount() {
+    this.props.dispatch(loadData());
+  }
+
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value})
   }
@@ -45,7 +48,7 @@ class RaiseTicket extends Component {
             <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
               <div className="flexcolumn" style={{marginLeft:25}}>
 
-                <div style={{color:'#262F56',fontSize:18,fontWeight:'bold',marginBottom:"30px",marginTop:"20px"}}>Raise a ticket</div>
+                <div className='titleform'>Raise a ticket</div>
                 
                 <div style={{marginBottom:'20px'}}>
                   <label htmlFor="serialno" className='section' style={sectionStyle}>Serial No</label>
