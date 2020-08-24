@@ -36,8 +36,69 @@ class TimeTable extends Component {
   //   console.log(this.state);
   // };
 
+  displayPeriod() {
+    var period = [];
+    var numberOfPeriod = 4;
+    for (let i = 1; i < numberOfPeriod; i++) {
+      // var peri = "period" + { i };
+      // console.log(peri);
+
+      period.push(
+        <React.Fragment>
+          <div className="line-Area">
+            <div className="col-2">Period</div>
+            <div className="col-5">Subject</div>
+            <div className="col-5">Teacher assign</div>
+          </div>
+
+          <div className="line-Area">
+            <div className="col-2">{i}</div>
+            <div className="col-5">
+              <select
+                className="selectBar"
+                required
+                id="subject"
+                onChange={(event) => this.handleChange(event, `period${i}`)}
+              >
+                <option value="" disabled selected>
+                  -select-
+                </option>
+                <option value="maths">maths</option>
+                <option value="english">English</option>
+                <option value="science">Science</option>
+                <option value="history">History</option>
+                <option value="pe">PE</option>
+              </select>
+            </div>
+            <div className="col-5">
+              <select
+                className="selectBar"
+                required
+                id="teacher"
+                onChange={(event) => this.handleChange(event, `period${i}`)}
+              >
+                <option value="" disabled selected placeholder="-select-">
+                  {" "}
+                  -select-
+                </option>
+                <option value="Mr. Ryan">Mr. Ryan</option>
+                <option value="Mrs. Jane">Mrs. Jane</option>
+                <option value="Mr. Jane">Mr. Jane</option>
+                <option value="Mr. Jane">Mr. Jane</option>
+                <option value="Mr. Jane">Mr. Jane</option>
+              </select>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+    return <div>{period}</div>;
+  }
+
   handleChange = (event, key) => {
-    if (typeof [event.target.id].includes(key)) {
+    if (typeof [event.target.id]) {
+      console.log(typeof [event.target.id]);
+      console.log(typeof [event.target.id].includes(key));
       let update = Object.assign({}, this.state[key], {
         [event.target.id]: event.target.value,
       });
@@ -93,6 +154,7 @@ class TimeTable extends Component {
                 <div className="inputField1 ">
                   <div className="col-6">
                     <div>Enter Class</div>
+
                     <select
                       className="selectBar"
                       style={{ width: "250px" }}
@@ -145,7 +207,8 @@ class TimeTable extends Component {
                 </div>
               </div>
               <div className="formInput">
-                <div className="line-Area">
+                {this.displayPeriod()}
+                {/* <div className="line-Area">
                   <div className="col-2">Period</div>
                   <div className="col-5">Subject</div>
                   <div className="col-5">Teacher assign</div>
@@ -278,9 +341,9 @@ class TimeTable extends Component {
                       <option value="Mr. Jane">Mr. Jane</option>
                       <option value="Mr. Jane">Mr. Jane</option>
                       <option value="Mr. Jane">Mr. Jane</option>
-                    </select>
-                  </div>
-                </div>
+                    </select> */}
+                {/* </div>
+                </div> */}
               </div>
               <div className="buttonField">
                 {/* <button>Save</button>
