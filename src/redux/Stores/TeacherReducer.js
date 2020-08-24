@@ -71,9 +71,9 @@ const ticketReducer = (state = initialState, action) => {
       return (Object.assign({},state));
     case 'LOAD_DATA':
       const teachers=[
-        {name:'Rine',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,key:'1'},
-        {name:'Sam',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,key:'2'},
-        {name:'Samuel',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,key:'3'},
+        {name:'Rine',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,value:'rine',key:'1'},
+        {name:'Sam',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,value:'sam',key:'2'},
+        {name:'Samuel',dateofbirth:'29/06/99',gender:'Male',address:'',phone:'',classteacher:'',subject:'',role:'',image:null,value:'samuel',key:'3'},
       ]
 
       counterToActiviateLoadDataOnce ++; 

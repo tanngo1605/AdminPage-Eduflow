@@ -24,9 +24,6 @@ class TimeTable extends Component {
       class: '',
       section: '',
       date: '',
-      '1': { subject: '', teacher: '' },
-      '2': { subject: '', teacher: '' },
-      '3': { subject: '', teacher: '' },
     };
   }
   // handleChange = (event) => {
@@ -68,10 +65,9 @@ class TimeTable extends Component {
             </div>
             <div className='flexcolumn' style={{marginLeft:'10%'}}>                                                                                           
               <p className='section' style={{fontSize:18}}>Teacher assign</p>
-              
               <select className="shortbox" required id='teacher' onChange={(event) => this.handleChange(event,i.toString())}>
-                <option value="" disabled defaultValue placeholder="-select-">{" "}-select-</option>
-                {teacherselection.map((teacher,index)=><option key={index} value="Mr. Ryan">{teacher.name}</option>)}
+                <option value="" defaultValue>{" "}-select-</option>
+                {teacherselection.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
               
                 </select>
             </div>
@@ -84,9 +80,9 @@ class TimeTable extends Component {
   }
   handleChange = (event, key) => {
     if (typeof [event.target.id].includes(key)) {
-      let update = Object.assign({}, this.state[key], {[event.target.id]: event.target.value});
+      let update = Object.assign({}, {[event.target.id]: event.target.value});
       if (key) 
-        this.setState({[key]: update})  
+        this.setState({[key]:update})  
       else 
         this.setState({[event.target.id]: event.target.value});
       
