@@ -59,7 +59,7 @@ class StudentSearch extends Component {
             <Header/>
             <div className='form'>
               <div style={{marginLeft:25}}>
-                <div className='titleform'>Student Info</div>
+                <h1 className='titleform'>Student Info</h1>
                 <NavLink exact to={{pathname:'/student/profile'}} className='attachment' style={{backgroundColor:'#04044E',width:"150px",marginLeft:"60vw"}}>
                     <BsPlus color="white" size={18} style={{marginLeft:'6px',marginRight:'15px'}}/>
                     <p style={{color:'#FFFFFF'}}> Add a student </p>
@@ -67,15 +67,15 @@ class StudentSearch extends Component {
                 <form className='flexrow' onChange={this.searchResult} style={{marginBottom:20,marginTop:10}}>
                   <div>
                     <label htmlFor='name' className='section'>Enter Stud Name: </label>
-                    <input type='text' id='name' className='box' onChange={this.handleChange} />
+                    <input type='text' id='name' className='shortbox' onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:10}}>
                     <label htmlFor='class' className='section'>Enter Class:</label>
-                    <input type='text' id='class' className='box' onChange={this.handleChange} />
+                    <input type='text' id='class' className='shortbox' onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:10}}>
                     <label htmlFor='section' className='section'>Enter Section:</label>
-                    <input type='text' id='section' className='box' onChange={this.handleChange} />
+                    <input type='text' id='section' className='shortbox' onChange={this.handleChange} />
                   </div>
                 </form>
                 <div className='flexrow' style={{marginBottom:20,paddingLeft:"25vw"}}>
@@ -96,7 +96,7 @@ class StudentSearch extends Component {
                     <p>Export file</p>
                   </div>
                 </div>
-                <div className='eventlistArea' style={{width:'70vw'}}>
+                <div className='eventlistArea' style={{width:'75vw'}}>
                   <div className='headereventList'>
                     <p style={{width:'10%',textAlign:'center'}}>User ID</p>
                     <p style={{width:'30%',textAlign:'center'}}>Name of Student</p>

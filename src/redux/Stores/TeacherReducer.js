@@ -77,6 +77,7 @@ const ticketReducer = (state = initialState, action) => {
       ]
 
       counterToActiviateLoadDataOnce ++; 
+      
       if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{teachers,filteredTeachers:teachers}));
       
       return (Object.assign({},state))

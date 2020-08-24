@@ -7,17 +7,20 @@ import Header from '../../component/Header/Header'
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 
+
+
 class EventList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      class:'',
+      classteacher:'',
       text:'',
       event:'',
     }
   }
   componentDidMount() {
       this.props.dispatch(loadData());
+      
   }
 
   handleChange = (event) => {
@@ -25,13 +28,13 @@ class EventList extends Component {
   }
   filterByInput=(event)=>{
     event.preventDefault()
-    this.props.dispatch(filterByValue({class: this.state.class, text:this.state.text,event:this.state.event}));
+    this.props.dispatch(filterByValue({classteacher: this.state.classteacher, text:this.state.text,event:this.state.event}));
   }
   
   render() {
 
-      let events = this.props.event.filteredEvents;
       
+      let events = this.props.event.filteredEvents;
       return (
           <div className='dashboard'>
               
@@ -41,28 +44,27 @@ class EventList extends Component {
                 <Header/>
                 <div className='form' >
                   <div style={{marginLeft:25}}>
-                    <div className='titleform'>Events list</div>
-                    <form onSubmit={this.filterByInput}>
+                    <h1 className='titleform'>Events list</h1>
+                    <form onSubmit={this.filterByInput} style={{marginLeft:15}}>
                       <div style={{marginBottom:20,marginTop:30}}>
-                        <label htmlFor='class' className='section'>Class</label>
-                        <input type='text' id='class' className='box' placeholder='Type here' onChange={this.handleChange} />
+                        <label htmlFor='classteacher' className='section'>Class</label>
+                        <input type='text' id='classteacher' className='shortbox' placeholder='Type here' onChange={this.handleChange} />
                       </div>
                       <div style={{marginBottom:20}}> 
                         <label className='section'>Events</label>
-                        <input type='radio' id='event' value='upcoming' style={{marginLeft:25}}/>
+                        <input type='radio' id='event' value='upcoming' name='event' onChange={this.handleChange} style={{marginLeft:25}}/>
                         <label htmlFor='event' style={{marginLeft:15}}>Upcoming</label>
-                        <input type='radio' id='event' value='past' style={{marginLeft:25}}/>
+                        <input type='radio' id='event' value='past' name='event' onChange={this.handleChange} style={{marginLeft:25}}/>
                         <label htmlFor='event' style={{marginLeft:15}}>Past due</label>
-                        <input type='radio' id='event' value='all' style={{marginLeft:25}}/>
+                        <input type='radio' id='event' value='all' name='event' onChange={this.handleChange} style={{marginLeft:25}}/>
                         <label htmlFor='event' style={{marginLeft:15}}>All</label>
-                        <input type='radio' id='event' value='custom' style={{marginLeft:'125px'}}/>
+                        <input type='radio' id='event' value='custom' name='event' onChange={this.handleChange} style={{marginLeft:'125px'}}/>
                         <label htmlFor='event' style={{marginLeft:15}}>Custom date</label>
-                          
-        
+                              
                       </div>
                       <div className='flexrow' style={{marginBottom:20}}>
                         <label htmlFor='text' className='section'>Search text</label>
-                        <input type='text' id='text' className='box' style={{width:'400px'}} placeholder='Type here' onChange={this.handleChange} />
+                        <input type='text' id='text' className='longbox' placeholder='Type here' onChange={this.handleChange} />
                         <input type='submit' value='Search' className='button' style={{width:'150px',marginTop:'-5px'}}/>
                         <input type='reset' value='Reset' className='button' style={{width:'150px',marginTop:'-5px'}}/>
                       </div>

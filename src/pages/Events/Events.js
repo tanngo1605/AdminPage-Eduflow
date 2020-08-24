@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { BsPlus } from "react-icons/bs";
+
 import { connect } from 'react-redux'
 import {loadData,addEvent} from '../../redux/Stores/EventReducer';
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import Dropzone from 'react-dropzone';
-import DayPicker from 'react-day-picker';
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import { BsPlus } from "react-icons/bs";
 import { MdClose } from 'react-icons/md';
 
 class createEvent extends Component {
@@ -24,30 +25,20 @@ class createEvent extends Component {
         description:'',
         key:Math.random().toString()
       },
-      datefrompickershow:false,
-      datetopickershow:false,
       openmodal:false
- 
-    }
-    
+    }  
   }
-  componentDidMount() {
 
+  componentDidMount() {
     Modal.setAppElement('body');
     this.props.dispatch(loadData());
   }
+
   onDrop = (files) => {
     console.log(files);
     let update = Object.assign({},this.state.event,{files: files})
     this.setState({event:update})
   }
-
-  showdatepicker=(datepickername)=>{
-    console.log(this.state[datepickername])
-    if (this.state[datepickername]===true) this.setState({[datepickername]:false})
-    else this.setState({[datepickername]:true})
-  }
-  
 
   handleChange = (event) => {
     let update = Object.assign({},this.state.event,{[event.target.id]: event.target.value})
@@ -55,9 +46,9 @@ class createEvent extends Component {
   }
   handleDayChange(day,typeofpicker) {
     let update= Object.assign({},this.state.event,{[typeofpicker]: day})
-    
     this.setState({event: update});
   }
+
   handleSubmit = (event) => {
     event.preventDefault();
     document.getElementById('create-course-form').reset();
@@ -75,46 +66,38 @@ class createEvent extends Component {
             <Header/>
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
               <div style={{marginLeft:25}}>
-                <div className='titleform'>Create an event for your class</div>
+                <h1 className='titleform'>Create an event for your class</h1>
                 <div style={{marginBottom:20,marginTop:20}}>
                   <label htmlFor='class' className='section'>Class</label>
-                  <input type='text' id='class' className='box' placeholder='Maths' onChange={this.handleChange} />
+                  <input type='text' id='class' className='shortbox' placeholder='Maths' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
-                  <div className='flexrow' style={{height:'40px'}}>
+                  <div className='flexrow'>
                     <label htmlFor='datefrom' className='section'>Date from: </label>
-                    <div className='flexcolumn'>
-                      <div style={{position:'relative'}}><div className='box' onClick={()=>this.showdatepicker('datefrompickershow')}>{this.state.event.datefrom.toLocaleDateString()}</div></div>
-                      <div style={{marginBottom:'15px'}}></div>
-                      {(this.state.datefrompickershow)? <DayPicker  onDayClick={(day)=>this.handleDayChange(day,'datefrom')} selectedDays={this.state.event.datefrom}/>: null}
-                    </div>
+                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'30px'}} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
                   </div>
-                  <div className='flexrow' style={{marginLeft:40,height:'40px'}}>
+                  <div className='flexrow' style={{marginLeft:40}}>
                     <label htmlFor='dateto' className='section'>Date to:</label>
-                    <div className='flexcolumn'>
-                    <div style={{position:'relative'}}><div className='box' onClick={()=>this.showdatepicker('datetopickershow')}>{this.state.event.dateto.toLocaleDateString()}</div></div>
-                      <div style={{marginBottom:'15px'}}></div>
-                      {(this.state.datetopickershow)? <DayPicker  onDayClick={(day)=>this.handleDayChange(day,'dateto')} selectedDays={this.state.event.dateto}/>: null}
-                    </div>
+                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'30px'}} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
                   </div>
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
                   <div>
                     <label htmlFor='timefrom' className='section'>Time from: </label>
-                    <input type='time' id='timefrom' className='box'  onChange={this.handleChange} />
+                    <input type='time' id='timefrom' className='shortbox'  onChange={this.handleChange} />
                   </div>
                   <div style={{marginLeft:40}}>
                     <label htmlFor='timeto' className='section'>Time To: </label>
-                    <input type='time' id='timeto' className='box' onChange={this.handleChange} />
+                    <input type='time' id='timeto' className='shortbox' onChange={this.handleChange} />
                   </div>
                 </div>
                 <div style={{marginBottom:20}}>
                   <label htmlFor='eventtitle' className='section'>Event title </label>
-                  <input type='text' id='eventtitle' className='box' placeholder='Type here' onChange={this.handleChange} />
+                  <input type='text' id='eventtitle' className='shortbox' placeholder='Type here' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
                   <label htmlFor='description' className='section'>Description </label>
-                  <textarea type='text' id='description' className='box' placeholder='Type here' onChange={this.handleChange} style={{height:150,width:'83%'}}></textarea>
+                  <textarea type='text' id='description' className='shortbox' placeholder='Type here' onChange={this.handleChange} style={{height:150,width:'83%'}}></textarea>
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
                   <p className='section'>Attachment </p>
