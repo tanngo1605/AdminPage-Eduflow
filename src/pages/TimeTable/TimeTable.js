@@ -80,7 +80,7 @@ class TimeTable extends Component {
   }
   handleChange = (event, key) => {
     if (typeof [event.target.id].includes(key)) {
-      let update = Object.assign({}, {[event.target.id]: event.target.value});
+      let update = Object.assign({},this.state[key], {[event.target.id]: event.target.value});
       if (key) 
         this.setState({[key]:update})  
       else 
