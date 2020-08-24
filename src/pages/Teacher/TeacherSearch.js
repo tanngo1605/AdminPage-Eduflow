@@ -69,7 +69,7 @@ class TeacherSearch extends Component {
             <Header/>
             <div className='form'>
               <div style={{marginLeft:25}}>
-                <div className='titleform'>Teacher Info</div>
+                <h1 className='titleform'>Teacher Info</h1>
                 <NavLink exact to={{pathname:'/teacher/profile'}} className='attachment' style={{backgroundColor:'#04044E',width:"150px",marginLeft:"60vw"}}>
                     <BsPlus color="white" size={18} style={{marginLeft:'6px',marginRight:'15px'}}/>
                     <p style={{color:'#FFFFFF'}}> Add a teacher </p>
@@ -78,21 +78,21 @@ class TeacherSearch extends Component {
                   <div className='flexrow' style={{marginBottom:'2vh'}}>
                     <div className='flexcolumn' style={{marginLeft:"12vw"}} >
                       <label htmlFor='name' className='section' style={{width:"20vw"}}>Enter Teacher's Name </label>
-                      <input type='text' id='name' className='box' onChange={this.handleChange} />
+                      <input type='text' id='name' className='shortbox' onChange={this.handleChange} />
                     </div>
                     <div className='flexcolumn' style={{marginLeft:"5vw"}}>
                       <label htmlFor='classteacher' className='section'>Enter Class</label>
-                      <input type='text' id='classteacher' className='box' onChange={this.handleChange} />
+                      <input type='text' id='classteacher' className='shortbox' onChange={this.handleChange} />
                     </div>
                   </div>
                   <div className='flexrow'>
                     <div className='flexcolumn' style={{marginLeft:"12vw"}}>
                       <label htmlFor='section' className='section'>Enter Section</label>
-                      <input type='text' id='section' className='box' onChange={this.handleChange} />
+                      <input type='text' id='section' className='shortbox' onChange={this.handleChange} />
                     </div>
                     <div className='flexcolumn' style={{marginLeft:"5vw"}}>
                       <label htmlFor='subject' className='section'>Enter Subject</label>
-                      <input type='text' id='subject' className='box' onChange={this.handleChange} />
+                      <input type='text' id='subject' className='shortbox' onChange={this.handleChange} />
                     </div>
                   </div>
                 </form>

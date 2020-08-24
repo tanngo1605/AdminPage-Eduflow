@@ -93,7 +93,7 @@ class StudentProfile extends Component {
           <Header/>
           <div className='form'>
             <div style={{marginLeft:25}}>
-                <div className='titleform'>Student Profile </div>
+                <h1 className='titleform'>Student Profile </h1>
                 {(this.state.edit)?
                   (
                       <div className='flexrow'>
@@ -103,8 +103,8 @@ class StudentProfile extends Component {
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
                                       <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
-                                          <label htmlFor={item.id} className='section' style={boxStyle}>{item.content} </label>
-                                          <input type={item.type} id={item.id} placeholder={this.state.student[item.id]} className='box' onChange={this.handleChange} />
+                                          <label htmlFor={item.id} className='section' style={sectionStyle}>{item.content} </label>
+                                          <input type={item.type} id={item.id} placeholder={this.state.student[item.id]} className='shortbox' onChange={this.handleChange} />
                                       </div>
                                   )}
                               </div>
@@ -126,8 +126,8 @@ class StudentProfile extends Component {
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
                                       <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
-                                          <div className='section' style={boxStyle}>{item.content} </div>
-                                          <div className='box' style={{backgroundColor:'#F2F4F7'}}>{this.state.student[item.id]}</div> 
+                                          <div className='section' style={sectionStyle}>{item.content} </div>
+                                          <div className='shortbox' style={{backgroundColor:'#F2F4F7'}}>{this.state.student[item.id]}</div> 
                                       </div>
                                   )}
                               </div>
@@ -157,7 +157,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(StudentProfile);
 
-const boxStyle = {
+const sectionStyle = {
     fontSize: '15px',
     width:'200px'
 };

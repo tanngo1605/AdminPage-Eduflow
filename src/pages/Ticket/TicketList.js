@@ -63,7 +63,7 @@ class TicketList extends Component {
                 <Header/>
                 <div className="form" >
                   <div style={{marginLeft:25}}>
-                    <div className='titleform'>Raise a ticket</div>
+                    <h1 className='titleform'>Raise a ticket</h1>
                     <form className="flexrow" onChange={this.searchResult}>
                       <div className='searchBox'>
                         <input type='text' id='text' className='searchBox' placeholder='Search' onChange={this.handleChange} style={{color:"#FFFFFF",paddingLeft:'20px'}} />

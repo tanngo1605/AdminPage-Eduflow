@@ -98,7 +98,7 @@ class Gallery extends Component {
                     </div>
                     <div className='flexrow'>
                         <AiOutlineFileText size={20} color='#8C96AB'/>
-                        <input type='text' style={modalContent} className='box' onChange={(event)=>this.setState({images:{description:event.target.value}})}></input>
+                        <input type='text' style={modalContent} className='shortbox' onChange={(event)=>this.setState({images:{description:event.target.value}})}></input>
                     </div>
 
                 </div>

@@ -262,17 +262,32 @@
 }
 .section{
     width:150px;
-    font-size: 18px;
+    font-size: 15px;
     color:#262F56;
 }
-.box{
-    width:20vw;
+.longbox{
+    width:30vw;
     height:30px;
     background: #FFFFFF;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
     border: 0px solid white;
     border-radius: 4px;
     padding-left:20px;
+    font-size: 15px;
+    outline:none
+    
+}
+.shortbox{
+    width:20vw;
+    height:30px;
+    background: white;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    border: 0px white;
+    border-radius: 4px;
+    padding-left:20px;
+    font-size: 15px;
+    
+    
     
 }
 
@@ -315,3 +330,26 @@
 input[type="file"] {
     display: none;
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('./assets/down-arrow.png') no-repeat;
+    padding-left: 20px;
+
+}
+  
+select::-ms-expand {
+    display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
+}
+  
+option[value=""][disabled] {
+    display: none;
+}
+option {
+    color: #000;
+    font-family: Lato;
+    
+}
+  

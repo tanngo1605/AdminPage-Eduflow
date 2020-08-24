@@ -60,40 +60,38 @@ class LoginForm extends Component {
             <Header/>
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
               <div style={{marginLeft:25}}>
-                
-                <div className='titleform'>Account Settings</div>
-                
+                <h1 className='titleform'>Account Settings</h1>
                 <div className='flexrow' style={{marginBottom:10}}>
                     <div className='flexcolumn'>
-                        <label htmlFor='schoolname' className='section' style={Object.assign({},boxStyle,sectionStyle)}>School name</label>
-                        <input type='text' id='schoolname' className='box' style={boxStyle} onChange={this.handleChange} />
+                        <label htmlFor='schoolname' className='section' style={sectionStyle}>School name</label>
+                        <input type='text' id='schoolname' className='longbox' onChange={this.handleChange} />
                     </div>
                         
-                    <div style={{marginLeft:40}}>
-                        <label htmlFor='schooladdress' className='section' style={Object.assign({},boxStyle,sectionStyle)}>School Address</label>
-                        <input type='text' id='schooladdress' className='box' style={boxStyle} onChange={this.handleChange} />
+                    <div className='flexcolumn' style={{marginLeft:40}}>
+                        <label htmlFor='schooladdress' className='section' style={sectionStyle}>School Address</label>
+                        <input type='text' id='schooladdress' className='longbox' onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className='flexrow' style={{marginBottom:10}}>
                     <div className='flexcolumn'>
-                        <label htmlFor='schoolcode' className='section' style={Object.assign({},boxStyle,sectionStyle)}>School code</label>
-                        <input type='text' id='schoolcode' className='box' style={boxStyle} onChange={this.handleChange} />
+                        <label htmlFor='schoolcode' className='section' style={sectionStyle}>School code</label>
+                        <input type='text' id='schoolcode' className='longbox' onChange={this.handleChange} />
                     </div>
                         
-                    <div style={{marginLeft:40}}>
-                        <label htmlFor='city' className='section' style={Object.assign({},boxStyle,sectionStyle)}>City</label>
-                        <input type='text' id='city' className='box' style={boxStyle} onChange={this.handleChange} />
+                    <div className='flexcolumn' style={{marginLeft:40}}>
+                        <label htmlFor='city' className='section' style={sectionStyle}>City</label>
+                        <input type='text' id='city' className='longbox' onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className='flexrow' style={{marginBottom:10}}>
                     <div className='flexcolumn'>
-                        <label htmlFor='schoolbranch' className='section' style={Object.assign({},boxStyle,sectionStyle)}>School branch</label>
-                        <input type='text' id='schoolbranch' className='box' style={boxStyle} onChange={this.handleChange} />
+                        <label htmlFor='schoolbranch' className='section' style={sectionStyle}>School branch</label>
+                        <input type='text' id='schoolbranch' className='longbox' onChange={this.handleChange} />
                     </div>
                         
-                    <div style={{marginLeft:40}}>
-                        <label htmlFor='director' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Director</label>
-                        <input type='text' id='director' className='box' style={boxStyle} onChange={this.handleChange} />    
+                    <div className='flexcolumn' style={{marginLeft:40}}>
+                        <label htmlFor='director' className='section' style={sectionStyle}>Director</label>
+                        <input type='text' id='director' className='longbox' onChange={this.handleChange} />    
                     </div>
                 </div>
                 <div className='flexrow' style={{marginBottom:20}}>
@@ -120,35 +118,35 @@ class LoginForm extends Component {
                     </div>
                     
                   </div>
-                  <div className='flexcolumn' >
-                    <div className='flexcolumn' style={{marginLeft:40}}>
-                        <label htmlFor='principle' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Principle</label>
-                        <input type='text' id='principle' className='box' style={boxStyle} onChange={this.handleChange} />
+                  <div className='flexcolumn' style={{marginLeft:50}} >
+                    <div className='flexcolumn'>
+                        <label htmlFor='principle' className='section' style={sectionStyle}>Principle</label>
+                        <input type='text' id='principle' className='longbox'  onChange={this.handleChange} />
                     </div>
                         
-                    <div className='flexcolumn' style={{marginLeft:40,marginTop:10}}>
-                        <label htmlFor='viceprinciple' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Vice Principle</label>
-                        <input type='text' id='viceprinciple' className='box' style={boxStyle} onChange={this.handleChange} />    
+                    <div className='flexcolumn' style={{marginTop:10}}>
+                        <label htmlFor='viceprinciple' className='section' style={sectionStyle}>Vice Principle</label>
+                        <input type='text' id='viceprinciple' className='longbox'  onChange={this.handleChange} />    
                     </div>
-                    <div className='flexcolumn' style={{marginLeft:40,marginTop:10}}>
-                        <label htmlFor='admin' className='section' style={Object.assign({},boxStyle,sectionStyle)}>Admin</label>
-                        <input type='text' id='admin' className='box' style={boxStyle} onChange={this.handleChange} />    
+                    <div className='flexcolumn' style={{marginTop:10}}>
+                        <label htmlFor='admin' className='section' style={sectionStyle}>Admin</label>
+                        <input type='text' id='admin' className='longbox' onChange={this.handleChange} />    
                     </div>
                   </div>
                 </div>
-                <div className='flexrow' style={{marginTop:-20,marginBottom:10}}>
+                <div className='flexrow' style={{marginTop:-20,marginBottom:"2%"}}>
                     <div className='flexcolumn'>
                         <label htmlFor='totalteacher' className='section' style={Object.assign({},footersectionStyle,footerStyle)}>Total Teachers</label>
-                        <input type='number' id='totalteacher' className='box' style={footerStyle} onChange={this.handleChange} />
+                        <input type='number' id='totalteacher' className='shortbox' style={footerStyle} onChange={this.handleChange} />
                     </div>
                         
                     <div className='flexcolumn' style={{marginLeft:40}}>
                         <label htmlFor='totalstudent' className='section' style={Object.assign({},footersectionStyle,footerStyle)}>Total Staff</label>
-                        <input type='number' id='totalstudent' className='box' style={footerStyle} onChange={this.handleChange} />    
+                        <input type='number' id='totalstudent' className='shortbox' style={footerStyle}  onChange={this.handleChange} />    
                     </div>
                     <div className='flexcolumn' style={{marginLeft:40}}>
                         <label htmlFor='totalstaff' className='section' style={Object.assign({},footersectionStyle,footerStyle)}>Total Students</label>
-                        <input type='number' id='totalstaff' className='box' style={footerStyle} onChange={this.handleChange} />    
+                        <input type='number' id='totalstaff' className='shortbox' style={footerStyle} onChange={this.handleChange} />    
                     </div>
                 </div>
                 <div className='flexrow' >
@@ -170,16 +168,11 @@ class LoginForm extends Component {
 
 export default LoginForm;
 
-const boxStyle = {
-    fontSize: '15px',
-    width:'400px'
-};
 
 const sectionStyle = {
     paddingLeft:'20px',
 };
 const footerStyle = {
-    fontSize: '15px',
     width:'250px',
 };
 const footersectionStyle = {

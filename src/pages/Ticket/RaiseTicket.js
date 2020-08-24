@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DayPicker from 'react-day-picker';
+import DayPickerInput from "react-day-picker/DayPickerInput";
 import {connect} from 'react-redux';
 import {loadData,addTicket} from '../../redux/Stores/TicketReducer';
 import Drawer from '../../component/Drawer/Drawer';
@@ -19,7 +19,6 @@ class RaiseTicket extends Component {
         status:'',
         key:Math.random().toString()
       },
-      datepickershow:false,
         
     }
   }
@@ -57,55 +56,49 @@ class RaiseTicket extends Component {
           <div className='flexcolumn'>
             <Header/>
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
+              
               <div className='flexcolumn' style={{marginLeft:25}}>
 
-                <div className='titleform'>Raise a ticket</div>
-                
-                <div style={{marginBottom:'20px'}}>
-                  <label htmlFor='serialno' className='section' style={sectionStyle}>Serial No</label>
-                  <input type='text' id='serialno' className='box' style={longbox} placeholder='Type here' onChange={this.handleChange} />
-                </div>
-
-                <div className='flexrow' style={{marginBottom:'20px',height:'40px'}}>
-                  <label htmlFor='date' className='section' style={sectionStyle}>Date</label>
-                  <div className='flexcolumn'>
-                  
-                    <div style={{position:'relative'}}><div className='box'  onClick={()=>this.showdatepicker()}>{this.state.ticket.date.toLocaleDateString()}</div></div>
-                    <div style={{marginBottom:'15px'}}></div>
-                    {(this.state.datepickershow)? <DayPicker  onDayClick={(day)=>this.handleDayChange(day)} selectedDays={this.state.ticket.date}/>: null}
+                <h1 className='titleform'>Raise a ticket</h1>
+                <div style={{marginLeft:15}}>
+                  <div style={{marginBottom:'20px'}}>
+                    <label htmlFor='serialno' className='section'>Serial No</label>
+                    <input type='text' id='serialno' className='longbox' placeholder='Type here' onChange={this.handleChange} />
                   </div>
-                  
-                  
+
+                  <div className='flexrow' style={{marginBottom:'20px',height:'40px'}}>
+                    <label htmlFor='date' className='section'>Date</label>
+                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'30px'}} onDayChange={(day) => this.handleDayChange(day)} placeholder="- select -"/>
+                  </div>
+
+                  <div style={{marginBottom:'20px'}}>
+                    <label htmlFor='subject' className='section'>Subject</label>
+                    <input type='text' id='subject' className='shortbox'  onChange={this.handleChange} />
+                  </div>
+
+                  <div style={{marginBottom:'20px'}}>
+                    <label htmlFor='topic' className='section'>Topic</label>
+                    <input type='text' id='topic' className='longbox' placeholder='Type here' onChange={this.handleChange} />
+                  </div>
+
+                  <div style={{marginBottom:'20px'}}>
+                    <label htmlFor='name' className='section'>Name</label>
+                    <input type='text' id='name' className='longbox' placeholder='Type here' onChange={this.handleChange} />
+                  </div> 
+
+                  <div className='flexrow' style={{marginBottom:'20px'}}>
+                    <label htmlFor='problem' className='section' >Problem</label>
+                    <textarea type='text' id='problem' className='longbox' placeholder='Type here' onChange={this.handleChange} style={{height:100}}></textarea>
+                  </div>
+
+                  <div style={{marginBottom:'20px'}}>
+                    <label htmlFor='status' className='section'>Status</label>
+                    <input type='text' id='status' className='longbox'  placeholder='Type here' onChange={this.handleChange} />
+                  </div>
                 </div>
-
-                <div style={{marginBottom:'20px'}}>
-                  <label htmlFor='subject' className='section' style={sectionStyle}>Subject</label>
-                  <input type='text' id='subject' className='box' style={{width:150}} onChange={this.handleChange} />
-                </div>
-
-                <div style={{marginBottom:'20px'}}>
-                  <label htmlFor='topic' className='section' style={sectionStyle}>Topic</label>
-                  <input type='text' id='topic' className='box' style={longbox} placeholder='Type here' onChange={this.handleChange} />
-                </div>
-
-                <div style={{marginBottom:'20px'}}>
-                  <label htmlFor='name' className='section' style={sectionStyle}>Name</label>
-                  <input type='text' id='name' className='box' style={longbox} placeholder='Type here' onChange={this.handleChange} />
-                </div> 
-
-                <div className='flexrow' style={{marginBottom:'20px'}}>
-                  <label htmlFor='problem' className='section' style={sectionStyle}>Problem</label>
-                  <textarea type='text' id='problem' className='box' placeholder='Type here' onChange={this.handleChange} style={{height:100,width:'400px'}}></textarea>
-                </div>
-
-                <div style={{marginBottom:'20px'}}>
-                  <label htmlFor='status' className='section' style={sectionStyle}>Status</label>
-                  <input type='text' id='status' className='box' style={longbox} placeholder='Type here' onChange={this.handleChange} />
-                </div>
-
                 <div className='flexrow' >
-                    <input type='submit' value='Save' className='button' style={{marginLeft:'18%'}}/>
-                    <input type='reset' value='Reset' className='button' />        
+                  <input type='submit' value='Save' className='button' style={{marginLeft:'18%'}}/>
+                  <input type='reset' value='Reset' className='button' />        
                 </div>
               </div>
             </form>
@@ -122,12 +115,7 @@ const mapStateToProps = (state)=> ({
 
 export default connect(mapStateToProps)(RaiseTicket);
 
-const longbox = {
-    width:'400px'
-};
 
-const sectionStyle = {
-    marginLeft:'10px',
-    fontSize: '15px',
-};
+
+
 

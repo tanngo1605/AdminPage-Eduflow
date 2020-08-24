@@ -53,22 +53,22 @@ class Syllabus extends Component {
       <div className="dashboard">
         <div style={{display: "flex"}}>
           <Drawer/>
-          <div style={{display:"flex",flexDirection:'column'}}>
+          <div className='flexcolumn'>
             <Header/>
             <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
               <div className="flexcolumn" style={{marginLeft:25}}>
 
-                <div className='titleform'>Syllabus</div>
+                <h1 className='titleform'>Syllabus</h1>
                 <div className='eventlistArea' style={{width:'70vw',height:'60vh',paddingTop:'15px'}}>
                   {Object.keys(syllabus).map((key,value) => 
                       <div className='flexrow' style={{marginBottom:'20px'}}  key={key}>
                         <div className='flexcolumn' style={{marginLeft:'20px'}}>
                           <label htmlFor="class" className='section' style={sectionStyle}>Class</label>
-                          <input type="text" id='class' className="box" style={shortbox} placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
+                          <input type="text" id='class' className="shortbox" placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
                         </div>
                         <div className='flexcolumn' style={{marginLeft:'20px'}}>
                           <label htmlFor="subject" className='section' style={sectionStyle}>Subject</label>
-                          <input type="text" id='subject' className="box" style={shortbox} placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
+                          <input type="text" id='subject' className="shortbox"  placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
                         </div>
                         <Dropzone onDrop={(files)=>this.onDrop(files,key)}>
                           {({getRootProps, getInputProps}) => (
@@ -106,6 +106,3 @@ export default (Syllabus);
 const sectionStyle = {
   fontSize: '15px',
 };
-const shortbox ={
-  width:'20vw',
-}

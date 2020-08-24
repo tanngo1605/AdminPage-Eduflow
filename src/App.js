@@ -14,6 +14,7 @@ import StudentSearch from './pages/Student/StudentSearch';
 import StudentProfile from './pages/Student/StudentProfile';
 import Syllabus from './pages/Syllabus/Syllabus';
 import Gallery from './pages/Gallery/Gallery';
+import Timetable from './pages/TimeTable/TimeTable';
 import './styles.css'
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/gallery' component={Gallery}/>
           <Route path='/account' component={AccountSetting}/>
           <Route path='/syllabus' component={Syllabus}/>
+          <Route path='/timetable' component={Timetable}/>
           <Route path='/' component={Homescreen}/>
         </Switch>
         
