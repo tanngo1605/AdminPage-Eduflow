@@ -59,7 +59,7 @@ class TimeTable extends Component {
             <div className='flexcolumn' >
               <p className='section' style={{fontSize:18}}>Subject</p>
               <select className="shortbox" name='gido' required id='subject'  onChange={(event) => this.handleChange(event,i.toString())}>
-                <option value="" disabled defaultValue>-select-</option>
+                <option value="" defaultValue>{" "}-select-</option>
                 {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               </select>
             </div>
@@ -122,7 +122,7 @@ class TimeTable extends Component {
                       <div className='flexrow'>
                         <p className='section'>Enter Class</p>
                         <select className='shortbox' required onChange={this.handleChange} id='class'>
-                          <option  value='' disabled defaultValue placeholder='-select-'>{' '}Maths</option>
+                          <option value="" defaultValue>{" "}-select-</option>
                           <option value='lime'>Lime</option>
                           <option value='coconut'>Coconut</option>
                           <option value='mango'>Mango</option>
@@ -131,7 +131,7 @@ class TimeTable extends Component {
                       <div className='flexrow'>
                         <p className='section' style={{marginLeft:40}}>Enter Section</p>
                         <select className='shortbox' required onChange={this.handleChange} id='section'>
-                          <option value='' disabled defaultValue placeholder='- select -'>{' '}123</option>
+                          <option value="" defaultValue>{" "}-select-</option>
                           <option value='maths'>maths</option>
                           <option value='english'>English</option>
                           <option value='science'>Science</option>
