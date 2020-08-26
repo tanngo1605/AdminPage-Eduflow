@@ -16,7 +16,7 @@ import Syllabus from './pages/Syllabus/Syllabus';
 import Gallery from './pages/Gallery/Gallery';
 import Timetable from './pages/TimeTable/TimeTable';
 import Exam from './pages/Exam/Exam';
-import SendOTP from './pages/PasswordReset/SendOTP';
+
 import './styles.css'
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Switch>
-          <SendOTP/>
+          
           <Route path='/exam' component={Exam}/>
           <Route path='/ticket/ticketlist' component={TicketList}/>
           <Route path='/ticket' component={RaiseTicket}/>

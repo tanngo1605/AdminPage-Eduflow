@@ -24,23 +24,18 @@ class TeacherSearch extends Component {
   componentDidMount() {
     this.props.dispatch(loadData());
 }
+
   onDrop = (files) => {
     if (files.length===0||files.length>1) return ;
     this.setState({files})
   }
 
-  removeItem=(teacher)=>{
-    
-    
-    this.props.dispatch(deleteData(teacher));
-  }
+
 
   handleChange = (event) => {
     let updatesearch= Object.assign({},this.state.teachersearchinput,{[event.target.id]: event.target.value})
         
-    this.setState({
-      teachersearchinput: updatesearch
-    })
+    this.setState({ teachersearchinput: updatesearch })
   }
   searchResult=(event)=>{
     event.preventDefault();
@@ -125,19 +120,19 @@ class TeacherSearch extends Component {
                   </div>
 
                   <div className="flexcolumn" style={{height:'30vh'}}>
-                      {teachers&&teachers.map((item)=>
+                      {teachers&&teachers.map((teacher)=>
 
-                        <div  className="bodyeventList"  key={item.key} >
+                        <div  className="bodyeventList"  key={teacher.key} >
                           
                           <p style={{width:'10%'}}>User ID</p>
-                          <p style={{width:'30%'}}>{item.name}</p>
-                          <p style={{width:'10%'}}>{item.classteacher}</p>
-                          <p style={{width:'10%'}}>{item.section}</p>
+                          <p style={{width:'30%'}}>{teacher.name}</p>
+                          <p style={{width:'10%'}}>{teacher.classteacher}</p>
+                          <p style={{width:'10%'}}>{teacher.section}</p>
                           <div className='itemcenter' style={{width:"20%"}}>
-                            <MdDeleteForever size='1.5vw' onClick={()=>this.removeItem(item)}/>
+                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(teacher))}/>
                           </div>
                           <div className='itemcenter' style={{width:"20%",marginTop:'0.1vh'}}>
-                            <NavLink exact to={{pathname:'/teacher/profile',teacherdata:item}}>
+                            <NavLink exact to={{pathname:'/teacher/profile',teacherdata:teacher}}>
                               <BsPencilSquare size='1.3vw' color='black' />
                             </NavLink>
                           </div>

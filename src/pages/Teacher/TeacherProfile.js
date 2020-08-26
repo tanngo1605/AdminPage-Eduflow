@@ -59,14 +59,11 @@ class TeacherProfile extends Component {
   handleChange = (event) => {
     let update;
 
-    if (event.target.id==='image'){
+    if (event.target.id==='image')
         update= Object.assign({},this.state.teacher,{image: URL.createObjectURL(event.target.files[0])})
-        this.setState({teacher:update})
-    }
-    else {
+    else
         update= Object.assign({},this.state.teacher,{[event.target.id]: event.target.value})
-        this.setState({teacher:update})
-    }
+    this.setState({teacher:update})
   }
   handleSubmit = (event) => {
     if (this.props.location.teacherdata) {

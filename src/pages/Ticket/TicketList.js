@@ -18,9 +18,7 @@ class TicketList extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
+    this.setState({[event.target.id]: event.target.value})
   }
   searchResult=(event)=>{
     event.preventDefault()

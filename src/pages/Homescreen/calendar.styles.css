@@ -226,7 +226,7 @@
 /* DayPickerInput */
 .DayPickerInput {
   display: inline-block;
-  
+
 }
   
 .DayPickerInput-OverlayWrapper {
@@ -244,8 +244,7 @@
   
 }
 .DayPickerInput input {
-  border: none;
-  outline: none;
+  border: 1px black;
   box-shadow: 0vw 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
   border-radius: 0.5vw;
   width:100%;

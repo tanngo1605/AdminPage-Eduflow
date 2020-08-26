@@ -30,15 +30,13 @@ class RaiseTicket extends Component {
     let update= Object.assign({},this.state.ticket,{[event.target.id]: event.target.value})
     this.setState({ticket: update})
   }
-  showdatepicker=()=>{
-    if (this.state.datepickershow===true) this.setState({datepickershow:false})
-    else this.setState({datepickershow:true})
-  }
+  
   handleDayChange(day) {
     let update= Object.assign({},this.state.ticket,{date: day})
     console.log(this.state.ticket);
     this.setState({ticket: update});
   }
+
   handleSubmit = (event) => {
   
     event.preventDefault();

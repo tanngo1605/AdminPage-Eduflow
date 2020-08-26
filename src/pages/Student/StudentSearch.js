@@ -44,9 +44,7 @@ class StudentSearch extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      studentsearchinput: {[event.target.id]: event.target.value}
-    })
+    this.setState({studentsearchinput: {[event.target.id]: event.target.value}})
   }
   searchResult=(event)=>{
     event.preventDefault();

@@ -10,15 +10,11 @@ class Syllabus extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      otp:'',
- 
     }
     
   }
   
 
-
-  handleChange = otp => this.setState({ otp });
 
   render() {
     
@@ -28,17 +24,7 @@ class Syllabus extends Component {
           <Drawer/>
           <div className='flexcolumn'>
             <Header/>
-            <div className="form" onSubmit={this.handleSubmit}>
-                <OtpInput
-                    onChange={this.handleChange}
-                    numInputs={6}
-                    separator={<span>-</span>}
-                    value={this.state.otp}
-                    />              
-                {console.log(this.state)}
-
-              
-            </div>
+            
             
           </div>
         
