@@ -34,13 +34,13 @@ class Gallery extends Component {
       //album
       if (images.length>1) return (<div></div>)
       //single image    
-      return <div style={{backgroundColor:'white',width:'200px',height:'150px'}}><img src={URL.createObjectURL(images[0])} alt='' style={{width:'200px',height:'150px'}} /></div>
+      return <img src={URL.createObjectURL(images[0])} alt='' className='galleryimage' />
   }
 
   reviewImageBeforeAddingtoGallery = () =>{
-    if (this.state.images.image!=null) return (<img src={URL.createObjectURL(this.state.images.image[0])} alt='' style={{width:'200px',height:'100px',marginLeft:'30px'}} />)
+    if (this.state.images.image!=null) return (<img src={URL.createObjectURL(this.state.images.image[0])} alt='' className='galleryimage' style={{marginLeft:'1.5vw'}} />)
 
-    return (<div style={{width:'200px',height:'100px',marginLeft:'30px'}}></div>)
+    return (<div className='galleryimage' style={{marginLeft:'1.5vw'}}></div>)
   }
 
   addImageToGallery=()=>{
@@ -58,63 +58,63 @@ class Gallery extends Component {
       <div className='flexcolumn'>
           <Header/>
           <div className='form'>
-            <div style={{marginLeft:25}}>
+            
                 <div className='titleform'> Gallery </div>
                 <button className='attachment' onClick={()=>this.setState({openmodal:true})}>
-                    <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p>Choose File</p>
                 </button>
-                <div style={{marginTop:'20px',height:'70vh',width:'80vw'}}>
+                <div style={{marginTop:'2.5vh',height:'70vh',width:'80vw'}}>
                     <Scrollbars>
                      <div className='gallerylayout'>
                         {imagegallery.map((item)=>
-                            <div className='flexcolumn' style={{marginBottom:'20px',marginRight:'40px'}}>
-                            <div style={{backgroundColor:'white',width:'200px',height:'150px'}}><img src={URL.createObjectURL(item.image[0])} alt='' style={{width:'200px',height:'150px'}} /></div>
-                                <div style={{color:'#262F56',fontSize:14}}>{item.date}</div>
-                                <div style={{color:'#262F56',fontSize:14,marginTop:'3px'}}>{item.imagesize} bytes</div>
+                            <div className='flexcolumn' style={{marginBottom:'2.5vh',marginRight:'2vw'}}>
+                                <img src={URL.createObjectURL(item.image[0])} alt='' className='galleryimage' />
+                                <div className='gallerydescriptionforimage'>{item.date}</div>
+                                <div className='gallerydescriptionforimage'>{item.imagesize} bytes</div>
                             </div>
                         )}
                         </div>
                     </Scrollbars>
                     
                 </div>
-            </div>
+            
           </div>
           <Modal 
             isOpen={this.state.openmodal} 
             onRequestClose={()=>this.setState({images:{image:null,imagesize:''},openmodal:false})} 
             className='Modal'> 
-            <div className='headermodal' style={{textAlign:'center',color:'#262F56',fontWeight:'bold'}}>Upload file</div>
-            <div className='flexrow' style={{marginTop:'20px'}}>
+            <div className='headermodal'>Upload file</div>
+            <div className='flexrow' style={{marginTop:'2.5vh'}}>
                 {this.reviewImageBeforeAddingtoGallery()}
-                <div className='flexcolumn' style={{marginLeft:'70px',marginTop:'10px'}}>
+                <div className='flexcolumn' style={{marginLeft:'5vw',marginTop:'1.5vh'}}>
                     <div className='flexrow'>
-                        <AiOutlineExclamationCircle size={20} color='#8C96AB'/>
+                        <AiOutlineExclamationCircle  size={'1.6vw'} color='#8C96AB'/>
                         <p style={modalContent}>{this.state.images.imagesize} bytes</p>
                     </div>
                     <div className='flexrow' >
-                        <AiOutlineCalendar size={20} color='#8C96AB'/>
+                        <AiOutlineCalendar  size={'1.6vw'} color='#8C96AB'/>
                         <p style={modalContent}>{todayDate.toLocaleDateString()}</p>
                     </div>
                     <div className='flexrow'>
-                        <AiOutlineFileText size={20} color='#8C96AB'/>
+                        <AiOutlineFileText size={'1.6vw'} color='#8C96AB'/>
                         <input type='text' style={modalContent} className='shortbox' onChange={(event)=>this.setState({images:{description:event.target.value}})}></input>
                     </div>
 
                 </div>
             </div>
-            <div className='flexrow' style={{justifyContent:'space-around',marginTop:'10px'}}>
+            <div className='flexrow' style={{justifyContent:'space-around',marginTop:'1.5vh'}}>
                 <Dropzone onDrop={this.onDrop} accept='image/*,video/*'>
                     {({getRootProps, getInputProps}) => (
                         <section className='flexrow'>
                             <div {...getRootProps({})}>
                                 <input {...getInputProps()} />
-                                    <button className='button' style={{width:'100px'}}>Upload</button>
+                                    <button className='gallerybutton'>Upload</button>
                             </div>
                         </section>
                     )}
                 </Dropzone>
-                <button className='button' style={{width:'100px'}} onClick={()=>this.addImageToGallery()}>Save</button>
+                <button className='gallerybutton' onClick={()=>this.addImageToGallery()}>Save</button>
             </div>
 
                     
@@ -135,9 +135,9 @@ export default Gallery;
 
 const modalContent = {
     color:'#8C96AB',
-    fontSize:16,
-    marginTop:-2,
-    marginLeft:30,
-    width:100,
-    paddingLeft:5
+    fontSize:'1vw',
+    
+    marginLeft:'1.5vw',
+    width:'7.5vw',
+    paddingLeft:'1.5vw'
 };

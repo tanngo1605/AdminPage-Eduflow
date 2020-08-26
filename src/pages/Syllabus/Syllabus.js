@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BsPlus,BsFillFolderFill } from "react-icons/bs";
+import {Scrollbars} from 'react-custom-scrollbars';
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/Header"
 import Dropzone from 'react-dropzone'
@@ -27,19 +28,14 @@ class Syllabus extends Component {
   }
   onDrop = (files,key) => {
     let update = Object.assign({},this.state[key],{files: files});
-
-    this.setState({
-      [key]:update
-    })
+    this.setState({[key]:update})
   }
 
 
   handleChange = (event,key) => {
     
     let update = Object.assign({},this.state[key],{[event.target.id]: event.target.value});
-    this.setState({
-      [key]:update
-    })
+    this.setState({[key]:update})
   }
   handleSubmit = (event) => {
     event.preventDefault();
@@ -56,40 +52,47 @@ class Syllabus extends Component {
           <div className='flexcolumn'>
             <Header/>
             <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
-              <div className="flexcolumn" style={{marginLeft:25}}>
+              
 
                 <h1 className='titleform'>Syllabus</h1>
-                <div className='eventlistArea' style={{width:'70vw',height:'60vh',paddingTop:'15px'}}>
+                <div className='eventlistArea' style={{width:'70vw',height:'68vh'}}>
+                 <Scrollbars>
                   {Object.keys(syllabus).map((key,value) => 
-                      <div className='flexrow' style={{marginBottom:'20px'}}  key={key}>
-                        <div className='flexcolumn' style={{marginLeft:'20px'}}>
-                          <label htmlFor="class" className='section' style={sectionStyle}>Class</label>
-                          <input type="text" id='class' className="shortbox" placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
+                      <div className='flexcolumn' style={{marginBottom:'2.5vh'}}  key={key}>
+                        <div className='flexrow'>
+                          <label htmlFor="class" style={{marginLeft:'1.5vw',width:'20vw'}} className='section'>Class</label>
+                          <label htmlFor="subject" style={{marginLeft:'1.5vw',width:'20vw'}} className='section' >Subject</label>
                         </div>
-                        <div className='flexcolumn' style={{marginLeft:'20px'}}>
-                          <label htmlFor="subject" className='section' style={sectionStyle}>Subject</label>
-                          <input type="text" id='subject' className="shortbox"  placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
-                        </div>
-                        <Dropzone onDrop={(files)=>this.onDrop(files,key)}>
-                          {({getRootProps, getInputProps}) => (
-                            <section className='flexrow' style={{marginLeft:50,paddingTop:30}}>
-                              <div {...getRootProps({className: 'attachment'})}>
-                                <input {...getInputProps()} />
-                                  <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
-                                  <p>Upload document</p>  
+                        
+                        <div className='flexrow'>
+                          <input type="text" id='class' className="shortbox" style={{marginLeft:'1.5vw'}} placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
+                        
+                        
+                          
+                          <input type="text" id='subject' className="shortbox" style={{marginLeft:'1.5vw'}}  placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
+                        
+                          <Dropzone onDrop={(files)=>this.onDrop(files,key)}>
+                            {({getRootProps, getInputProps}) => (
+                              <section className='flexrow' style={{marginLeft:'1.3vw'}}>
+                                <div {...getRootProps({className: 'attachment'})}>
+                                  <input {...getInputProps()} />
+                                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
+                                    <p>Upload document</p>  
                                 </div>
-                            </section>
-                          )}
-                        </Dropzone>
-                        <BsFillFolderFill style={{marginTop:40,marginLeft:80}}/>
+                              </section>
+                            )}
+                          </Dropzone>
+                          <BsFillFolderFill style={{marginTop:'1.5vh',marginLeft:'8vw'}}/>
+                        </div>
                       </div>
                   )}
+                 </Scrollbars>
                 </div>
-                <div className="flexrow" style={{marginTop:'15px'}} >
+                <div className="flexrow" style={{marginTop:'3vh'}} >
                     <input type="submit" value="Save" className="button" style={{marginLeft:"18%"}}/>
                     <input type="reset" value="Reset" className="button" />        
                 </div>
-              </div>
+              
             </form>
             
           </div>
@@ -103,6 +106,3 @@ export default (Syllabus);
 
 
 
-const sectionStyle = {
-  fontSize: '15px',
-};

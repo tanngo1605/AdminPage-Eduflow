@@ -65,41 +65,41 @@ class createEvent extends Component {
           <div className='flexcolumn'>
             <Header/>
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
-              <div style={{marginLeft:25}}>
+              <div style={{marginLeft:'1.5vw'}}>
                 <h1 className='titleform'>Create an event for your class</h1>
-                <div style={{marginBottom:20,marginTop:20}}>
+                <div style={{marginTop:'10vh',marginBottom:'2.5vh'}}>
                   <label htmlFor='class' className='section'>Class</label>
                   <input type='text' id='class' className='shortbox' placeholder='Maths' onChange={this.handleChange} />
                 </div>
-                <div className='flexrow' style={{marginBottom:20}}>
+                <div className='flexrow' style={{marginBottom:'2.5vh'}}>
                   <div className='flexrow'>
                     <label htmlFor='datefrom' className='section'>Date from: </label>
-                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'30px'}} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
+                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'4.5vh'}} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
                   </div>
-                  <div className='flexrow' style={{marginLeft:40}}>
+                  <div className='flexrow' style={{marginLeft:'3vw'}}>
                     <label htmlFor='dateto' className='section'>Date to:</label>
-                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'30px'}} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
+                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'4.5vh'}} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
                   </div>
                 </div>
-                <div className='flexrow' style={{marginBottom:20}}>
+                <div className='flexrow' style={{marginBottom:'2.5vh'}}>
                   <div>
                     <label htmlFor='timefrom' className='section'>Time from: </label>
                     <input type='time' id='timefrom' className='shortbox'  onChange={this.handleChange} />
                   </div>
-                  <div style={{marginLeft:40}}>
+                  <div style={{marginLeft:'3vw'}}>
                     <label htmlFor='timeto' className='section'>Time To: </label>
                     <input type='time' id='timeto' className='shortbox' onChange={this.handleChange} />
                   </div>
                 </div>
-                <div style={{marginBottom:20}}>
+                <div style={{marginBottom:'2.5vh'}}>
                   <label htmlFor='eventtitle' className='section'>Event title </label>
                   <input type='text' id='eventtitle' className='shortbox' placeholder='Type here' onChange={this.handleChange} />
                 </div>
-                <div className='flexrow' style={{marginBottom:20}}>
+                <div className='flexrow' style={{marginBottom:'3vw'}}>
                   <label htmlFor='description' className='section'>Description </label>
                   <textarea type='text' id='description' className='shortbox' placeholder='Type here' onChange={this.handleChange} style={{height:150,width:'83%'}}></textarea>
                 </div>
-                <div className='flexrow' style={{marginBottom:20}}>
+                <div className='flexrow' style={{marginBottom:'3vw'}}>
                   <p className='section'>Attachment </p>
                   
                   <Dropzone onDrop={this.onDrop}>
@@ -107,15 +107,15 @@ class createEvent extends Component {
                       <section className="flexrow">
                         <div {...getRootProps({ className:'attachment'})}>
                           <input {...getInputProps()} />
-                            <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                            <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                             <p>Choose File</p>
                         </div>
                         
                         <div>
                         {this.state.event.files.map((file)=>(
-                          <div className='flexrow' style={{marginLeft:20}} key={file.name}>
+                          <div className='flexrow'  style={{marginLeft:'1.5vw',marginTop:'0.8vh'}} key={file.name}>
                             <p> {file.name} </p>
-                            <MdClose onClick={()=>this.removeItem(file)} style={{marginTop:7}}/>
+                            <MdClose onClick={()=>this.removeItem(file)} style={{marginTop:'1vh'}}/>
                             
                           </div>
                         ))} 

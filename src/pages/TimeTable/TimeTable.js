@@ -22,9 +22,6 @@ class TimeTable extends Component {
       class: "",
       section: "",
       date: "",
-      // "1": { subject: "", teacher: "" },
-      // "2": { subject: "", teacher: "" },
-      // "3": { subject: "", teacher: "" },
     };
   }
   // handleChange = (event) => {
@@ -55,18 +52,18 @@ class TimeTable extends Component {
         <div className="flexcolumn" key={i}>
           <div
             className="flexrow"
-            style={{ marginLeft: "5%", marginBottom: 15 }}
+            style={{ marginLeft: "5%", marginBottom: "1.5vh" }}
           >
             <div className="flexcolumn">
-              <p className="section" style={{ fontSize: 18 }}>
+              <p className="section" style={{ fontSize: "1.2vw" }}>
                 Period
               </p>
-              <p className="section" style={{ marginLeft: 18 }}>
+              <p className="section" style={{ marginLeft: "1.2vw" }}>
                 {i}
               </p>
             </div>
             <div className="flexcolumn">
-              <p className="section" style={{ fontSize: 18 }}>
+              <p className="section" style={{ fontSize: "1.2vw" }}>
                 Subject
               </p>
               <select
@@ -74,9 +71,10 @@ class TimeTable extends Component {
                 name="gido"
                 required
                 id="subject"
-                onChange={(event) => this.handleChange(event, i.toString)}
+                onChange={(event) => this.handleChange(event, i.toString())}
               >
                 <option value="" defaultValue>
+                  {" "}
                   -select-
                 </option>
                 {subjects.map((subject, index) => (
@@ -87,22 +85,21 @@ class TimeTable extends Component {
               </select>
             </div>
             <div className="flexcolumn" style={{ marginLeft: "10%" }}>
-              <p className="section" style={{ fontSize: 18 }}>
+              <p className="section" style={{ fontSize: "1.2vw" }}>
                 Teacher assign
               </p>
-
               <select
                 className="shortbox"
                 required
                 id="teacher"
                 onChange={(event) => this.handleChange(event, i.toString())}
               >
-                <option value="" defaultValue placeholder="-select-">
+                <option value="" defaultValue>
                   {" "}
                   -select-
                 </option>
                 {teacherselection.map((teacher, index) => (
-                  <option key={index} value={teacher.name}>
+                  <option key={index} value={teacher.value}>
                     {teacher.name}
                   </option>
                 ))}
@@ -145,90 +142,83 @@ class TimeTable extends Component {
     console.log(this.props);
     return (
       <div className="dashboard">
-        <div style={{ display: "flex" }}>
+        <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
             <Header />
             <div className="form">
-              <div className="flexcolumn" style={{ marginLeft: 25 }}>
-                <h1 className="titleform">Timetable</h1>
-                <div>
-                  <div
-                    className="flexcolumn"
-                    style={{ marginLeft: 15, marginTop: "3%" }}
-                  >
-                    <div className="flexrow">
-                      <div className="flexrow">
-                        <p className="section">Enter Class</p>
-                        <select
-                          className="shortbox"
-                          required
-                          onChange={this.handleChange}
-                          id="class"
-                        >
-                          <option value="" defaultValue placeholder="-select-">
-                            {" "}
-                            Maths
-                          </option>
-                          <option value="lime">Lime</option>
-                          <option value="coconut">Coconut</option>
-                          <option value="mango">Mango</option>
-                        </select>
-                      </div>
-                      <div className="flexrow">
-                        <p className="section" style={{ marginLeft: 40 }}>
-                          Enter Section
-                        </p>
-                        <select
-                          className="shortbox"
-                          required
-                          onChange={this.handleChange}
-                          id="section"
-                        >
-                          <option
-                            value=""
-                            defaultValue
-                            placeholder="- select -"
-                          >
-                            {" "}
-                            123
-                          </option>
-                          <option value="maths">maths</option>
-                          <option value="english">English</option>
-                          <option value="science">Science</option>
-                          <option value="history">History</option>
-                          <option value="pe">PE</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="flexrow" style={{ marginTop: "2%" }}>
-                      <p className="section">Choose Day</p>
-                      <DayPickerInput
-                        className="shortbox"
-                        style={{ width: "20vw", height: "30px" }}
-                        onDayChange={(day) => this.handleDayChange(day)}
-                        placeholder="- select -"
-                      />
-                    </div>
-                  </div>
+              <h1 className="titleform">Timetable</h1>
 
-                  <div
-                    className="eventlistArea"
-                    style={{ marginTop: "1%", paddingTop: "2%" }}
-                  >
-                    <Scrollbars>{this.displayPeriod(teachers)}</Scrollbars>
+              <div
+                className="flexcolumn"
+                style={{ marginLeft: "1.5vw", marginTop: "3%" }}
+              >
+                <div className="flexrow">
+                  <div className="flexrow">
+                    <p className="section">Enter Class</p>
+                    <select
+                      className="shortbox"
+                      required
+                      onChange={this.handleChange}
+                      id="class"
+                    >
+                      <option value="" defaultValue>
+                        {" "}
+                        -select-
+                      </option>
+                      <option value="lime">Lime</option>
+                      <option value="coconut">Coconut</option>
+                      <option value="mango">Mango</option>
+                    </select>
                   </div>
-                  <div style={{ marginTop: "2%" }}>
-                    {/* <button>Save</button> <button>Reset</button> */}
-                    <input
-                      type="submit"
-                      value="Save"
-                      className="button"
-                      style={{ marginLeft: "27%" }}
-                    />
-                    <input type="reset" value="Reset" className="button" />
+                  <div className="flexrow">
+                    <p className="section" style={{ marginLeft: "1.5vw" }}>
+                      Enter Section
+                    </p>
+                    <select
+                      className="shortbox"
+                      required
+                      onChange={this.handleChange}
+                      id="section"
+                    >
+                      <option value="" defaultValue>
+                        {" "}
+                        -select-
+                      </option>
+                      <option value="maths">maths</option>
+                      <option value="english">English</option>
+                      <option value="science">Science</option>
+                      <option value="history">History</option>
+                      <option value="pe">PE</option>
+                    </select>
                   </div>
                 </div>
+                <div className="flexrow" style={{ marginTop: "2%" }}>
+                  <p className="section">Choose Day</p>
+                  <DayPickerInput
+                    className="shortbox"
+                    style={{ width: "20vw", height: "4.5vh" }}
+                    onDayChange={(day) => this.handleDayChange(day)}
+                    placeholder="- select -"
+                  />
+                </div>
+              </div>
+
+              <div
+                className="eventlistArea"
+                style={{ marginTop: "1%", paddingTop: "2%" }}
+              >
+                <Scrollbars>{this.displayPeriod(teachers)}</Scrollbars>
+              </div>
+              <div style={{ marginTop: "2%" }}>
+                {/* <button>Save</button> <button>Reset</button> */}
+                <input
+                  type="submit"
+                  value="Save"
+                  className="button"
+                  style={{ marginLeft: "27%" }}
+                />
+                <input type="reset" value="Reset" className="button" />
               </div>
             </div>
           </div>

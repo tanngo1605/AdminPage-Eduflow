@@ -80,6 +80,7 @@ const ticketReducer = (state = initialState, action) => {
           subject: "",
           role: "",
           image: null,
+          value: "rine",
           key: "1",
         },
         {
@@ -92,6 +93,7 @@ const ticketReducer = (state = initialState, action) => {
           subject: "",
           role: "",
           image: null,
+          value: "sam",
           key: "2",
         },
         {
@@ -104,6 +106,7 @@ const ticketReducer = (state = initialState, action) => {
           subject: "",
           role: "",
           image: null,
+          value: "samuel",
           key: "3",
         },
       ];

@@ -9,9 +9,9 @@ const studentprofiledata=[
     {content:"Mother's name",id:'mothername',type:'text'},
     {content:'Gender',id:'gender',type:'text'},
     {content:"Father's occupation",id:'fatheroccupation',type:'text'},
-    {content:"Father's Mobile No",id:'fathermobileno',type:'number'},
-    {content:"Other Mobile No",id:'othermobileno',type:'number'},
-    {content:'Admission Number',id:'admission',type:'number'},
+    {content:"Father's Mobile No",id:'fathermobileno',type:'tel'},
+    {content:"Other Mobile No",id:'othermobileno',type:'tel'},
+    {content:'Admission Number',id:'admission',type:'tel'},
 
 
 ];

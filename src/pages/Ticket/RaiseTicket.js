@@ -61,111 +61,106 @@ class RaiseTicket extends Component {
               onSubmit={this.handleSubmit}
               id="create-course-form"
             >
-              <div className="flexcolumn" style={{ marginLeft: 25 }}>
-                <h1 className="titleform">Raise a ticket</h1>
-                <div style={{ marginLeft: 15 }}>
-                  <div style={{ marginBottom: "20px" }}>
-                    <label htmlFor="serialno" className="section">
-                      Serial No
-                    </label>
-                    <input
-                      type="text"
-                      id="serialno"
-                      className="longbox"
-                      placeholder="Type here"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-                  <div
-                    className="flexrow"
-                    style={{ marginBottom: "20px", height: "40px" }}
-                  >
-                    <label htmlFor="date" className="section">
-                      Date
-                    </label>
-                    <DayPickerInput
-                      className="shortbox"
-                      style={{ width: "20vw", height: "30px" }}
-                      onDayChange={(day) => this.handleDayChange(day)}
-                      placeholder="- select -"
-                    />
-                  </div>
-
-                  <div style={{ marginBottom: "20px" }}>
-                    <label htmlFor="subject" className="section">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      className="shortbox"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-                  <div style={{ marginBottom: "20px" }}>
-                    <label htmlFor="topic" className="section">
-                      Topic
-                    </label>
-                    <input
-                      type="text"
-                      id="topic"
-                      className="longbox"
-                      placeholder="Type here"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-                  <div style={{ marginBottom: "20px" }}>
-                    <label htmlFor="name" className="section">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="longbox"
-                      placeholder="Type here"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-                  <div className="flexrow" style={{ marginBottom: "20px" }}>
-                    <label htmlFor="problem" className="section">
-                      Problem
-                    </label>
-                    <textarea
-                      type="text"
-                      id="problem"
-                      className="longbox"
-                      placeholder="Type here"
-                      onChange={this.handleChange}
-                      style={{ height: 100 }}
-                    ></textarea>
-                  </div>
-
-                  <div style={{ marginBottom: "20px" }}>
-                    <label htmlFor="status" className="section">
-                      Status
-                    </label>
-                    <input
-                      type="text"
-                      id="status"
-                      className="longbox"
-                      placeholder="Type here"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="flexrow">
+              <h1 className="titleform">Raise a ticket</h1>
+              <div style={{ marginLeft: "1.5vw" }}>
+                <div style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="serialno" className="section">
+                    Serial No
+                  </label>
                   <input
-                    type="submit"
-                    value="Save"
-                    className="button"
-                    style={{ marginLeft: "18%" }}
+                    type="text"
+                    id="serialno"
+                    className="longbox"
+                    placeholder="Type here"
+                    onChange={this.handleChange}
                   />
-                  <input type="reset" value="Reset" className="button" />
                 </div>
+
+                <div className="flexrow" style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="date" className="section">
+                    Date
+                  </label>
+                  <DayPickerInput
+                    className="shortbox"
+                    style={{ width: "20vw", height: "4.5vh" }}
+                    onDayChange={(day) => this.handleDayChange(day)}
+                    placeholder="- select -"
+                  />
+                </div>
+
+                <div style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="subject" className="section">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    className="shortbox"
+                    onChange={this.handleChange}
+                  />
+                </div>
+
+                <div style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="topic" className="section">
+                    Topic
+                  </label>
+                  <input
+                    type="text"
+                    id="topic"
+                    className="longbox"
+                    placeholder="Type here"
+                    onChange={this.handleChange}
+                  />
+                </div>
+
+                <div style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="name" className="section">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="longbox"
+                    placeholder="Type here"
+                    onChange={this.handleChange}
+                  />
+                </div>
+
+                <div className="flexrow" style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="problem" className="section">
+                    Problem
+                  </label>
+                  <textarea
+                    type="text"
+                    id="problem"
+                    className="longbox"
+                    placeholder="Type here"
+                    onChange={this.handleChange}
+                    style={{ height: 100 }}
+                  ></textarea>
+                </div>
+
+                <div style={{ marginBottom: "2.5vh" }}>
+                  <label htmlFor="status" className="section">
+                    Status
+                  </label>
+                  <input
+                    type="text"
+                    id="status"
+                    className="longbox"
+                    placeholder="Type here"
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+              <div className="flexrow">
+                <input
+                  type="submit"
+                  value="Save"
+                  className="button"
+                  style={{ marginLeft: "18%" }}
+                />
+                <input type="reset" value="Reset" className="button" />
               </div>
             </form>
           </div>

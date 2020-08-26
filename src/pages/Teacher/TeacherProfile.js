@@ -41,11 +41,11 @@ class TeacherProfile extends Component {
     this.props.dispatch(loadData());
   }
   displayImage = () =>{
-    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.teacher.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></div>
+    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.teacher.image} alt='' className='profileimagepreview' /></div>
     if (this.state.teacher.image!=null)
         return ( 
             <div className='profileimage'>
-                <label htmlFor='image'><img src={this.state.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></label>
+                <label htmlFor='image'><img src={this.state.image} alt='' className='profileimagepreview' /></label>
                 <input type='file' id='image' onChange={this.handleChange} accept='image/*'/>   
             </div>
         )
@@ -88,26 +88,26 @@ class TeacherProfile extends Component {
       <div className='flexcolumn'>
           <Header/>
           <div className='form'>
-            <div style={{marginLeft:25}}>
+            
                 <h1 className='titleform'>Teacher Profile </h1>
                 {(this.state.edit)?
                   (
                       <div className='flexrow'>
                               
                           {this.displayImage()}
-                          <div className='flexcolumn' style={{marginLeft:100}}>
+                          <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {teacherprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
-                                          <label htmlFor={item.id} className='section' style={{width:200}}>{item.content} </label>
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'1vh'}}>
+                                          <label htmlFor={item.id} className='section'>{item.content} </label>
                                           <input type={item.type} id={item.id} placeholder={this.state.teacher[item.id]} className='shortbox' onChange={this.handleChange} />
                                       </div>
                                   )}
                               </div>
                               <div className='flexrow' style={{marginTop:'2%'}}>
-                                <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
+                                <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
 
-                                <input type='button' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} onClick={(event)=>this.handleSubmit(event)}/>
+                                <input type='button' value='Save' className='button' style={{marginLeft:'15%'}} onClick={(event)=>this.handleSubmit(event)}/>
                                   
                               </div>
                           </div>
@@ -118,18 +118,18 @@ class TeacherProfile extends Component {
                       <div className='flexrow'>
                   
                           {this.displayImage()}
-                          <div className='flexcolumn' style={{marginLeft:100}}>
+                          <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {teacherprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
-                                          <div className='section' style={{width:200}}>{item.content} </div>
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'1vh'}}>
+                                          <div className='section'>{item.content} </div>
                                           <div className='shortbox' style={{backgroundColor:'#F2F4F7'}}>{this.state.teacher[item.id]}</div> 
                                       </div>
                                   )}
                               </div>
                               <div className='flexrow' style={{marginTop:'2%'}}>
-                                  <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{this.setState({edit:true})}}/>
-                                  <input type='submit' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} onClick={()=>console.log('You are not editing yet')}/>
+                                  <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{this.setState({edit:true})}}/>
+                                  <input type='submit' value='Save' className='button' style={{marginLeft:'15%'}} onClick={()=>console.log('You are not editing yet')}/>
                               </div>
                           </div>
                       </div>
@@ -137,7 +137,7 @@ class TeacherProfile extends Component {
               }
                     
                 
-            </div>
+            
           </div>
           
 
