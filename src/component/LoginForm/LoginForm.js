@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import InputField from "../InputField/InputField";
 import { Button } from "react-bootstrap";
 import "./LoginForm.styles.css";
-
+import { withRouter } from "react-router-dom";
 class LoginForm extends Component {
   state = {
     schoolCode: "",
@@ -11,7 +11,7 @@ class LoginForm extends Component {
   };
 
   handleChange = (event) => {
-    const { value, name} = event.target;
+    const { value, name } = event.target;
     console.log(name, value);
 
     this.setState({ [name]: value });
@@ -19,6 +19,10 @@ class LoginForm extends Component {
   submitForm = (event) => {
     event.preventDefault();
     console.log(this.state);
+    this.props.history.push("/homescreen");
+  };
+  forgotPass = (event) => {
+    this.props.history.push("/forgotpassword");
   };
 
   render() {
@@ -41,7 +45,7 @@ class LoginForm extends Component {
           placeholder="Enter your password"
         />
         <label style={{ marginLeft: "50%" }}>
-          <a style={{ color: "#f3c428" }} href="#">
+          <a style={{ color: "#f3c428" }} href="#" onClick={this.forgotPass}>
             Forgot Password?
           </a>
         </label>
@@ -62,4 +66,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
