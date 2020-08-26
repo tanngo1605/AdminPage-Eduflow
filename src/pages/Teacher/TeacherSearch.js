@@ -68,16 +68,16 @@ class TeacherSearch extends Component {
           <div className='flexcolumn'>
             <Header/>
             <div className='form'>
-              <div style={{marginLeft:25}}>
+              
                 <h1 className='titleform'>Teacher Info</h1>
-                <NavLink exact to={{pathname:'/teacher/profile'}} className='attachment' style={{backgroundColor:'#04044E',width:"150px",marginLeft:"60vw"}}>
-                    <BsPlus color="white" size={18} style={{marginLeft:'6px',marginRight:'15px'}}/>
+                <NavLink exact to={{pathname:'/teacher/profile'}} className='attachment' style={{backgroundColor:'#04044E',marginLeft:"60vw"}}>
+                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a teacher </p>
                 </NavLink>
-                <form className='flexcolumn' onChange={this.searchResult} style={{marginBottom:20,marginTop:10}}>
-                  <div className='flexrow' style={{marginBottom:'2vh'}}>
+                <form className='flexcolumn' onChange={this.searchResult} style={{marginBottom:'2.5vh'}}>
+                  <div className='flexrow' style={{marginBottom:'3.5vh'}}>
                     <div className='flexcolumn' style={{marginLeft:"12vw"}} >
-                      <label htmlFor='name' className='section' style={{width:"20vw"}}>Enter Teacher's Name </label>
+                      <label htmlFor='name' className='section'>Enter Teacher's Name </label>
                       <input type='text' id='name' className='shortbox' onChange={this.handleChange} />
                     </div>
                     <div className='flexcolumn' style={{marginLeft:"5vw"}}>
@@ -96,49 +96,49 @@ class TeacherSearch extends Component {
                     </div>
                   </div>
                 </form>
-                <div className='flexrow' style={{marginBottom:20,marginLeft:"21vw"}}>
+                <div className='flexrow' style={{marginBottom:'3.5vh',marginLeft:"21vw"}}>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
                       <section className='flexrow'>
                         <div {...getRootProps({className: 'attachment'})}>
                           <input {...getInputProps()} />
-                              <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                              <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                               <p>Import file</p>
                         </div>
                       </section>
                     )}
                   </Dropzone>
                   <div className="attachment" style={{marginLeft:'5vw'}}>
-                    <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p>Export file</p>
                   </div>
                 </div>
-                <div className='eventlistArea' style={{width:'70vw'}}>
+                <div className='eventlistArea' style={{width:'70vw',textAlign:'center'}}>
                   <div className='headereventList'>
-                    <p style={{width:'10%',textAlign:'center'}}>User ID</p>
-                    <p style={{width:'30%',textAlign:'center'}}>Name of Teacher</p>
-                    <p style={{width:'10%',textAlign:'center'}}>Class</p>
-                    <p style={{width:'10%',textAlign:'center'}}>Section</p>
-                    <p style={{width:'20%',textAlign:'center'}}>Delete</p>
-                    <p style={{width:'20%',textAlign:'center'}}>Edit</p>
+                    <p style={{width:'10%'}}>User ID</p>
+                    <p style={{width:'30%'}}>Name of Teacher</p>
+                    <p style={{width:'10%'}}>Class</p>
+                    <p style={{width:'10%'}}>Section</p>
+                    <p style={{width:'20%'}}>Delete</p>
+                    <p style={{width:'20%'}}>Edit</p>
                   </div>
 
                   <div className="flexcolumn" style={{height:'30vh'}}>
                       {teachers&&teachers.map((item)=>
 
-                        <div  className="flexrow" style={{paddingLeft:'15px',height:'20px'}}  key={item.key} >
+                        <div  className="bodyeventList"  key={item.key} >
                           
-                          <p style={{width:'10%',textAlign:'center'}}>User ID</p>
-                          <p style={{width:'30%',textAlign:'center'}}>{item.name}</p>
-                          <p style={{width:'10%',textAlign:'center'}}>{item.class}</p>
-                          <p style={{width:'10%',textAlign:'center'}}>{item.section}</p>
-                          <div style={{width:"20%",display: 'flex',justifyContent:'center'}}>
-                            <MdDeleteForever size={15} onClick={()=>this.removeItem(item)}/>
+                          <p style={{width:'10%'}}>User ID</p>
+                          <p style={{width:'30%'}}>{item.name}</p>
+                          <p style={{width:'10%'}}>{item.classteacher}</p>
+                          <p style={{width:'10%'}}>{item.section}</p>
+                          <div className='itemcenter' style={{width:"20%"}}>
+                            <MdDeleteForever size='1.5vw' onClick={()=>this.removeItem(item)}/>
                           </div>
-                          <div style={{width:"20%",marginTop:-1.5,display: 'flex',justifyContent:'center'}}>
+                          <div className='itemcenter' style={{width:"20%",marginTop:'0.1vh'}}>
                             <NavLink exact to={{pathname:'/teacher/profile',teacherdata:item}}>
-                              <BsPencilSquare size={15} color='black' />
+                              <BsPencilSquare size='1.3vw' color='black' />
                             </NavLink>
                           </div>
                         </div>
@@ -147,11 +147,11 @@ class TeacherSearch extends Component {
                   </div>
                 </div>
       
-              </div>
+              
             </div>
           </div>
         
-      </div>  
+        </div>  
       </div>
     );
   }

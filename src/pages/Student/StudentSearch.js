@@ -7,7 +7,7 @@ import Header from '../../component/Header/Header'
 import {loadData, filterByValue,deleteData} from "../../redux/Stores/StudentReducer";
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-
+import * as xlsx from 'xlsx';
 
 class StudentSearch extends Component {
   constructor (props) {
@@ -26,14 +26,21 @@ class StudentSearch extends Component {
 }
   onDrop = (files) => {
     if (files.length===0||files.length>1) return ;
-    
-    this.setState({files:files})
-  }
+    var f = files[0];
+    console.log(files)
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var data = e.target.result;
+        let readedData = xlsx.read(data, {type: 'binary'});
+        const wsname = readedData.SheetNames[0];
+        const ws = readedData.Sheets[wsname];
 
-  removeItem=(student)=>{
-    
-    
-    this.props.dispatch(deleteData(student));
+        /* Convert array to json*/
+        const dataParse = xlsx.utils.sheet_to_json(ws, {header:1});
+        console.log(dataParse);
+    };
+    reader.readAsBinaryString(f)
+    this.setState({files:files})
   }
 
   handleChange = (event) => {
@@ -58,69 +65,69 @@ class StudentSearch extends Component {
           <div className='flexcolumn'>
             <Header/>
             <div className='form'>
-              <div style={{marginLeft:25}}>
+              
                 <h1 className='titleform'>Student Info</h1>
-                <NavLink exact to={{pathname:'/student/profile'}} className='attachment' style={{backgroundColor:'#04044E',width:"150px",marginLeft:"60vw"}}>
-                    <BsPlus color="white" size={18} style={{marginLeft:'6px',marginRight:'15px'}}/>
+                <NavLink exact to={{pathname:'/student/profile'}} className='attachment' style={{backgroundColor:'#04044E',marginLeft:"60vw"}}>
+                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a student </p>
                 </NavLink>
-                <form className='flexrow' onChange={this.searchResult} style={{marginBottom:20,marginTop:10}}>
+                <form className='flexrow' onChange={this.searchResult} style={{marginBottom:'2.5vh',marginTop:'1vh'}}>
                   <div>
                     <label htmlFor='name' className='section'>Enter Stud Name: </label>
                     <input type='text' id='name' className='shortbox' onChange={this.handleChange} />
                   </div>
-                  <div style={{marginLeft:10}}>
+                  <div style={{marginLeft:'1vw'}}>
                     <label htmlFor='class' className='section'>Enter Class:</label>
                     <input type='text' id='class' className='shortbox' onChange={this.handleChange} />
                   </div>
-                  <div style={{marginLeft:10}}>
+                  <div style={{marginLeft:'1vw'}}>
                     <label htmlFor='section' className='section'>Enter Section:</label>
                     <input type='text' id='section' className='shortbox' onChange={this.handleChange} />
                   </div>
                 </form>
-                <div className='flexrow' style={{marginBottom:20,paddingLeft:"25vw"}}>
+                <div className='flexrow' style={{marginBottom:'2.5vh',paddingLeft:"25vw"}}>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
                       <section className='flexrow'>
                         <div {...getRootProps({className: 'attachment'})}>
                           <input {...getInputProps()} />
-                              <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                              <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                               <p>Import file</p>
                         </div>
                       </section>
                     )}
                   </Dropzone>
                   <div className="attachment" style={{marginLeft:'5vw'}}>
-                    <BsPlus color="white" size={18} style={{marginRight:'15px',marginLeft:"6px",marginTop:"1px"}}/>
+                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p>Export file</p>
                   </div>
                 </div>
                 <div className='eventlistArea' style={{width:'75vw'}}>
                   <div className='headereventList'>
-                    <p style={{width:'10%',textAlign:'center'}}>User ID</p>
-                    <p style={{width:'30%',textAlign:'center'}}>Name of Student</p>
-                    <p style={{width:'10%',textAlign:'center'}}>Class</p>
-                    <p style={{width:'10%',textAlign:'center'}}>Section</p>
-                    <p style={{width:'20%',textAlign:'center'}}>Delete</p>
-                    <p style={{width:'20%',textAlign:'center'}}>Edit</p>
+                    <p className='textaligncenter' style={{width:'10%'}}>User ID</p>
+                    <p className='textaligncenter' style={{width:'30%'}}>Name of Student</p>
+                    <p className='textaligncenter' style={{width:'10%'}}>Class</p>
+                    <p className='textaligncenter' style={{width:'10%'}}>Section</p>
+                    <p className='textaligncenter' style={{width:'20%'}}>Delete</p>
+                    <p className='textaligncenter' style={{width:'20%'}}>Edit</p>
                   </div>
 
                   <div className="flexcolumn" style={{height:'30vh'}}>
-                      {students&&students.map((item)=>
+                      {students&&students.map((student)=>
 
-                        <div className="flexrow" style={{paddingLeft:'15px',height:'20px'}}  key={item.key} >
+                        <div className="flexrow" style={{paddingLeft:'1vw',height:'3.5vh'}}  key={student.key} >
                           
                           <p style={{width:'10%',textAlign:'center'}}>User ID</p>
-                          <p style={{width:'30%',textAlign:'center'}}>{item.name}</p>
-                          <p style={{width:'10%',textAlign:'center'}}>{item.class}</p>
-                          <p style={{width:'10%',textAlign:'center'}}>{item.section}</p>
-                          <div style={{width:"20%",display: 'flex',justifyContent:'center'}}>
-                            <MdDeleteForever size={15} onClick={()=>this.removeItem(item)}/>
+                          <p style={{width:'30%',textAlign:'center'}}>{student.name}</p>
+                          <p style={{width:'10%',textAlign:'center'}}>{student.class}</p>
+                          <p style={{width:'10%',textAlign:'center'}}>{student.section}</p>
+                          <div className='itemcenter' style={{width:"20%"}}>
+                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(student))}/>
                           </div>
-                          <div style={{width:"20%",marginTop:-1.5,display: 'flex',justifyContent:'center'}}>
-                            <NavLink exact to={{pathname:'/student/profile',studentdata:item}}>
-                              <BsPencilSquare size={15} color='black' />
+                          <div className='itemcenter' style={{width:"20%",marginTop:'0.1vh'}}>
+                            <NavLink exact to={{pathname:'/student/profile',studentdata:student}}>
+                              <BsPencilSquare size='1.3vw' color='black' />
                             </NavLink>
                           </div>
                         </div>
@@ -129,7 +136,7 @@ class StudentSearch extends Component {
                   </div>
                 </div>
       
-              </div>
+              
             </div>
           </div>
         

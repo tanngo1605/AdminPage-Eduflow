@@ -32,19 +32,19 @@ class TicketList extends Component {
   changetextstatus = (status) => {
     if (status==='Pending')
         return (
-          <div style={{height:30,borderRadius:15,backgroundColor:'#F4E55E',marginLeft:30,marginTop:-15}}>
-            <p style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:5}}>Pending</p>
+          <div className='boxforstatus' style={{backgroundColor:'#F4E55E'}}>
+            <p className='textforstatus'>Pending</p>
           </div>
         )
     else if (status === 'Approved')
         return (
-          <div style={{height:30,borderRadius:15,backgroundColor:'#27AE60',marginLeft:25,marginTop:-15}}>
-            <p style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:5}}>Approved</p>
+          <div className='boxforstatus' style={{backgroundColor:'#27AE60'}}>
+            <p className='textforstatus'>Approved</p>
           </div>
         )
     return (
-          <div style={{height:30,borderRadius:15,backgroundColor:'#FF6260',marginLeft:35,marginTop:-15}}>
-            <p style={{color:'#FFFFFF',fontSize:13,fontWeight:'bold',margin:5}}>Denied</p>
+          <div className='boxforstatus' style={{backgroundColor:'#FF6260'}}>
+            <p className='textforstatus'>Denied</p>
           </div>
         )
   }
@@ -62,13 +62,13 @@ class TicketList extends Component {
               <div className='flexcolumn'>
                 <Header/>
                 <div className="form" >
-                  <div style={{marginLeft:25}}>
+                  
                     <h1 className='titleform'>Raise a ticket</h1>
                     <form className="flexrow" onChange={this.searchResult}>
-                      <div className='searchBox'>
-                        <input type='text' id='text' className='searchBox' placeholder='Search' onChange={this.handleChange} style={{color:"#FFFFFF",paddingLeft:'20px'}} />
-                      </div>
-                      <div className='searchBox' style={{marginLeft:"250px"}}>        
+                      
+                      <input type='text' id='text' className='searchBox' placeholder='Search' onChange={this.handleChange} style={{color:"#FFFFFF",paddingLeft:'1.5vw',marginLeft:'1vw'}} />
+                      
+                      <div className='searchBox' style={{marginLeft:"18vw"}}>        
                         <select id='status' className='searchBox' onChange={this.handleChange}>
                           <option value="">Status</option>
                           <option value='Pending'>Pending</option>
@@ -77,34 +77,34 @@ class TicketList extends Component {
                         </select>
                       </div>
                     </form>
-                  <div className="ticketList" style={{marginTop:"10%"}}>
+                  <div className="ticketList" style={{marginTop:"8%"}}>
                     <div className="headerticketList">
-                      <p style={{width:"13%",textAlign:'center'}}>ID</p>
-                      <p style={{width:"18%",textAlign:'center'}}>Name</p>
-                      <p style={{width:"18%",textAlign:'center'}}>Date</p>
-                      <p style={{width:"13%",textAlign:'center'}}>Issue</p>
-                      <p style={{width:"13%",textAlign:'center'}}>Details</p>
-                      <p style={{width:"10%",textAlign:'center'}}>File</p>
-                      <p style={{width:"120px",textAlign:'center'}}>Status</p>
+                      <p style={{width:"13%"}}>ID</p>
+                      <p style={{width:"18%"}}>Name</p>
+                      <p style={{width:"18%"}}>Date</p>
+                      <p style={{width:"13%"}}>Issue</p>
+                      <p style={{width:"13%"}}>Details</p>
+                      <p style={{width:"10%"}}>File</p>
+                      <p style={{width:"12%"}}>Status</p>
                     </div>
                     <div style={{height:"55vh"}}>
-                    <Scrollbars>      
-                      {tickets && tickets.map(ticket => (        
-                        <div style={{paddingLeft:"20px",marginTop:"10px",height:"70px",display:"flex",alignItems:'center'}} key={ticket.key}>
+                      <Scrollbars>      
+                        {tickets && tickets.map(ticket => (        
+                          <div className='bodyticketlist' key={ticket.key}>
                         
-                          <p style={{width:"13%",textAlign:'center'}}>{ticket.serialno}</p>
-                          <p style={{width:"18%",textAlign:'center'}}>{ticket.name}</p>
-                          <p style={{width:"18%",textAlign:'center'}}>{ticket.date.toLocaleDateString()}</p>
-                          <p style={{width:"13%",textAlign:'center'}}>{ticket.subject}</p>
-                          <p style={{width:"13%",textAlign:'center'}}>{ticket.problem}</p>
-                          <p style={{width:"10%",textAlign:'center'}}>File</p>
-                          {this.changetextstatus(ticket.status)}
+                            <p style={{width:"13%"}}>{ticket.serialno}</p>
+                            <p style={{width:"18%"}}>{ticket.name}</p>
+                            <p style={{width:"18%"}}>{ticket.date.toLocaleDateString()}</p>
+                            <p style={{width:"13%"}}>{ticket.subject}</p>
+                            <p style={{width:"13%"}}>{ticket.problem}</p>
+                            <p style={{width:"10%"}}>File</p>
+                            {this.changetextstatus(ticket.status)}
                           
-                        </div>
-                      ))}
-                    </Scrollbars>
+                          </div>
+                        ))}
+                      </Scrollbars>
                     </div>
-                  </div>
+                  
                 </div>
                   
                   

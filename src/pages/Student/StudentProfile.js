@@ -44,12 +44,12 @@ class StudentProfile extends Component {
 }
   
   displayImage = () =>{
-    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.student.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></div>
+    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.student.image} alt='' className='profileimagepreview' /></div>
     
     if (this.state.student.image!=null)
         return ( 
             <div className='profileimage'>
-                <label htmlFor='image'><img src={this.state.student.image} alt='' style={{width:'150px',height:'150px',borderRadius:'50%'}} /></label>
+                <label htmlFor='image'><img src={this.state.student.image} alt='' className='profileimagepreview' /></label>
                 <input type='file' id='image' onChange={this.handleChange} accept='image/*'/>   
             </div>
         )
@@ -62,14 +62,11 @@ class StudentProfile extends Component {
     }
   handleChange = (event) => {
     let update;
-    if (event.target.id==='image'){
+    if (event.target.id==='image')
         update= Object.assign({},this.state.student,{image: URL.createObjectURL(event.target.files[0])})
-        this.setState({student:update});
-    }
-    else {
+    else 
         update= Object.assign({},this.state.student,{[event.target.id]: event.target.value})
-        this.setState({student:update})
-    }
+    this.setState({student:update});
   }
   handleSubmit = (event) => {
     
@@ -99,19 +96,19 @@ class StudentProfile extends Component {
                       <div className='flexrow'>
                               
                           {this.displayImage()}
-                          <div className='flexcolumn' style={{marginLeft:100}}>
+                          <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'0.3vh'}}>
                                           <label htmlFor={item.id} className='section' style={sectionStyle}>{item.content} </label>
                                           <input type={item.type} id={item.id} placeholder={this.state.student[item.id]} className='shortbox' onChange={this.handleChange} />
                                       </div>
                                   )}
                               </div>
                               <div className='flexrow' style={{marginTop:'2%'}}>
-                                  <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
+                                  <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
                                   
-                                <input type='button' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} onClick={(event)=>this.handleSubmit(event)}/>
+                                <input type='button' value='Save' className='button' style={{marginLeft:'15%'}} onClick={(event)=>this.handleSubmit(event)}/>
                                   
                               </div>
                           </div>
@@ -122,18 +119,18 @@ class StudentProfile extends Component {
                       <div className='flexrow'>
                   
                           {this.displayImage()}
-                          <div className='flexcolumn' style={{marginLeft:100}}>
+                          <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'10px'}}>
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'1vh'}}>
                                           <div className='section' style={sectionStyle}>{item.content} </div>
                                           <div className='shortbox' style={{backgroundColor:'#F2F4F7'}}>{this.state.student[item.id]}</div> 
                                       </div>
                                   )}
                               </div>
                               <div className='flexrow' style={{marginTop:'2%'}}>
-                                  <input type='button' value='Edit' className='button' style={{marginLeft:'10%',width:'100px'}} onClick={()=>{this.setState({edit:true})}}/>
-                                  <input type='submit' value='Save' className='button' style={{marginLeft:'25%',width:'100px'}} onClick={()=>console.log('You are not editing yet')}/>
+                                  <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{this.setState({edit:true})}}/>
+                                  <input type='submit' value='Save' className='button' style={{marginLeft:'15%'}} onClick={()=>console.log('You are not editing yet')}/>
                               </div>
                           </div>
                       </div>

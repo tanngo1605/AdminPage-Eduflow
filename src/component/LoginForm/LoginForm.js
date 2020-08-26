@@ -39,6 +39,7 @@ class LoginForm extends Component {
           handleChange={this.handleChange}
           name="password"
           placeholder="Enter your password"
+          
         />
         <label style={{ marginLeft: "50%" }}>
           <a style={{ color: "#f3c428" }} href="#">

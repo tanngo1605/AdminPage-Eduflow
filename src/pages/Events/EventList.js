@@ -43,53 +43,53 @@ class EventList extends Component {
               <div className='flexcolumn'>
                 <Header/>
                 <div className='form' >
-                  <div style={{marginLeft:25}}>
+                  
                     <h1 className='titleform'>Events list</h1>
-                    <form onSubmit={this.filterByInput} style={{marginLeft:15}}>
-                      <div style={{marginBottom:20,marginTop:30}}>
+                    <form onSubmit={this.filterByInput} style={{marginLeft:'1vw'}}>
+                      <div style={{marginBottom:'2.5vh',marginTop:'3vh'}}>
                         <label htmlFor='classteacher' className='section'>Class</label>
                         <input type='text' id='classteacher' className='shortbox' placeholder='Type here' onChange={this.handleChange} />
                       </div>
-                      <div style={{marginBottom:20}}> 
+                      <div style={{marginBottom:'2.5vh'}}> 
                         <label className='section'>Events</label>
-                        <input type='radio' id='event' value='upcoming' name='event' onChange={this.handleChange} style={{marginLeft:25}}/>
-                        <label htmlFor='event' style={{marginLeft:15}}>Upcoming</label>
-                        <input type='radio' id='event' value='past' name='event' onChange={this.handleChange} style={{marginLeft:25}}/>
-                        <label htmlFor='event' style={{marginLeft:15}}>Past due</label>
-                        <input type='radio' id='event' value='all' name='event' onChange={this.handleChange} style={{marginLeft:25}}/>
-                        <label htmlFor='event' style={{marginLeft:15}}>All</label>
-                        <input type='radio' id='event' value='custom' name='event' onChange={this.handleChange} style={{marginLeft:'125px'}}/>
-                        <label htmlFor='event' style={{marginLeft:15}}>Custom date</label>
+                        <input type='radio' id='event' value='upcoming' name='event' onChange={this.handleChange} style={{marginLeft:'1.5vw'}}/>
+                        <label htmlFor='event' style={{marginLeft:'1vw'}}>Upcoming</label>
+                        <input type='radio' id='event' value='past' name='event' onChange={this.handleChange} style={{marginLeft:'1.5vw'}}/>
+                        <label htmlFor='event' style={{marginLeft:'1vw'}}>Past due</label>
+                        <input type='radio' id='event' value='all' name='event' onChange={this.handleChange} style={{marginLeft:'1.5vw'}}/>
+                        <label htmlFor='event' style={{marginLeft:'1vw'}}>All</label>
+                        <input type='radio' id='event' value='custom' name='event' onChange={this.handleChange} style={{marginLeft:'13vw'}}/>
+                        <label htmlFor='event' style={{marginLeft:'1vw'}}>Custom date</label>
                               
                       </div>
-                      <div className='flexrow' style={{marginBottom:20}}>
+                      <div className='flexrow' style={{marginBottom:'2.5vh'}}>
                         <label htmlFor='text' className='section'>Search text</label>
                         <input type='text' id='text' className='longbox' placeholder='Type here' onChange={this.handleChange} />
-                        <input type='submit' value='Search' className='button' style={{width:'150px',marginTop:'-5px'}}/>
-                        <input type='reset' value='Reset' className='button' style={{width:'150px',marginTop:'-5px'}}/>
+                        <input type='submit' value='Search' className='button' style={{width:'10vw',marginTop:'-1vh'}} />
+                        <input type='reset' value='Reset' className='button' style={{width:'10vw',marginTop:'-1vh'}}/>
                       </div>
                     </form>
                   <div className='eventlistArea' style={{marginTop:'5%',marginLeft:'17%',width:'58vw'}}>
-                    <div className='bodyeventList' style={{width: '58vw',paddingTop:'15px'}}>
-                      <p style={{width:'100px',textAlign:'center'}}>#</p>
-                      <p style={{width:'180px',textAlign:'center'}}>From Date</p>
-                      <p style={{width:'75px',textAlign:'center'}}>To Date</p>
-                      <p style={{width:'180px',textAlign:'center'}}>Attachment</p>
-                      <p style={{width:'180px',textAlign:'center'}}>Options</p>
+                    <div className='headereventList' style={{width: '58vw'}}>
+                      <p style={{width:'13.2%'}}>#</p>
+                      <p style={{width:'22%'}}>From Date</p>
+                      <p style={{width:'10%'}}>To Date</p>
+                      <p style={{width:'22%'}}>Attachment</p>
+                      <p style={{width:'22%'}}>Options</p>
                       
                     </div>
                     <div style={{height:'35vh',marginTop:'5px'}}>
                      <Scrollbars>      
                       {events && events.map(event => (        
-                        <div key={event.key} className='flexrow' style={{paddingLeft:'15px',height:'20px'}}>
+                        <div key={event.key} className='bodyeventList' >
                         
-                          <p style={{width:'100px',textAlign:'center'}}>id</p>
-                          <p style={{width:'180px',textAlign:'center'}}>{event.datefrom.toLocaleDateString()}</p>
-                          <p style={{width:'75px',textAlign:'center'}}>{event.dateto.toLocaleDateString()}</p>
-                          <p style={{width:'180px',textAlign:'center'}}>no</p>
-                          <div className='flexrow' style={{width:'180px',justifyContent:'space-around'}}>
-                            <BsPencilSquare size={15}/>
-                            <MdDeleteForever size={15} onClick={()=>this.props.dispatch(deleteData(event))}/>
+                          <p style={{width:'13.2%'}}>id</p>
+                          <p style={{width:'22%'}}>{event.datefrom.toLocaleDateString()}</p>
+                          <p style={{width:'10%'}}>{event.dateto.toLocaleDateString()}</p>
+                          <p style={{width:'22%'}}>no</p>
+                          <div className='flexrow' style={{width:'22%',justifyContent:'space-around'}}>
+                            <BsPencilSquare size={'1.1vw'}/>
+                            <MdDeleteForever size={'1.3vw'} onClick={()=>this.props.dispatch(deleteData(event))}/>
                             
                           </div>
                           
@@ -97,7 +97,7 @@ class EventList extends Component {
                       ))}
                      </Scrollbars>
                     </div>
-                  </div>
+                  
                 </div>
                   
                   

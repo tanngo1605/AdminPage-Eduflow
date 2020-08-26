@@ -51,20 +51,20 @@ class TimeTable extends Component {
     for (let i = 1;i<=numberofperiod;i++) 
       period.push(
         <div className='flexcolumn' key={i}>
-          <div className='flexrow' style={{marginLeft:'5%',marginBottom:15}}>
+          <div className='flexrow' style={{marginLeft:'5%',marginBottom:'1.5vh'}}>
             <div className='flexcolumn'>
-              <p className='section' style={{fontSize:18}}>Period</p>
-              <p className='section' style={{marginLeft:18}}>{i}</p>
+              <p className='section' style={{fontSize:'1.2vw'}}>Period</p>
+              <p className='section' style={{marginLeft:'1.2vw'}}>{i}</p>
             </div>
             <div className='flexcolumn' >
-              <p className='section' style={{fontSize:18}}>Subject</p>
+              <p className='section' style={{fontSize:'1.2vw'}}>Subject</p>
               <select className="shortbox" name='gido' required id='subject'  onChange={(event) => this.handleChange(event,i.toString())}>
                 <option value="" defaultValue>{" "}-select-</option>
                 {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               </select>
             </div>
             <div className='flexcolumn' style={{marginLeft:'10%'}}>                                                                                           
-              <p className='section' style={{fontSize:18}}>Teacher assign</p>
+              <p className='section' style={{fontSize:'1.2vw'}}>Teacher assign</p>
               <select className="shortbox" required id='teacher' onChange={(event) => this.handleChange(event,i.toString())}>
                 <option value="" defaultValue>{" "}-select-</option>
                 {teacherselection.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
@@ -109,15 +109,15 @@ class TimeTable extends Component {
     
     return (
       <div className='dashboard'>
-        <div style={{ display: 'flex' }}>
+        <div className='flexrow'>
           <Drawer />
           <div className='flexcolumn'>
             <Header />
             <div className='form' >
-              <div className='flexcolumn' style={{marginLeft:25}}>
+              
                 <h1 className='titleform'>Timetable</h1>
-                <div>
-                  <div className='flexcolumn' style={{marginLeft:15,marginTop:'3%'}}>
+                
+                  <div className='flexcolumn' style={{marginLeft:'1.5vw',marginTop:'3%'}}>
                     <div className='flexrow'>
                       <div className='flexrow'>
                         <p className='section'>Enter Class</p>
@@ -129,7 +129,7 @@ class TimeTable extends Component {
                         </select>
                       </div>
                       <div className='flexrow'>
-                        <p className='section' style={{marginLeft:40}}>Enter Section</p>
+                        <p className='section' style={{marginLeft:'1.5vw'}}>Enter Section</p>
                         <select className='shortbox' required onChange={this.handleChange} id='section'>
                           <option value="" defaultValue>{" "}-select-</option>
                           <option value='maths'>maths</option>
@@ -142,7 +142,7 @@ class TimeTable extends Component {
                     </div>
                     <div className='flexrow' style={{marginTop:'2%'}}>
                       <p className='section'>Choose Day</p>
-                      <DayPickerInput className='shortbox' style={{width:'20vw',height:'30px'}} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
+                      <DayPickerInput className='shortbox' style={{ width:'20vw',height:'4.5vh'}} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
                     </div>
                   </div>
                   
@@ -156,8 +156,8 @@ class TimeTable extends Component {
                     <input type='submit' value='Save' className='button' style={{marginLeft:'27%'}} />
                     <input type='reset' value='Reset' className='button' />
                   </div>
-                </div>
-              </div>
+                
+              
             </div>
           </div>    
         
