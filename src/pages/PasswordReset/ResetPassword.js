@@ -77,7 +77,7 @@ class ResetPassword extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.checked}
-                  onClick={this.toggleCheck}
+                  onChange={this.toggleCheck}
                 />
                 <span>Remember me</span>
               </div>

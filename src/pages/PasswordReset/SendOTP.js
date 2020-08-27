@@ -40,6 +40,7 @@ class SendOTP extends Component {
                 value={this.state.otp}
                 onChange={this.handleChange}
                 otpType="number"
+                isInputNum="true"
                 disabled={false}
                 inputStyle={{
                   marginLeft: "38px",
