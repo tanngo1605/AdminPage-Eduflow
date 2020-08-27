@@ -8,6 +8,7 @@ class ResetPassword extends Component {
     this.state = {
       hidden: true,
       checked: false,
+      
     };
     this.toggleShow = this.toggleShow.bind(this);
     this.toggleCheck = this.toggleCheck.bind(this);
