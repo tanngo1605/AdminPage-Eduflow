@@ -30,98 +30,23 @@ class ResetPassword extends Component {
   render() {
     console.log(this.props);
     return (
-      <div
-        className="passScreen "
-        style={{
-          width: "100vw",
-          height: "110vh",
-          left: "0px",
-          top: "0px",
-          background:
-            "linear-gradient(180deg, rgba(244, 249, 255, 0.0001) 0%, #F4F9FF 26.23%)",
-        }}
-      >
+      <div className="passScreen ">
         <div className="containerPassScreen">
-          <img src={ii} className="imgField" />
+          <img alt="#" src={ii} className="imgField" />
           <div>
-            <form
-              onSubmit={this.handleSubmit}
-              style={{
-                background: "#ffffff",
-                width: "531px",
-                height: "499px",
-                textAlign: "center",
-                boxShadow: "10px 10px 40px #698F9B",
-                borderRadius: "8px",
-                marginTop: "59px",
-                marginLeft: "35px",
-              }}
-            >
-              <label
-                style={{
-                  width: "415px",
-                  height: "43px",
-                  left: "781px",
-                  top: "339px",
-                  fontFamily: "Poly",
-                  fontStyle: "normal",
-                  fontWeight: "normal",
-                  fontSize: "36px",
-                  lineHeight: "43px",
-                  marginTop: "87px",
-                  color: "#04044E",
-                }}
-              >
-                Reset your password
-              </label>
-
+            <form className="formPass" onSubmit={this.handleSubmit}>
+              <label className="titlePass">Reset your password</label>
               <div className="passwordFieldd" style={{ marginTop: "5vh" }}>
                 <div style={{ display: "inline-flex" }}>
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontStyle: "normal",
-                      fontWeight: "bold",
-                      fontSize: "12px",
-                      lineHeight: "14px",
-                      height: "15px",
-                      textTransform: "uppercase",
-                      marginRight: "13vh",
-                      color: "#1F2041",
-                    }}
-                  >
-                    Enter your new password
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontStyle: "normal",
-                      fontWeight: "normal",
-                      fontSize: "12px",
-                      lineHeight: "14px",
-                      textAlign: "right",
-                      textTransform: "uppercase",
-                      color: " rgba(31, 32, 65, 0.5)",
-                    }}
-                  >
-                    Type
-                  </div>
+                  <div className="textPass">Enter your new password</div>
+                  <div className="textTypePass">Type</div>
                 </div>
                 <input
                   className="inputPassword resetPassword"
                   placeholder="****************"
                   type={this.state.hidden ? "password" : "text"}
                 />
-                <label
-                  htmlFor="button1"
-                  style={{
-                    width: "29px",
-                    height: "12px",
-                    float: "right",
-                    right: "120px",
-                    bottom: "28px",
-                  }}
-                >
+                <label className="eyeIcon" htmlFor="button1">
                   <i
                     className="hideshowBtn"
                     id="button1"
@@ -131,39 +56,8 @@ class ResetPassword extends Component {
               </div>
               <div className="passwordFieldd" style={{ marginTop: "5vh" }}>
                 <div style={{ display: "inline-flex" }}>
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontStyle: "normal",
-                      fontWeight: "bold",
-                      fontSize: "12px",
-                      lineHeight: "14px",
-                      height: "15px",
-                      textTransform: "uppercase",
-                      marginRight: "12vh",
-                      color: "#1F2041",
-                      position: "relative",
-                      left: "10px",
-                    }}
-                  >
-                    Enter your new password
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontStyle: "normal",
-                      fontWeight: "normal",
-                      fontSize: "12px",
-                      lineHeight: "14px",
-                      textAlign: "right",
-                      position: "relative",
-                      left: "18px",
-                      textTransform: "uppercase",
-                      color: " rgba(31, 32, 65, 0.5)",
-                    }}
-                  >
-                    Type
-                  </div>
+                  <div className="textPass">Enter your new password</div>
+                  <div className="textTypePass">Type</div>
                 </div>
                 <input
                   className="inputPassword resetPassword"
@@ -171,16 +65,7 @@ class ResetPassword extends Component {
                   type={this.state.hidden ? "password" : "text"}
                 />
 
-                <label
-                  htmlFor="button2"
-                  style={{
-                    width: "29px",
-                    height: "12px",
-                    float: "right",
-                    right: "120px",
-                    bottom: "28px",
-                  }}
-                >
+                <label className="eyeIcon" htmlFor="button2">
                   <i
                     className="hideshowBtn"
                     id="button2"
@@ -188,36 +73,20 @@ class ResetPassword extends Component {
                   ></i>
                 </label>
               </div>
-              <input
-                type="checkbox"
-                checked={this.state.checked}
-                style={{ position: "relative", right: "120px" }}
-                onClick={this.toggleCheck}
-              />
-              <span style={{ position: "absolute", left: "55.8%" }}>
-                Remember me
-              </span>
+              <div className="checkField">
+                <input
+                  type="checkbox"
+                  checked={this.state.checked}
+                  onClick={this.toggleCheck}
+                />
+                <span>Remember me</span>
+              </div>
+
               <button
+                className="buttonPass"
                 type="button"
                 value="Save"
                 onClick={this.handleSubmit}
-                style={{
-                  width: "228px",
-                  height: "54px",
-                  display: "flow-root",
-                  background: "#262F56",
-                  borderRadius: "6px",
-                  marginTop: "2vh",
-                  position: "relative",
-                  left: "155px",
-                  fontFamily: "Poly",
-                  fontStyle: "normal",
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  lineHeight: "21px",
-
-                  color: "#FFFFFF",
-                }}
               >
                 Reset
               </button>

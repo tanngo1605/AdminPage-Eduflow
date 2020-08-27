@@ -17,52 +17,21 @@ class SendOTP extends Component {
   render() {
     console.log(this.state.otp);
     return (
-      <div
-        className="passScreen "
-        style={{
-          width: "100vw",
-          height: "110vh",
-          left: "0px",
-          top: "0px",
-          background:
-            "linear-gradient(180deg, rgba(244, 249, 255, 0.0001) 0%, #F4F9FF 26.23%)",
-        }}
-      >
+      <div className="passScreen ">
         <div className="containerPassScreen">
-          <img src={ppll1} className="imgField" />
+          <img alt="#" src={ppll1} className="imgField" />
           <div>
-            <form
-              onSubmit={this.handleSubmit}
-              style={{
-                background: "#ffffff",
-                width: "531px",
-                height: "499px",
-                textAlign: "center",
-                boxShadow: "10px 10px 40px #698F9B",
-                borderRadius: "8px",
-                marginTop: "59px",
-                marginLeft: "35px",
-              }}
-            >
+            <form className="formPass" onSubmit={this.handleSubmit}>
               <label
+                className="titlePass"
                 style={{
-                  width: "415px",
-                  height: "43px",
-                  left: "781px",
-                  top: "339px",
-                  fontFamily: "Poly",
-                  fontStyle: "normal",
-                  fontWeight: "normal",
-                  fontSize: "36px",
-                  lineHeight: "43px",
-                  marginTop: "65px",
-                  color: "#04044E",
+                  marginLeft: "28%",
                 }}
               >
                 Enter your OTP
               </label>
-              <label>
-                <div>Didn't get OTP? Resend again?</div>
+              <label style={{ marginLeft: "10vw" }}>
+                Didn't get OTP? Resend again?
               </label>
               <OtpInput
                 className="otp"
@@ -91,23 +60,7 @@ class SendOTP extends Component {
                 }}
               />
 
-              <button
-                type="submit"
-                value="submit"
-                style={{
-                  width: "228px",
-                  height: "54px",
-                  background: "#262F56",
-                  borderRadius: "6px",
-                  marginTop: "2vh",
-                  fontFamily: "Poly",
-                  fontStyle: "normal",
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  lineHeight: "21px",
-                  color: "#FFFFFF",
-                }}
-              >
+              <button className="buttonPass" type="submit" value="submit">
                 Okay
               </button>
             </form>
