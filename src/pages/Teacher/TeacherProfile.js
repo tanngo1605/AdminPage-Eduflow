@@ -42,7 +42,7 @@ class TeacherProfile extends Component {
   }
   displayImage = () =>{
     if (this.state.edit===false) return <div className='profileimage'><img src={this.state.teacher.image} alt='' className='profileimagepreview' /></div>
-    if (this.state.teacher.image!=null)
+    if (this.state.teacher.image!==null)
         return ( 
             <div className='profileimage'>
                 <label htmlFor='image'><img src={this.state.image} alt='' className='profileimagepreview' /></label>
@@ -102,7 +102,7 @@ class TeacherProfile extends Component {
                                   {teacherprofiledata.map((item)=>
                                       <div key={item.id} className='flexrow' style={marginBottom65vh}>
                                           <label htmlFor={item.id} className='section' >{item.content} </label>
-                                          { (item.type!='date')?
+                                          { (item.type!=='date')?
                                             (
                                               <input type={item.type} id={item.id} placeholder={this.state.teacher[item.id]} className='shortbox' onChange={this.handleChange} style={marginLeft13vw} />
                                             )

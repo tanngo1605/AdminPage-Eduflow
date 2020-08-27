@@ -23,7 +23,7 @@ class ChangePassword extends Component {
     return (
       <div className="dashboard">
         <div className="flexrow">
-          <Drawer />
+          <Drawer/>
           <div className="flexcolumn">
             <Header />
             <div className="passScreen">
@@ -69,7 +69,7 @@ class ChangePassword extends Component {
                       </label>
                     </div>
                     <div className="passwordField">
-                      <div style={{ display: "inline-flex" }}>
+                      <div className='flexrow'>
                         <div className="textPass">New password</div>
                         <div className="textTypePass">Type</div>
                       </div>
