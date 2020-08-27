@@ -1,23 +1,37 @@
 import React, { Component } from "react";
 import ii from "../../assets/ii1.png";
 import "./password.css";
-
+var temp = 0;
+let id = ["1", "2"];
 class ResetPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: true,
+      hidden: false,
+      hidden1: false,
       checked: false,
+      id: "",
     };
     this.toggleShow = this.toggleShow.bind(this);
     this.toggleCheck = this.toggleCheck.bind(this);
   }
 
-  handleChange = () => {};
+  handleChange = () => {
+    temp = 1;
+  };
   toggleShow(id) {
-    if (id) {
-      this.setState({ hidden: !this.state.hidden, select: !this.state.select });
+    this.setState({ id: id });
+    // if (this.state.id === id) {
+    //   this.setState({ hidden: !this.state.hidden });
+    // } else {
+    //   this.setState({ temp: this.state.hidden });
+    // }
+    if (id === "1") {
+      this.setState({ hidden: !this.state.hidden });
+    } else {
+      this.setState({ hidden1: !this.state.hidden1 });
     }
+    console.log(this.state.id, this.state.hidden);
   }
   toggleCheck() {
     this.setState({ checked: !this.state.checked });
@@ -44,13 +58,21 @@ class ResetPassword extends Component {
                 <input
                   className="inputPassword resetPassword"
                   placeholder="****************"
-                  type={this.state.hidden ? "password" : "text"}
+                  // onFocus={(e) => (e.target.type = "password")}
+                  id="1"
+                  type={
+                    this.state.hidden
+                      ? // id[0] === "1" && this.state.hidden && this.state.id === "1"
+                        // ? this.state.hidden
+                        // : this.state.temp
+                        "text"
+                      : "password"
+                  }
                 />
                 <label className="eyeIcon" htmlFor="button1">
                   <i
                     className="hideshowBtn"
-                    id="button1"
-                    onClick={() => this.toggleShow("button1")}
+                    onClick={() => this.toggleShow("1")}
                   ></i>
                 </label>
               </div>
@@ -62,14 +84,23 @@ class ResetPassword extends Component {
                 <input
                   className="inputPassword resetPassword"
                   placeholder="****************"
-                  type={this.state.hidden ? "password" : "text"}
+                  id="2"
+                  type={
+                    this.state.hidden1
+                      ? //  this.state.hidden && this.state.id === "2"
+                        // ? this.state.hidden
+                        // : this.state.temp
+                        "text"
+                      : "password"
+                  }
+                  // onClick={(e) => (e.target.type = "password")}
                 />
 
                 <label className="eyeIcon" htmlFor="button2">
                   <i
                     className="hideshowBtn"
-                    id="button2"
-                    onClick={() => this.toggleShow("button2")}
+                    // id="2"
+                    onClick={() => this.toggleShow("2")}
                   ></i>
                 </label>
               </div>
