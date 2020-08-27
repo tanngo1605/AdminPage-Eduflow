@@ -60,20 +60,20 @@ class Syllabus extends Component {
                   {Object.keys(syllabus).map((key,value) => 
                       <div className='flexcolumn' style={{marginBottom:'2.5vh'}}  key={key}>
                         <div className='flexrow'>
-                          <label htmlFor="class" style={{marginLeft:'1.5vw',width:'20vw'}} className='section'>Class</label>
-                          <label htmlFor="subject" style={{marginLeft:'1.5vw',width:'20vw'}} className='section' >Subject</label>
+                          <label htmlFor="class" style={{marginLeft:'1.5vw'}} className='section'>Class</label>
+                          <label htmlFor="subject" style={{marginLeft:'25vw'}} className='section' >Subject</label>
                         </div>
                         
-                        <div className='flexrow'>
+                        <div className='flexrow' style={{marginTop:'5.5vh'}}>
                           <input type="text" id='class' className="shortbox" style={{marginLeft:'1.5vw'}} placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
                         
                         
                           
-                          <input type="text" id='subject' className="shortbox" style={{marginLeft:'1.5vw'}}  placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
+                          <input type="text" id='subject' className="shortbox" style={{marginLeft:'25vw'}}  placeholder='- Select' onChange={(event)=>this.handleChange(event,key)} />
                         
                           <Dropzone onDrop={(files)=>this.onDrop(files,key)}>
                             {({getRootProps, getInputProps}) => (
-                              <section className='flexrow' style={{marginLeft:'1.3vw'}}>
+                              <section className='flexrow' style={{marginLeft:'47vw'}}>
                                 <div {...getRootProps({className: 'attachment'})}>
                                   <input {...getInputProps()} />
                                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>

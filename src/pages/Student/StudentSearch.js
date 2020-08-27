@@ -12,7 +12,12 @@ import {
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import * as xlsx from "xlsx";
-
+import {
+  marginTop55vh,
+  marginLeft25vw,
+  addaProfileAttachment,
+  marginBottom13vhandTop1vh,
+} from "../../styles/globalStyles";
 class StudentSearch extends Component {
   constructor(props) {
     super(props);
@@ -80,7 +85,7 @@ class StudentSearch extends Component {
                 exact
                 to={{ pathname: "/student/profile" }}
                 className="attachment"
-                style={{ backgroundColor: "#04044E", marginLeft: "60vw" }}
+                style={addaProfileAttachment}
               >
                 <BsPlus
                   color="white"
@@ -92,9 +97,9 @@ class StudentSearch extends Component {
               <form
                 className="flexrow"
                 onChange={this.searchResult}
-                style={{ marginBottom: "2.5vh", marginTop: "1vh" }}
+                style={marginBottom13vhandTop1vh}
               >
-                <div>
+                <div className="flexrow">
                   <label htmlFor="name" className="section">
                     Enter Stud Name:{" "}
                   </label>
@@ -102,10 +107,11 @@ class StudentSearch extends Component {
                     type="text"
                     id="name"
                     className="shortbox"
+                    style={marginTop55vh}
                     onChange={this.handleChange}
                   />
                 </div>
-                <div style={{ marginLeft: "1vw" }}>
+                <div className="flexrow" style={marginLeft25vw}>
                   <label htmlFor="class" className="section">
                     Enter Class:
                   </label>
@@ -113,10 +119,11 @@ class StudentSearch extends Component {
                     type="text"
                     id="class"
                     className="shortbox"
+                    style={marginTop55vh}
                     onChange={this.handleChange}
                   />
                 </div>
-                <div style={{ marginLeft: "1vw" }}>
+                <div className="flexrow" style={marginLeft25vw}>
                   <label htmlFor="section" className="section">
                     Enter Section:
                   </label>
@@ -124,14 +131,12 @@ class StudentSearch extends Component {
                     type="text"
                     id="section"
                     className="shortbox"
+                    style={marginTop55vh}
                     onChange={this.handleChange}
                   />
                 </div>
               </form>
-              <div
-                className="flexrow"
-                style={{ marginBottom: "2.5vh", paddingLeft: "25vw" }}
-              >
+              <div className="flexrow" style={marginLeft25vw}>
                 <Dropzone onDrop={this.onDrop}>
                   {({ getRootProps, getInputProps }) => (
                     <section className="flexrow">
@@ -156,7 +161,10 @@ class StudentSearch extends Component {
                   <p>Export file</p>
                 </div>
               </div>
-              <div className="eventlistArea" style={{ width: "75vw" }}>
+              <div
+                className="eventlistArea"
+                style={{ width: "75vw", marginTop: "3vh" }}
+              >
                 <div className="headereventList">
                   <p className="textaligncenter" style={{ width: "10%" }}>
                     User ID
@@ -177,7 +185,6 @@ class StudentSearch extends Component {
                     Edit
                   </p>
                 </div>
-
                 <div className="flexcolumn" style={{ height: "30vh" }}>
                   {students &&
                     students.map((student) => (

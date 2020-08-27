@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+
 import {connect} from 'react-redux';
 import {addData,loadData,modifyData} from "../../redux/Stores/StudentReducer";
 import Drawer from '../../component/Drawer/Drawer'
@@ -89,7 +90,7 @@ class StudentProfile extends Component {
       <div className='flexcolumn'>
           <Header/>
           <div className='form'>
-            <div style={{marginLeft:25}}>
+            
                 <h1 className='titleform'>Student Profile </h1>
                 {(this.state.edit)?
                   (
@@ -99,9 +100,9 @@ class StudentProfile extends Component {
                           <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'0.3vh'}}>
-                                          <label htmlFor={item.id} className='section' style={sectionStyle}>{item.content} </label>
-                                          <input type={item.type} id={item.id} placeholder={this.state.student[item.id]} className='shortbox' onChange={this.handleChange} />
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'5.5vh'}}>
+                                          <label htmlFor={item.id} className='section'>{item.content} </label>
+                                          <input type={item.type} required id={item.id} placeholder={this.state.student[item.id]} className='shortbox' onChange={this.handleChange}  style={{marginLeft:'15vw'}}/>
                                       </div>
                                   )}
                               </div>
@@ -122,9 +123,9 @@ class StudentProfile extends Component {
                           <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'1vh'}}>
-                                          <div className='section' style={sectionStyle}>{item.content} </div>
-                                          <div className='shortbox' style={{backgroundColor:'#F2F4F7'}}>{this.state.student[item.id]}</div> 
+                                      <div key={item.id} className='flexrow' style={{marginBottom:'5.5vh'}}>
+                                          <div className='section' style={{marginRight:'10vw'}}>{item.content} </div>
+                                          <div className='shortbox' style={{backgroundColor:'#F2F4F7',marginLeft:'15vw'}}>{this.state.student[item.id]}</div> 
                                       </div>
                                   )}
                               </div>
@@ -138,7 +139,7 @@ class StudentProfile extends Component {
               }
                     
                 
-            </div>
+            
           </div>
           
 
@@ -154,7 +155,3 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(StudentProfile);
 
-const sectionStyle = {
-    fontSize: '15px',
-    width:'200px'
-};

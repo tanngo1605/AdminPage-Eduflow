@@ -18,18 +18,14 @@ class TicketList extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
-  };
-  searchResult = (event) => {
-    event.preventDefault();
-    setTimeout(() => {
-      this.props.dispatch(
-        filterByValue({ text: this.state.text, status: this.state.status })
-      );
-    }, 50);
-  };
+    this.setState({[event.target.id]: event.target.value})
+  }
+  searchResult=(event)=>{
+    event.preventDefault()
+    setTimeout(()=>{
+      this.props.dispatch(filterByValue({text: this.state.text, status:this.state.status}))}, 50);
+  }
+
 
   changetextstatus = (status) => {
     if (status === "Pending")
@@ -77,11 +73,7 @@ class TicketList extends Component {
                 />
 
                 <div className="searchBox" style={{ marginLeft: "18vw" }}>
-                  <select
-                    id="status"
-                    className="searchBox"
-                    onChange={this.handleChange}
-                  >
+                  <select id="status" className="searchBox" onChange={this.handleChange}>
                     <option value="">Status</option>
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>

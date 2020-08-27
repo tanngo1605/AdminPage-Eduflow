@@ -7,7 +7,7 @@ import Header from '../../component/Header/Header'
 import {loadData, filterByValue,deleteData} from "../../redux/Stores/TeacherReducer";
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-
+import {marginLeft25vw,marginLeft13vw,marginTop55vh,addaProfileAttachment,marginBottom13vhandTop1vh} from '../../styles/globalStyles'
 
 class TeacherSearch extends Component {
   constructor (props) {
@@ -24,23 +24,18 @@ class TeacherSearch extends Component {
   componentDidMount() {
     this.props.dispatch(loadData());
 }
+
   onDrop = (files) => {
     if (files.length===0||files.length>1) return ;
     this.setState({files})
   }
 
-  removeItem=(teacher)=>{
-    
-    
-    this.props.dispatch(deleteData(teacher));
-  }
+
 
   handleChange = (event) => {
     let updatesearch= Object.assign({},this.state.teachersearchinput,{[event.target.id]: event.target.value})
         
-    this.setState({
-      teachersearchinput: updatesearch
-    })
+    this.setState({ teachersearchinput: updatesearch })
   }
   searchResult=(event)=>{
     event.preventDefault();
@@ -70,29 +65,29 @@ class TeacherSearch extends Component {
             <div className='form'>
               
                 <h1 className='titleform'>Teacher Info</h1>
-                <NavLink exact to={{pathname:'/teacher/profile'}} className='attachment' style={{backgroundColor:'#04044E',marginLeft:"60vw"}}>
+                <NavLink exact to={{pathname:'/teacher/profile'}} className='attachment' style={addaProfileAttachment}>
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a teacher </p>
                 </NavLink>
-                <form className='flexcolumn' onChange={this.searchResult} style={{marginBottom:'2.5vh'}}>
-                  <div className='flexrow' style={{marginBottom:'3.5vh'}}>
-                    <div className='flexcolumn' style={{marginLeft:"12vw"}} >
+                <form className='flexcolumn' onChange={this.searchResult} style={marginBottom13vhandTop1vh}>
+                  <div className='flexrow' style={{marginBottom:'11vh'}}>
+                    <div className='flexcolumn' style={marginLeft13vw} >
                       <label htmlFor='name' className='section'>Enter Teacher's Name </label>
-                      <input type='text' id='name' className='shortbox' onChange={this.handleChange} />
+                      <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
-                    <div className='flexcolumn' style={{marginLeft:"5vw"}}>
-                      <label htmlFor='classteacher' className='section'>Enter Class</label>
-                      <input type='text' id='classteacher' className='shortbox' onChange={this.handleChange} />
+                    <div className='flexcolumn' style={marginLeft25vw}>
+                      <label htmlFor='classteacher' className='section' >Enter Class</label>
+                      <input type='text' id='classteacher' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
                   </div>
                   <div className='flexrow'>
-                    <div className='flexcolumn' style={{marginLeft:"12vw"}}>
-                      <label htmlFor='section' className='section'>Enter Section</label>
-                      <input type='text' id='section' className='shortbox' onChange={this.handleChange} />
+                    <div className='flexcolumn' style={marginLeft13vw}>
+                      <label htmlFor='section' className='section' >Enter Section</label>
+                      <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
-                    <div className='flexcolumn' style={{marginLeft:"5vw"}}>
-                      <label htmlFor='subject' className='section'>Enter Subject</label>
-                      <input type='text' id='subject' className='shortbox' onChange={this.handleChange} />
+                    <div className='flexcolumn' style={marginLeft25vw}>
+                      <label htmlFor='subject' className='section' >Enter Subject</label>
+                      <input type='text' id='subject' className='shortbox' style={marginTop55vh}  onChange={this.handleChange} />
                     </div>
                   </div>
                 </form>
@@ -125,19 +120,19 @@ class TeacherSearch extends Component {
                   </div>
 
                   <div className="flexcolumn" style={{height:'30vh'}}>
-                      {teachers&&teachers.map((item)=>
+                      {teachers&&teachers.map((teacher)=>
 
-                        <div  className="bodyeventList"  key={item.key} >
+                        <div  className="bodyeventList"  key={teacher.key} >
                           
                           <p style={{width:'10%'}}>User ID</p>
-                          <p style={{width:'30%'}}>{item.name}</p>
-                          <p style={{width:'10%'}}>{item.classteacher}</p>
-                          <p style={{width:'10%'}}>{item.section}</p>
+                          <p style={{width:'30%'}}>{teacher.name}</p>
+                          <p style={{width:'10%'}}>{teacher.classteacher}</p>
+                          <p style={{width:'10%'}}>{teacher.section}</p>
                           <div className='itemcenter' style={{width:"20%"}}>
-                            <MdDeleteForever size='1.5vw' onClick={()=>this.removeItem(item)}/>
+                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(teacher))}/>
                           </div>
                           <div className='itemcenter' style={{width:"20%",marginTop:'0.1vh'}}>
-                            <NavLink exact to={{pathname:'/teacher/profile',teacherdata:item}}>
+                            <NavLink exact to={{pathname:'/teacher/profile',teacherdata:teacher}}>
                               <BsPencilSquare size='1.3vw' color='black' />
                             </NavLink>
                           </div>

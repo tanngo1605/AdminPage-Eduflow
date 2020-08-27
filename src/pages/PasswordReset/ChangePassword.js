@@ -22,7 +22,7 @@ class ChangePassword extends Component {
   render() {
     return (
       <div className="dashboard">
-        <div style={{ display: "flex" }}>
+        <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
             <Header />

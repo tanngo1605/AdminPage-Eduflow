@@ -18,11 +18,7 @@ class LoginForm extends Component {
   };
   submitForm = (event) => {
     event.preventDefault();
-    console.log(this.state);
     this.props.history.push("/homescreen");
-  };
-  forgotPass = (event) => {
-    this.props.history.push("/forgotpassword");
   };
 
   render() {
@@ -46,7 +42,7 @@ class LoginForm extends Component {
           
         />
         <label style={{ marginLeft: "50%" }}>
-          <a style={{ color: "#f3c428" }} href="#" onClick={this.forgotPass}>
+          <a style={{ color: "#f3c428" }} href="/forgotpassword">
             Forgot Password?
           </a>
         </label>

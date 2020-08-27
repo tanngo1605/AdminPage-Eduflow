@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import {connect} from 'react-redux';
 import {addData,loadData,modifyData} from "../../redux/Stores/TeacherReducer";
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-//import DayPicker from 'react-day-picker';
 import teacherprofiledata from '../../userData/TeacherProfileData'; 
-
+import {marginBottom65vh,marginLeft13vw} from '../../styles/globalStyles'
 
 
 class TeacherProfile extends Component {
@@ -59,15 +59,17 @@ class TeacherProfile extends Component {
   handleChange = (event) => {
     let update;
 
-    if (event.target.id==='image'){
+    if (event.target.id==='image')
         update= Object.assign({},this.state.teacher,{image: URL.createObjectURL(event.target.files[0])})
-        this.setState({teacher:update})
-    }
-    else {
+    else
         update= Object.assign({},this.state.teacher,{[event.target.id]: event.target.value})
-        this.setState({teacher:update})
-    }
+    this.setState({teacher:update})
   }
+
+  handleDayChange(day) {
+    this.setState({ teacher:  {dateofbirth: day.toLocaleDateString() }});
+  }
+
   handleSubmit = (event) => {
     if (this.props.location.teacherdata) {
         this.props.dispatch(modifyData({value:this.state.teacher}))
@@ -98,9 +100,16 @@ class TeacherProfile extends Component {
                           <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {teacherprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'1vh'}}>
-                                          <label htmlFor={item.id} className='section'>{item.content} </label>
-                                          <input type={item.type} id={item.id} placeholder={this.state.teacher[item.id]} className='shortbox' onChange={this.handleChange} />
+                                      <div key={item.id} className='flexrow' style={marginBottom65vh}>
+                                          <label htmlFor={item.id} className='section' >{item.content} </label>
+                                          { (item.type!='date')?
+                                            (
+                                              <input type={item.type} id={item.id} placeholder={this.state.teacher[item.id]} className='shortbox' onChange={this.handleChange} style={marginLeft13vw} />
+                                            )
+                                            :(
+                                              <DayPickerInput className='shortbox' style={marginLeft13vw} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
+                                            )
+                                          }
                                       </div>
                                   )}
                               </div>
@@ -121,9 +130,9 @@ class TeacherProfile extends Component {
                           <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {teacherprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'1vh'}}>
+                                      <div key={item.id} className='flexrow' style={marginBottom65vh}>
                                           <div className='section'>{item.content} </div>
-                                          <div className='shortbox' style={{backgroundColor:'#F2F4F7'}}>{this.state.teacher[item.id]}</div> 
+                                          <div className='shortbox' style={{backgroundColor:'#F2F4F7',marginLeft:'15vw'}}>{this.state.teacher[item.id]}</div> 
                                       </div>
                                   )}
                               </div>

@@ -14,7 +14,7 @@ const InputField = (props) => {
   let icon = icons[name];
   return (
     <InputGroup size="lg" style={{ width: "75%" }} className="mb-3">
-      <i style={{ position: "absolute", padding: "10px", zIndex: 1000 }}>
+      <i style={{ position: "absolute", padding: "10px", zIndex: 1 }}>
         {icon}
       </i>
       <FormControl
