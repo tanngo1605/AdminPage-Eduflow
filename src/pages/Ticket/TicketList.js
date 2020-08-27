@@ -73,11 +73,7 @@ class TicketList extends Component {
                 />
 
                 <div className="searchBox" style={{ marginLeft: "18vw" }}>
-                  <select
-                    id="status"
-                    className="searchBox"
-                    onChange={this.handleChange}
-                  >
+                  <select id="status" className="searchBox" onChange={this.handleChange}>
                     <option value="">Status</option>
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>

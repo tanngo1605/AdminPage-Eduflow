@@ -113,7 +113,7 @@ class Homescreen extends Component {
                   modifiers={modifiers}
                   modifiersStyles={modifiersStyles}
                 />
-                <div style={{marginLeft:'0.5vw',height:'24%'}}>
+                <div style={{marginLeft:'1vw',height:'18vh'}}>
                  <Scrollbars>
                 
                   {Object.keys(modifiers).map((key) => 
@@ -121,7 +121,7 @@ class Homescreen extends Component {
                       <p style={{color:'#A2ABBF',fontSize:'1vw',marginBottom:'0.5vh'}}>Events</p>
                       <div className='flexrow' style={{marginBottom:'1vh'}}>
                         <div style={{width:'2vw',height:'2vw',borderRadius:'1.2vw',background:modifiersStyles[key]['background']}}></div>
-                        <div className='flexrow' style={{marginTop:'3px',width:"100%"}}>
+                        <div className='flexrow' style={{marginTop:'3px',width:'100%'}}>
                           <p style={{color:'#A2ABBF',fontSize:'0.8vw',marginLeft:'1vw'}}>{key}</p>
                           <p style={{color:'#A2ABBF',fontSize:'0.8vw',marginLeft:'auto',marginRight:'2vw'}}>{modifiers[key].toLocaleDateString()}</p>
                         </div>
@@ -141,7 +141,7 @@ class Homescreen extends Component {
                       <p style={{color:'#FFFFFF',marginLeft:'1vw',margintop:'2vh',fontSize:'2.5vw'}}>{index+1}</p>
                       <div className='flexcolumn' style={{marginLeft:'1vw',marginTop:'1.8vh'}}>
                         <h1 style={{fontSize:'0.7vw',color:'#FFFFFF'}}>{item.date}</h1>
-                        <h1 style={{fontSize:'0.7vw',color:'#FFFFFF'}}> {item.personincharge}</h1>
+                        <h1 style={{fontSize:'0.7vw',color:'#FFFFFF',marginTop:'2.5vh',position:'absolute'}}> {item.personincharge}</h1>
                       </div>
                       <div style={{width:'15vw',marginLeft:'1vw',paddingTop:'1.5vh'}}>
                         <p style={{fontSize:'0.8vw',color:'#FFFFFF'}}> {item.reason}</p>
@@ -153,7 +153,7 @@ class Homescreen extends Component {
                       <p style={{color:'#8C96AB',marginLeft:'0.5vw',margintop:'1.5vh',fontSize:'2.5vw'}}>{index+1}</p>
                       <div className='flexcolumn' style={{marginLeft:'1vw',marginTop:'1.8vh'}}>
                         <p style={{fontSize:'0.7vw',color:'#6B7897'}}>{item.date}</p>
-                        <p style={{fontSize:'0.7vw',color:'#8C96AB'}}> {item.personincharge}</p>
+                        <p style={{fontSize:'0.7vw',color:'#8C96AB',marginTop:'2.5vh',position:'absolute'}}> {item.personincharge}</p>
                       </div>
                       <div style={{width:'15vw',marginLeft:'1vw',paddingTop:'1.5vh'}}>
                         <p style={{fontSize:'0.8vw',color:'#8C96AB'}}> {item.reason}</p>

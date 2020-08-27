@@ -4,8 +4,7 @@ import Header from '../../component/Header/Header'
 import Dropzone from 'react-dropzone';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPlus } from "react-icons/bs";
-import { MdClose } from 'react-icons/md';
-
+import {marginBottom65vh,marginLeft13vw} from '../../styles/globalStyles'
 class Exam extends Component {
   constructor (props) {
     super(props)
@@ -53,26 +52,26 @@ class Exam extends Component {
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
               
                 <h1 className='titleform'>Schedule an exam</h1>
-                <div style={{marginTop:'10vh',marginBottom:'2.5vh'}}>
+                <div style={marginBottom65vh}>
                   <label htmlFor='exam' className='section'>Exam name</label>
-                  <input type='text' id='exam' className='shortbox' placeholder='Maths' onChange={this.handleChange} />
+                  <input type='text' id='exam' className='shortbox' style={marginLeft13vw} placeholder='Maths' onChange={this.handleChange} />
                 </div>
-                <div style={{marginBottom:'2.5vh'}}>
-                  <label htmlFor='class' className='section'>Class </label>
-                  <input type='text' id='class' className='shortbox' placeholder='Type here' onChange={this.handleChange} />
+                <div style={marginBottom65vh}>
+                  <label htmlFor='class' className='section' >Class </label>
+                  <input type='text' id='class' className='shortbox' style={marginLeft13vw} placeholder='Type here' onChange={this.handleChange} />
                 </div>
-                <div style={{marginBottom:'2.5vh'}}>
+                <div style={marginBottom65vh}>
                   <label htmlFor='section' className='section'>Section </label>
-                  <input type='text' id='section' className='shortbox' placeholder='Type here' onChange={this.handleChange} />
+                  <input type='text' id='section' className='shortbox' style={marginLeft13vw} placeholder='Type here' onChange={this.handleChange} />
                 </div>
-                <div className='flexrow' style={{marginBottom:'2.5vh'}}>
+                <div className='flexrow' style={marginBottom65vh}>
                   <div className='flexrow'>
                     <label htmlFor='datefrom' className='section'>Date from: </label>
-                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'4.5vh'}} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
+                    <DayPickerInput className="shortbox" style={marginLeft13vw} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
                   </div>
-                  <div className='flexrow' style={{marginLeft:'3vw'}}>
+                  <div className='flexrow' style={{marginLeft:'25vw'}}>
                     <label htmlFor='dateto' className='section'>Date to:</label>
-                    <DayPickerInput className="shortbox" style={{width:'20vw',height:'4.5vh'}} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
+                    <DayPickerInput className="shortbox" style={marginLeft13vw} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
                   </div>
                 </div>
                 
@@ -82,21 +81,11 @@ class Exam extends Component {
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
-                      <section className="flexrow">
+                      <section className="flexrow" style={marginLeft13vw}>
                         <div {...getRootProps({ className:'attachment'})}>
                           <input {...getInputProps()} />
                             <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                             <p>Choose File</p>
-                        </div>
-                        
-                        <div>
-                        {this.state.exam.files.map((file)=>(
-                          <div className='flexrow' style={{marginLeft:'1.5vw',marginTop:'0.8vh'}} key={file.name}>
-                            <p> {file.name} </p>
-                            <MdClose onClick={()=>this.removeItem(file)} style={{marginTop:'1vh'}}/>
-                            
-                          </div>
-                        ))} 
                         </div>
                       </section>
                     )}

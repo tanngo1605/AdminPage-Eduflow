@@ -20,12 +20,12 @@ class ChangePassword extends Component {
   render() {
     return (
       <div className="dashboard">
-        <div style={{ display: "flex" }}>
+        <div className='flexrow'>
           <Drawer />
           <div className="flexcolumn">
             <Header />
             <div
-              className="passScreen "
+              className="passScreen"
               style={{
                 width: "auto",
                 height: "110vh",

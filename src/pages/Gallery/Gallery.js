@@ -6,7 +6,7 @@ import {AiOutlineExclamationCircle,AiOutlineCalendar,AiOutlineFileText} from 're
 import { BsPlus } from "react-icons/bs";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-
+import {marginTop11vh,marginTop55vh} from '../../styles/globalStyles'
 
 const todayDate=new Date();
 
@@ -80,41 +80,40 @@ class Gallery extends Component {
                 </div>
             
           </div>
-          <Modal 
-            isOpen={this.state.openmodal} 
-            onRequestClose={()=>this.setState({images:{image:null,imagesize:''},openmodal:false})} 
-            className='Modal'> 
+          <Modal isOpen={this.state.openmodal} className='Modal' onRequestClose={()=>this.setState({images:{image:null,imagesize:''},openmodal:false})} > 
             <div className='headermodal'>Upload file</div>
             <div className='flexrow' style={{marginTop:'2.5vh'}}>
                 {this.reviewImageBeforeAddingtoGallery()}
                 <div className='flexcolumn' style={{marginLeft:'5vw',marginTop:'1.5vh'}}>
-                    <div className='flexrow'>
+                    <div className='flexrow' style={{position: 'absolute'}}>
                         <AiOutlineExclamationCircle  size={'1.6vw'} color='#8C96AB'/>
                         <p style={modalContent}>{this.state.images.imagesize} bytes</p>
                     </div>
-                    <div className='flexrow' >
-                        <AiOutlineCalendar  size={'1.6vw'} color='#8C96AB'/>
-                        <p style={modalContent}>{todayDate.toLocaleDateString()}</p>
+                    <div className='flexrow' style={{position: 'absolute'}} >
+                        <AiOutlineCalendar  size={'1.6vw'} color='#8C96AB' style={marginTop55vh}/>
+                        <p style={Object.assign({},modalContent,marginTop55vh)}>{todayDate.toLocaleDateString()}</p>
                     </div>
-                    <div className='flexrow'>
-                        <AiOutlineFileText size={'1.6vw'} color='#8C96AB'/>
-                        <input type='text' style={modalContent} className='shortbox' onChange={(event)=>this.setState({images:{description:event.target.value}})}></input>
+                    <div className='flexrow' style={{position:'absolute'}} >
+                        <AiOutlineFileText size={'1.6vw'} color='#8C96AB' style={marginTop11vh}/>
+                        <input type='text' className='shortbox' style={Object.assign({},marginTop11vh,modalContent,{marginLeft:'4vw'})} onChange={(event)=>this.setState({images:{description:event.target.value}})}></input>
                     </div>
 
                 </div>
             </div>
-            <div className='flexrow' style={{justifyContent:'space-around',marginTop:'1.5vh'}}>
+            <div className='flexrow'>
                 <Dropzone onDrop={this.onDrop} accept='image/*,video/*'>
                     {({getRootProps, getInputProps}) => (
-                        <section className='flexrow'>
+                        <section className='flexrow' >
                             <div {...getRootProps({})}>
                                 <input {...getInputProps()} />
                                     <button className='gallerybutton'>Upload</button>
                             </div>
+                            <button className='gallerybutton' style={{marginLeft:'19vw'}} onClick={()=>this.addImageToGallery()}>Save</button>
                         </section>
+                        
                     )}
                 </Dropzone>
-                <button className='gallerybutton' onClick={()=>this.addImageToGallery()}>Save</button>
+
             </div>
 
                     
@@ -136,7 +135,6 @@ export default Gallery;
 const modalContent = {
     color:'#8C96AB',
     fontSize:'1vw',
-    
     marginLeft:'1.5vw',
     width:'7.5vw',
     paddingLeft:'1.5vw'

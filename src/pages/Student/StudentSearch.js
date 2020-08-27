@@ -8,7 +8,7 @@ import {loadData, filterByValue,deleteData} from "../../redux/Stores/StudentRedu
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import * as xlsx from 'xlsx';
-
+import {marginTop55vh,marginLeft25vw,addaProfileAttachment,marginBottom13vhandTop1vh} from '../../styles/globalStyles'
 class StudentSearch extends Component {
   constructor (props) {
     super(props)
@@ -65,25 +65,25 @@ class StudentSearch extends Component {
             <div className='form'>
               
                 <h1 className='titleform'>Student Info</h1>
-                <NavLink exact to={{pathname:'/student/profile'}} className='attachment' style={{backgroundColor:'#04044E',marginLeft:"60vw"}}>
+                <NavLink exact to={{pathname:'/student/profile'}} className='attachment' style={addaProfileAttachment}>
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a student </p>
                 </NavLink>
-                <form className='flexrow' onChange={this.searchResult} style={{marginBottom:'2.5vh',marginTop:'1vh'}}>
-                  <div>
+                <form className='flexrow' onChange={this.searchResult} style={marginBottom13vhandTop1vh}>
+                  <div className='flexrow'>
                     <label htmlFor='name' className='section'>Enter Stud Name: </label>
-                    <input type='text' id='name' className='shortbox' onChange={this.handleChange} />
+                    <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
-                  <div style={{marginLeft:'1vw'}}>
+                  <div className='flexrow' style={marginLeft25vw}>
                     <label htmlFor='class' className='section'>Enter Class:</label>
-                    <input type='text' id='class' className='shortbox' onChange={this.handleChange} />
+                    <input type='text' id='class' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
-                  <div style={{marginLeft:'1vw'}}>
+                  <div className='flexrow' style={marginLeft25vw}>
                     <label htmlFor='section' className='section'>Enter Section:</label>
-                    <input type='text' id='section' className='shortbox' onChange={this.handleChange} />
+                    <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
                 </form>
-                <div className='flexrow' style={{marginBottom:'2.5vh',paddingLeft:"25vw"}}>
+                <div className='flexrow' style={marginLeft25vw}>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
@@ -101,7 +101,7 @@ class StudentSearch extends Component {
                     <p>Export file</p>
                   </div>
                 </div>
-                <div className='eventlistArea' style={{width:'75vw'}}>
+                <div className='eventlistArea' style={{width:'75vw',marginTop:'3vh'}}>
                   <div className='headereventList'>
                     <p className='textaligncenter' style={{width:'10%'}}>User ID</p>
                     <p className='textaligncenter' style={{width:'30%'}}>Name of Student</p>

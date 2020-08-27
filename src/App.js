@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-//import LoginPage from './pages/LoginPage/LoginPage';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
@@ -20,6 +19,7 @@ import ResetPassword from "./pages/PasswordReset/ResetPassword";
 import SendOTP from "./pages/PasswordReset/SendOTP";
 import ChangePassWord from "./pages/PasswordReset/ChangePassword";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import Exam from "./pages/Exam/Exam";
 import "./styles.css";
 
 function App() {

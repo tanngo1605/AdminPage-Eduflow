@@ -7,106 +7,6 @@
 
 /* Drawer style*/
 .drawer {
-<<<<<<< HEAD
-  background-color: #04044e;
-  width: 15vw;
-  height: 110vh;
-  border-bottom-right-radius: 2cm;
-}
-.activesubjectindrawer {
-  width: 100%;
-  height: 5vh;
-  background-color: rgba(217, 217, 217, 0.13);
-  border-bottom-right-radius: 1cm;
-  border-top-right-radius: 1cm;
-  display: flex;
-  align-items: center;
-}
-.outeravatarcircle {
-  background-color: rgba(255, 255, 255, 0.31);
-  width: 13.5vw; /* You can define it by % also */
-  height: 25vh; /* You can define it by % also */
-  border: 1px solid black;
-  margin-left: 0.2cm;
-  margin-top: 0.2cm;
-  border-top-right-radius: 2cm;
-  border-bottom-left-radius: 2cm;
-  border-bottom-right-radius: 2cm;
-}
-
-.inneravatarcircle {
-  background-color: rgba(255, 255, 255);
-  top: 13%;
-  left: 15%; /* of the container */
-  width: 70%; /* of the container */
-  height: 75%; /* of the container */
-  position: relative;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-}
-/*Header style*/
-.header {
-  background-color: #ffffff;
-  width: 85vw;
-  height: 15vh;
-  display: flex;
-  flex-direction: row;
-}
-.setting {
-  display: flex;
-  flex-direction: column;
-  width: 225px;
-  height: 240px;
-  background: #ffffff;
-  border: 1px solid rgba(204, 204, 204, 0.5);
-  border-radius: 15px;
-  z-index: 1;
-}
-.headersetting {
-  width: 225px;
-  height: 40px;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  padding-top: 10px;
-  background: #66c4e1;
-  display: flex;
-}
-/*Homescreen style*/
-.totalbox {
-  background-color: #ffffff;
-  width: 250px;
-  height: 100px;
-  margin-left: 70px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 2px 5px 5px rgba(211, 211, 211, 0.47);
-  border-radius: 5px;
-}
-.smalltotalbox {
-  background-color: #66c4e1;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-top: -5px;
-  margin-left: 55px;
-  box-shadow: 2px 2px 5px rgba(211, 211, 211, 0.47);
-}
-.numberoffortotalbox {
-  margin-left: 20px;
-  margin-top: 10px;
-  font-family: Poly;
-  line-height: 100%;
-}
-.calendararea {
-  background-color: #ffffff;
-  width: 23vw;
-  height: 65vh;
-  margin-left: 90px;
-  margin-top: 10px;
-  box-shadow: 2px 2px 5px rgba(211, 211, 211, 0.47);
-  border-radius: 6px;
-  display: flex;
-=======
     background-color: #04044E;
     width: 15vw;
     height: 110vh;
@@ -221,30 +121,9 @@
     border-radius: 0.5vw;
     display:flex;
     
->>>>>>> 89cd9944c932a0dd593e1228b990695ce4f0f77c
 }
 
 .ticketarea {
-<<<<<<< HEAD
-  background-color: #ffffff;
-  width: 80vh;
-  height: 65vh;
-  margin-left: 70px;
-  margin-top: 10px;
-  box-shadow: 2px 2px 5px rgba(211, 211, 211, 0.47);
-  display: flex;
-  flex-direction: column;
-  border-radius: 6px;
-}
-.ticketrow {
-  width: 80%; /* You can define it by % also */
-  height: 10vh; /* You can define it by % also */
-  margin-top: 10px;
-  margin-bottom: 5px;
-  box-shadow: 2px 2px 5px rgba(211, 211, 211, 0.47);
-  display: flex;
-  border-radius: 0.2cm;
-=======
     background-color:#FFFFFF;
     width:80vh; 
     height:65vh; 
@@ -257,7 +136,7 @@
     
 }
 .ticketrow{
-    width:80%; 
+    width:32vw; 
     height:10vh; 
     margin-top:2.1vh;
     
@@ -265,7 +144,6 @@
     display:flex;
     border-radius:0.5vw;
     
->>>>>>> 89cd9944c932a0dd593e1228b990695ce4f0f77c
 }
 .ticketstatusbox{
     height:6vh;
@@ -281,59 +159,6 @@
   }
 /*Event styles*/
 
-<<<<<<< HEAD
-.eventlistArea {
-  height: 45vh;
-  background: #ffffff;
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-}
-.headereventList {
-  height: 10vh;
-  color: #0f1e36;
-  padding-left: 15px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-}
-.bodyeventList {
-  color: #0f1e36;
-  padding-left: 15px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-}
-/*Ticket list*/
-.searchBox {
-  position: absolute;
-  width: 200px;
-  height: 50px;
-  background: #9583c7;
-  border-radius: 6px;
-  border: 0px white;
-  color: #ffffff;
-}
-.ticketList {
-  width: 70vw;
-  height: 65vh;
-  border-radius: 6px;
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.headerticketList {
-  width: 70vw;
-  height: 10vh;
-  background: #9583c7;
-  color: #ffffff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  padding-left: 20px;
-  display: flex;
-  align-items: center;
-=======
 
 .eventlistArea{
     height: 45vh;
@@ -373,6 +198,7 @@
     background: #9583C7;
     border-radius: 0.5vw;
     border: 0vw white;
+    font-size: 1.2vw;
     color:#FFFFFF;
 }
 .ticketList{
@@ -394,6 +220,7 @@
     border-top-left-radius: 0.5vw;
     padding-left: 1.5vw;
     padding-top:3.1vh;
+    font-size: 1vw;
     display: flex;
     text-align: center;
     
@@ -402,6 +229,7 @@
     padding-left:1.5vw;
     padding-top:1.5vh;
     height:10vh;
+    font-size: 1vw;
     display:flex;
     align-items:center;
     text-align: center;
@@ -419,134 +247,9 @@
     margin-left:0.8vw;
     margin-top:-1vw;
     
->>>>>>> 89cd9944c932a0dd593e1228b990695ce4f0f77c
 }
 /*Galerry styles*/
 .Modal {
-<<<<<<< HEAD
-  position: relative;
-  width: 35vw;
-  height: 35vh;
-  top: 30vh;
-  left: 30vw;
-  outline: 0;
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid rgba(204, 204, 204, 0.5);
-  box-sizing: border-box;
-  box-shadow: 0px 9px 18px #e4e6e9;
-}
-.headermodal {
-  width: 35vw;
-  height: 6vh;
-  background: #66c4e1;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding-top: 7px;
-}
-.gallerylayout {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-}
-/*Account Setting*/
-.imagearea {
-  width: 300px;
-  height: 150px;
-  background-color: #525285;
-  box-shadow: 0px 5px 5px rgba(107, 179, 202, 0.5);
-  border-radius: 21px;
-  margin-top: 20px;
-  margin-left: 50px;
-  padding: 20px;
-}
-/*Teacher Profile and Student Profile*/
-.profileimage {
-  background-color: #525285; /* of the container */
-  width: 150px; /* of the container */
-  height: 150px; /* of the container */
-  position: relative;
-  border-radius: 50%;
-  margin-left: 25px;
-}
-/*Shared style*/
-.form {
-  background: linear-gradient(
-    180deg,
-    rgba(244, 249, 255, 0.0001) 0%,
-    #f4f9ff 26.23%
-  );
-  width: 82vw;
-  height: 92vh;
-  margin-left: 15px;
-  margin-top: 15px;
-  display: flex;
-}
-.titleform {
-  color: #262f56;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-.section {
-  width: 150px;
-  font-size: 15px;
-  color: #262f56;
-}
-.longbox {
-  width: 30vw;
-  height: 30px;
-  background: #ffffff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
-  border: 0px solid white;
-  border-radius: 4px;
-  padding-left: 20px;
-  font-size: 15px;
-  outline: none;
-}
-.shortbox {
-  width: 20vw;
-  height: 30px;
-  background: white;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
-  border: 0px white;
-  border-radius: 4px;
-  padding-left: 20px;
-  font-size: 15px;
-}
-
-.button {
-  width: 200px;
-  height: 40px;
-  background: #66c4e1;
-  color: #ffffff;
-  font-size: 14px;
-  border-radius: 6px;
-  margin-left: 30px;
-
-  border: 0px solid white;
-}
-.attachment {
-  width: 11vw;
-  height: 30px;
-  background: #9583c7;
-  color: #ffffff;
-  font-size: 12px;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
-  border: 0px solid white;
-  border-radius: 4px;
-  padding-top: 6px;
-  padding-left: 10px;
-  display: flex;
-}
-.flexcolumn {
-  display: flex;
-  flex-direction: column;
-}
-.flexrow {
-  display: flex;
-  flex-direction: row;
-=======
     position: relative;
     width:35vw;
     height:38vh;
@@ -566,6 +269,7 @@
     border-top-left-radius:1.5vw;
     border-top-right-radius: 1.5vw;
     padding-top: 1.2vh;
+    font-size: 1.2vw;
     text-align: center;
     font-weight: bold;
     color:#262F56;
@@ -578,11 +282,12 @@
 .gallerybutton{
     width:10vw;
     height:6vh;
+    position: absolute;
     background: #66C4E1;
     color:#FFFFFF;
     font-size: 1.1vw;
     border-radius: 0.3vw;
-    margin-left: 3vw;
+    margin-left: 5vw;
     border: 0vw solid white;
         
 }
@@ -640,19 +345,21 @@
     color:#262F56;
     font-size:1.3vw;
     font-weight:bold;
-    margin-bottom:0.8vw;
+    margin-bottom:2.5vw;
     margin-top:1.2vw;
     
 }
 .section{
     width:15vw;
     height:4.3vh;
+    position:absolute;
     font-size: 1.2vw;
     color:#262F56;
 }
 .longbox{
     width:30vw;
     height:4.5vh;
+    position: absolute;
     background: #FFFFFF;
     box-shadow: 0vw 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
     border: 0vw solid white;
@@ -664,8 +371,9 @@
 .shortbox{
     width:20vw;
     height:4.5vh;
+    position:absolute;
     background: white;
-    box-shadow: 0vw 0.1vw 0.3vw rgba(0, 0, 0, 0.1);
+    box-shadow: 0vw 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
     border: 0vw white;
     border-radius: 0.5vw;
     padding-left:1.5vw;
@@ -709,8 +417,9 @@
 .flexrow{
     display: flex;
     flex-direction: row;
->>>>>>> 89cd9944c932a0dd593e1228b990695ce4f0f77c
+    
 }
+
 .itemcenter{
     display: flex;
     justify-content:center;
@@ -718,42 +427,39 @@
 .textaligncenter{
     text-align: center;
 }
+.marginBottom65vh{
+    margin-bottom: 5.5vh;
+}
+.radiostyle{
+    margin-left: 1vw;
+    font-size: 1vw;
+}
 input[type="file"] {
   display: none;
+}
+input[type="radio"] {
+    width:2vw;
+    height:2vh;
+    margin-top: 0.5vh;
 }
 input[type='password'] {
     
 }
 
 select {
-<<<<<<< HEAD
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url("./assets/down-arrow.png") no-repeat;
-  padding-left: 20px;
-=======
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background: url('./assets/down-arrow.png') no-repeat;
     padding-left: 1.5vw;
 
->>>>>>> 89cd9944c932a0dd593e1228b990695ce4f0f77c
 }
 
 select::-ms-expand {
   display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
 }
-<<<<<<< HEAD
-
-option[value=""][disabled] {
-  display: none;
-}
-=======
   
 
->>>>>>> 89cd9944c932a0dd593e1228b990695ce4f0f77c
 option {
   color: #000;
   font-family: Lato;
