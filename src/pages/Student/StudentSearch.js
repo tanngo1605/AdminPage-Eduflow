@@ -8,7 +8,7 @@ import {loadData, filterByValue,deleteData} from "../../redux/Stores/StudentRedu
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import * as xlsx from 'xlsx';
-import {marginTop55vh,marginLeft25vw,addaProfileAttachment,marginBottom13vhandTop1vh} from '../../styles/globalStyles'
+import {marginTop55vh,marginLeft250vw,addaProfileAttachment,marginBottom130vhandTop10vh} from '../../styles/marginStyles'
 class StudentSearch extends Component {
   constructor (props) {
     super(props)
@@ -69,21 +69,21 @@ class StudentSearch extends Component {
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a student </p>
                 </NavLink>
-                <form className='flexrow' onChange={this.searchResult} style={marginBottom13vhandTop1vh}>
+                <form className='flexrow' onChange={this.searchResult} style={marginBottom130vhandTop10vh}>
                   <div className='flexrow'>
                     <label htmlFor='name' className='section'>Enter Stud Name: </label>
                     <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
-                  <div className='flexrow' style={marginLeft25vw}>
+                  <div className='flexrow' style={marginLeft250vw}>
                     <label htmlFor='class' className='section'>Enter Class:</label>
                     <input type='text' id='class' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
-                  <div className='flexrow' style={marginLeft25vw}>
+                  <div className='flexrow' style={marginLeft250vw}>
                     <label htmlFor='section' className='section'>Enter Section:</label>
                     <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
                 </form>
-                <div className='flexrow' style={marginLeft25vw}>
+                <div className='flexrow' style={marginLeft250vw}>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (

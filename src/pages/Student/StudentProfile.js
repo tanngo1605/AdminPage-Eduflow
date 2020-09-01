@@ -5,7 +5,7 @@ import {addData,loadData,modifyData} from "../../redux/Stores/StudentReducer";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import studentprofiledata from '../../userData/StudentProfileData' ;
-
+import {marginBottom55vh,marginLeft150vw} from '../../styles/marginStyles'
 
 class StudentProfile extends Component {
 
@@ -90,19 +90,26 @@ class StudentProfile extends Component {
       <div className='flexcolumn'>
           <Header/>
           <div className='form'>
-            
                 <h1 className='titleform'>Student Profile </h1>
-                {(this.state.edit)?
-                  (
-                      <div className='flexrow'>
+                  <div className='flexrow'>
                               
                           {this.displayImage()}
                           <div className='flexcolumn'>
                               <div className='flexcolumn'>
                                   {studentprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'5.5vh'}}>
-                                          <label htmlFor={item.id} className='section'>{item.content} </label>
-                                          <input type={item.type} required id={item.id} placeholder={this.state.student[item.id]} className='shortbox' onChange={this.handleChange}  style={{marginLeft:'15vw'}}/>
+                                      <div key={item.id} className='flexrow' style={marginBottom55vh}>
+                                          {(this.state.edit)?(
+                                            <div>
+                                              <label htmlFor={item.id} className='section'>{item.content} </label>
+                                              <input type={item.type} required id={item.id} placeholder={this.state.student[item.id]} className='shortbox' onChange={this.handleChange}  style={marginLeft150vw}/>
+                                            </div>
+                                          ):(
+                                            <div>
+                                              <div className='section' style={{marginRight:'10vw'}}>{item.content} </div>
+                                              <div className='shortbox' style={{backgroundColor:'#F2F4F7',marginLeft:'15vw'}}>{this.state.student[item.id]}</div> 
+                                            </div>
+                                          )}
+                                          
                                       </div>
                                   )}
                               </div>
@@ -113,30 +120,9 @@ class StudentProfile extends Component {
                                   
                               </div>
                           </div>
-                      </div>
-                  )
-                  :
-                  (
-                      <div className='flexrow'>
+                  </div>
                   
-                          {this.displayImage()}
-                          <div className='flexcolumn'>
-                              <div className='flexcolumn'>
-                                  {studentprofiledata.map((item)=>
-                                      <div key={item.id} className='flexrow' style={{marginBottom:'5.5vh'}}>
-                                          <div className='section' style={{marginRight:'10vw'}}>{item.content} </div>
-                                          <div className='shortbox' style={{backgroundColor:'#F2F4F7',marginLeft:'15vw'}}>{this.state.student[item.id]}</div> 
-                                      </div>
-                                  )}
-                              </div>
-                              <div className='flexrow' style={{marginTop:'2%'}}>
-                                  <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{this.setState({edit:true})}}/>
-                                  <input type='submit' value='Save' className='button' style={{marginLeft:'15%'}} onClick={()=>console.log('You are not editing yet')}/>
-                              </div>
-                          </div>
-                      </div>
-                  )
-              }
+                  
                     
                 
             

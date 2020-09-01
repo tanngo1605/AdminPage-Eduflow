@@ -20,6 +20,9 @@ import SendOTP from "./pages/PasswordReset/SendOTP";
 import ChangePassWord from "./pages/PasswordReset/ChangePassword";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Exam from "./pages/Exam/Exam";
+import ExaminationDuty from "./pages/Exam/ExaminationDuty";
+import ImageInAlbum from "./pages/Gallery/ImageInAlbum";
+
 import "./styles.css";
 
 function App() {
@@ -27,8 +30,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/" exact component={LoginPage} />
+          
           <Route path="/sendotp" component={SendOTP} />
+          <Route path='/examduty' component={ExaminationDuty}/>
           <Route path="/exam" component={Exam} />
           <Route path="/changepassword" component={ChangePassWord} />
           <Route path="/forgotpassword" component={ForgotPassword} />
@@ -41,11 +45,13 @@ function App() {
           <Route path="/teacher" component={TeacherSearch} />
           <Route path="/student/profile" component={StudentProfile} />
           <Route path="/student" component={StudentSearch} />
+          <Route path='/gallery/:album_name' component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/timetable" component={Timetable} />
           <Route path="/homescreen" component={Homescreen} />
+          <Route path="/"  component={LoginPage} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -1,56 +1,68 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Modal from 'react-modal';
 import Dropzone from 'react-dropzone';
 import {Scrollbars} from 'react-custom-scrollbars';
-import {AiOutlineExclamationCircle,AiOutlineCalendar,AiOutlineFileText} from 'react-icons/ai';
-import { BsPlus } from "react-icons/bs";
+import {addData,loadData} from "../../redux/Stores/GalleryReducer";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-import {marginTop11vh,marginTop55vh} from '../../styles/globalStyles'
+import {AiOutlineCloseCircle} from 'react-icons/ai';
+import { BsPlus } from "react-icons/bs";
+import {marginTop75vh,marginTop130vh,marginTop220vh,positionabsolute} from '../../styles/marginStyles'
+import {image150} from '../../styles/imageStyles'
+
 
 const todayDate=new Date();
+let albumnumber=0;
 
-const imagegallery=[];
 
 class Gallery extends Component {
 
   constructor (props) {
     super(props)
     this.state = {
-        images:{image:null,imagesize:' ',description:''},
+        album:{image:null,title:'',imagesize:' '},
         openmodal:false,
+        trigger:false,
     }
   }
   componentDidMount() {
     Modal.setAppElement('body');
+    this.props.dispatch(loadData())
   }
 
-  onDrop = (images) => {
-    console.log(images)
-    this.setState({images:{image:images,imagesize:images.reduce((accumulator, currentValue)=> accumulator + currentValue.size,0)}})
-  }
-  checkifAlbumorImage=(images)=>{
-      if (images ===null) return;
-      //album
-      if (images.length>1) return (<div></div>)
-      //single image    
-      return <img src={URL.createObjectURL(images[0])} alt='' className='galleryimage' />
+  onDrop = (album) => {
+    album=album.map((image)=> { return {file:image,clicked:false}})
+    this.setState({
+        album:{
+            image:album,    
+            imagesize:album.reduce((accumulator, currentValue)=> accumulator + currentValue.size,0)}})
+    }
+
+  handleChange = (event) => {
+    let update = Object.assign({},this.state.album,{[event.target.id]: event.target.value})
+    this.setState({album:update})
   }
 
-  reviewImageBeforeAddingtoGallery = () =>{
-    if (this.state.images.image!=null) return (<img src={URL.createObjectURL(this.state.images.image[0])} alt='' className='galleryimage' style={{marginLeft:'1.5vw'}} />)
-
-    return (<div className='galleryimage' style={{marginLeft:'1.5vw'}}></div>)
+  removeItem=(image,album)=>{
+    album.splice(image, 1);
+    this.setState({trigger:!this.state.trigger});
   }
+
 
   addImageToGallery=()=>{
-    if (this.state.images.image==null) return ;
-
-    imagegallery.push({image:this.state.images.image,imagesize:this.state.images.imagesize,date:todayDate.toLocaleDateString()});
+    if (this.state.album.image==null) return ;
     
-    this.setState({images:{image:null,imagesize:''},openmodal:false})
+    this.props.dispatch(addData({albumnumber:albumnumber,image:this.state.album.image,imagesize:this.state.album.imagesize,date:todayDate.toLocaleDateString()}))
+
+    albumnumber++;
+    
+    this.setState({album:{image:null,imagesize:''},openmodal:false})
   }
   render(){
+   const albums=this.props.image.showalbums;
+   console.log(albums)
    return(
    <div className='dashboard'>
     <div className='flexrow'>
@@ -59,7 +71,7 @@ class Gallery extends Component {
           <Header/>
           <div className='form'>
             
-                <div className='titleform'> Gallery </div>
+                <h1 className='titleform'> Gallery </h1>
                 <button className='attachment' onClick={()=>this.setState({openmodal:true})}>
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p>Choose File</p>
@@ -67,11 +79,20 @@ class Gallery extends Component {
                 <div style={{marginTop:'2.5vh',height:'70vh',width:'80vw'}}>
                     <Scrollbars>
                      <div className='gallerylayout'>
-                        {imagegallery.map((item)=>
-                            <div className='flexcolumn' style={{marginBottom:'2.5vh',marginRight:'2vw'}}>
-                                <img src={URL.createObjectURL(item.image[0])} alt='' className='galleryimage' />
-                                <div className='gallerydescriptionforimage'>{item.date}</div>
-                                <div className='gallerydescriptionforimage'>{item.imagesize} bytes</div>
+                        {albums&&albums.map((image,index)=>
+                            <div key={index} className='flexcolumn' style={{marginBottom:'2.5vh',marginRight:'2vw'}}>
+                                {(image.album.length>1)?
+                                    (   <NavLink exact to={{pathname:`/gallery/${index}`}}>
+                                            <img src={URL.createObjectURL(image.album[0].file)} alt='' style={image150} />
+                                        </NavLink>
+                                    )
+                                    :   <img src={URL.createObjectURL(image.album[0].file)} alt='' style={image150} />
+                                }
+                                
+                                
+                                
+                                <div className='gallerydescriptionforimage'>{image.date}</div>
+                                <div className='gallerydescriptionforimage'>{image.albumsize} bytes</div>
                             </div>
                         )}
                         </div>
@@ -80,39 +101,50 @@ class Gallery extends Component {
                 </div>
             
           </div>
-          <Modal isOpen={this.state.openmodal} className='Modal' onRequestClose={()=>this.setState({images:{image:null,imagesize:''},openmodal:false})} > 
+          <Modal isOpen={this.state.openmodal} className='Modal' onRequestClose={()=>this.setState({openmodal:false})}> 
             <div className='headermodal'>Upload file</div>
             <div className='flexrow' style={{marginTop:'2.5vh'}}>
-                {this.reviewImageBeforeAddingtoGallery()}
-                <div className='flexcolumn' style={{marginLeft:'5vw',marginTop:'1.5vh'}}>
-                    <div className='flexrow' style={{position: 'absolute'}}>
-                        <AiOutlineExclamationCircle  size={'1.6vw'} color='#8C96AB'/>
-                        <p style={modalContent}>{this.state.images.imagesize} bytes</p>
+                
+                <div className='flexcolumn' style={{marginLeft:'2vw',marginTop:'1.5vh'}}>
+                    <div className='flexrow' style={positionabsolute}>
+                        <p style={Object.assign({},modalContent)}>Title</p>
+                        <input type='text' id='title' className='shortbox' style={Object.assign({},{marginLeft:'10.2vw'})} onChange={this.handleChange}></input>
                     </div>
-                    <div className='flexrow' style={{position: 'absolute'}} >
-                        <AiOutlineCalendar  size={'1.6vw'} color='#8C96AB' style={marginTop55vh}/>
-                        <p style={Object.assign({},modalContent,marginTop55vh)}>{todayDate.toLocaleDateString()}</p>
+                    <div className='flexrow' style={positionabsolute} >
+                        <p style={Object.assign({},modalContent,marginTop75vh)}>Date</p>
+                        <p style={Object.assign({},modalContent,marginTop75vh)}>{todayDate.toLocaleDateString()}</p>
                     </div>
-                    <div className='flexrow' style={{position:'absolute'}} >
-                        <AiOutlineFileText size={'1.6vw'} color='#8C96AB' style={marginTop11vh}/>
-                        <input type='text' className='shortbox' style={Object.assign({},marginTop11vh,modalContent,{marginLeft:'4vw'})} onChange={(event)=>this.setState({images:{description:event.target.value}})}></input>
-                    </div>
+                    
 
                 </div>
             </div>
             <div className='flexrow'>
                 <Dropzone onDrop={this.onDrop} accept='image/*,video/*'>
                     {({getRootProps, getInputProps}) => (
-                        <section className='flexrow' >
+                        <section className='flexcolumn' style={marginTop130vh}>
                             <div {...getRootProps({})}>
                                 <input {...getInputProps()} />
-                                    <button className='gallerybutton'>Upload</button>
-                            </div>
-                            <button className='gallerybutton' style={{marginLeft:'19vw'}} onClick={()=>this.addImageToGallery()}>Save</button>
+                                    <button className='gallerybutton'>Upload Album</button>
+                            </div>  
                         </section>
                         
                     )}
                 </Dropzone>
+                <div className='imagepreviewarea' style={marginTop220vh}>
+                  <Scrollbars>
+                    {this.state.album.image && this.state.album.image.map((image,index)=>
+                        
+                        <div key={index} className='imagepreview'>
+                            
+                            <div style={positionabsolute}>
+                                <AiOutlineCloseCircle color='black' className='imagewithdeleteicon' size={'1.5vw'} onClick={()=>this.removeItem(image,this.state.album.image)}/>
+                            </div>
+                            <img src={URL.createObjectURL(image.file)} alt='' style={{position:'absolute',width:'22vw',height:'10vw'}} />
+                        </div>
+                    )}
+                  </Scrollbars>
+                </div>
+                <button className='gallerybutton' style={Object.assign({},{marginLeft:'23vw',marginTop:'50.5vh',background: '#262F56'})} onClick={()=>this.addImageToGallery()}>Save</button>
 
             </div>
 
@@ -129,13 +161,16 @@ class Gallery extends Component {
    </div>
   )}
 };
+const mapStateToProps = (state) => ({
+    image: state.image
+})
+export default connect(mapStateToProps)(Gallery);
 
-export default Gallery;
 
 const modalContent = {
     color:'#8C96AB',
-    fontSize:'1vw',
-    marginLeft:'1.5vw',
+    fontSize:'1.2vw',
+    marginLeft:'0.5vw',
     width:'7.5vw',
     paddingLeft:'1.5vw'
 };

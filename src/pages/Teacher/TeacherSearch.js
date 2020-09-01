@@ -7,7 +7,13 @@ import Header from '../../component/Header/Header'
 import {loadData, filterByValue,deleteData} from "../../redux/Stores/TeacherReducer";
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-import {marginLeft25vw,marginLeft13vw,marginTop55vh,addaProfileAttachment,marginBottom13vhandTop1vh} from '../../styles/globalStyles'
+import {
+  marginLeft250vw,
+  marginLeft130vw,
+  marginTop55vh,
+  addaProfileAttachment,
+  marginBottom130vhandTop10vh,
+  marginTop110vh} from '../../styles/marginStyles'
 
 class TeacherSearch extends Component {
   constructor (props) {
@@ -69,23 +75,23 @@ class TeacherSearch extends Component {
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a teacher </p>
                 </NavLink>
-                <form className='flexcolumn' onChange={this.searchResult} style={marginBottom13vhandTop1vh}>
-                  <div className='flexrow' style={{marginBottom:'11vh'}}>
-                    <div className='flexcolumn' style={marginLeft13vw} >
+                <form className='flexcolumn' onChange={this.searchResult} style={marginBottom130vhandTop10vh}>
+                  <div className='flexrow'>
+                    <div className='flexcolumn' style={marginLeft130vw} >
                       <label htmlFor='name' className='section'>Enter Teacher's Name </label>
                       <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
-                    <div className='flexcolumn' style={marginLeft25vw}>
+                    <div className='flexcolumn' style={marginLeft250vw}>
                       <label htmlFor='classteacher' className='section' >Enter Class</label>
                       <input type='text' id='classteacher' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
                   </div>
-                  <div className='flexrow'>
-                    <div className='flexcolumn' style={marginLeft13vw}>
+                  <div className='flexrow' style={marginTop110vh}>
+                    <div className='flexcolumn' style={marginLeft130vw}>
                       <label htmlFor='section' className='section' >Enter Section</label>
                       <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
-                    <div className='flexcolumn' style={marginLeft25vw}>
+                    <div className='flexcolumn' style={marginLeft250vw}>
                       <label htmlFor='subject' className='section' >Enter Subject</label>
                       <input type='text' id='subject' className='shortbox' style={marginTop55vh}  onChange={this.handleChange} />
                     </div>
