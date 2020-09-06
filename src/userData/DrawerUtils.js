@@ -7,8 +7,10 @@ const drawercontent= [
     {content:'Syllabus',web:'syllabus',activeimage:'syllabus_active.png',inactiveimage:"syllabus_inactive.png",clicked:false,key:6},
     {content:'Results',web:'result',activeimage:'done_inactive.png',inactiveimage:"done_inactive.png",clicked:false,key:7},
     {content:'Calendar events',web:'event',activeimage:'event_active.png',inactiveimage:"event_inactive.png",clicked:false,key:8},
-    {content:'Raise a ticket',web:'ticket',activeimage:'noti.png',inactiveimage:"noti.png",clicked:false,key:9},
+    {content:'Check tickets',web:'ticket',activeimage:'noti.png',inactiveimage:"noti.png",clicked:false,key:9},
     {content:'Communication',activeimage:'chat_inactive.png',inactiveimage:"chat_inactive.png",clicked:false,key:10},
     {content:'Fees',web:'fee',activeimage:'coin_inactive.png',inactiveimage:"coin_inactive.png",clicked:false,key:11},
+    {content:'School Profile',web:'schoolprofile',activeimage:'schoolprofile_inactive.png',inactiveimage:"schoolprofile_inactive.png",clicked:false,key:11},
+    {content:'Circular',web:'circular',activeimage:'circular_inactive.png',inactiveimage:"circular_inactive.png",clicked:false,key:11},
   ];
 export default drawercontent;
