@@ -22,6 +22,10 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import Exam from "./pages/Exam/Exam";
 import ExaminationDuty from "./pages/Exam/ExaminationDuty";
 import ImageInAlbum from "./pages/Gallery/ImageInAlbum";
+import CreateClass from "./pages/Class/createClass";
+import CreateSubject from "./pages/Class/createSubject";
+import AddCircular from "./pages/Circular/AddCircular";
+import CircularList from "./pages/Circular/CircularList";
 
 import "./styles.css";
 
@@ -30,7 +34,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          
+          <Route path='/circular/circularlist' component={CircularList}/>
+          <Route path='/circular' component={AddCircular}/>
+          <Route path="/class" component={CreateClass} />
+          <Route path="/subject" component={CreateSubject } />
           <Route path="/sendotp" component={SendOTP} />
           <Route path='/examduty' component={ExaminationDuty}/>
           <Route path="/exam" component={Exam} />

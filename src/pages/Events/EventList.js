@@ -32,8 +32,6 @@ class EventList extends Component {
   }
   
   render() {
-
-      
       let events = this.props.event.filteredEvents;
       return (
           <div className='dashboard'>
@@ -78,10 +76,10 @@ class EventList extends Component {
                       <p style={{width:'22%'}}>Options</p>
                       
                     </div>
-                    <div style={{height:'35vh',marginTop:'1vh'}}>
+                    <div className='bodyeventList'>
                      <Scrollbars>      
                       {events && events.map(event => (        
-                        <div key={event.key} className='bodyeventList' >
+                        <div key={event.key} className='flexrow'>
                         
                           <p style={{width:'13.2%'}}>id</p>
                           <p style={{width:'22%'}}>{event.datefrom.toLocaleDateString()}</p>

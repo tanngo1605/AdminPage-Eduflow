@@ -4,7 +4,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-import {loadData} from '../../redux/Stores/TeacherReducer';
+
 import {
   marginBottom125vh,
   marginBottom65vh,
@@ -53,17 +53,13 @@ class TimeTable extends Component {
   //   });
   //   console.log(this.state);
   // };
-  componentDidMount(){
-    this.props.dispatch(loadData());
-  }
-  displayPeriod=(teacherselection)=>{
+  
+  displayPeriod=()=>{
     let period=[];
-    if (!teacherselection) return ;
-    
     for (let i = 1;i<=numberofperiod;i++) 
       period.push(
-        <div className='flexcolumn' key={i} style={marginBottom125vh}>
-          <div className='flexrow' style={marginLeft55vw}>
+        
+          <div className='flexrow' key={i} style={Object.assign({},marginBottom125vh,marginLeft55vw)}>
             <div className='flexcolumn'>
               <p className='section' style={fontsize12vw}>Period</p>
               <p className='section' style={{marginLeft:'1.2vw',marginTop:'5.5vh'}}>{i}</p>
@@ -80,14 +76,13 @@ class TimeTable extends Component {
             </div>
             <div className='flexcolumn' style={marginLeft200vw}>                                                                                           
               <p className='section' style={fontsize12vw}>Subject</p>
-              <select className="shortbox" required id='teacher' style={marginTop55vh} onChange={(event) => this.handleChange(event,i.toString())}>
+              <select className="shortbox" required id='subject' style={marginTop55vh} onChange={(event) => this.handleChange(event,i.toString())}>
                 <option value="" defaultValue>{" "}-select-</option>
                 {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               
               </select>
             </div>
-        </div>
-      </div>)
+        </div>)
 
     return (
       <div className='eventlistArea' style={{marginTop:'8vh',paddingTop:'2%'}}>
@@ -127,8 +122,6 @@ class TimeTable extends Component {
     this.setState({ date: day.toLocaleDateString() });
   }
   render() {
-    let teachers = this.props.teacher.filteredTeachers;
-    
     return (
       <div className='dashboard'>
         <div className='flexrow'>
@@ -168,7 +161,7 @@ class TimeTable extends Component {
                     </div>
                   </div>
 
-                  {this.displayPeriod(teachers)}
+                  {this.displayPeriod()}
                   
                   <div className='flexrow' style={marginTop45vh}>
                     {/* <button>Save</button> <button>Reset</button> */}

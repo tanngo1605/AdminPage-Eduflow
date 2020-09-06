@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 import ppo1 from "../../assets/ppo1.png";
+import Popup from "reactjs-popup";
+import passwordImg from "../../assets/password2.png";
 import "./password.css";
 
 class ChangePassword extends Component {
@@ -15,9 +17,11 @@ class ChangePassword extends Component {
     }
     console.log(this.props);
   }
-  handleChange = (event, key) => {};
+  handleChange = (event) => {
+    event.preventDefault();
+  };
   handleSubmit = (event) => {
-    this.props.history.push();
+    this.props.history.push("/homescreen");
   };
   render() {
     return (
@@ -29,7 +33,7 @@ class ChangePassword extends Component {
             <div className="passScreen">
               <div className="containerChangePassword">
                 <img
-                  alt="#"
+                  alt=""
                   src={ppo1}
                   className="imgField"
                   style={{
@@ -105,9 +109,24 @@ class ChangePassword extends Component {
                       </label>
                     </div>
 
-                    <button type="submit" value="submit" className="buttonPass">
-                      Reset
-                    </button>
+                    <Popup
+                      modal
+                      
+                      trigger={
+                        <button type="button" value="submit" className="buttonPass" onClick={this.handleChange}>
+                          Reset
+                        </button>
+                      }
+                      position='center center'>
+                      <img src={passwordImg} alt="" />
+                      Your password was succesfully changed
+                      <button
+                        className="buttonPass"
+                        onSubmit={this.handleSubmit}
+                      >
+                        Login
+                      </button>
+                    </Popup>
                   </form>
                 </div>
               </div>

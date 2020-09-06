@@ -5,21 +5,21 @@ const initialState = {
 
 
 export const addData = (payload) => ({
-     type: 'ADD_DATA', 
+     type: 'ADD_TEACHER_DATA', 
      payload
 });
   
 export const loadData = (payload) => ({
-    type: 'LOAD_DATA', 
+    type: 'LOAD_STUDENT_DATA', 
     payload
 });
 export const deleteData = (payload) => ({
-    type: 'DELETE_DATA', 
+    type: 'DELETE_STUDENT_DATA', 
     payload
 });
 
 export const modifyData = (payload) => ({
-  type: 'MODIFY_DATA', 
+  type: 'MODIFY_STUDENT_DATA', 
   payload 
 });
   
@@ -51,7 +51,7 @@ export const filterByValue = (payload) => ({
         
         return (Object.assign({},state));
 
-      case 'MODIFY_DATA':
+      case 'MODIFY_STUDENT_DATA':
         let key=action.payload.value.key;
         
         state.filteredStudents.map(student=>{
@@ -62,13 +62,13 @@ export const filterByValue = (payload) => ({
         })
         
         return (Object.assign({},state));
-      case 'ADD_DATA':
-          state.filteredStudents.push(action.payload.value)
+      case 'ADD_TEACHER_DATA':
+          state.filteredStudents.push(action.payload.value);
           return (Object.assign(state,{filteredStudents:state.filteredStudents}));
-      case 'DELETE_DATA':
+      case 'DELETE_STUDENT_DATA':
             state.filteredStudents.splice(action.payload.value, 1);
             return (Object.assign({},state));
-      case 'LOAD_DATA':
+      case 'LOAD_STUDENT_DATA':
         const students=[
             {name:'Adam',class:'V',section:'HI',rollno:'25',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'41321321',admission:'5464',image:null,key:'1'},
             {name:'Akhil',class:'H',section:'TL',rollno:'24',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null,key:'2'},

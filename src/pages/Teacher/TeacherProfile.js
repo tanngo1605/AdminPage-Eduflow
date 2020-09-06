@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import {connect} from 'react-redux';
-import {addData,loadData,modifyData} from "../../redux/Stores/TeacherReducer";
+import {addTeacherData,loadTeacherData,modifyTeacherData} from "../../redux/Stores/TeacherReducer";
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
 import teacherprofiledata from '../../userData/TeacherProfileData'; 
@@ -38,7 +38,7 @@ class TeacherProfile extends Component {
     }
   }
   componentDidMount(){
-    this.props.dispatch(loadData());
+    this.props.dispatch(loadTeacherData());
   }
   displayImage = () =>{
     if (this.state.edit===false) return <div className='profileimage'><img src={this.state.teacher.image} alt='' className='profileimagepreview' /></div>
@@ -72,12 +72,12 @@ class TeacherProfile extends Component {
 
   handleSubmit = (event) => {
     if (this.props.location.teacherdata) {
-        this.props.dispatch(modifyData({value:this.state.teacher}))
+        this.props.dispatch(modifyTeacherData({value:this.state.teacher}))
         this.props.history.push('/teacher');
       }
     else {
         
-        this.props.dispatch(addData({value:this.state.teacher}));
+        this.props.dispatch(addTeacherData({value:this.state.teacher}));
         this.props.history.push('/teacher');
       }
   }
@@ -97,12 +97,12 @@ class TeacherProfile extends Component {
                   {this.displayImage()}
                   <div className='flexcolumn'>
                       <div className='flexcolumn'>
-                          {teacherprofiledata.map((item)=>
+                          {teacherprofiledata&&teacherprofiledata.map((item)=>
                             <div key={item.id} className='flexrow' style={marginBottom65vh}>
                               {(this.state.edit)?(
                                   <div className='flexrow'>
                                     <label htmlFor={item.id} className='section' >{item.content} </label>
-                                    { (item.type!=='date')?
+                                    { item.type!=='date'?
                                             
                                       <input type={item.type} id={item.id} placeholder={this.state.teacher[item.id]} className='shortbox' onChange={this.handleChange} style={marginLeft130vw} />
                                     :
@@ -121,9 +121,9 @@ class TeacherProfile extends Component {
                           )}
                       </div>
                       <div className='flexrow' style={{marginTop:'2%'}}>
-                          <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
+                          <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{(!this.state.edit)?this.setState({edit:true}):console.log('You have gone to edit page or havent change anything')}}/>
 
-                          <input type='button' value='Save' className='button' style={{marginLeft:'15%'}} onClick={(event)=>this.handleSubmit(event)}/>
+                          <input type='button' value='Save' className='button' style={{marginLeft:'15%'}} onClick={(event)=>(this.state.edit)?this.handleSubmit(event):null}/>
                                   
                       </div>
                     </div>

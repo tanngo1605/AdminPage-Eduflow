@@ -47,10 +47,10 @@ class ImageInAlbum extends Component {
     if (!album) return;
     
     let selectimages=album[0].album.filter((image)=>{
-        return image.clicked==true;
+        return image.clicked===true;
     })
     
-    if (this.state.deletemode==false) this.setState({deletemode:true})
+    if (this.state.deletemode===false) this.setState({deletemode:true})
         else 
             this.props.dispatch(updateAlbum({action:'delete',albumnumber:this.props.location.pathname.slice(9),selectimages:selectimages}))
   }
@@ -62,7 +62,7 @@ class ImageInAlbum extends Component {
 
   addImageToGallery=()=>{
     
-    if (this.state.images.image==null) return ;
+    if (this.state.images.image===null) return ;
     
     this.props.dispatch(updateAlbum({action:'add',albumnumber:this.props.location.pathname.slice(9),addimage:this.state.images.image}))
     this.setState({images:{image:null,imagesize:''},openmodal:false})
@@ -176,10 +176,3 @@ const mapStateToProps = (state) => ({
 })
 export default connect(mapStateToProps)(ImageInAlbum);
 
-const modalContent = {
-    color:'#8C96AB',
-    fontSize:'1.2vw',
-    marginLeft:'0.5vw',
-    width:'7.5vw',
-    paddingLeft:'1.5vw'
-};

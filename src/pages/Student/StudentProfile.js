@@ -47,7 +47,7 @@ class StudentProfile extends Component {
   displayImage = () =>{
     if (this.state.edit===false) return <div className='profileimage'><img src={this.state.student.image} alt='' className='profileimagepreview' /></div>
     
-    if (this.state.student.image!=null)
+    if (this.state.student.image)
         return ( 
             <div className='profileimage'>
                 <label htmlFor='image'><img src={this.state.student.image} alt='' className='profileimagepreview' /></label>
@@ -96,7 +96,7 @@ class StudentProfile extends Component {
                           {this.displayImage()}
                           <div className='flexcolumn'>
                               <div className='flexcolumn'>
-                                  {studentprofiledata.map((item)=>
+                                  {studentprofiledata&&studentprofiledata.map((item)=>
                                       <div key={item.id} className='flexrow' style={marginBottom55vh}>
                                           {(this.state.edit)?(
                                             <div>
@@ -114,9 +114,9 @@ class StudentProfile extends Component {
                                   )}
                               </div>
                               <div className='flexrow' style={{marginTop:'2%'}}>
-                                  <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{console.log('You have gone to edit page or havent')}}/>
-                                  
-                                <input type='button' value='Save' className='button' style={{marginLeft:'15%'}} onClick={(event)=>this.handleSubmit(event)}/>
+                                <input type='button' value='Edit' className='button' style={{marginLeft:'5%'}} onClick={()=>{(!this.state.edit)?this.setState({edit:true}):console.log('You have gone to edit page or havent change anything')}}/>
+
+                                <input type='button' value='Save' className='button' style={{marginLeft:'15%'}} onClick={(event)=>(this.state.edit)?this.handleSubmit(event):null}/>
                                   
                               </div>
                           </div>

@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone'
 import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-import {loadData, filterByValue,deleteData} from "../../redux/Stores/TeacherReducer";
+import {loadTeacherData, filterTeacherData,deleteTeacherData} from "../../redux/Stores/TeacherReducer";
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import {
@@ -28,7 +28,7 @@ class TeacherSearch extends Component {
     }
   }
   componentDidMount() {
-    this.props.dispatch(loadData());
+    this.props.dispatch(loadTeacherData());
 }
 
   onDrop = (files) => {
@@ -49,7 +49,7 @@ class TeacherSearch extends Component {
     setTimeout(()=>{
       
       this.props.dispatch(
-        filterByValue(
+        filterTeacherData(
           {
             name: this.state.teachersearchinput.name, 
             classteacher:this.state.teachersearchinput.classteacher,
@@ -135,7 +135,7 @@ class TeacherSearch extends Component {
                           <p style={{width:'10%'}}>{teacher.classteacher}</p>
                           <p style={{width:'10%'}}>{teacher.section}</p>
                           <div className='itemcenter' style={{width:"20%"}}>
-                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(teacher))}/>
+                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteTeacherData(teacher))}/>
                           </div>
                           <div className='itemcenter' style={{width:"20%",marginTop:'0.1vh'}}>
                             <NavLink exact to={{pathname:'/teacher/profile',teacherdata:teacher}}>

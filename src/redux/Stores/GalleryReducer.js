@@ -37,7 +37,7 @@ const galleryReducer = (state = {}, action) => {
         albumnumber = action.payload.albumnumber.toString();
         let date = action.payload.date;
 
-        
+
         
         return (Object.assign({},state,{albums:[...state.albums,{album,albumsize,albumnumber,date}]},{showalbums:[...state.showalbums,{album,albumsize,albumnumber,date}]}));
 
