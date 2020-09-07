@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ii from "../../assets/ii1.png";
 import "./password.css";
+import Popup from "reactjs-popup";
+import passwordImg from "../../assets/password2.png";
 var temp = 0;
 let id = ["1", "2"];
 class ResetPassword extends Component {
@@ -17,7 +19,7 @@ class ResetPassword extends Component {
   }
 
   handleChange = () => {
-    temp = 1;
+    // temp = 1;
   };
   toggleShow(id) {
     this.setState({ id: id });
@@ -50,7 +52,7 @@ class ResetPassword extends Component {
           <div>
             <form className="formPass" onSubmit={this.handleSubmit}>
               <label className="titlePass">Reset your password</label>
-              <div className="passwordFieldd" style={{ marginTop: "5vh" }}>
+              <div className="passwordFieldd" style={{ marginTop: "15px" }}>
                 <div style={{ display: "inline-flex" }}>
                   <div className="textPass">Enter your new password</div>
                   <div className="textTypePass">Type</div>
@@ -76,7 +78,7 @@ class ResetPassword extends Component {
                   ></i>
                 </label>
               </div>
-              <div className="passwordFieldd" style={{ marginTop: "5vh" }}>
+              <div className="passwordFieldd" style={{ marginTop: "30px" }}>
                 <div style={{ display: "inline-flex" }}>
                   <div className="textPass">Enter your new password</div>
                   <div className="textTypePass">Type</div>
@@ -113,14 +115,25 @@ class ResetPassword extends Component {
                 <span>Remember me</span>
               </div>
 
-              <button
-                className="buttonPass"
-                type="button"
-                value="Save"
-                onClick={this.handleSubmit}
+              <Popup
+                modal
+                trigger={
+                  <button
+                    type="button"
+                    value="submit"
+                    className="buttonPass"
+                    onClick={this.handleChange}
+                  >
+                    Reset
+                  </button>
+                }
               >
-                Reset
-              </button>
+                <img src={passwordImg} alt="" />
+                Your password was succesfully changed
+                <button className="buttonPass" onSubmit={this.handleSubmit}>
+                  Login
+                </button>
+              </Popup>
             </form>
           </div>
         </div>
@@ -130,3 +143,17 @@ class ResetPassword extends Component {
 }
 
 export default ResetPassword;
+// {/* <Document
+// file={samplePDF}
+// onLoadSuccess={this.onDocumentLoad.bind(this)}
+// >
+// {/* {Array.from(new Array(this.state.numPages), (el, index) => (
+//   <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+// ))} */}
+// {
+//   (console.log(samplePDF.numPages),
+//   Array.from(samplePDF).map((el, index) => (
+//     <Page key={index + 1} pageNumber={index + 1} />
+//   )))
+// }
+// </Document> */}

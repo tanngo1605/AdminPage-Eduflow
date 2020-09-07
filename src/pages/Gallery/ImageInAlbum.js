@@ -11,18 +11,17 @@ import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 import { marginTop11vh, marginTop55vh } from "../../styles/globalStyles";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const todayDate = new Date();
 
 const imagegallery = [];
 
-class Gallery extends Component {
+class ImageInAlbum extends Component {
   constructor(props) {
     super(props);
     this.state = {
       images: { image: null, imagesize: " ", description: "" },
+      image: props.location.images,
       openmodal: false,
     };
   }
@@ -100,7 +99,64 @@ class Gallery extends Component {
 
     this.setState({ images: { image: null, imagesize: "" }, openmodal: false });
   };
+
+  displayAl = () => {
+    console.log(Object.assign([], this.state.image.image).length);
+    var arrP = Object.assign([], this.state.image.image);
+    var arrC = [];
+    // return Object.assign([], this.state.image.image).map((item, index) => (
+    //   <div
+    //     className="flexcolumn"
+    //     style={{
+    //       marginBottom: "2.5vh",
+    //       marginRight: "2vw",
+    //     }}
+    //   >
+    //     <img
+    //       src={URL.createObjectURL(item[index])}
+    //       alt=""
+    //       className="galleryimage"
+    //     />
+    //   </div>
+    // ));
+    const arrA = arrP.map((image, index, arrP) => {
+      return (
+        <div>
+          <img
+            src={URL.createObjectURL(image)}
+            alt=""
+            className="galleryimage"
+          />
+          <div className="gallerydescriptionforimage">
+            {this.state.image.date}
+          </div>
+          <div className="gallerydescriptionforimage">
+            {this.state.image.imagesize} bytes
+          </div>
+        </div>
+      );
+    });
+    // for (var i = 0; i < arrP.length; i++) {
+    //   arrC.push(
+    //     // <div
+    //     //   className="flexcolumn"
+    //     //   style={{
+    //     //     marginBottom: "2.5vh",
+    //     //     marginRight: "2vw",
+    //     //   }}
+    //     // >
+    //     <div className="gallerylayout">
+
+    //     </div>
+    // <div className="gallerylayout">
+    //   );
+
+    return <div>{arrA}</div>;
+  };
   render() {
+    // console.log(Object.assign([], this.state.image));
+
+    // console.log(arr);
     return (
       <div className="dashboard">
         <div className="flexrow">
@@ -108,7 +164,7 @@ class Gallery extends Component {
           <div className="flexcolumn">
             <Header />
             <div className="form">
-              <div className="titleform"> Gallery </div>
+              <div className="titleform"> Album </div>
               <button
                 className="attachment"
                 onClick={() => this.setState({ openmodal: true })}
@@ -118,43 +174,14 @@ class Gallery extends Component {
                   size={"1.5vw"}
                   className="attachmentplusicon"
                 />
-                <p>Choose File</p>
+                <p>Update album</p>
               </button>
               <div
                 style={{ marginTop: "2.5vh", height: "70vh", width: "80vw" }}
               >
                 <Scrollbars>
-                  <div className="gallerylayout">
-                    {imagegallery.map((item, index) => (
-                      <div
-                        className="flexcolumn"
-                        style={{
-                          marginBottom: "2.5vh",
-                          marginRight: "2vw",
-                        }}
-                      >
-                        <Link
-                          to={{
-                            pathname: "/gallery/" + item.imagesize,
-                            images: item,
-                          }}
-                        >
-                          <img
-                            src={URL.createObjectURL(item.image[0])}
-                            alt=""
-                            style={{ width: "20vw", height: "20vh" }}
-                          />
-                        </Link>
-
-                        <div className="gallerydescriptionforimage">
-                          {item.date}
-                        </div>
-                        <div className="gallerydescriptionforimage">
-                          {item.imagesize} bytes
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <div className="galleryLayout">{this.displayAl()}</div>
+                  {/* <div className="gallerylayout">{this.displayAl()}</div> */}
                 </Scrollbars>
               </div>
             </div>
@@ -242,7 +269,7 @@ class Gallery extends Component {
   }
 }
 
-export default Gallery;
+export default ImageInAlbum;
 
 const modalContent = {
   color: "#8C96AB",

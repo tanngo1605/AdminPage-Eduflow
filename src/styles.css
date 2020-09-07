@@ -264,6 +264,10 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
 }
+.galleryLayout > div {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
 
 .gallerybutton {
   width: 10vw;

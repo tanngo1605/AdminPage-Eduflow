@@ -20,14 +20,19 @@ import SendOTP from "./pages/PasswordReset/SendOTP";
 import ChangePassWord from "./pages/PasswordReset/ChangePassword";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Exam from "./pages/Exam/Exam";
+import ImageInAlbum from "./pages/Gallery/ImageInAlbum";
+import ScreenSyllabus from "./pages/Syllabus/ScreenSyllabus";
 import "./styles.css";
+import UploadFile from "./pages/Syllabus/UploadFileTest";
 
 function App() {
   return (
+    // <ScreenSyllabus />
+
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/" exact component={LoginPage} />
+          <Route path="/syllabusnew" component={ScreenSyllabus} />
           <Route path="/sendotp" component={SendOTP} />
           <Route path="/exam" component={Exam} />
           <Route path="/changepassword" component={ChangePassWord} />
@@ -41,11 +46,13 @@ function App() {
           <Route path="/teacher" component={TeacherSearch} />
           <Route path="/student/profile" component={StudentProfile} />
           <Route path="/student" component={StudentSearch} />
+          <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/timetable" component={Timetable} />
           <Route path="/homescreen" component={Homescreen} />
+          <Route path="/" component={LoginPage} />
         </Switch>
       </div>
     </BrowserRouter>
