@@ -50,10 +50,7 @@ const ticketReducer = (state = initialState, action) => {
 
     case "ADD_TEACHER_DATA":
       
-      state.filteredTeachers.push(action.payload.value);
-      return Object.assign({}, state, {
-        filteredTeachers: state.filteredTeachers,
-      });
+      return (Object.assign({},state,{filteredTeachers:[...state.filteredTeachers,action.payload.value]}));
 
     case "DELETE_TEACHER_DATA":
       state.filteredTeachers.splice(action.payload.value, 1);

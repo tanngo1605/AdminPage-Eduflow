@@ -52,7 +52,7 @@ class Gallery extends Component {
 
 
   addImageToGallery=()=>{
-    if (this.state.album.image==null) return ;
+    if (!this.state.album.image) return ;
     
     this.props.dispatch(addData({albumnumber:albumnumber,image:this.state.album.image,imagesize:this.state.album.imagesize,date:todayDate.toLocaleDateString()}))
 
@@ -62,7 +62,7 @@ class Gallery extends Component {
   }
   render(){
    const albums=this.props.image.showalbums;
-   console.log(albums)
+   
    return(
    <div className='dashboard'>
     <div className='flexrow'>

@@ -1,11 +1,9 @@
 let counterToActiviateLoadDataOnce = 0 ;
-const initialState = {
-    appliedFilters: []
-  };
+
 
 
 export const addData = (payload) => ({
-     type: 'ADD_TEACHER_DATA', 
+     type: 'ADD_STUDENT_DATA', 
      payload
 });
   
@@ -31,7 +29,7 @@ export const filterByValue = (payload) => ({
 
           
   
-  const StudentReducer = (state = initialState, action) => {
+  const StudentReducer = (state = [], action) => {
     switch (action.type) {
       case 'FILTER_BY_VALUE':
         
@@ -62,9 +60,9 @@ export const filterByValue = (payload) => ({
         })
         
         return (Object.assign({},state));
-      case 'ADD_TEACHER_DATA':
-          state.filteredStudents.push(action.payload.value);
-          return (Object.assign(state,{filteredStudents:state.filteredStudents}));
+      case 'ADD_STUDENT_DATA':
+          
+          return (Object.assign({},state,{filteredStudents:[...state.filteredStudents,action.payload.value]}));
       case 'DELETE_STUDENT_DATA':
             state.filteredStudents.splice(action.payload.value, 1);
             return (Object.assign({},state));
