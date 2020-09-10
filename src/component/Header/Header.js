@@ -8,12 +8,13 @@ const Header = () => {
         <div className="header">
             
             <p className='headertextstyle'> Shri Ji Baba Public School </p>
+            <div className="flexcolumn" style={{height:'55vh',marginLeft:'auto',marginRight:"5%"}}>
+                <BsGear style={{marginTop:'5.5vh',alignSelf:'center'}} color="#8C96AB" size={'1.5vw'} onClick={() => setSetting(!showSetting)} />
+                <div className={showSetting?'setting':null} style={{width:'16vw'}}>
             
             {(showSetting)?
                 (
-                  <div className="flexcolumn" style={{height:'55vh',marginLeft:'auto',marginRight:"5%"}}>
-                    <BsGear style={{marginTop:'5.5vh',marginBottom:'2vh',alignSelf:'center'}} color="#8C96AB" size={'1.5vw'} onClick={() => setSetting(false)}/>
-                    <div className='setting'>
+                    <div >
                         <div  className='headersetting' >
                             <BsGear size='1.2vw' style={{marginLeft:'2.5vw'}}/>
                             <p style={{marginLeft:'2.5vw',marginTop:'-0.3vh',fontWeight:'bold',fontSize:'1vw'}}> Setting</p>
@@ -27,16 +28,13 @@ const Header = () => {
                             )}
                         </div>
                     </div>
-                  </div>
+                  
                 )
-                :
-                (
-                    <div className="flexcolumn" style={{marginLeft:'auto',marginRight:"5%"}}>
-                        <BsGear style={{marginTop:'5.5vh',alignSelf:'center'}} color="#8C96AB" size={'1.5vw'} onClick={() => setSetting(true)} />
-                        <div style={{width:'16vw'}}></div>
-                    </div>
-                )
+                : null
             }
+                
+                </div>
+            </div>
             
             
         </div>

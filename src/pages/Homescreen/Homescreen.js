@@ -54,13 +54,10 @@ class Homescreen extends Component {
 
   handleClick(e,condition,index,array) {   
     e.preventDefault();
-    if (condition===false){
+    if (!condition){
       array.map((item)=>item.clicked=false);
       array[index]['clicked']=true;
-      this.setState({trigger:true});
-    }
-    else {
-      this.setState({trigger:false})
+      this.setState({trigger:!this.state.trigger});
     }
   }
 

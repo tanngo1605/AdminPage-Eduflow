@@ -41,11 +41,11 @@ class TeacherProfile extends Component {
     this.props.dispatch(loadTeacherData());
   }
   displayImage = () =>{
-    if (this.state.edit===false) return <div className='profileimage'><img src={this.state.teacher.image} alt='' className='profileimagepreview' /></div>
-    if (this.state.teacher.image!==null)
+    if (!this.state.edit) return <div className='profileimage'><img src={this.state.teacher.image} alt='' className='profileimagepreview' /></div>
+    if (this.state.teacher.image)
         return ( 
             <div className='profileimage'>
-                <label htmlFor='image'><img src={this.state.image} alt='' className='profileimagepreview' /></label>
+                <label htmlFor='image'><img src={this.state.teacher.image} alt='' className='profileimagepreview' /></label>
                 <input type='file' id='image' onChange={this.handleChange} accept='image/*'/>   
             </div>
         )

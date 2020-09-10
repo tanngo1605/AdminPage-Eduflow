@@ -93,8 +93,7 @@ class TicketList extends Component {
                 </div>
                 <div style={{ height: "55vh" }}>
                   <Scrollbars>
-                    {tickets &&
-                      tickets.map((ticket) => (
+                    {tickets && tickets.map((ticket) => (
                         <div className="bodyticketlist" key={ticket.key}>
                           <p style={{ width: "13%" }}>{ticket.serialno}</p>
                           <p style={{ width: "18%" }}>{ticket.name}</p>

@@ -23,7 +23,7 @@ class LoginForm extends Component {
     }
   }
   displayImage = () =>{
-    if (this.state.image!=null)
+    if (!this.state.image)
       return (
                 <div className='imagearea'>
                     <img src={this.state.image} alt="yourimage" style={{width:'15vw',height:'15vh',marginRight:'1vw'}} />

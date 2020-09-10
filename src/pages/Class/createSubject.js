@@ -6,14 +6,10 @@ import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
 import {
-  
   marginBottom65vh,
   marginLeft380vw,
   marginLeft200vw,
-  
   marginLeft130vw,
-  
-  
   marginTop45vh,
   } from '../../styles/marginStyles'
 
@@ -50,8 +46,8 @@ class createSubject extends Component {
             
 
             <select className='shortbox' required onChange={this.handleChange} style={marginLeft200vw}  id='subject'>
-              <option value="" defaultValue>{" "}-select-</option>
-              {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
+                <option value="" defaultValue>{" "}-select-</option>
+                {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               
             </select>
             
