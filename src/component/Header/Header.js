@@ -20,10 +20,10 @@ const Header = () => {
                         </div>
                         <div className='flexcolumn' style={{marginTop:'0.7vh',paddingLeft:'2.5vw',paddingTop:'1vh'}}>
                             {icons.map(item=>
-                                <div className="flexrow" key={item.content} style={{marginBottom:'2vh'}} >
+                                <a href={`/${item.web}`} className="flexrow" key={item.content} style={{marginBottom:'2vh'}} >
                                     {item.icon}
                                     <div style={{marginLeft:'2.5vw',marginTop:'-0.5vh',fontSize:'1vw',color:'#8C96AB'}}>{item.content}</div>
-                                </div>
+                                </a>
                             )}
                         </div>
                     </div>

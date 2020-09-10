@@ -4,31 +4,31 @@ const initialState = {
   appliedFilters: [],
 };
 
-export const addData = (payload) => ({
-  type: "ADD_DATA",
+export const addTeacherData = (payload) => ({
+  type: "ADD_TEACHER_DATA",
   payload,
 });
 
-export const loadData = (payload) => ({
-  type: "LOAD_DATA",
+export const loadTeacherData = (payload) => ({
+  type: "LOAD_TEACHER_DATA",
   payload,
 });
-export const deleteData = (payload) => ({
-  type: "DELETE_DATA",
+export const deleteTeacherData = (payload) => ({
+  type: "DELETE_TEACHER_DATA",
   payload,
 });
-export const modifyData = (payload) => ({
-  type: "MODIFY_DATA",
+export const modifyTeacherData = (payload) => ({
+  type: "MODIFY_TEACHER_DATA",
   payload,
 });
-export const filterByValue = (payload) => ({
-  type: "FILTER_BY_VALUE",
+export const filterTeacherData = (payload) => ({
+  type: "FILTER_TEACHER_DATA",
   payload,
 });
 
 const ticketReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FILTER_BY_VALUE":
+    case "FILTER_TEACHER_DATA":
       let namevalue = action.payload.name;
       let sectionvalue = action.payload.section;
       let classvalue = action.payload.classteacher;
@@ -48,17 +48,18 @@ const ticketReducer = (state = initialState, action) => {
 
       return Object.assign({}, state);
 
-    case "ADD_DATA":
+    case "ADD_TEACHER_DATA":
+      
       state.filteredTeachers.push(action.payload.value);
       return Object.assign({}, state, {
         filteredTeachers: state.filteredTeachers,
       });
 
-    case "DELETE_DATA":
+    case "DELETE_TEACHER_DATA":
       state.filteredTeachers.splice(action.payload.value, 1);
       return Object.assign({}, state);
 
-    case "MODIFY_DATA":
+    case "MODIFY_TEACHER_DATA":
       let key = action.payload.value.key;
 
       state.filteredTeachers.map((teacher) => {
@@ -68,7 +69,7 @@ const ticketReducer = (state = initialState, action) => {
       });
 
       return Object.assign({}, state);
-    case "LOAD_DATA":
+    case "LOAD_TEACHER_DATA":
       const teachers = [
         {
           name: "Rine",

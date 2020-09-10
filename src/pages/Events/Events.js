@@ -9,7 +9,7 @@ import Dropzone from 'react-dropzone';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPlus } from "react-icons/bs";
 import { MdClose } from 'react-icons/md';
-import {marginLeft13vw,marginLeft25vw,marginLeft38vw,marginBottom65vh, marginTop12vh} from '../../styles/globalStyles'
+import {marginLeft130vw,marginLeft250vw,marginLeft380vw,marginBottom65vh, marginTop120vh} from '../../styles/marginStyles'
 class createEvent extends Component {
   constructor (props) {
     super(props)
@@ -69,42 +69,42 @@ class createEvent extends Component {
                 <h1 className='titleform'>Create an event for your class</h1>
                 <div style={marginBottom65vh}>
                   <label htmlFor='class' className='section'>Class</label>
-                  <input type='text' id='class' className='shortbox' style={marginLeft13vw} placeholder='Maths' onChange={this.handleChange} />
+                  <input type='text' id='class' className='shortbox' style={marginLeft130vw} placeholder='Maths' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow' style={marginBottom65vh}>
                   <div className='flexrow'>
                     <label htmlFor='datefrom' className='section'>Date from: </label>
-                    <DayPickerInput className="shortbox" style={marginLeft13vw} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
+                    <DayPickerInput className="shortbox" style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day,'datefrom')} placeholder="- select -"/>
                   </div>
-                  <div className='flexrow' style={marginLeft25vw}>
+                  <div className='flexrow' style={marginLeft250vw}>
                     <label htmlFor='dateto' className='section'>Date to:</label>
-                    <DayPickerInput className="shortbox" style={marginLeft13vw} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
+                    <DayPickerInput className="shortbox" style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day,'dateto')} placeholder="- select -"/>
                   </div>
                 </div>
                 <div className='flexrow' style={marginBottom65vh}>
                   <div>
                     <label htmlFor='timefrom' className='section'>Time from: </label>
-                    <input type='time' id='timefrom' className='shortbox' style={marginLeft13vw}  onChange={this.handleChange} />
+                    <input type='time' id='timefrom' className='shortbox' style={marginLeft130vw}  onChange={this.handleChange} />
                   </div>
-                  <div className='flexrow' style={marginLeft38vw}>
+                  <div className='flexrow' style={marginLeft380vw}>
                     <label htmlFor='timeto' className='section'>Time To: </label>
-                    <input type='time' id='timeto' className='shortbox' style={marginLeft13vw} onChange={this.handleChange} />
+                    <input type='time' id='timeto' className='shortbox' style={marginLeft130vw} onChange={this.handleChange} />
                   </div>
                 </div>
                 <div className='flexrow' style={marginBottom65vh}>
                   <label htmlFor='eventtitle' className='section'>Event title </label>
-                  <input type='text' id='eventtitle' className='shortbox' style={marginLeft13vw} placeholder='Type here' onChange={this.handleChange} />
+                  <input type='text' id='eventtitle' className='shortbox' style={marginLeft130vw} placeholder='Type here' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow'>
                   <label htmlFor='description' className='section'>Description </label>
-                  <textarea type='text' id='description' className='shortbox' style={Object.assign({},{height:'10vh',width:'58vw'},marginLeft13vw)} placeholder='Type here' onChange={this.handleChange}></textarea>
+                  <textarea type='text' id='description' className='shortbox' style={Object.assign({},{height:'10vh',width:'58vw'},marginLeft130vw)} placeholder='Type here' onChange={this.handleChange}></textarea>
                 </div>
-                <div className='flexrow' style={Object.assign({},marginBottom65vh,marginTop12vh)}>
+                <div className='flexrow' style={Object.assign({},marginBottom65vh,marginTop120vh)}>
                   <p className='section'>Attachment </p>
                   
                   <Dropzone onDrop={this.onDrop}>
                     {({getRootProps, getInputProps}) => (
-                      <section className="flexrow" style={marginLeft13vw}>
+                      <section className="flexrow" style={marginLeft130vw}>
                         <div {...getRootProps({ className:'attachment'})}>
                           <input {...getInputProps()} />
                             <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>

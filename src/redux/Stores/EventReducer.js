@@ -1,9 +1,7 @@
 
 let counterToActiviateLoadDataOnce = 0 ;
 
-const initialState = {
-    appliedFilters: []
-  };
+
   
 export const addEvent = (payload) => ({
   type: 'ADD_EVENT', 
@@ -33,7 +31,7 @@ export const filterByValue = (payload) => ({
   
   
   
-const eventReducer = (state = initialState, action) => {
+const eventReducer = (state = {}, action) => {
   switch (action.type) {
     case 'FILTER_BY_VALUE':
       

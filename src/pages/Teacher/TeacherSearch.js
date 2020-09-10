@@ -4,10 +4,16 @@ import Dropzone from 'react-dropzone'
 import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-import {loadData, filterByValue,deleteData} from "../../redux/Stores/TeacherReducer";
+import {loadTeacherData, filterTeacherData,deleteTeacherData} from "../../redux/Stores/TeacherReducer";
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-import {marginLeft25vw,marginLeft13vw,marginTop55vh,addaProfileAttachment,marginBottom13vhandTop1vh} from '../../styles/globalStyles'
+import {
+  marginLeft250vw,
+  marginLeft130vw,
+  marginTop55vh,
+  addaProfileAttachment,
+  marginBottom130vhandTop10vh,
+  marginTop110vh} from '../../styles/marginStyles'
 
 class TeacherSearch extends Component {
   constructor (props) {
@@ -22,7 +28,7 @@ class TeacherSearch extends Component {
     }
   }
   componentDidMount() {
-    this.props.dispatch(loadData());
+    this.props.dispatch(loadTeacherData());
 }
 
   onDrop = (files) => {
@@ -43,7 +49,7 @@ class TeacherSearch extends Component {
     setTimeout(()=>{
       
       this.props.dispatch(
-        filterByValue(
+        filterTeacherData(
           {
             name: this.state.teachersearchinput.name, 
             classteacher:this.state.teachersearchinput.classteacher,
@@ -69,23 +75,23 @@ class TeacherSearch extends Component {
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a teacher </p>
                 </NavLink>
-                <form className='flexcolumn' onChange={this.searchResult} style={marginBottom13vhandTop1vh}>
-                  <div className='flexrow' style={{marginBottom:'11vh'}}>
-                    <div className='flexcolumn' style={marginLeft13vw} >
+                <form className='flexcolumn' onChange={this.searchResult} style={marginBottom130vhandTop10vh}>
+                  <div className='flexrow'>
+                    <div className='flexcolumn' style={marginLeft130vw} >
                       <label htmlFor='name' className='section'>Enter Teacher's Name </label>
                       <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
-                    <div className='flexcolumn' style={marginLeft25vw}>
+                    <div className='flexcolumn' style={marginLeft250vw}>
                       <label htmlFor='classteacher' className='section' >Enter Class</label>
                       <input type='text' id='classteacher' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
                   </div>
-                  <div className='flexrow'>
-                    <div className='flexcolumn' style={marginLeft13vw}>
+                  <div className='flexrow' style={marginTop110vh}>
+                    <div className='flexcolumn' style={marginLeft130vw}>
                       <label htmlFor='section' className='section' >Enter Section</label>
                       <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                     </div>
-                    <div className='flexcolumn' style={marginLeft25vw}>
+                    <div className='flexcolumn' style={marginLeft250vw}>
                       <label htmlFor='subject' className='section' >Enter Subject</label>
                       <input type='text' id='subject' className='shortbox' style={marginTop55vh}  onChange={this.handleChange} />
                     </div>
@@ -129,7 +135,7 @@ class TeacherSearch extends Component {
                           <p style={{width:'10%'}}>{teacher.classteacher}</p>
                           <p style={{width:'10%'}}>{teacher.section}</p>
                           <div className='itemcenter' style={{width:"20%"}}>
-                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(teacher))}/>
+                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteTeacherData(teacher))}/>
                           </div>
                           <div className='itemcenter' style={{width:"20%",marginTop:'0.1vh'}}>
                             <NavLink exact to={{pathname:'/teacher/profile',teacherdata:teacher}}>

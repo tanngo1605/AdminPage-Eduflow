@@ -1,7 +1,5 @@
 let counterToActiviateLoadDataOnce = 0 ;
-const initialState = {
-  appliedFilters: []
-};
+
 
 export const addTicket = (payload) => ({
    type: 'ADD_TICKET', 
@@ -21,7 +19,7 @@ export const filterByValue = (payload) => ({
 
 
 
-const ticketReducer = (state = initialState, action) => {
+const ticketReducer = (state = {}, action) => {
   switch (action.type) {
     case 'FILTER_BY_VALUE':
       

@@ -1,162 +1,89 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Modal from "react-modal";
 import Dropzone from "react-dropzone";
 import { Scrollbars } from "react-custom-scrollbars";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { TiTick } from "react-icons/ti";
 import {
-  AiOutlineExclamationCircle,
-  AiOutlineCalendar,
-  AiOutlineFileText,
-} from "react-icons/ai";
-import { BsPlus } from "react-icons/bs";
+  loadData,
+  loadSpecificAlbum,
+  updateAlbum,
+} from "../../redux/Stores/GalleryReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
-import { marginTop11vh, marginTop55vh } from "../../styles/globalStyles";
-
-const todayDate = new Date();
-
-const imagegallery = [];
+import { positionabsolute } from "../../styles/marginStyles";
+import { image150 } from "../../styles/imageStyles";
 
 class ImageInAlbum extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: { image: null, imagesize: " ", description: "" },
-      image: props.location.images,
+      images: {
+        image: null,
+        date: new Date().toLocaleDateString(),
+        imagesize: " ",
+      },
       openmodal: false,
+      deletemode: false,
+      trigger: false,
     };
   }
   componentDidMount() {
     Modal.setAppElement("body");
+    this.props.dispatch(loadData());
+    this.props.dispatch(
+      loadSpecificAlbum({ albumnumber: this.props.location.pathname.slice(9) })
+    );
   }
 
   onDrop = (images) => {
-    // console.log(images);
-    this.setState({
-      images: {
-        image: images,
-        imagesize: images.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.size,
-          0
-        ),
-      },
+    images = images.map((image) => {
+      return { file: image, clicked: false };
     });
+    this.setState({ images: { image: images } });
   };
-  checkifAlbumorImage = (images) => {
-    if (images === null) return;
-    //album
-    if (images.length > 1) {
-      for (let i = 0; i < images.length; i++) {
-        images.map((item) => (
-          <img
-            src={URL.createObjectURL(images[i])}
-            alt=""
-            className="galleryimage"
-          />
-        ));
-      }
-    }
-    //single image
-    return (
-      <img
-        src={URL.createObjectURL(images[0])}
-        alt=""
-        className="galleryimage"
-      />
-    );
+  selectanImage = (image) => {
+    image.clicked = !image.clicked;
+    this.setState({ trigger: !this.state.trigger });
   };
+  deleteImage = (album) => {
+    if (!album) return;
 
-  reviewImageBeforeAddingtoGallery = () => {
-    if (this.state.images.image != null)
-      return (
-        <img
-          src={URL.createObjectURL(this.state.images.image[0])}
-          alt=""
-          className="galleryimage"
-          style={{ marginLeft: "1.5vw" }}
-        />
+    let selectimages = album[0].album.filter((image) => {
+      return image.clicked === true;
+    });
+
+    if (this.state.deletemode === false) this.setState({ deletemode: true });
+    else
+      this.props.dispatch(
+        updateAlbum({
+          action: "delete",
+          albumnumber: this.props.location.pathname.slice(9),
+          selectimages: selectimages,
+        })
       );
-
-    return <div className="galleryimage" style={{ marginLeft: "1.5vw" }}></div>;
+  };
+  removeItem = (image, album) => {
+    album.splice(image, 1);
+    this.setState({ trigger: !this.state.trigger });
   };
 
   addImageToGallery = () => {
-    if (this.state.images.image == null) return;
-    if (this.state.images.length > 1) {
-      for (let i = 0; i < this.state.images.length; i++) {
-        imagegallery.push({
-          image: this.state.images[i].image,
-          imagesize: this.state.images[i].imagesize,
-          date: todayDate.toLocaleDateString(),
-        });
-      }
-    } else {
-      imagegallery.push({
-        image: this.state.images.image,
-        imagesize: this.state.images.imagesize,
-        date: todayDate.toLocaleDateString(),
-      });
-    }
+    if (this.state.images.image === null) return;
 
+    this.props.dispatch(
+      updateAlbum({
+        action: "add",
+        albumnumber: this.props.location.pathname.slice(9),
+        addimage: this.state.images.image,
+      })
+    );
     this.setState({ images: { image: null, imagesize: "" }, openmodal: false });
   };
-
-  displayAl = () => {
-    console.log(Object.assign([], this.state.image.image).length);
-    var arrP = Object.assign([], this.state.image.image);
-    var arrC = [];
-    // return Object.assign([], this.state.image.image).map((item, index) => (
-    //   <div
-    //     className="flexcolumn"
-    //     style={{
-    //       marginBottom: "2.5vh",
-    //       marginRight: "2vw",
-    //     }}
-    //   >
-    //     <img
-    //       src={URL.createObjectURL(item[index])}
-    //       alt=""
-    //       className="galleryimage"
-    //     />
-    //   </div>
-    // ));
-    const arrA = arrP.map((image, index, arrP) => {
-      return (
-        <div>
-          <img
-            src={URL.createObjectURL(image)}
-            alt=""
-            className="galleryimage"
-          />
-          <div className="gallerydescriptionforimage">
-            {this.state.image.date}
-          </div>
-          <div className="gallerydescriptionforimage">
-            {this.state.image.imagesize} bytes
-          </div>
-        </div>
-      );
-    });
-    // for (var i = 0; i < arrP.length; i++) {
-    //   arrC.push(
-    //     // <div
-    //     //   className="flexcolumn"
-    //     //   style={{
-    //     //     marginBottom: "2.5vh",
-    //     //     marginRight: "2vw",
-    //     //   }}
-    //     // >
-    //     <div className="gallerylayout">
-
-    //     </div>
-    // <div className="gallerylayout">
-    //   );
-
-    return <div>{arrA}</div>;
-  };
   render() {
-    // console.log(Object.assign([], this.state.image));
+    const showimagesinalbum = this.props.image.showalbums;
 
-    // console.log(arr);
     return (
       <div className="dashboard">
         <div className="flexrow">
@@ -164,30 +91,97 @@ class ImageInAlbum extends Component {
           <div className="flexcolumn">
             <Header />
             <div className="form">
-              <div className="titleform"> Album </div>
-              <button
-                className="attachment"
-                onClick={() => this.setState({ openmodal: true })}
-              >
-                <BsPlus
-                  color="white"
-                  size={"1.5vw"}
-                  className="attachmentplusicon"
-                />
-                <p>Update album</p>
-              </button>
+              <div className="titleform">
+                {" "}
+                Album {this.props.match.params.album_name}{" "}
+              </div>
+              <div style={{ marginLeft: "auto", marginRight: "5vw" }}>
+                <button
+                  className="deleteandaddimagebutton"
+                  onClick={() => this.deleteImage(showimagesinalbum)}
+                  style={{
+                    borderBottomLeftRadius: "5vw",
+                    borderTopLeftRadius: "5vw",
+                  }}
+                >
+                  <p>Delete</p>
+                </button>
+                <button
+                  className="deleteandaddimagebutton"
+                  onClick={() => this.setState({ openmodal: true })}
+                  style={{
+                    borderBottomRightRadius: "5vw",
+                    borderTopRightRadius: "5vw",
+                  }}
+                >
+                  <p>Add more</p>
+                </button>
+              </div>
               <div
                 style={{ marginTop: "2.5vh", height: "70vh", width: "80vw" }}
               >
                 <Scrollbars>
-                  <div className="galleryLayout">{this.displayAl()}</div>
-                  {/* <div className="gallerylayout">{this.displayAl()}</div> */}
+                  {showimagesinalbum &&
+                    showimagesinalbum.map((album, index) => (
+                      <div className="gallerylayout" key={index}>
+                        {album.album.map((image, index2) => (
+                          <div
+                            key={index2}
+                            className="flexcolumn"
+                            style={{
+                              marginBottom: "2.5vh",
+                              marginRight: "2vw",
+                            }}
+                          >
+                            {this.state.deletemode ? (
+                              image.clicked ? (
+                                <div>
+                                  <div style={positionabsolute}>
+                                    <TiTick
+                                      color="white"
+                                      className="selectimage"
+                                      style={{ background: "#04044e" }}
+                                      size={"1.5vw"}
+                                    />
+                                  </div>
+                                  <img
+                                    src={URL.createObjectURL(image.file)}
+                                    alt=""
+                                    onClick={() => this.selectanImage(image)}
+                                    style={image150}
+                                  />
+                                </div>
+                              ) : (
+                                <img
+                                  src={URL.createObjectURL(image.file)}
+                                  alt=""
+                                  onClick={() => this.selectanImage(image)}
+                                  style={image150}
+                                />
+                              )
+                            ) : (
+                              <img
+                                src={URL.createObjectURL(image.file)}
+                                alt=""
+                                style={image150}
+                              />
+                            )}
+                            <div className="gallerydescriptionforimage">
+                              {album.date}
+                            </div>
+                            <div className="gallerydescriptionforimage">
+                              {image.file.size} bytes
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
                 </Scrollbars>
               </div>
             </div>
             <Modal
               isOpen={this.state.openmodal}
-              className="Modal"
+              className="Modal2"
               onRequestClose={() =>
                 this.setState({
                   images: { image: null, imagesize: "" },
@@ -196,71 +190,63 @@ class ImageInAlbum extends Component {
               }
             >
               <div className="headermodal">Upload file</div>
-              <div className="flexrow" style={{ marginTop: "2.5vh" }}>
-                {this.reviewImageBeforeAddingtoGallery()}
-                <div
-                  className="flexcolumn"
-                  style={{ marginLeft: "5vw", marginTop: "1.5vh" }}
-                >
-                  <div className="flexrow" style={{ position: "absolute" }}>
-                    <AiOutlineExclamationCircle
-                      size={"1.6vw"}
-                      color="#8C96AB"
-                    />
-                    <p style={modalContent}>
-                      {this.state.images.imagesize} bytes
-                    </p>
-                  </div>
-                  <div className="flexrow" style={{ position: "absolute" }}>
-                    <AiOutlineCalendar
-                      size={"1.6vw"}
-                      color="#8C96AB"
-                      style={marginTop55vh}
-                    />
-                    <p style={Object.assign({}, modalContent, marginTop55vh)}>
-                      {todayDate.toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="flexrow" style={{ position: "absolute" }}>
-                    <AiOutlineFileText
-                      size={"1.6vw"}
-                      color="#8C96AB"
-                      style={marginTop11vh}
-                    />
-                    <input
-                      type="text"
-                      className="shortbox"
-                      style={Object.assign({}, marginTop11vh, modalContent, {
-                        marginLeft: "4vw",
-                      })}
-                      onChange={(event) =>
-                        this.setState({
-                          images: { description: event.target.value },
-                        })
-                      }
-                    ></input>
-                  </div>
-                </div>
-              </div>
               <div className="flexrow">
                 <Dropzone onDrop={this.onDrop} accept="image/*,video/*">
                   {({ getRootProps, getInputProps }) => (
-                    <section className="flexrow">
+                    <section
+                      className="flexcolumn"
+                      style={{ marginTop: "2vh" }}
+                    >
                       <div {...getRootProps({})}>
                         <input {...getInputProps()} />
-                        <button className="gallerybutton">Upload</button>
+                        <button className="gallerybutton">Upload Album</button>
                       </div>
-                      <button
-                        className="gallerybutton"
-                        style={{ marginLeft: "19vw" }}
-                        onClick={() => this.addImageToGallery()}
-                      >
-                        Save
-                      </button>
                     </section>
                   )}
                 </Dropzone>
               </div>
+              <div className="imagepreviewarea" style={{ marginTop: "8vh" }}>
+                <Scrollbars>
+                  {this.state.images.image &&
+                    this.state.images.image.map((image, index) => (
+                      <div key={index} className="imagepreview">
+                        <div style={{ position: "absolute" }}>
+                          <AiOutlineCloseCircle
+                            color="black"
+                            className="imagewithdeleteicon"
+                            size={"1.5vw"}
+                            onClick={() =>
+                              this.removeItem(image, this.state.images.image)
+                            }
+                          />
+                        </div>
+                        <img
+                          src={URL.createObjectURL(image.file)}
+                          alt=""
+                          style={{
+                            position: "absolute",
+                            width: "22vw",
+                            height: "10vw",
+                          }}
+                        />
+                      </div>
+                    ))}
+                </Scrollbars>
+              </div>
+              <button
+                className="gallerybutton"
+                onClick={() => this.addImageToGallery()}
+                style={Object.assign(
+                  {},
+                  {
+                    marginLeft: "23vw",
+                    marginTop: "2vh",
+                    background: "#262F56",
+                  }
+                )}
+              >
+                Save
+              </button>
             </Modal>
           </div>
         </div>
@@ -268,13 +254,7 @@ class ImageInAlbum extends Component {
     );
   }
 }
-
-export default ImageInAlbum;
-
-const modalContent = {
-  color: "#8C96AB",
-  fontSize: "1vw",
-  marginLeft: "1.5vw",
-  width: "7.5vw",
-  paddingLeft: "1.5vw",
-};
+const mapStateToProps = (state) => ({
+  image: state.image,
+});
+export default connect(mapStateToProps)(ImageInAlbum);

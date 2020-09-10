@@ -4,9 +4,20 @@ import {Scrollbars} from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-import {loadData} from '../../redux/Stores/TeacherReducer';
-import {marginBottom65vh,marginLeft13vw,marginTop55vh,fontsize12vw} from '../../styles/globalStyles'
 
+import {
+  marginBottom125vh,
+  marginBottom65vh,
+  marginLeft380vw,
+  marginLeft200vw,
+  marginLeft150vw,
+  marginLeft130vw,
+  marginLeft55vw,
+  marginTop55vh,
+  marginTop45vh,
+  fontsize12vw} from '../../styles/marginStyles'
+import {image100vw} from '../../styles/imageStyles'
+let numberofperiod=5;
 const subjects = [
   {subject:'Math',value:'math'},
   {subject:'History',value:'history'},
@@ -24,6 +35,7 @@ class TimeTable extends Component {
       class: '',
       section: '',
       date: '',
+      trigger:false
     };
   }
   // handleChange = (event) => {
@@ -41,41 +53,46 @@ class TimeTable extends Component {
   //   });
   //   console.log(this.state);
   // };
-  componentDidMount(){
-    this.props.dispatch(loadData());
-  }
-  displayPeriod=(teacherselection)=>{
-    let period=[],numberofperiod=5;
-    if (!teacherselection) return ;
-    
+  
+  displayPeriod=()=>{
+    let period=[];
     for (let i = 1;i<=numberofperiod;i++) 
       period.push(
-        <div className='flexcolumn' key={i} style={{marginLeft:'5%',marginBottom:'12.5vh'}}>
-          <div className='flexrow' style={{marginLeft:'3%'}}>
+        
+          <div className='flexrow' key={i} style={Object.assign({},marginBottom125vh,marginLeft55vw)}>
             <div className='flexcolumn'>
               <p className='section' style={fontsize12vw}>Period</p>
               <p className='section' style={{marginLeft:'1.2vw',marginTop:'5.5vh'}}>{i}</p>
             </div>
-            <div className='flexcolumn' style={marginLeft13vw} >
+            <div className='flexcolumn' style={marginLeft130vw} >
+                <label htmlFor='starttime' className='section'>Start time: </label>
+                <input type='time' id='starttime' className='shortbox' style={Object.assign({},marginTop55vh,image100vw)}  onChange={(event) => this.handleChange(event,i.toString())} />
+            </div>
+            <div className='flexcolumn' style={marginLeft150vw} >
+              
+              <label htmlFor='endtime' className='section'>End time: </label>
+              <input type='time' id='endtime' className='shortbox' style={Object.assign({},marginTop55vh,image100vw)}  onChange={(event) => this.handleChange(event,i.toString())} />
+          
+            </div>
+            <div className='flexcolumn' style={marginLeft200vw}>                                                                                           
               <p className='section' style={fontsize12vw}>Subject</p>
-              <select className="shortbox" required id='subject' style={marginTop55vh}  onChange={(event) => this.handleChange(event,i.toString())}>
+              <select className="shortbox" required id='subject' style={marginTop55vh} onChange={(event) => this.handleChange(event,i.toString())}>
                 <option value="" defaultValue>{" "}-select-</option>
                 {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
-              </select>
-            </div>
-            <div className='flexcolumn' style={{marginLeft:'30vw'}}>                                                                                           
-              <p className='section' style={fontsize12vw}>Teacher assign</p>
-              <select className="shortbox" required id='teacher' style={marginTop55vh} onChange={(event) => this.handleChange(event,i.toString())}>
-                <option value="" defaultValue>{" "}-select-</option>
-                {teacherselection.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
               
               </select>
             </div>
-        </div>
-      </div>)
+        </div>)
 
     return (
-      <div>{period}</div>
+      <div className='eventlistArea' style={{marginTop:'8vh',paddingTop:'2%'}}>
+          <Scrollbars>
+            {period}
+            <p className='textaligncenter' 
+                onClick={()=>{ numberofperiod=numberofperiod+1; this.setState({trigger:!this.state.trigger})}} 
+                style={{color: '#0F1E36',fontSize:'1vw'}}> + Add More </p> 
+          </Scrollbars>
+      </div>
     )
   }
   handleChange = (event, key) => {
@@ -105,8 +122,6 @@ class TimeTable extends Component {
     this.setState({ date: day.toLocaleDateString() });
   }
   render() {
-    let teachers = this.props.teacher.filteredTeachers;
-    
     return (
       <div className='dashboard'>
         <div className='flexrow'>
@@ -115,22 +130,22 @@ class TimeTable extends Component {
             <Header />
             <div className='form' >
               
-                <h1 className='titleform'>Timetable</h1>
+                <h1 className='titleform'>Time table</h1>
                 
                   <div className='flexcolumn' style={{marginLeft:'1.5vw',marginTop:'3%'}}>
                     <div className='flexrow'>
                       <div className='flexrow' style={marginBottom65vh}>
                         <p className='section'>Enter Class</p>
-                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft13vw} id='class'>
+                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='class'>
                           <option value="" defaultValue>{" "}-select-</option>
                           <option value='lime'>Lime</option>
                           <option value='coconut'>Coconut</option>
                           <option value='mango'>Mango</option>
                         </select>
                       </div>
-                      <div className='flexrow' style={{marginLeft:'38vw'}}>
+                      <div className='flexrow' style={marginLeft380vw}>
                         <p className='section'>Enter Section</p>
-                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft13vw}   id='section'>
+                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw}   id='section'>
                           <option value="" defaultValue>{" "}-select-</option>
                           <option value='maths'>maths</option>
                           <option value='english'>English</option>
@@ -140,18 +155,15 @@ class TimeTable extends Component {
                         </select>
                       </div>
                     </div>
-                    <div className='flexrow' style={{marginTop:'2%'}}>
+                    <div className='flexrow' style={marginTop45vh}>
                       <p className='section'>Choose Day</p>
-                      <DayPickerInput className='shortbox' style={marginLeft13vw} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
+                      <DayPickerInput className='shortbox' style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
                     </div>
                   </div>
+
+                  {this.displayPeriod()}
                   
-                  <div className='eventlistArea' style={{marginTop:'8vh',paddingTop:'2%'}}>
-                    <Scrollbars>
-                      {this.displayPeriod(teachers)}
-                    </Scrollbars>
-                  </div>
-                  <div style={{marginTop:'2%'}}>
+                  <div className='flexrow' style={marginTop45vh}>
                     {/* <button>Save</button> <button>Reset</button> */}
                     <input type='submit' value='Save' className='button' style={{marginLeft:'27%'}} />
                     <input type='reset' value='Reset' className='button' />

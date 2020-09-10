@@ -3,8 +3,8 @@ import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 import ppo1 from "../../assets/ppo1.png";
 import Popup from "reactjs-popup";
-import "./password.css";
 import passwordImg from "../../assets/password2.png";
+import "./password.css";
 
 class ChangePassword extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class ChangePassword extends Component {
     event.preventDefault();
   };
   handleSubmit = (event) => {
-    this.props.history.push("/");
+    this.props.history.push("/homescreen");
   };
   render() {
     return (
@@ -57,7 +57,7 @@ class ChangePassword extends Component {
                     <div className="passwordField">
                       <div style={{ display: "inline-flex" }}>
                         <div className="textPass">Old password</div>
-                        <div className="textTypePass">Type</div>
+                        <div className="textTypePass" >Type</div>
                       </div>
                       <input
                         className="inputPassword resetPassword"
@@ -111,18 +111,13 @@ class ChangePassword extends Component {
 
                     <Popup
                       modal
-                      style={{ width: "30%" }}
+                      
                       trigger={
-                        <button
-                          type="button"
-                          value="submit"
-                          className="buttonPass"
-                          onClick={this.handleChange}
-                        >
+                        <button type="button" value="submit" className="buttonPass" onClick={this.handleChange}>
                           Reset
                         </button>
                       }
-                    >
+                      position='center center'>
                       <img src={passwordImg} alt="" />
                       Your password was succesfully changed
                       <button

@@ -60,19 +60,22 @@ class Drawer extends Component {
                 <h1 style={{textAlign:'center',color:'#FFFFFF',fontSize:"2.5vw",marginTop:'1vw'}}>Akhil</h1>
             </div>
             {drawercontent.map((item,index)=>
-                (item.clicked)?(
-                    <div key={item.key} className="activesubjectindrawer" onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:'1vh',}}>
-                        <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw',marginTop:'-0.1vw'}}/> </div>
+                
+                    <div key={item.key} className={item.clicked?"activesubjectindrawer":'notactivesubjectindrawer'} onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)}>
+                        {(item.clicked)?(
+                            <div>
+                                <img src={require('../../assets/'+item.activeimage)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw',marginTop:'-0.1vw'}}/> 
+                            </div>
+                        ):(
+                            <div>
+                                <img src={require('../../assets/'+item.inactiveimage)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw',marginTop:'-0.3vw'}}/> 
+                            </div>
+                        )}
+                        
                         <NavLink exact to={'/'+ item.web} style={{color:'#FFFFFF',marginLeft:'0.8vw',fontSize:'1.2vw'}}>{item.content}</NavLink> 
                         {this.Show(item.content)}
                     </div>
-                ):(
-                    <div key={item.key} onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)} style={{display:"flex",marginBottom:'1vh'}}>
-                    <div><img src={require('../../assets/'+item.image)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw',marginTop:'-0.3vw'}}/> </div>
-                        <NavLink exact to={'/'+ item.web} style={{color:'#FFFFFF',marginLeft:'0.8vw',fontSize:'1.2vw'}}>{item.content}</NavLink>
-                        {this.Show(item.content)}
-                    </div>
-                )
+                
             )}
         </div>      
     )}
