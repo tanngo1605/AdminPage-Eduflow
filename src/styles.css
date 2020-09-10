@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
 }
-.notactivesubjectindrawer{
+.notactivesubjectindrawer {
   display: flex;
   margin-bottom: 1vh;
 }
@@ -156,7 +156,7 @@
   margin: 0.7vw;
 }
 /*Exam styles*/
-.exammodal{
+.exammodal {
   position: relative;
   width: 35vw;
   height: 18vh;
@@ -302,29 +302,29 @@
   border: 0vw solid white;
 }
 .imagepreviewarea {
-  width:28.5vw;
-  height:26vh;
+  width: 28.5vw;
+  height: 26vh;
   overflow: hidden;
   margin-left: 4vw;
   border: 0.1vw solid rgba(196, 196, 196, 0.47);
   box-sizing: border-box;
 }
-.imagepreview{
+.imagepreview {
   width: 22vw;
-  height:15vh;
+  height: 15vh;
   margin-top: 2vh;
   margin-left: 3vw;
-  margin-bottom: 6vh;;
-  border: 0.1vw solid #C4C4C4;
+  margin-bottom: 6vh;
+  border: 0.1vw solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 0.5vw;
   overflow: hidden;
 }
-.imagewithdeleteicon{
+.imagewithdeleteicon {
   position: absolute;
   background-color: white;
-  top:1vh;
-  left:19.5vw;
+  top: 1vh;
+  left: 19.5vw;
   border-radius: 50%;
   z-index: 1;
 }
@@ -356,11 +356,10 @@
   margin-left: 3vw;
   text-align: center;
 }
-.selectimage{
-  
+.selectimage {
   background-color: #04044e;
-  margin-top:25vh;
-  left:13vw;
+  margin-top: 25vh;
+  left: 13vw;
   border-radius: 50%;
   z-index: 1;
 }
@@ -416,7 +415,7 @@
   width: 15%;
   height: 4.3%;
   position: absolute;
-  padding-top:0.5vw;
+  padding-top: 0.5vw;
   font-size: 1.2vw;
   color: #262f56;
 }
@@ -522,4 +521,57 @@ select::-ms-expand {
 option {
   color: #000;
   font-family: Lato;
+}
+
+#corAddress::placeholder {
+  position: relative;
+  /* border: dotted, */
+  height: 23px;
+  bottom: 35px;
+}
+
+.feedbackContent-content {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 510px;
+}
+
+.textFeedback {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  color: #8c96ab;
+}
+input[type="checkbox"] {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+input[type="checkbox"]:before {
+  content: "";
+  display: block;
+  /* position: absolute; */
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border: 2px solid #555555;
+  border-radius: 3px;
+  background-color: white;
+}
+input[type="checkbox"].abc:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  /* position: absolute; */
+  top: 3px;
+  left: 8px;
 }
