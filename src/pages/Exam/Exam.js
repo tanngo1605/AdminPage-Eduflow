@@ -115,10 +115,10 @@ class Exam extends Component {
                     <p style={{width:'10%'}}>Edit</p>
                   </div>
 
-                  <div className="flexcolumn">
+                  <div className="bodyeventList">
                       {exams&&exams.map((exam,index)=>
 
-                        <div  className="bodyeventList"  key={index} >
+                        <div  className="flexrow"  key={index} >
                           
                           <p style={{width:'15%'}}>{exam.exam}</p>
                           <p style={{width:'20%'}}>{exam.class}</p>

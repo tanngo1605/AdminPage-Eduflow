@@ -1,7 +1,7 @@
 .dashboard {
   background-color: rgba(229, 233, 238, 0.5);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 110vh;
   display: flex;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .inneravatarcircle {
-  background-color: rgba(255, 255, 255);
+  
   top: 13%;
   left: 15%;
   width: 70%;
@@ -172,6 +172,7 @@
 /*Event styles*/
 
 .eventlistArea {
+
   height: 45vh;
   background: #ffffff;
   padding-top: 1.5vh;
@@ -199,7 +200,7 @@
 
   display: flex;
   text-align: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 /*Ticket list*/
 .searchBox {
@@ -396,7 +397,7 @@
     rgba(244, 249, 255, 0.0001) 0%,
     #f4f9ff 26.23%
   );
-  width: 92%;
+  width: 95%;
   height: 92%;
   margin-left: 1vw;
   margin-top: 1.2vh;
@@ -429,6 +430,7 @@
   border-radius: 0.5vw;
   padding-left: 1.5vw;
   font-size: 1vw;
+  resize: none;
 }
 .shortbox {
   width: 20vw;
@@ -440,6 +442,7 @@
   border-radius: 0.5vw;
   padding-left: 1.5vw;
   font-size: 1vw;
+  resize: none;
 }
 
 .button {

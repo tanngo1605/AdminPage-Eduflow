@@ -125,10 +125,10 @@ class TeacherSearch extends Component {
                     <p style={{width:'20%'}}>Edit</p>
                   </div>
 
-                  <div className="flexcolumn" style={{height:'30vh'}}>
+                  <div className="bodyeventList" >
                       {teachers&&teachers.map((teacher)=>
 
-                        <div  className="bodyeventList"  key={teacher.key} >
+                        <div className='flexrow'  key={teacher.key} >
                           
                           <p style={{width:'10%'}}>User ID</p>
                           <p style={{width:'30%'}}>{teacher.name}</p>

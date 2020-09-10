@@ -85,7 +85,7 @@ class TimeTable extends Component {
         </div>)
 
     return (
-      <div className='eventlistArea' style={{marginTop:'8vh',paddingTop:'2%'}}>
+      <div className='eventlistArea' style={{marginTop:'8vh',paddingTop:'2%',width:'75vw'}}>
           <Scrollbars>
             {period}
             <p className='textaligncenter' 

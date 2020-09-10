@@ -111,15 +111,15 @@ class StudentSearch extends Component {
                     <p className='textaligncenter' style={{width:'20%'}}>Edit</p>
                   </div>
 
-                  <div className="flexcolumn" style={{height:'30vh'}}>
+                  <div className="bodyeventList">
                       {students&&students.map((student)=>
 
-                        <div className="flexrow" style={{paddingLeft:'1vw',height:'3.5vh'}}  key={student.key} >
+                        <div className="flexrow"  key={student.key} >
                           
-                          <p style={{width:'10%',textAlign:'center'}}>User ID</p>
-                          <p style={{width:'30%',textAlign:'center'}}>{student.name}</p>
-                          <p style={{width:'10%',textAlign:'center'}}>{student.class}</p>
-                          <p style={{width:'10%',textAlign:'center'}}>{student.section}</p>
+                          <p style={{width:'10%'}}>User ID</p>
+                          <p style={{width:'30%'}}>{student.name}</p>
+                          <p style={{width:'10%'}}>{student.class}</p>
+                          <p style={{width:'10%'}}>{student.section}</p>
                           <div className='itemcenter' style={{width:"20%"}}>
                             <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(student))}/>
                           </div>
