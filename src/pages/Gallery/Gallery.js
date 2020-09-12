@@ -64,7 +64,6 @@ class Gallery extends Component {
   addImageToGallery = () => {
     if (this.state.album.image == null) return;
 
-<<<<<<< HEAD
     this.props.dispatch(
       addData({
         albumnumber: albumnumber,
@@ -75,72 +74,6 @@ class Gallery extends Component {
     );
 
     albumnumber++;
-=======
-  addImageToGallery=()=>{
-    if (!this.state.album.image) return ;
-    
-    this.props.dispatch(addData({albumnumber:albumnumber,image:this.state.album.image,imagesize:this.state.album.imagesize,date:todayDate.toLocaleDateString()}))
-
-    albumnumber++;
-    
-    this.setState({album:{image:null,imagesize:''},openmodal:false})
-  }
-  render(){
-   const albums=this.props.image.showalbums;
-   
-   return(
-   <div className='dashboard'>
-    <div className='flexrow'>
-      <Drawer/>
-      <div className='flexcolumn'>
-          <Header/>
-          <div className='form'>
-            
-                <h1 className='titleform'> Gallery </h1>
-                <button className='attachment' onClick={()=>this.setState({openmodal:true})}>
-                    <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
-                    <p>Choose File</p>
-                </button>
-                <div style={{marginTop:'2.5vh',height:'70vh',width:'80vw'}}>
-                    <Scrollbars>
-                     <div className='gallerylayout'>
-                        {albums&&albums.map((image,index)=>
-                            <div key={index} className='flexcolumn' style={{marginBottom:'2.5vh',marginRight:'2vw'}}>
-                                {(image.album.length>1)?
-                                    (   <NavLink exact to={{pathname:`/gallery/${index}`}}>
-                                            <img src={URL.createObjectURL(image.album[0].file)} alt='' style={image150} />
-                                        </NavLink>
-                                    )
-                                    :   <img src={URL.createObjectURL(image.album[0].file)} alt='' style={image150} />
-                                }
-                                
-                                
-                                
-                                <div className='gallerydescriptionforimage'>{image.date}</div>
-                                <div className='gallerydescriptionforimage'>{image.albumsize} bytes</div>
-                            </div>
-                        )}
-                        </div>
-                    </Scrollbars>
-                    
-                </div>
-            
-          </div>
-          <Modal isOpen={this.state.openmodal} className='Modal' onRequestClose={()=>this.setState({openmodal:false})}> 
-            <div className='headermodal'>Upload file</div>
-            <div className='flexrow' style={{marginTop:'2.5vh'}}>
-                
-                <div className='flexcolumn' style={{marginLeft:'2vw',marginTop:'1.5vh'}}>
-                    <div className='flexrow' style={positionabsolute}>
-                        <p style={Object.assign({},modalContent)}>Title</p>
-                        <input type='text' id='title' className='shortbox' style={Object.assign({},{marginLeft:'10.2vw'})} onChange={this.handleChange}></input>
-                    </div>
-                    <div className='flexrow' style={positionabsolute} >
-                        <p style={Object.assign({},modalContent,marginTop75vh)}>Date</p>
-                        <p style={Object.assign({},modalContent,marginTop75vh)}>{todayDate.toLocaleDateString()}</p>
-                    </div>
-                    
->>>>>>> 3ecae457a8a9be3618c4c1be5235f1118be6727b
 
     this.setState({ album: { image: null, imagesize: "" }, openmodal: false });
   };
@@ -155,15 +88,8 @@ class Gallery extends Component {
             <Header />
             <div className="form">
               <h1 className="titleform"> Gallery </h1>
-              <button
-                className="attachment"
-                onClick={() => this.setState({ openmodal: true })}
-              >
-                <BsPlus
-                  color="white"
-                  size={"1.5vw"}
-                  className="attachmentplusicon"
-                />
+              <button className="attachment" onClick={() => this.setState({ openmodal: true })}>
+                <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
                 <p>Choose File</p>
               </button>
               <div
@@ -221,12 +147,12 @@ class Gallery extends Component {
                   style={{ marginLeft: "2vw", marginTop: "1.5vh" }}
                 >
                   <div className="flexrow" style={positionabsolute}>
-                    <p style={Object.assign({}, modalContent)}>Title</p>
+                    <p style={ modalContent}>Title</p>
                     <input
                       type="text"
                       id="title"
                       className="shortbox"
-                      style={Object.assign({}, { marginLeft: "10.2vw" })}
+                      style={ { marginLeft: "10.2vw" }}
                       onChange={this.handleChange}
                     ></input>
                   </div>
@@ -281,14 +207,13 @@ class Gallery extends Component {
                 </div>
                 <button
                   className="gallerybutton"
-                  style={Object.assign(
-                    {},
+                  style={
                     {
                       marginLeft: "23vw",
                       marginTop: "50.5vh",
                       background: "#262F56",
                     }
-                  )}
+                  }
                   onClick={() => this.addImageToGallery()}
                 >
                   Save
