@@ -14,9 +14,9 @@ class StudentSearch extends Component {
     super(props)
     this.state = {
       studentseacrhinput:{
-        name:'',
-        class:'',
-        section:'',
+        name:"",
+        classvalue:"",
+        section:"",
       },
       files:null,
     }
@@ -44,12 +44,13 @@ class StudentSearch extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({studentsearchinput: {[event.target.id]: event.target.value}})
+    let updatesearch= Object.assign({},this.state.studentsearchinput,{[event.target.id]: event.target.value})
+    this.setState({studentsearchinput: updatesearch})
   }
   searchResult=(event)=>{
     event.preventDefault();
     setTimeout(()=>{
-      this.props.dispatch(filterByValue({name: this.state.studentsearchinput.name, class:this.state.studentsearchinput.class,section:this.state.studentsearchinput.section}))}, 50);
+      this.props.dispatch(filterByValue({value: this.state.studentsearchinput}))}, 100);
   }
   
 
@@ -76,7 +77,7 @@ class StudentSearch extends Component {
                   </div>
                   <div className='flexrow' style={marginLeft250vw}>
                     <label htmlFor='class' className='section'>Enter Class:</label>
-                    <input type='text' id='class' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
+                    <input type='text' id='classvalue' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                   </div>
                   <div className='flexrow' style={marginLeft250vw}>
                     <label htmlFor='section' className='section'>Enter Section:</label>
@@ -118,7 +119,7 @@ class StudentSearch extends Component {
                           
                           <p style={{width:'10%'}}>User ID</p>
                           <p style={{width:'30%'}}>{student.name}</p>
-                          <p style={{width:'10%'}}>{student.class}</p>
+                          <p style={{width:'10%'}}>{student.classvalue}</p>
                           <p style={{width:'10%'}}>{student.section}</p>
                           <div className='itemcenter' style={{width:"20%"}}>
                             <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteData(student))}/>

@@ -9,23 +9,23 @@ export const addEvent = (payload) => ({
 });
   
 export const loadData = (payload) => ({
-  type: 'LOAD_DATA', 
+  type: 'LOAD_EVENT', 
   payload
 });
   
 export const resetData = (payload) => ({
-  type: 'RESET_DATA', 
+  type: 'RESET_EVENT', 
   payload
 });
 
 export const deleteData = (payload) => ({
-  type: 'DELETE_DATA', 
+  type: 'DELETE_EVENT', 
   payload
 });
   
   
 export const filterByValue = (payload) => ({
-    type: 'FILTER_BY_VALUE', 
+    type: 'FILTER_EVENT', 
      payload 
 });
   
@@ -33,7 +33,7 @@ export const filterByValue = (payload) => ({
   
 const eventReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'FILTER_BY_VALUE':
+    case 'FILTER_EVENT':
       
       let classteacher = action.payload.classteacher;
       let eventvalue = action.payload.event;
@@ -70,11 +70,11 @@ const eventReducer = (state = {}, action) => {
       return (Object.assign({},state));
     case 'ADD_EVENT':
       return (Object.assign({},state,{filteredEvents:[...state.filteredEvents,action.payload.value]}));
-    case 'DELETE_DATA':
+    case 'DELETE_EVENT':
       
       state.filteredEvents.splice(action.payload.value, 1);
       return (Object.assign({},state));
-    case 'LOAD_DATA':
+    case 'LOAD_EVENT':
       let events = [
         {classteacher:'Math',datefrom:new Date(2020, 7,25),dateto:new Date(2020, 6,22),timefrom:'22/06/2010',timeto:'22/06/2010',eventtitle:'Mr.Johns',file:"bla bla bla",description:"Approved",key:'1'},
         {classteacher:'Lose',datefrom:new Date(2020, 7,21),dateto:new Date(2020, 6,22),timefrom:'22/06/2010',timeto:'22/06/2010',eventtitle:'Mr.Johns',file:"bla bla bla",description:"Denied",key:'2'},

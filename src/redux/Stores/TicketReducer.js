@@ -7,13 +7,12 @@ export const addTicket = (payload) => ({
 });
 
 export const loadData = (payload) => ({
-  type: 'LOAD_DATA', 
+  type: 'LOAD_TICKET', 
   payload
 });
 
-
 export const filterByValue = (payload) => ({
-    type: 'FILTER_BY_VALUE', 
+    type: 'FILTER_TICKET', 
     payload 
 });
 
@@ -21,12 +20,12 @@ export const filterByValue = (payload) => ({
 
 const ticketReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'FILTER_BY_VALUE':
+    case 'FILTER_TICKET':
       
       let value = action.payload.text;
       
       let status = action.payload.status;
-
+      console.log(value,status)
       state.filteredTickets = state.tickets.filter(ticket => {
       
         return (
@@ -45,7 +44,7 @@ const ticketReducer = (state = {}, action) => {
     case 'ADD_TICKET':
         return (Object.assign({},state,{filteredTickets:[...state.filteredTickets,action.payload.value]}));
 
-    case 'LOAD_DATA':
+    case 'LOAD_TICKET':
       let tickets = [
         {serialno:'1212231',date:new Date(2020, 6,22),subject:"Fee",topic:false,name:'Mr.Johns',problem:"bla bla bla",status:"Approved",key:'1'},
         {serialno:'2312',date:new Date(2020,6,23),subject:"New Fee",topic:false,name:'Mr.Johns',problem:"bla bla new",status:"Denied",key:'2'},

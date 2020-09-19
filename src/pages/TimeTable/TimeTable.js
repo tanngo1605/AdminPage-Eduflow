@@ -17,6 +17,7 @@ import {
   marginTop45vh,
   fontsize12vw} from '../../styles/marginStyles'
 import {image100vw} from '../../styles/imageStyles'
+
 let numberofperiod=5;
 const subjects = [
   {subject:'Math',value:'math'},
@@ -88,9 +89,9 @@ class TimeTable extends Component {
       <div className='eventlistArea' style={{marginTop:'8vh',paddingTop:'2%',width:'75vw'}}>
           <Scrollbars>
             {period}
-            <p className='textaligncenter' 
+            <button className='buttonshownothing'
                 onClick={()=>{ numberofperiod=numberofperiod+1; this.setState({trigger:!this.state.trigger})}} 
-                style={{color: '#0F1E36',fontSize:'1vw'}}> + Add More </p> 
+                style={{fontSize:'1vw',marginLeft:'45%',marginBottom:'1vh',background:'white'}}> + Add More </button> 
           </Scrollbars>
       </div>
     )

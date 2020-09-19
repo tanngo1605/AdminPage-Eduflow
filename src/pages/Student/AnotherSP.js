@@ -12,7 +12,7 @@ import studentprofiledata from "../../userData/StudentProfileData";
 import {
   marginBottom55vh,
   marginLeft150vw,
-  marginLeft55vw,
+  
 } from "../../styles/marginStyles";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 class AStudentProfile extends Component {

@@ -1,7 +1,5 @@
 let counterToActiviateLoadDataOnce = 0 ;
 
-
-
 export const addData = (payload) => ({
      type: 'ADD_STUDENT_DATA', 
      payload
@@ -22,7 +20,7 @@ export const modifyData = (payload) => ({
 });
   
 export const filterByValue = (payload) => ({
-      type: 'FILTER_BY_VALUE', 
+      type: 'FILTER_STUDENT_DATA', 
       payload 
 });
   
@@ -31,20 +29,19 @@ export const filterByValue = (payload) => ({
   
   const StudentReducer = (state = [], action) => {
     switch (action.type) {
-      case 'FILTER_BY_VALUE':
+      case 'FILTER_STUDENT_DATA':
+        let {name,classvalue='',section=''}=action.payload.value;
         
-        let namevalue = action.payload.name;
-        let sectionvalue = action.payload.section;
-        let classvalue = action.payload.class;
+        
         state.filteredStudents = state.students.filter(student => {
             return (
-              student.name.toLowerCase().includes(namevalue) &&
-              student.section.toLowerCase().includes(sectionvalue) &&
-              student.class.toLowerCase().includes(classvalue)) 
+              student.name.toLowerCase().includes(name) &&
+              student.section.toLowerCase().includes(section) &&
+              student.classvalue.toLowerCase().includes(classvalue)) 
         });
         
   
-        if ((namevalue || sectionvalue|| classvalue)) {} else state.filteredStudents = state.students;
+        if ((name || classvalue|| section)) {} else state.filteredStudents = state.students;
   
         
         return (Object.assign({},state));
@@ -68,9 +65,9 @@ export const filterByValue = (payload) => ({
             return (Object.assign({},state));
       case 'LOAD_STUDENT_DATA':
         const students=[
-            {name:'Adam',class:'V',section:'HI',rollno:'25',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'41321321',admission:'5464',image:null,key:'1'},
-            {name:'Akhil',class:'H',section:'TL',rollno:'24',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null,key:'2'},
-            {name:'Adin',class:'H',section:'TL',rollno:'23',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null,key:'3'},
+            {name:"Adam",classvalue:"V",section:"H",rollno:'25',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'41321321',admission:'5464',image:null,key:'1'},
+            {name:"Akhil",classvalue:"H",section:"TL",rollno:'24',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null,key:'2'},
+            {name:"Adin",classvalue:"H",section:"TL",rollno:'23',address:'',classteacher:'',fathername:'',mothername:'',gender:'3211321',fatheroccupation:'312312',fathermobileno:'321312',othermobileno:'3000',admission:'40',image:null,key:'3'},
           ]
           counterToActiviateLoadDataOnce ++;
           if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{students,filteredStudents:students}));

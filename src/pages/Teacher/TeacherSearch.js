@@ -47,15 +47,7 @@ class TeacherSearch extends Component {
     event.preventDefault();
     
     setTimeout(()=>{
-      
-      this.props.dispatch(
-        filterTeacherData(
-          {
-            name: this.state.teachersearchinput.name, 
-            classteacher:this.state.teachersearchinput.classteacher,
-            section:this.state.teachersearchinput.section,
-            subject:this.state.teachersearchinput.subject
-          }))}, 50);
+      this.props.dispatch( filterTeacherData({value: this.state.teachersearchinput, }))}, 50);
   }
   
 

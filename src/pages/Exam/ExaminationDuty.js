@@ -120,7 +120,7 @@ class Exam extends Component {
                     <input type='time' id='2shifttiming' className='shortbox' style={Object.assign({},marginLeft130vw,image100vw)}  onChange={this.handleChange} />
                   </div>
                 </div>
-                <div className='eventlistArea' style={{width:'70vw',height:'40vh',textAlign:'center'}}>
+                <div className='eventlistArea' style={{width:'70vw',height:'32.5vh',textAlign:'center'}}>
                   <div className='headereventList'>
                     <p style={{width:'15%'}}>Serial No</p>
                     <p style={{width:'20%'}}>Room No</p>
@@ -131,14 +131,15 @@ class Exam extends Component {
                   </div>
                   {this.displayPeriod()}
                 </div>
-                <p 
-                onClick={()=>{ numberofperiod=numberofperiod+1; this.setState({trigger:!this.state.trigger})}} 
-                style={{color: '#0F1E36',fontSize:'1.1vw',marginTop:'1vh'}}> + Add More </p>   
+                <button 
+                  className='buttonshownothing'
+                  onClick={()=>{ numberofperiod=numberofperiod+1; this.setState({trigger:!this.state.trigger})}} 
+                  style={{color: '#0F1E36',fontSize:'1vw',marginTop:'1vh'}}> + Add More </button>   
                 <div className='flexrow' style={{marginLeft:'13.5vw',marginTop:'3vh'}}>
                   <input type='submit' value='Save' className='button'/>
                   <input type='reset' value='Reset' className='button'/>
                 </div>
-              
+                
             </form>
             
           </div>

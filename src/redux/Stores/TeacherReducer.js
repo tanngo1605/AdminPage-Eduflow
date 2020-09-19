@@ -1,8 +1,5 @@
 let counterToActiviateLoadDataOnce = 0;
 
-const initialState = {
-  appliedFilters: [],
-};
 
 export const addTeacherData = (payload) => ({
   type: "ADD_TEACHER_DATA",
@@ -26,24 +23,23 @@ export const filterTeacherData = (payload) => ({
   payload,
 });
 
-const ticketReducer = (state = initialState, action) => {
+const ticketReducer = (state = [], action) => {
   switch (action.type) {
     case "FILTER_TEACHER_DATA":
-      let namevalue = action.payload.name;
-      let sectionvalue = action.payload.section;
-      let classvalue = action.payload.classteacher;
-      let subjectvalue = action.payload.subject;
 
+      let {name,section,classteacher,subject}=action.payload.value;
+      
       state.filteredTeachers = state.teachers.filter((teacher) => {
+
         return (
-          teacher.name.toLowerCase().includes(namevalue) &&
-          teacher.subject.toLowerCase().includes(sectionvalue) &&
-          teacher.classteacher.toLowerCase().includes(classvalue) &&
-          teacher.subject.toLowerCase().includes(subjectvalue)
+          teacher.name.toLowerCase().includes(name) &&
+          teacher.section.toLowerCase().includes(section) &&
+          teacher.classteacher.toLowerCase().includes(classteacher) &&
+          teacher.subject.toLowerCase().includes(subject)
         );
       });
 
-      if (!(namevalue || sectionvalue || classvalue || subjectvalue))
+      if (!(name || section || classteacher || subject))
         state.filteredTeachers = state.teachers;
 
       return Object.assign({}, state);
@@ -79,6 +75,7 @@ const ticketReducer = (state = initialState, action) => {
           role: "",
           image: null,
           value: "rine",
+          section:"V",
           key: "1",
         },
         {
@@ -92,6 +89,7 @@ const ticketReducer = (state = initialState, action) => {
           role: "",
           image: null,
           value: "sam",
+          section:"V",
           key: "2",
         },
         {
@@ -105,6 +103,7 @@ const ticketReducer = (state = initialState, action) => {
           role: "",
           image: null,
           value: "samuel",
+          section:"V",
           key: "3",
         },
       ];

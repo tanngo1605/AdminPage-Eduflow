@@ -32,9 +32,9 @@ const circularReducer = (state = initialState, action) => {
       let {date,subject} = action.payload.value;
         console.log(date)
       state.filteredCirculars = state.circulars.filter((circular) => {
-          console.log(date.getTime()==circular.date.getTime())
+          console.log(date.getTime()===circular.date.getTime())
         return (
-            (date.getTime()==circular.date.getTime()) &&
+            (date.getTime()===circular.date.getTime()) &&
             circular.subject.toLowerCase().includes(subject) 
         );
       });
