@@ -1,57 +1,53 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import Dropzone from 'react-dropzone'
 import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
-import { BsPencilSquare,BsPlus } from "react-icons/bs";
-import { MdDeleteForever } from "react-icons/md";
-import DayPickerInput from "react-day-picker/DayPickerInput";
-import {
-  marginTop45vh,
-  marginLeft55vw,
-  addaProfileAttachment,
-  
-  marginTop110vh} from '../../styles/marginStyles'
+import {loadTeacherData,filterTeacherData} from "../../redux/Stores/TeacherReducer";
+import {loadAttendance,addAttendance} from "../../redux/Stores/AttendanceReducer";
+import { BsPlus } from "react-icons/bs";
+import {marginTop45vh,marginLeft55vw,addaProfileAttachment} from '../../styles/marginStyles'
 
+let currentdate = new Date();
 class Attendance extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      searchteacherattendance:{
-        date:'',
-        name:'',
-    
-      },
-    }
+      name:'',
+      trigger:false,
+      }
   }
   componentDidMount() {
     this.props.dispatch(loadTeacherData());
+    this.props.dispatch(loadAttendance());
 }
 
 
-  handleDayChange(day) {
-    let update = Object.assign({}, this.state.ticket, { date: day });
-    
-    this.setState({ searchteacherattendance: update });
-    
-  }
+ 
   handleChange = (event) => {
-    let updatesearch= Object.assign({},this.state.teachersearchinput,{[event.target.id]: event.target.value})
-        
-    this.setState({ teachersearchinput: updatesearch })
+    this.setState({[event.target.id]: event.target.value })
   }
   searchResult=(event)=>{
     event.preventDefault();
-    console.log('run')
+    
+    setTimeout(()=>{ this.props.dispatch(filterTeacherData({value:this.state})) },50)
+    
+  }
+
+  submitTodayAttendance=(teachers)=>{
+    let attendancearray={date:currentdate};
+    teachers.map((teacher)=>{
+        attendancearray[teacher.value]=teacher.attendance
+    })
+    
+    this.props.dispatch(addAttendance({value:attendancearray}))
+    this.props.history.push('/searchattendance');
   }
   
 
   render() {
+    let originalteacherdata = this.props.teacher.teachers;
     let teachers = this.props.teacher.filteredTeachers;
-    let attendances = this.props.attendance.filteredAttendance;
-    let currentdate = new Date().toLocaleDateString();
     return (
       <div className='dashboard'>
         <div className='flexrow'>
@@ -70,13 +66,13 @@ class Attendance extends Component {
                   
                     
                   <p className='section' style={marginLeft55vw}>Date</p>
-                  <p className="shortbox" style={{marginLeft:'11vw'}}> {currentdate}</p>
+                  <p className="shortbox" style={{marginLeft:'11vw'}}> {currentdate.toLocaleDateString()}</p>
                     
                   
                   <p className='section' style={{marginLeft:'34vw'}}>Teacher's Name</p>
-                    <select className="shortbox" required id='subject' style={{marginLeft:'45vw'}} onChange={(event) => this.handleChange(event)}>
+                    <select className="shortbox" required id='name' style={{marginLeft:'45vw'}} onChange={(event) => this.handleChange(event)}>
                         <option value="" defaultValue>{" "}-select-</option>
-                        {teachers&&teachers.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.subject}</option>)}
+                        {originalteacherdata&&originalteacherdata.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
                     </select>
                 </form>
                 
@@ -96,13 +92,19 @@ class Attendance extends Component {
                           
                           <p style={{width:'20%'}}>{index}</p>
                           <p style={{width:'30%'}}>{teacher.name}</p>
-                          <p style={{width:'30%'}}>{currentdate}</p>
-                          <p style={{width:'20%'}}>non</p>
+                          <p style={{width:'30%'}}>{currentdate.toLocaleDateString()}</p>
+                          <div style={{width:'20%'}}>
+                            {teacher.attendance?
+                                <button className='switchbox' style={{backgroundColor:'#27AE60'}} onClick={()=>{teacher.attendance=false;this.setState({trigger:false})}}></button>
+                                :
+                                <button className='switchbox' style={{backgroundColor:'#FFFFFF'}} onClick={()=>{teacher.attendance=true;this.setState({trigger:true})}}></button>
+                            }
+                          </div>
                         </div>
                       )}
                     
                   </div>
-                  <button className='button' style={{marginTop:'3vh'}}>Save</button>
+                  <button className='button' style={{marginTop:'3vh'}} onClick={()=>this.submitTodayAttendance(teachers)}>Save</button>
                 </div>
       
               

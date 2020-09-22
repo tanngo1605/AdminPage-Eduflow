@@ -10,6 +10,10 @@ export const loadAttendance = (payload) => ({
   type: "LOAD_ATTENDANCE",
   payload,
 });
+export const loadSpecificAttendance = (payload) => ({
+    type: "LOAD_SPECIFIC_ATTENDANCE",
+    payload,
+  });
 export const modifyAttendance = (payload) => ({
   type: "MODIFY_ATTENDANCE",
   payload,
@@ -36,16 +40,22 @@ const ticketReducer = (state = [], action) => {
       });
 
       if (!(name || section || classteacher || subject))
-        state.filteredTeachers = state.teachers;
+        state.filteredAttendance = state.teachers;
 
       return Object.assign({}, state);
 
     case "ADD_ATTENDANCE":
+      let attendancedata=action.payload.value;
+      let checkifthecurrentdatearesubmitted = state.filteredAttendance.filter(attendance=>{
+          return (attendancedata['date'].getTime()===attendance.date.getTime())
+      })
+    
+      if (checkifthecurrentdatearesubmitted.length > 0) return state;
       
-      return (Object.assign({},state,{filteredTeachers:[...state.filteredTeachers,action.payload.value]}));
+      return (Object.assign({},state,{attendance:[...state.attendance,attendancedata]},{filteredAttendance:[...state.filteredAttendance,attendancedata]}));
 
     case "MODIFY_ATTENDANCE":
-      let key = action.payload.value.key;
+      let key = action.payload.date;
 
       state.filteredTeachers.map((teacher) => {
         if (teacher.key === key)
@@ -54,11 +64,20 @@ const ticketReducer = (state = [], action) => {
       });
 
       return Object.assign({}, state);
+    case "LOAD_SPECIFIC_ATTENDANCE":
+        let date = action.payload.date;
+        if (!date) return state;
+        state.filteredAttendance.map((attendance) => {
+            return (attendance.date.getTime()===date.getTime())
+        });
+        
+  
+        return Object.assign({}, state,{filteredAttendance:state.filteredAttendance});
     case "LOAD_ATTENDANCE":
       const attendance = [
         {date:new Date(2020,8,16),rine:true,sam:false,samuel:false},
         {date:new Date(2020,8,17),rine:false,sam:true,samuel:false},
-        {date:new Date(2020,8,18),rine:true,sam:false,samuel:false},
+        {date:new Date(2020,8,18),rine:true,sam:true,samuel:true},
       ];
 
       counterToActiviateLoadDataOnce++;
@@ -69,7 +88,7 @@ const ticketReducer = (state = [], action) => {
           filteredAttendance: attendance,
         });
 
-      return Object.assign({}, state);
+      return state;
 
     default:
       return state;

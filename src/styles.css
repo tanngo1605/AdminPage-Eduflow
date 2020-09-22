@@ -506,6 +506,7 @@
 .itemcenter {
   display: flex;
   justify-content: center;
+  
 }
 .textaligncenter {
   text-align: center;
@@ -516,6 +517,15 @@
 .radiostyle {
   margin-left: 1vw;
   font-size: 1vw;
+}
+.switchbox{
+  width:5vw;
+  height:4vh;
+  border: 1px solid #8C96AB;
+  box-sizing: border-box;
+  margin-top:-1vh;
+  padding-top: 0.5vh;
+  border-radius: 5px;
 }
 input[type="file"] {
   display: none;

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
+import {loadAttendance} from "../../redux/Stores/AttendanceReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
+import { BsPencilSquare } from "react-icons/bs";
 import {marginTop45vh,marginLeft55vw,marginBottom100vh,} from '../../styles/marginStyles'
+
+
 
 class SearchAttendance extends Component {
   constructor (props) {
@@ -20,10 +24,11 @@ class SearchAttendance extends Component {
   }
   componentDidMount() {
     this.props.dispatch(loadTeacherData());
+    this.props.dispatch(loadAttendance())
 }
 
 
-  handleDayChange(day) {
+  handleDayChange=(day)=> {
     let update = Object.assign({}, this.state.ticket, { date: day });
     
     this.setState({ searchteacherattendance: update });
@@ -38,10 +43,21 @@ class SearchAttendance extends Component {
     event.preventDefault();
     console.log('run')
   }
-  
+  PresentorAbsent=(attendance)=>{
+    let counter = 0; 
+    Object.keys(attendance).map((key) => {if (attendance[key]===true) counter++})
+    
+    if (counter===(Object.keys(attendance).length-1))
+        return <div className='switchbox' style={{backgroundColor:'green'}}>Present</div>
+
+    console.log(counter,attendance.size)
+    return <div className='switchbox' style={{backgroundColor:'red'}}>Absent</div>
+      
+  }
 
   render() {
     let teachers = this.props.teacher.filteredTeachers;
+    let attendances = this.props.attendance.filteredAttendance;
     
     return (
       <div className='dashboard'>
@@ -82,13 +98,20 @@ class SearchAttendance extends Component {
                   </div>
 
                   <div className="bodyeventList" style={{height:'30vh'}}>
-                      {teachers&&teachers.map((teacher,index)=>
+                      {attendances&&attendances.map((attendance,index)=>
 
-                        <div className='flexrow'  key={teacher.key} >
+                        <div className='flexrow'  key={index} >
                           
-                          <p style={{width:'33%'}}>{index+1}</p>
-                          <p style={{width:'33%'}}>{teacher.name}</p>
-                          <p style={{width:'33%'}}>{teacher.classteacher}</p>
+                          <p style={{width:'33%'}}>{attendance.date.toLocaleDateString()}</p>
+                          <div className='itemcenter' style={{width:'33%'}}>
+                          {this.PresentorAbsent(attendance)}
+                          </div>
+                          
+                          <div className='itemcenter' style={{width:"33%",marginTop:'0.1vh'}}>
+                            <NavLink exact to={{pathname:'/editattendance',date:attendance.date}}>
+                              <BsPencilSquare size='1.3vw' color='black' />
+                            </NavLink>
+                          </div>
                           
                         </div>
                       )}
@@ -108,7 +131,8 @@ class SearchAttendance extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    teacher: state.teacher
+    teacher: state.teacher,
+    attendance:state.attendance,
   })
   
   export default connect(mapStateToProps)(SearchAttendance);

@@ -30,7 +30,7 @@ export const filterByValue = (payload) => ({
   const StudentReducer = (state = [], action) => {
     switch (action.type) {
       case 'FILTER_STUDENT_DATA':
-        let {name,classvalue='',section=''}=action.payload.value;
+        let {name='',classvalue='',section=''}=action.payload.value;
         
         
         state.filteredStudents = state.students.filter(student => {
@@ -58,8 +58,10 @@ export const filterByValue = (payload) => ({
         
         return (Object.assign({},state));
       case 'ADD_STUDENT_DATA':
-          
-          return (Object.assign({},state,{filteredStudents:[...state.filteredStudents,action.payload.value]}));
+          let studentdata= action.payload.value;
+          return (Object.assign({},state,{
+            students:[...state.students,studentdata],
+            filteredStudents:[...state.filteredStudents,studentdata]}));
       case 'DELETE_STUDENT_DATA':
             state.filteredStudents.splice(action.payload.value, 1);
             return (Object.assign({},state));

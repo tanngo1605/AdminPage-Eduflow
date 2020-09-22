@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import Dropzone from "react-dropzone";
 import { Scrollbars } from "react-custom-scrollbars";
-import { addData, loadData } from "../../redux/Stores/GalleryReducer";
+import { addAlbum, loadAlbum } from "../../redux/Stores/GalleryReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -31,7 +31,7 @@ class Gallery extends Component {
   }
   componentDidMount() {
     Modal.setAppElement("body");
-    this.props.dispatch(loadData());
+    this.props.dispatch(loadAlbum());
   }
 
   onDrop = (album) => {
@@ -65,7 +65,7 @@ class Gallery extends Component {
     if (this.state.album.image == null) return;
 
     this.props.dispatch(
-      addData({
+      addAlbum({
         albumnumber: albumnumber,
         image: this.state.album.image,
         imagesize: this.state.album.imagesize,

@@ -5,30 +5,30 @@ const initialState = {
 };
 
 export const addCircularData = (payload) => ({
-  type: "ADD_CIRCULAR_DATA",
+  type: "ADD_CIRCULAR",
   payload,
 });
 
 export const loadCircularData = (payload) => ({
-  type: "LOAD_CIRCULAR_DATA",
+  type: "LOAD_CIRCULAR",
   payload,
 });
 export const deleteCircularData = (payload) => ({
-  type: "DELETE_CIRCULAR_DATA",
+  type: "DELETE_CIRCULAR",
   payload,
 });
 export const modifyCircularData = (payload) => ({
-  type: "MODIFY_CIRCULAR_DATA",
+  type: "MODIFY_CIRCULAR",
   payload,
 });
 export const filterCircularData = (payload) => ({
-  type: "FILTER_CIRCULAR_DATA",
+  type: "FILTER_CIRCULAR",
   payload,
 });
 
 const circularReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FILTER_CIRCULAR_DATA":
+    case "FILTER_CIRCULAR":
       let {date,subject} = action.payload.value;
         console.log(date)
       state.filteredCirculars = state.circulars.filter((circular) => {
@@ -44,19 +44,18 @@ const circularReducer = (state = initialState, action) => {
       console.log(state.filteredCirculars)
       return Object.assign({}, state);
 
-    case "ADD_CIRCULAR_DATA":
-      console.log(action.payload.value)
-      state.filteredCirculars.push(action.payload.value);
-      console.log(state.filteredCirculars)
+    case "ADD_CIRCULAR":
+      let newcirculardata = action.payload.value;
       return Object.assign({}, state, {
-        filteredCirculars: state.filteredCirculars,
+        circulars: [...state.circulars,newcirculardata],
+        filteredCirculars: [...state.filteredCirculars,newcirculardata],
       });
 
-    case "DELETE_CIRCULAR_DATA":
+    case "DELETE_CIRCULAR":
       state.filteredCirculars.splice(action.payload.value, 1);
       return Object.assign({}, state);
 
-    case "MODIFY_CIRCULAR_DATA":
+    case "MODIFY_CIRCULAR":
       let key = action.payload.value.key;
 
       state.filteredCirculars.map((circular) => {
@@ -66,7 +65,7 @@ const circularReducer = (state = initialState, action) => {
       });
 
       return Object.assign({}, state);
-    case "LOAD_CIRCULAR_DATA":
+    case "LOAD_CIRCULAR":
       const circulars = [
         
       ];

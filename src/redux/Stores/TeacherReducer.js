@@ -26,8 +26,9 @@ export const filterTeacherData = (payload) => ({
 const ticketReducer = (state = [], action) => {
   switch (action.type) {
     case "FILTER_TEACHER_DATA":
-
-      let {name,section,classteacher,subject}=action.payload.value;
+      
+      
+      let {name='',section='',classteacher='',subject=''}=action.payload.value;
       
       state.filteredTeachers = state.teachers.filter((teacher) => {
 
@@ -38,15 +39,17 @@ const ticketReducer = (state = [], action) => {
           teacher.subject.toLowerCase().includes(subject)
         );
       });
-
+      console.log(state.filteredTeachers)
       if (!(name || section || classteacher || subject))
         state.filteredTeachers = state.teachers;
 
       return Object.assign({}, state);
 
     case "ADD_TEACHER_DATA":
-      
-      return (Object.assign({},state,{filteredTeachers:[...state.filteredTeachers,action.payload.value]}));
+      let teacherdata= action.payload.value;
+      return (Object.assign({},state,{
+        teachers:[...state.teachers,teacherdata],
+        filteredTeachers:[...state.filteredTeachers,teacherdata]}));
 
     case "DELETE_TEACHER_DATA":
       state.filteredTeachers.splice(action.payload.value, 1);
@@ -77,6 +80,7 @@ const ticketReducer = (state = [], action) => {
           value: "rine",
           section:"V",
           key: "1",
+          attendance:false,
         },
         {
           name: "Sam",
@@ -91,6 +95,7 @@ const ticketReducer = (state = [], action) => {
           value: "sam",
           section:"V",
           key: "2",
+          attendance:false,
         },
         {
           name: "Samuel",
@@ -105,6 +110,7 @@ const ticketReducer = (state = [], action) => {
           value: "samuel",
           section:"V",
           key: "3",
+          attendance:false,
         },
       ];
 

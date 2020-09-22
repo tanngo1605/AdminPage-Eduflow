@@ -69,7 +69,10 @@ const eventReducer = (state = {}, action) => {
 
       return (Object.assign({},state));
     case 'ADD_EVENT':
-      return (Object.assign({},state,{filteredEvents:[...state.filteredEvents,action.payload.value]}));
+      let neweventdata = action.payload.value; 
+      return (Object.assign({},state,{
+        events:[...state.events,neweventdata],
+        filteredEvents:[...state.filteredEvents,neweventdata]}));
     case 'DELETE_EVENT':
       
       state.filteredEvents.splice(action.payload.value, 1);
