@@ -31,6 +31,9 @@ import CreateSubject from "./pages/Class/createSubject";
 import AddCircular from "./pages/Circular/AddCircular";
 import CircularList from "./pages/Circular/CircularList";
 import Feedback from "./pages/Feedback/Feedback";
+import Attendance from "./pages/TeacherAttendance/Attendance";
+import SearchAttendace from "./pages/TeacherAttendance/SearchAttendance";
+import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
 import "./styles.css";
 
 function App() {
@@ -42,6 +45,9 @@ function App() {
         <Switch>
           <Route path="/studentmigration" component={StudentMigration} />
           <Route path="/movestudent" component={MoveStudent} />
+          <Route path="/editattendance" component={EditAttendance} />
+          <Route path="/searchattendance" component={SearchAttendace} />
+          <Route path="/attendance" component={Attendance} />
           <Route path="/feedback" component={Feedback} />
           <Route path="/circular/circularlist" component={CircularList} />
           <Route path="/circular" component={AddCircular} />
@@ -53,11 +59,11 @@ function App() {
           <Route path="/changepassword" component={ChangePassWord} />
           <Route path="/forgotpassword" component={ForgotPassword} />
           <Route path="/resetpassword" component={ResetPassword} />
-          <Route path="/ticket/ticketlist" component={TicketList} />
-          <Route path="/ticket" component={RaiseTicket} />
+          <Route path="/ticket" component={TicketList} />
+          <Route path="/raiseticket" component={RaiseTicket} />
           <Route path="/event/raiseevent" component={Events} />
           <Route path="/event" component={EventList} />
-          <Route path="/teacher/profile" component={ATeacherProfile} />
+          <Route path="/teacher/profile" component={TeacherProfile} />
           <Route path="/teacher" component={TeacherSearch} />
           <Route path="/student/profile" component={AStudentProfile} />
           <Route path="/student" component={StudentSearch} />

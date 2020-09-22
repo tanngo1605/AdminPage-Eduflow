@@ -1,12 +1,12 @@
 
   
-export const addData = (payload) => ({
+export const addAlbum = (payload) => ({
   type: 'ADD_ALBUM', 
   payload
 });
   
-export const loadData = (payload) => ({
-  type: 'LOAD_DATA', 
+export const loadAlbum = (payload) => ({
+  type: 'LOAD_ALBUM', 
   payload
 });
   
@@ -15,8 +15,8 @@ export const loadSpecificAlbum = (payload) => ({
   payload
 });
 
-export const deleteData = (payload) => ({
-  type: 'DELETE_DATA', 
+export const deleteAlbum = (payload) => ({
+  type: 'DELETE_ALBUM', 
   payload
 });
 export const updateAlbum = (payload) => ({
@@ -39,7 +39,9 @@ const galleryReducer = (state = {}, action) => {
 
 
         
-        return (Object.assign({},state,{albums:[...state.albums,{album,albumsize,albumnumber,date}]},{showalbums:[...state.showalbums,{album,albumsize,albumnumber,date}]}));
+        return (Object.assign({},state,{
+          albums:[...state.albums,{album,albumsize,albumnumber,date}],
+          showalbums:[...state.showalbums,{album,albumsize,albumnumber,date}]}));
 
     case 'LOAD_SPECIFIC_ALBUM':
         albumnumber=action.payload.albumnumber;
@@ -79,11 +81,11 @@ const galleryReducer = (state = {}, action) => {
         }
         console.log(state.showalbums)
         return (Object.assign({},state,{showalbums:state.showalbums}));
-    case 'DELETE_DATA':
+    case 'DELETE_ALBUM':
         
         state.albums.splice(action.payload.image, 1);
         return (Object.assign({},state,{showalbums:state.showalbums}));
-    case 'LOAD_DATA':
+    case 'LOAD_ALBUM':
         counterToActiviateLoadDataOnce ++;
         
         if (counterToActiviateLoadDataOnce === 1) return (Object.assign({},state,{albums:albums,showalbums:albums}))

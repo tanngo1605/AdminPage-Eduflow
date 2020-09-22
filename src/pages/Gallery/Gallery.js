@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import Dropzone from "react-dropzone";
 import { Scrollbars } from "react-custom-scrollbars";
-import { addData, loadData } from "../../redux/Stores/GalleryReducer";
+import { addAlbum, loadAlbum } from "../../redux/Stores/GalleryReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -31,7 +31,7 @@ class Gallery extends Component {
   }
   componentDidMount() {
     Modal.setAppElement("body");
-    this.props.dispatch(loadData());
+    this.props.dispatch(loadAlbum());
   }
 
   onDrop = (album) => {
@@ -65,7 +65,7 @@ class Gallery extends Component {
     if (this.state.album.image == null) return;
 
     this.props.dispatch(
-      addData({
+      addAlbum({
         albumnumber: albumnumber,
         image: this.state.album.image,
         imagesize: this.state.album.imagesize,
@@ -88,15 +88,8 @@ class Gallery extends Component {
             <Header />
             <div className="form">
               <h1 className="titleform"> Gallery </h1>
-              <button
-                className="attachment"
-                onClick={() => this.setState({ openmodal: true })}
-              >
-                <BsPlus
-                  color="white"
-                  size={"1.5vw"}
-                  className="attachmentplusicon"
-                />
+              <button className="attachment" onClick={() => this.setState({ openmodal: true })}>
+                <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
                 <p>Choose File</p>
               </button>
               <div
@@ -154,12 +147,12 @@ class Gallery extends Component {
                   style={{ marginLeft: "2vw", marginTop: "1.5vh" }}
                 >
                   <div className="flexrow" style={positionabsolute}>
-                    <p style={Object.assign({}, modalContent)}>Title</p>
+                    <p style={ modalContent}>Title</p>
                     <input
                       type="text"
                       id="title"
                       className="shortbox"
-                      style={Object.assign({}, { marginLeft: "10.2vw" })}
+                      style={ { marginLeft: "10.2vw" }}
                       onChange={this.handleChange}
                     ></input>
                   </div>
@@ -214,14 +207,13 @@ class Gallery extends Component {
                 </div>
                 <button
                   className="gallerybutton"
-                  style={Object.assign(
-                    {},
+                  style={
                     {
                       marginLeft: "23vw",
                       marginTop: "50.5vh",
                       background: "#262F56",
                     }
-                  )}
+                  }
                   onClick={() => this.addImageToGallery()}
                 >
                   Save

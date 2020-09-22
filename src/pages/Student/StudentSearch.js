@@ -24,7 +24,7 @@ class StudentSearch extends Component {
     this.state = {
       studentseacrhinput: {
         name: "",
-        class: "",
+        classvalue: "",
         section: "",
       },
       files: null,
@@ -53,183 +53,94 @@ class StudentSearch extends Component {
   };
 
   handleChange = (event) => {
-    this.setState({
-      studentsearchinput: { [event.target.id]: event.target.value },
-    });
-  };
+    let updatesearch = Object.assign({}, this.state.studentsearchinput, { [event.target.id]: event.target.value })
+    this.setState({ studentsearchinput: updatesearch })
+  }
   searchResult = (event) => {
     event.preventDefault();
     setTimeout(() => {
-      this.props.dispatch(
-        filterByValue({
-          name: this.state.studentsearchinput.name,
-          class: this.state.studentsearchinput.class,
-          section: this.state.studentsearchinput.section,
-        })
-      );
-    }, 50);
-  };
+      this.props.dispatch(filterByValue({ value: this.state.studentsearchinput }))
+    }, 100);
+  }
+
 
   render() {
     let students = this.props.student.filteredStudents;
 
     return (
-      <div className="dashboard">
-        <div className="flexrow">
+      <div className='dashboard'>
+        <div className='flexrow'>
           <Drawer />
-          <div className="flexcolumn">
+          <div className='flexcolumn'>
             <Header />
-            <div className="form">
-              <h1 className="titleform">Student Info</h1>
-              <NavLink
-                exact
-                to={{ pathname: "/student/profile" }}
-                className="attachment"
-                style={addaProfileAttachment}
-              >
-                <BsPlus
-                  color="white"
-                  size={"1.5vw"}
-                  className="attachmentplusicon"
-                />
-                <p style={{ color: "#FFFFFF" }}> Add a student </p>
+            <div className='form'>
+
+              <h1 className='titleform'>Student Info</h1>
+              <NavLink exact to={{ pathname: '/student/profile' }} className='attachment' style={addaProfileAttachment}>
+                <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
+                <p style={{ color: '#FFFFFF' }}> Add a student </p>
               </NavLink>
-              <form
-                className="flexrow"
-                onChange={this.searchResult}
-                style={marginBottom130vhandTop10vh}
-              >
-                <div className="flexrow">
-                  <label htmlFor="name" className="section">
-                    Enter Stud Name:{" "}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="shortbox"
-                    style={marginTop55vh}
-                    onChange={this.handleChange}
-                  />
+              <form className='flexrow' onChange={this.searchResult} style={marginBottom130vhandTop10vh}>
+                <div className='flexrow'>
+                  <label htmlFor='name' className='section'>Enter Stud Name: </label>
+                  <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                 </div>
-                <div className="flexrow" style={marginLeft250vw}>
-                  <label htmlFor="class" className="section">
-                    Enter Class:
-                  </label>
-                  <input
-                    type="text"
-                    id="class"
-                    className="shortbox"
-                    style={marginTop55vh}
-                    onChange={this.handleChange}
-                  />
+                <div className='flexrow' style={marginLeft250vw}>
+                  <label htmlFor='class' className='section'>Enter Class:</label>
+                  <input type='text' id='classvalue' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                 </div>
-                <div className="flexrow" style={marginLeft250vw}>
-                  <label htmlFor="section" className="section">
-                    Enter Section:
-                  </label>
-                  <input
-                    type="text"
-                    id="section"
-                    className="shortbox"
-                    style={marginTop55vh}
-                    onChange={this.handleChange}
-                  />
+                <div className='flexrow' style={marginLeft250vw}>
+                  <label htmlFor='section' className='section'>Enter Section:</label>
+                  <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
                 </div>
               </form>
-              <div className="flexrow" style={marginLeft250vw}>
+              <div className='flexrow' style={marginLeft250vw}>
+
                 <Dropzone onDrop={this.onDrop}>
                   {({ getRootProps, getInputProps }) => (
-                    <section className="flexrow">
-                      <div {...getRootProps({ className: "attachment" })}>
+                    <section className='flexrow'>
+                      <div {...getRootProps({ className: 'attachment' })}>
                         <input {...getInputProps()} />
-                        <BsPlus
-                          color="white"
-                          size={"1.5vw"}
-                          className="attachmentplusicon"
-                        />
+                        <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
                         <p>Import file</p>
                       </div>
                     </section>
                   )}
                 </Dropzone>
-                <div className="attachment" style={{ marginLeft: "5vw" }}>
-                  <BsPlus
-                    color="white"
-                    size={"1.5vw"}
-                    className="attachmentplusicon"
-                  />
+                <div className="attachment" style={{ marginLeft: '5vw' }}>
+                  <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
                   <p>Export file</p>
                 </div>
               </div>
-              <div
-                className="eventlistArea"
-                style={{ width: "75vw", marginTop: "3vh" }}
-              >
-                <div className="headereventList">
-                  <p className="textaligncenter" style={{ width: "10%" }}>
-                    User ID
-                  </p>
-                  <p className="textaligncenter" style={{ width: "30%" }}>
-                    Name of Student
-                  </p>
-                  <p className="textaligncenter" style={{ width: "10%" }}>
-                    Class
-                  </p>
-                  <p className="textaligncenter" style={{ width: "10%" }}>
-                    Section
-                  </p>
-                  <p className="textaligncenter" style={{ width: "20%" }}>
-                    Delete
-                  </p>
-                  <p className="textaligncenter" style={{ width: "20%" }}>
-                    Edit
-                  </p>
+              <div className='eventlistArea' style={{ width: '75vw', marginTop: '3vh' }}>
+                <div className='headereventList'>
+                  <p className='textaligncenter' style={{ width: '10%' }}>User ID</p>
+                  <p className='textaligncenter' style={{ width: '30%' }}>Name of Student</p>
+                  <p className='textaligncenter' style={{ width: '10%' }}>Class</p>
+                  <p className='textaligncenter' style={{ width: '10%' }}>Section</p>
+                  <p className='textaligncenter' style={{ width: '20%' }}>Delete</p>
+                  <p className='textaligncenter' style={{ width: '20%' }}>Edit</p>
                 </div>
 
-                <div className="flexcolumn" style={{ height: "30vh" }}>
-                  {students &&
-                    students.map((student) => (
-                      <div
-                        className="flexrow"
-                        style={{ paddingLeft: "1vw", height: "3.5vh" }}
-                        key={student.key}
-                      >
-                        <p style={{ width: "10%", textAlign: "center" }}>
-                          User ID
-                        </p>
-                        <p style={{ width: "30%", textAlign: "center" }}>
-                          {student.name}
-                        </p>
-                        <p style={{ width: "10%", textAlign: "center" }}>
-                          {student.class}
-                        </p>
-                        <p style={{ width: "10%", textAlign: "center" }}>
-                          {student.section}
-                        </p>
-                        <div className="itemcenter" style={{ width: "20%" }}>
-                          <MdDeleteForever
-                            size="1.5vw"
-                            onClick={() =>
-                              this.props.dispatch(deleteData(student))
-                            }
-                          />
-                        </div>
-                        <div
-                          className="itemcenter"
-                          style={{ width: "20%", marginTop: "0.1vh" }}
-                        >
-                          <NavLink
-                            exact
-                            to={{
-                              pathname: "/student/profile",
-                              studentdata: student,
-                            }}
-                          >
-                            <BsPencilSquare size="1.3vw" color="black" />
-                          </NavLink>
-                        </div>
+                <div className="bodyeventList">
+                  {students && students.map((student) =>
+                    <div className="flexrow" key={student.key} >
+
+                      <p style={{ width: '10%' }}>User ID</p>
+                      <p style={{ width: '30%' }}>{student.name}</p>
+                      <p style={{ width: '10%' }}>{student.classvalue}</p>
+                      <p style={{ width: '10%' }}>{student.section}</p>
+                      <div className='itemcenter' style={{ width: "20%" }}>
+                        <MdDeleteForever size='1.5vw' onClick={() => this.props.dispatch(deleteData(student))} />
                       </div>
-                    ))}
+                      <div className='itemcenter' style={{ width: "20%", marginTop: '0.1vh' }}>
+                        <NavLink exact to={{ pathname: '/student/profile', studentdata: student }}>
+                          <BsPencilSquare size='1.3vw' color='black' />
+                        </NavLink>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               </div>
             </div>

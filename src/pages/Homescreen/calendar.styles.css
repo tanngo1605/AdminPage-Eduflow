@@ -263,6 +263,7 @@
 
 .DayPickerInput input::placeholder {
   opacity: 0.2;
+  color:black;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;

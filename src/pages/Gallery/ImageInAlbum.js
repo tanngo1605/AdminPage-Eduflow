@@ -6,7 +6,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { TiTick } from "react-icons/ti";
 import {
-  loadData,
+  loadAlbum,
   loadSpecificAlbum,
   updateAlbum,
 } from "../../redux/Stores/GalleryReducer";
@@ -31,7 +31,7 @@ class ImageInAlbum extends Component {
   }
   componentDidMount() {
     Modal.setAppElement("body");
-    this.props.dispatch(loadData());
+    this.props.dispatch(loadAlbum());
     this.props.dispatch(
       loadSpecificAlbum({ albumnumber: this.props.location.pathname.slice(9) })
     );

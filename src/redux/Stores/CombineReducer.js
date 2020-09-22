@@ -6,6 +6,7 @@ import StudentReducer from './StudentReducer';
 import GalleryReducer from './GalleryReducer';
 import ClassReducer from './ClassReducer';
 import CircularReducer from './CircularReducer';
+import AttendanceReducer from './AttendanceReducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   image:GalleryReducer,
   class:ClassReducer,
   circular:CircularReducer,
+  attendance:AttendanceReducer,
 });
 
 export default rootReducer

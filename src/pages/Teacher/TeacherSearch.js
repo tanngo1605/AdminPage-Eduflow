@@ -47,15 +47,7 @@ class TeacherSearch extends Component {
     event.preventDefault();
     
     setTimeout(()=>{
-      
-      this.props.dispatch(
-        filterTeacherData(
-          {
-            name: this.state.teachersearchinput.name, 
-            classteacher:this.state.teachersearchinput.classteacher,
-            section:this.state.teachersearchinput.section,
-            subject:this.state.teachersearchinput.subject
-          }))}, 50);
+      this.props.dispatch( filterTeacherData({value: this.state.teachersearchinput, }))}, 50);
   }
   
 
@@ -125,10 +117,10 @@ class TeacherSearch extends Component {
                     <p style={{width:'20%'}}>Edit</p>
                   </div>
 
-                  <div className="flexcolumn" style={{height:'30vh'}}>
+                  <div className="bodyeventList" >
                       {teachers&&teachers.map((teacher)=>
 
-                        <div  className="bodyeventList"  key={teacher.key} >
+                        <div className='flexrow'  key={teacher.key} >
                           
                           <p style={{width:'10%'}}>User ID</p>
                           <p style={{width:'30%'}}>{teacher.name}</p>

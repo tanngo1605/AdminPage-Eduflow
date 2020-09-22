@@ -6,28 +6,29 @@ export const addEvent = (payload) => ({
 });
 
 export const loadData = (payload) => ({
-  type: "LOAD_DATA",
-  payload,
+  type: 'LOAD_EVENT',
+  payload
 });
 
 export const resetData = (payload) => ({
-  type: "RESET_DATA",
-  payload,
+  type: 'RESET_EVENT',
+  payload
 });
 
 export const deleteData = (payload) => ({
-  type: "DELETE_DATA",
-  payload,
+  type: 'DELETE_EVENT',
+  payload
 });
 
 export const filterByValue = (payload) => ({
-  type: "FILTER_BY_VALUE",
-  payload,
+  type: 'FILTER_EVENT',
+  payload
 });
 
 const eventReducer = (state = {}, action) => {
   switch (action.type) {
-    case "FILTER_BY_VALUE":
+    case 'FILTER_EVENT':
+
       let classteacher = action.payload.classteacher;
       let eventvalue = action.payload.event;
       let textvalue = action.payload.text;
@@ -55,18 +56,18 @@ const eventReducer = (state = {}, action) => {
         }
       });
 
-      if (!(classteacher || textvalue || eventvalue))
-        state.filteredEvents = state.events;
+      return (Object.assign({}, state));
+    case 'ADD_EVENT':
+      let neweventdata = action.payload.value;
+      return (Object.assign({}, state, {
+        events: [...state.events, neweventdata],
+        filteredEvents: [...state.filteredEvents, neweventdata]
+      }));
+    case 'DELETE_EVENT':
 
-      return Object.assign({}, state);
-    case "ADD_EVENT":
-      return Object.assign({}, state, {
-        filteredEvents: [...state.filteredEvents, action.payload.value],
-      });
-    case "DELETE_DATA":
       state.filteredEvents.splice(action.payload.value, 1);
-      return Object.assign({}, state);
-    case "LOAD_DATA":
+      return (Object.assign({}, state));
+    case 'LOAD_EVENT':
       let events = [
         {
           classteacher: "Math",

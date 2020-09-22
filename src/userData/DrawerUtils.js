@@ -10,7 +10,7 @@ const drawercontent= [
     {content:'Check tickets',web:'ticket',activeimage:'noti.png',inactiveimage:"noti.png",clicked:false,key:9},
     {content:'Communication',activeimage:'chat_inactive.png',inactiveimage:"chat_inactive.png",clicked:false,key:10},
     {content:'Fees',web:'fee',activeimage:'coin_inactive.png',inactiveimage:"coin_inactive.png",clicked:false,key:11},
-    {content:'School Profile',web:'schoolprofile',activeimage:'schoolprofile_inactive.png',inactiveimage:"schoolprofile_inactive.png",clicked:false,key:11},
-    {content:'Circular',web:'circular',activeimage:'circular_inactive.png',inactiveimage:"circular_inactive.png",clicked:false,key:11},
+    {content:'School Profile',web:'schoolprofile',activeimage:'schoolprofile_inactive.png',inactiveimage:"schoolprofile_inactive.png",clicked:false,key:12},
+    {content:'Circular',web:'circular',activeimage:'circular_inactive.png',inactiveimage:"circular_inactive.png",clicked:false,key:13},
   ];
 export default drawercontent;

@@ -15,6 +15,7 @@ import {
   marginLeft55vw,
   marginTop8vh,
   labelStyle,
+
 } from "../../styles/marginStyles";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -217,42 +218,42 @@ class AStudentProfile extends Component {
                                     <option>Female</option>
                                   </select>
                                 ) : (
-                                  <input
-                                    type={item.type}
-                                    required
-                                    id={item.id}
-                                    placeholder={this.state.student[item.id]}
-                                    className="shortbox"
-                                    onChange={this.handleChange}
-                                    style={marginLeft150vw}
-                                  />
-                                )}
+                                      <input
+                                        type={item.type}
+                                        required
+                                        id={item.id}
+                                        placeholder={this.state.student[item.id]}
+                                        className="shortbox"
+                                        onChange={this.handleChange}
+                                        style={marginLeft150vw}
+                                      />
+                                    )}
                               </div>
                             ) : (
-                              <div style={{ marginBottom: "3vh" }}>
-                                <div
-                                  className="section"
-                                  style={{ marginRight: "10vw", width: "25%" }}
-                                >
-                                  {item.content}{" "}
-                                </div>
-                                <div
-                                  className="shortbox"
-                                  style={{
-                                    backgroundColor: "#F2F4F7",
-                                    marginLeft: "15vw",
-                                  }}
-                                >
-                                  {item.id === "dob"
-                                    ? new Intl.DateTimeFormat("en-GB", {
+                                <div style={{ marginBottom: "3vh" }}>
+                                  <div
+                                    className="section"
+                                    style={{ marginRight: "10vw", width: "25%" }}
+                                  >
+                                    {item.content}{" "}
+                                  </div>
+                                  <div
+                                    className="shortbox"
+                                    style={{
+                                      backgroundColor: "#F2F4F7",
+                                      marginLeft: "15vw",
+                                    }}
+                                  >
+                                    {item.id === "dob"
+                                      ? new Intl.DateTimeFormat("en-GB", {
                                         year: "numeric",
                                         month: "2-digit",
                                         day: "2-digit",
                                       }).format(this.state.student[item.id])
-                                    : this.state.student[item.id]}
+                                      : this.state.student[item.id]}
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
                           </div>
                         ))}
                       <div style={{ marginTop: "40px" }}>
@@ -551,16 +552,16 @@ class AStudentProfile extends Component {
                             style={marginLeft150vw}
                           />
                         ) : (
-                          <div
-                            className="shortbox"
-                            style={{
-                              backgroundColor: "#F2F4F7",
-                              marginLeft: "20vw",
-                            }}
-                          >
-                            {this.state.student["fathermobileno"]}
-                          </div>
-                        )}
+                            <div
+                              className="shortbox"
+                              style={{
+                                backgroundColor: "#F2F4F7",
+                                marginLeft: "20vw",
+                              }}
+                            >
+                              {this.state.student["fathermobileno"]}
+                            </div>
+                          )}
                       </div>
                       <div
                         // key={item.id}
@@ -598,8 +599,8 @@ class AStudentProfile extends Component {
                         !this.state.edit
                           ? this.setState({ edit: true })
                           : console.log(
-                              "You have gone to edit page or havent change anything"
-                            );
+                            "You have gone to edit page or havent change anything"
+                          );
                       }}
                     />
 

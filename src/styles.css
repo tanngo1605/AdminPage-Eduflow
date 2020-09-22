@@ -1,7 +1,7 @@
 .dashboard {
   background-color: rgba(229, 233, 238, 0.5);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 110vh;
   display: flex;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .inneravatarcircle {
-  background-color: rgba(255, 255, 255);
+  
   top: 13%;
   left: 15%;
   width: 70%;
@@ -68,7 +68,7 @@
   display: flex;
   flex-direction: column;
   width: 16vw;
-  height: 30vh;
+  height: 33vh;
   background: #ffffff;
   border: 0.01vw solid rgba(204, 204, 204, 0.5);
   border-radius: 2vw;
@@ -172,6 +172,7 @@
 /*Event styles*/
 
 .eventlistArea {
+
   height: 45vh;
   background: #ffffff;
   padding-top: 1.5vh;
@@ -199,7 +200,7 @@
 
   display: flex;
   text-align: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 /*Ticket list*/
 .searchBox {
@@ -293,7 +294,7 @@
   width: 8vw;
   height: 6vh;
   position: absolute;
-  background: #66c4e1;
+  background: #262F56;
   color: #ffffff;
   font-size: 1vw;
   border-radius: 0.3vw;
@@ -395,7 +396,7 @@
     rgba(244, 249, 255, 0.0001) 0%,
     #f4f9ff 26.23%
   );
-  width: 92%;
+  width: 95%;
   height: 92%;
   margin-left: 1vw;
   margin-top: 1.2vh;
@@ -410,11 +411,19 @@
   margin-bottom: 0.5vw;
   margin-top: 1.2vw;
 }
+.subtitleform{
+  color: #262f56;
+  font-size: 1.2vw;
+  
+  margin-bottom: 0.5vw;
+  margin-top: 1.2vw;
+}
 .section {
   width: 15%;
   height: 4.3%;
   position: absolute;
-  padding-top: 0.5vw;
+  display: flex;
+  align-items: center;
   font-size: 1.2vw;
   color: #262f56;
 }
@@ -428,6 +437,9 @@
   border-radius: 0.5vw;
   padding-left: 1.5vw;
   font-size: 1vw;
+  display: flex;
+  align-items: center;
+  resize: none;
 }
 .shortbox {
   width: 20vw;
@@ -439,21 +451,34 @@
   border-radius: 0.5vw;
   padding-left: 1.5vw;
   font-size: 1vw;
+  display: flex;
+  align-items: center;
+  resize: none;
 }
 
 .button {
   width: 15vw;
   height: 6vh;
-  background: #66c4e1;
+  background: #262F56;
   color: #ffffff;
   font-size: 1.1vw;
   border-radius: 0.3vw;
   margin-left: 3vw;
-
   border: 0vw solid white;
 }
+.buttonshownothing{
+  position:relative;
+  background: linear-gradient(
+    180deg,
+    rgba(244, 249, 255, 0.0001) 0%,
+    #f4f9ff 26.23%
+  );
+  border: 0px white;
+
+
+}
 .attachment {
-  width: 11vw;
+  width: 11.5vw;
   height: 5vh;
   background: #9583c7;
   color: #ffffff;
@@ -461,8 +486,8 @@
   box-shadow: 0vw 0.1vw 1vw rgba(0, 0, 0, 0.1);
   border: 0vw solid white;
   border-radius: 0.5vw;
-  padding-top: 1.3vh;
-  padding-left: 0.2vw;
+  padding-top: 1.1vh;
+  padding-left: 0.05vw;
   display: flex;
 }
 .attachmentplusicon {
@@ -481,6 +506,7 @@
 .itemcenter {
   display: flex;
   justify-content: center;
+  
 }
 .textaligncenter {
   text-align: center;
@@ -491,6 +517,15 @@
 .radiostyle {
   margin-left: 1vw;
   font-size: 1vw;
+}
+.switchbox{
+  width:5vw;
+  height:4vh;
+  border: 1px solid #8C96AB;
+  box-sizing: border-box;
+  margin-top:-1vh;
+  padding-top: 0.5vh;
+  border-radius: 5px;
 }
 input[type="file"] {
   display: none;
