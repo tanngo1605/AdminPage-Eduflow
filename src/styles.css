@@ -546,7 +546,7 @@ input[type="checkbox"] {
   cursor: pointer;
   display: inline-block;
 }
-input[type="checkbox"]:before {
+input[type="checkbox"].abc:before {
   content: "";
   display: block;
   /* position: absolute; */
@@ -557,6 +557,19 @@ input[type="checkbox"]:before {
   border: 2px solid #555555;
   border-radius: 3px;
   background-color: white;
+}
+input[type="checkbox"].bac:before {
+  content: "";
+  display: block;
+  /* position: absolute; */
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  background-color: white;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
 }
 input[type="checkbox"].abc:checked:after {
   content: "";
@@ -569,6 +582,48 @@ input[type="checkbox"].abc:checked:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   /* position: absolute; */
-  top: 3px;
-  left: 8px;
+  /* top: 3px;
+  left: 8px; */
+  margin: -17px 8px;
+}
+input[type="checkbox"].bac:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  /* position: absolute; */
+  /* top: 3px;
+  left: 8px; */
+  margin: -17px 8px;
+}
+.textMoveScreenField {
+  display: inline-flex;
+  margin-left: 300px;
+}
+.textMoveScreenField > div {
+  color: #262f56;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  margin-right: 100px;
+}
+
+.textMigrationScreenField {
+  display: inline-flex;
+  padding-left: 30px;
+  background: #FAFBFB;
+box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+border-radius: 3px;
+}
+
+.textMigrationScreenField >div {
+  margin-right: 140px;
+  width: 70px;
 }

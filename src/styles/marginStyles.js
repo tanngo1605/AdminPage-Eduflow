@@ -72,7 +72,23 @@ const addaProfileAttachment = {
 const positionabsolute = {
   position: "absolute",
 };
+const marginTop8vh = {
+  marginTop: "4vh",
+};
+const labelStyle = {
+  fontSize: "1vw",
+  marginLeft: "10px",
+  width: "25%",
+};
+var t0 = performance.now();
+var t1 = performance.now();
+const combineMargin = Object.assign(marginTop8vh, marginBottom55vh);
 export {
+  t0,
+  t1,
+  combineMargin,
+  labelStyle,
+  marginTop8vh,
   marginBottom130vhandTop10vh,
   marginBottom125vh,
   marginBottom100vh,

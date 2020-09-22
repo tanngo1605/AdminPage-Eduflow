@@ -10,6 +10,8 @@ import EventList from "./pages/Events/EventList";
 import TeacherProfile from "./pages/Teacher/TeacherProfile";
 import TeacherSearch from "./pages/Teacher/TeacherSearch";
 import StudentSearch from "./pages/Student/StudentSearch";
+import MoveStudent from "./pages/StudentMigration/MoveStudent";
+import StudentMigration from "./pages/StudentMigration/StudentMigration";
 // import StudentProfile from "./pages/Student/StudentProfile";
 import AStudentProfile from "./pages/Student/AnotherSP";
 import ATeacherProfile from "./pages/Student/AnotherTP";
@@ -38,6 +40,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
+          <Route path="/studentmigration" component={StudentMigration} />
+          <Route path="/movestudent" component={MoveStudent} />
           <Route path="/feedback" component={Feedback} />
           <Route path="/circular/circularlist" component={CircularList} />
           <Route path="/circular" component={AddCircular} />
