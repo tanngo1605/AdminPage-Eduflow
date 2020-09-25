@@ -32,11 +32,13 @@ const eventReducer = (state = {}, action) => {
       let classteacher = action.payload.classteacher;
       let eventvalue = action.payload.event;
       let textvalue = action.payload.text;
-      let todayDate = new Date();
+      let todayDate = new Date('2020,9,16,12:00:00');
 
-      state.filteredEvents = (state.events).filter((event) => {
+
+
+      state.filteredEvents = state.events.filter(event => {
         switch (eventvalue) {
-          case "upcoming":
+          case 'upcoming':
             return (
               event.classteacher.toLowerCase().includes(classteacher) &&
               event.description.toLowerCase().includes(textvalue) &&
@@ -69,56 +71,16 @@ const eventReducer = (state = {}, action) => {
       return (Object.assign({}, state));
     case 'LOAD_EVENT':
       let events = [
-        {
-          classteacher: "Math",
-          datefrom: new Date(2020, 7, 25),
-          dateto: new Date(2020, 6, 22),
-          timefrom: "22/06/2010",
-          timeto: "22/06/2010",
-          eventtitle: "Mr.Johns",
-          file: "bla bla bla",
-          description: "Approved",
-          key: "1",
-        },
-        {
-          classteacher: "Lose",
-          datefrom: new Date(2020, 7, 21),
-          dateto: new Date(2020, 6, 22),
-          timefrom: "22/06/2010",
-          timeto: "22/06/2010",
-          eventtitle: "Mr.Johns",
-          file: "bla bla bla",
-          description: "Denied",
-          key: "2",
-        },
-        {
-          classteacher: "Science",
-          datefrom: new Date(2020, 7, 26),
-          dateto: new Date(2020, 6, 22),
-          timefrom: "22/06/2010",
-          timeto: "22/06/2010",
-          eventtitle: "Mr.Johns",
-          file: "bla bla bla",
-          description: "Pending",
-          key: "3",
-        },
-        {
-          classteacher: "Liter",
-          datefrom: new Date(2020, 7, 23),
-          dateto: new Date(2020, 6, 22),
-          timefrom: "22/06/2010",
-          timeto: "22/06/2010",
-          eventtitle: "Mr.Johns",
-          file: "bla bla bla",
-          description: "Denied",
-          key: "4",
-        },
-      ];
+        { classteacher: 'Math', datefrom: new Date('2020,9,16,12:00:00'), dateto: new Date('2020,9,16,12:00:00'), timefrom: '22/06/2010', timeto: '22/06/2010', eventtitle: 'Mr.Johns', file: "bla bla bla", description: "Approved", key: '1' },
+        { classteacher: 'Lose', datefrom: new Date('2020,9,16,12:00:00'), dateto: new Date('2020,9,16,12:00:00'), timefrom: '22/06/2010', timeto: '22/06/2010', eventtitle: 'Mr.Johns', file: "bla bla bla", description: "Denied", key: '2' },
+        { classteacher: 'Science', datefrom: new Date('2020,9,16,12:00:00'), dateto: new Date('2020,9,16,12:00:00'), timefrom: '22/06/2010', timeto: '22/06/2010', eventtitle: 'Mr.Johns', file: "bla bla bla", description: "Pending", key: '3' },
+        { classteacher: 'Liter', datefrom: new Date('2020,9,16,12:00:00'), dateto: new Date('2020,9,16,12:00:00'), timefrom: '22/06/2010', timeto: '22/06/2010', eventtitle: 'Mr.Johns', file: "bla bla bla", description: "Denied", key: '4' },
+
+      ]
       counterToActiviateLoadDataOnce++;
 
-      if (counterToActiviateLoadDataOnce === 1)
-        return Object.assign({}, state, { events, filteredEvents: events });
-      return Object.assign({}, state);
+      if (counterToActiviateLoadDataOnce === 1) return (Object.assign({}, state, { events, filteredEvents: events }));
+      return (Object.assign({}, state))
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+
 import LoginForm from '../../component/LoginForm/LoginForm';
 import { AiOutlineHome } from 'react-icons/ai';
 import './LoginPage.styles.css';
@@ -22,7 +22,7 @@ const LoginPage = (props) => (
           fontSize: '16px',
         }}
       >
-        <a style={{ color: '#00044b' }} href='#'>
+        <a style={{ color: '#00044b' }} href='bo'>
           Go to homepage
         </a>
       </div>

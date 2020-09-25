@@ -27,20 +27,19 @@ const ticketReducer = (state = [], action) => {
   switch (action.type) {
     case "FILTER_ATTENDANCE":
 
-      let {name,section,classteacher,subject}=action.payload.value;
+      let {datefrom,dateto}=action.payload.value;
       
-      state.filteredTeachers = state.teachers.filter((teacher) => {
+      state.filteredAttendance = state.attendance.filter((attendance) => {
 
         return (
-          teacher.name.toLowerCase().includes(name) &&
-          teacher.section.toLowerCase().includes(section) &&
-          teacher.classteacher.toLowerCase().includes(classteacher) &&
-          teacher.subject.toLowerCase().includes(subject)
+            datefrom.getTime()<=attendance.date.getTime() &&
+            dateto.getTime()>=attendance.date.getTime()
+          
         );
       });
 
-      if (!(name || section || classteacher || subject))
-        state.filteredAttendance = state.teachers;
+      if (!(datefrom || dateto ))
+        state.filteredAttendance = state.attendance;
 
       return Object.assign({}, state);
 
@@ -52,34 +51,40 @@ const ticketReducer = (state = [], action) => {
     
       if (checkifthecurrentdatearesubmitted.length > 0) return state;
       
-      return (Object.assign({},state,{attendance:[...state.attendance,attendancedata]},{filteredAttendance:[...state.filteredAttendance,attendancedata]}));
+      return (Object.assign({},state,{
+            attendance:[...state.attendance,attendancedata],
+            filteredAttendance:[...state.filteredAttendance,attendancedata]}));
 
     case "MODIFY_ATTENDANCE":
-      let key = action.payload.date;
+      let attendancedate = action.payload.date;
 
-      state.filteredTeachers.map((teacher) => {
-        if (teacher.key === key)
-          return Object.assign(teacher, action.payload.value);
-        return teacher;
+      state.filteredAttendance.map((attendance) => {
+        if (attendance.date.getTime() === attendancedate.getTime())
+          return Object.assign({},state,{filteredAttendance:state.filterAttendance} );
+        return attendance;
       });
 
-      return Object.assign({}, state);
+      return state;
     case "LOAD_SPECIFIC_ATTENDANCE":
         let date = action.payload.date;
+        
         if (!date) return state;
-        state.filteredAttendance.map((attendance) => {
+        console.log(date)
+        state.filteredAttendance=state.attendance.filter((attendance) => {
+            console.log(date,attendance.date)
             return (attendance.date.getTime()===date.getTime())
         });
+        console.log()
         
-  
+        
         return Object.assign({}, state,{filteredAttendance:state.filteredAttendance});
     case "LOAD_ATTENDANCE":
       const attendance = [
-        {date:new Date(2020,8,16),rine:true,sam:false,samuel:false},
-        {date:new Date(2020,8,17),rine:false,sam:true,samuel:false},
-        {date:new Date(2020,8,18),rine:true,sam:true,samuel:true},
+        {date:new Date('2020,9,16,12:00:00'),rine:true,sam:false,samuel:false},
+        {date:new Date('2020,9,17,12:00:00'),rine:false,sam:true,samuel:false},
+        {date:new Date('2020,9,18,12:00:00'),rine:true,sam:true,samuel:true},
       ];
-
+      
       counterToActiviateLoadDataOnce++;
 
       if (counterToActiviateLoadDataOnce === 1)

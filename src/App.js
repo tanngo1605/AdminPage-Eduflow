@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch, } from "react-router-dom";
 import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
 import RaiseTicket from "./pages/Ticket/RaiseTicket";
@@ -63,17 +63,17 @@ function App() {
           <Route path="/raiseticket" component={RaiseTicket} />
           <Route path="/event/raiseevent" component={Events} />
           <Route path="/event" component={EventList} />
-          <Route path="/teacher/profile" component={TeacherProfile} />
-          <Route path="/teacher" component={TeacherSearch} />
-          <Route path="/student/profile" component={AStudentProfile} />
-          <Route path="/student" component={StudentSearch} />
+          <Route path="/teacher" component={TeacherProfile} />
+          <Route path="/teachersearch" component={TeacherSearch} />
+          <Route path="/student" component={AStudentProfile} />
+          <Route path="/studentsearch" component={StudentSearch} />
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/timetable" component={Timetable} />
           <Route path="/homescreen" component={Homescreen} />
-          <Route path="/" component={LoginPage} />
+          <Route exact path="/" component={LoginPage} />
         </Switch>
       </div>
     </BrowserRouter>

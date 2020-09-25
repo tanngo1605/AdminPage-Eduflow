@@ -1,24 +1,44 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom'
 import InputField from "../InputField/InputField";
-import { Button } from "react-bootstrap";
-import "./LoginForm.styles.css";
-import { withRouter } from "react-router-dom";
-class LoginForm extends Component {
-  state = {
-    schoolCode: "",
-    username: "",
-    password: "",
-  };
 
+import "./LoginForm.styles.css";
+import {Spinner} from 'react-activity';
+import {setCurrentUser} from "../../redux/Stores/AccountReducer";
+import {loginAccount} from "../../redux/Action/UserAction";
+import 'react-activity/dist/react-activity.css';
+class LoginForm extends Component {
+  constructor (props) {
+    super(props)
+      this.state = {
+        schoolCode: "",
+        username: "",
+        password: "",
+        isLoading:false,
+    }
+  }
+  
   handleChange = (event) => {
     const { value, name } = event.target;
-    console.log(name, value);
-
     this.setState({ [name]: value });
   };
-  submitForm = (event) => {
+  submitForm = async (event) => {
     event.preventDefault();
-    this.props.history.push("/homescreen");
+    try {
+      this.setState({isLoading:true})
+      
+      await loginAccount(this.state);
+      
+      this.props.history.push("/homescreen")
+      
+      
+    }
+    catch (err){
+      
+      this.setState({isLoading:false})
+    }
+    
   };
 
   render() {
@@ -46,21 +66,24 @@ class LoginForm extends Component {
             Forgot Password?
           </a>
         </label>
-
-        <Button
-          style={{
-            backgroundColor: "#00044b",
-            width: "45%",
-            borderRadius: "10px",
-            marginTop: "1em",
-          }}
-          onClick={this.submitForm}
-        >
-          LOGIN
-        </Button>
+        {this.state.isLoading?
+          (
+            <div className='button' style={{display:'flex',alignItems:'center',paddingLeft:'21%',marginTop: "1em"}}>
+              <Spinner color="white" size={16} speed={1} animating={true} />
+            </div>
+            
+          ):
+            <button className='button' style={{marginTop: "1em"}} onClick={this.submitForm}>LOGIN</button>
+          }
+        
       </div>
     );
   }
 }
 
-export default withRouter(LoginForm);
+const mapStateToProps = (state) => ({
+  account: state.account,
+ 
+})
+
+export default connect(mapStateToProps)(withRouter(LoginForm));

@@ -4,10 +4,10 @@ import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
-import {loadAttendance} from "../../redux/Stores/AttendanceReducer";
+import {loadAttendance,filterAttendance} from "../../redux/Stores/AttendanceReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPencilSquare } from "react-icons/bs";
-import {marginTop45vh,marginLeft55vw,marginBottom100vh,} from '../../styles/marginStyles'
+import {marginTop45vh,marginLeft55vw,} from '../../styles/marginStyles'
 
 
 
@@ -15,23 +15,20 @@ class SearchAttendance extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      searchteacherattendance:{
-        date:'',
-        name:'',
-    
-      },
+        timefrom:'',
+        timeto:'',
+        
     }
   }
   componentDidMount() {
+      
     this.props.dispatch(loadTeacherData());
     this.props.dispatch(loadAttendance())
 }
 
 
-  handleDayChange=(day)=> {
-    let update = Object.assign({}, this.state.ticket, { date: day });
-    
-    this.setState({ searchteacherattendance: update });
+  handleDayChange=(day,statepointto)=> {
+    this.setState({ [statepointto]: day });
     
   }
   handleChange = (event) => {
@@ -41,7 +38,7 @@ class SearchAttendance extends Component {
   }
   searchResult=(event)=>{
     event.preventDefault();
-    console.log('run')
+    this.props.dispatch(filterAttendance({value:this.state}))
   }
   PresentorAbsent=(attendance)=>{
     let counter = 0; 
@@ -50,13 +47,13 @@ class SearchAttendance extends Component {
     if (counter===(Object.keys(attendance).length-1))
         return <div className='switchbox' style={{backgroundColor:'green'}}>Present</div>
 
-    console.log(counter,attendance.size)
+    
     return <div className='switchbox' style={{backgroundColor:'red'}}>Absent</div>
       
   }
 
   render() {
-    let teachers = this.props.teacher.filteredTeachers;
+    
     let attendances = this.props.attendance.filteredAttendance;
     
     return (
@@ -70,21 +67,15 @@ class SearchAttendance extends Component {
                 <h1 className='titleform'>Teacher's Attendance</h1>
                 <h1 className='subtitleform'>Find  Attendance</h1>
                 <form className='flexcolumn' onSubmit={this.searchResult} style={marginTop45vh}>
-                  <div className='flexrow' style={marginBottom100vh}>
+                  <div className='flexrow' >
                     
                     <p className='section' style={marginLeft55vw}>Date From </p>
-                    <DayPickerInput className="shortbox" style={{marginLeft:'15vw'}} onDayChange={(day) => this.handleDayChange(day)}/>
+                    <DayPickerInput className="shortbox" style={{marginLeft:'15vw'}} onDayChange={(day) => this.handleDayChange(day,'datefrom')}/>
                     <p className='section' style={{marginLeft:'38vw'}}>Date To </p>
-                    <DayPickerInput className="shortbox" style={{marginLeft:'33vw'}} onDayChange={(day) => this.handleDayChange(day)}/>
+                    <DayPickerInput className="shortbox" style={{marginLeft:'33vw'}} onDayChange={(day) => this.handleDayChange(day,'dateto')}/>
                     
                   </div>
-                  <div className='flexrow'>
-                    <p className='section' style={marginLeft55vw}>Teacher's Name</p>
-                        <select className="shortbox" required id='subject' style={{marginLeft:'15vw'}} onChange={(event) => this.handleChange(event)}>
-                            <option value="" defaultValue>{" "}-select-</option>
-                            {teachers&&teachers.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.subject}</option>)}
-                        </select>
-                  </div>
+                  
                   <input type='submit' value='Search' className='button' style={{marginLeft:'35%',marginTop:'8vh',marginBottom:'5vh'}}/>
                 </form>
                 
@@ -98,7 +89,7 @@ class SearchAttendance extends Component {
                   </div>
 
                   <div className="bodyeventList" style={{height:'30vh'}}>
-                      {attendances&&attendances.map((attendance,index)=>
+                      {attendances&&attendances.reverse().map((attendance,index)=>
 
                         <div className='flexrow'  key={index} >
                           
