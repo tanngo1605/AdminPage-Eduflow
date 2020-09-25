@@ -30,25 +30,29 @@ class Drawer extends Component {
 
     Show(item) {
         const list = ['Students', 'Teacher', 'Exams', 'Calendar events'];
-        for (var i = 0; i < list.length; i++) {
-            if (list[i] === item)
-                return (
-                    <div style={{
-                        marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw'
-                    }}>
-                        <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" style={{
-                            position: "absolute",
-                            right: "auto"
-                        }} />
-                    </div>)
-        }
-        // list.forEach((subject) => {
-        //     if (subject === item)
+        // for (var i = 0; i < list.length; i++) {
+        //     if (list[i] === item)
         //         return (
-        //             <div style={{ marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw' }}>
-        //                 <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" />
+        //             <div style={{
+        //                 marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw'
+        //             }}>
+        //                 <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" style={{
+        //                     position: "absolute",
+        //                     right: "auto"
+        //                 }} />
         //             </div>)
-        // })
+        // }
+        if (list.includes(item))
+            return (
+                <div style={{ marginLeft: 'auto', marginTop: '-0.1vw' }}>
+                    <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" />
+                </div>)
+        // if (item === 'Students' ||  item === 'Teacher'|| item === 'Exams'|| item === 'Calendar events')
+        //     return (
+        //         <div style={{ marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw' }}>
+        //             <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" />
+        //         </div>)
+
         return <div></div>
     }
     // handle change
@@ -75,59 +79,33 @@ class Drawer extends Component {
                     <h1 style={{ textAlign: 'center', color: '#FFFFFF', fontSize: "2.5vw", marginTop: '1vw' }}>Akhil</h1>
                 </div>
                 {drawercontent.map((item, index) =>
-
-                    <div key={item.key} className={item.clicked ? "activesubjectindrawer" : 'notactivesubjectindrawer'} onClick={(e) => this.handleClick(e, item.clicked, index, drawercontent)}>
-                        {(item.clicked) ?
-                            <img src={require('../../assets/' + item.activeimage)} alt={item.imagedescription} style={{ width: '1.2vw', height: '1.2vw', marginLeft: '1vw' }} />
-
-
-                            :
-                            <img src={require('../../assets/' + item.inactiveimage)} alt={item.imagedescription} style={{ width: '1.2vw', height: '1.2vw', marginLeft: '1vw' }} />
-                        }
-
-                        <ul className="barUl"><div style={{ display: "flex" }}><NavLink exact to={'/' + item.web} style={{ color: '#FFFFFF', fontSize: '1.2vw', marginTop: '-0.1vw', width: "130px" }}>{item.content}</NavLink>
-                            {this.Show(item.content)}</div>
-                            {item.clicked
-                                ?
-                                // <Scrollbars>
-                                (
-                                    item.content === "Students" ?
-                                        <div style={{ position: "absolute" }}>
-                                            <li style={{ color: "white", width: "220px", cursor: "pointer" }}>
-                                                <NavLink exact to={'/movestudent'} style={{ color: '#FFFFFF', width: "130px" }}>Move student</NavLink>
-                                            </li>
-                                            <li style={{ color: "white", width: "220px" }}>
-                                                <NavLink exact to={'/studentmigration'} style={{ color: '#FFFFFF', width: "130px" }}>Migration</NavLink>
-                                            </li>
-
-                                        </div>
-                                        : item.content === "Teacher" ?
-                                            <div style={{ position: "absolute" }}>
-                                                <li style={{ color: "white", width: "220px" }}>Attendant</li>
+                    <React.Fragment>
+                        <div key={item.key} className={item.clicked ? "activesubjectindrawer" : 'notactivesubjectindrawer'} onClick={(e) => this.handleClick(e, item.clicked, index, drawercontent)}>
+                            {(item.clicked) ?
+                                <img src={require('../../assets/' + item.activeimage)} alt={item.imagedescription} style={{ width: '1.2vw', height: '1.2vw', marginLeft: '1vw' }} />
 
 
-                                            </div>
-                                            : item.content === "Exams" ?
-                                                <div style={{ position: "absolute" }}>
-                                                    <li style={{ color: "white", width: "220px" }}>N/A </li>
-                                                    <li style={{ color: "white", width: "220px" }}>N/A</li>
+                                :
+                                <img src={require('../../assets/' + item.inactiveimage)} alt={item.imagedescription} style={{ width: '1.2vw', height: '1.2vw', marginLeft: '1vw' }} />
+                            }
 
-                                                </div>
-                                                : item.content === "Calendar events" ?
-                                                    <div style={{ position: "absolute" }}>
-                                                        <li style={{ color: "white", width: "220px" }}>N/A</li>
-                                                        <li style={{ color: "white", width: "220px" }}>N/A</li>
+                            <ul className="barUl">
+                                <div style={{ display: "flex" }}><NavLink exact to={'/' + item.web} style={{ color: '#FFFFFF', fontSize: '1.2vw', marginTop: '-0.1vw', width: "130px" }}>{item.content}</NavLink>
+                                    {this.Show(item.content)}
+                                </div>
 
-                                                    </div>
-                                                    : null
-                                )
+                            </ul>
 
+                        </div>
+                        <div style={{ margin: " 0px 50px" }}>
+                            {item.clicked && item.subcontent ?
+                                item.subcontent.map((el) =>
+                                    <li style={{ color: "white", width: "220px", cursor: "pointer" }}>
+                                        <NavLink exact to={`/${el.web}`} style={{ color: '#FFFFFF', width: "130px" }}>{el.content}</NavLink>
+                                    </li>)
+                                : null}</div>
+                    </React.Fragment>
 
-
-                                : null}
-                        </ul>
-
-                    </div>
 
 
 
