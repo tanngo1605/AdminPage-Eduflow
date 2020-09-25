@@ -25,16 +25,14 @@ class Drawer extends Component {
     //show icon with the menu  
     Show(item){
         const list = ['Students','Teacher','Calendar events'];
-        
-        for (let i = 0 ; i < list.length;i++)
-          {
-            if (item === list[i])
-             return ( 
+        list.forEach((subject)=>{
+            if (subject===item ) 
+              return ( 
                 <div style={{marginLeft:'auto',marginRight:'0.8vw',marginTop:'-0.1vw'}}>
                     <IoIosArrowDown size={'1.5vw'} color="#FFFFFF"/>
                 </div>)
-          }
-        
+        })
+        return <div></div>
     }  
     // handle change
     handleClick(e,condition,index,array){   
@@ -63,14 +61,16 @@ class Drawer extends Component {
                 
                     <div key={item.key} className={item.clicked?"activesubjectindrawer":'notactivesubjectindrawer'} onClick={(e)=>this.handleClick(e,item.clicked,index,drawercontent)}>
                         {(item.clicked)?
-                            <img src={require('../../assets/'+item.activeimage)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw'}}/> 
+                            <img src={require('../../assets/'+item.activeimage)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw'}}/>
+                             
                             
                         :
                             <img src={require('../../assets/'+item.inactiveimage)} alt={item.imagedescription} style={{width:'1.2vw',height:'1.2vw',marginLeft:'1vw'}}/>  
                         }
-                        
                         <NavLink exact to={'/'+ item.web} style={{color:'#FFFFFF',marginLeft:'0.8vw',fontSize:'1.2vw',marginTop:'-0.1vw'}}>{item.content}</NavLink> 
                         {this.Show(item.content)}
+                        
+                        
                     </div>
                 
             )}

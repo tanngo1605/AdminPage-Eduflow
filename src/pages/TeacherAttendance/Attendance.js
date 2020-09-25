@@ -17,7 +17,7 @@ class Attendance extends Component {
       trigger:false,
       }
   }
-  componentDidMount() {
+  componentDidMount=()=> {
     this.props.dispatch(loadTeacherData());
     this.props.dispatch(loadAttendance());
 }
@@ -29,7 +29,6 @@ class Attendance extends Component {
   }
   searchResult=(event)=>{
     event.preventDefault();
-    
     setTimeout(()=>{ this.props.dispatch(filterTeacherData({value:this.state})) },50)
     
   }
@@ -48,6 +47,7 @@ class Attendance extends Component {
   render() {
     let originalteacherdata = this.props.teacher.teachers;
     let teachers = this.props.teacher.filteredTeachers;
+    
     return (
       <div className='dashboard'>
         <div className='flexrow'>
