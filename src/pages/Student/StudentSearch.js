@@ -54,10 +54,15 @@ class StudentSearch extends Component {
 
   handleChange = (event) => {
     let updatesearch = Object.assign({}, this.state.studentsearchinput, { [event.target.id]: event.target.value })
+    console.log(updatesearch)
     this.setState({ studentsearchinput: updatesearch })
   }
   searchResult = (event) => {
+
+
+
     event.preventDefault();
+    console.log(filterByValue({ value: this.state.studentsearchinput }))
     setTimeout(() => {
       this.props.dispatch(filterByValue({ value: this.state.studentsearchinput }))
     }, 100);

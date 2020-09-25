@@ -26,7 +26,8 @@ class MoveStudent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      class: "",
+
+      classvalue: "",
       section: "",
 
       // '1': { class: '', section: '', date: '', subject: '', teacher: '' },
@@ -41,9 +42,13 @@ class MoveStudent extends Component {
     this.props.dispatch(loadData());
   }
   handleChange = (event, key) => {
-    console.log(event.target.id, event.target.value);
-    this.setState({ [event.target.id]: event.target.value });
+    // console.log(event.target.id, event.target.value);
+    // this.setState({ [event.target.id]: event.target.value });
     console.log(this.state);
+    let updatesearch = Object.assign({}, this.state, { [event.target.id]: event.target.value })
+    console.log(updatesearch)
+    this.setState(updatesearch)
+    console.log(this.state)
     // this.props.dispatch(loadData());
   };
 
@@ -52,20 +57,15 @@ class MoveStudent extends Component {
     e.preventDefault();
     // console.log(this.state);
     setTimeout(() => {
-      this.props.dispatch(
-        filterByValue({
-          class: this.state.class,
-          section: this.state.section,
-        })
-      );
-    }, 50);
+      this.props.dispatch(filterByValue({ value: this.state }))
+    }, 100);
+    console.log(filterByValue({ value: this.state }))
     // console.log(this.state);
-    console.log(
-      filterByValue({
-        class: this.state.class,
-        section: this.state.section,
-      })
-    );
+    // console.log(
+    //   filterByValue({
+    //     value: this.state
+    //   })
+    // );
     // console.log(
     //   filterByValue({
     //     class: this.state.class,
@@ -75,6 +75,9 @@ class MoveStudent extends Component {
   };
   handleDayChange(day) {
     this.setState({ date: day.toLocaleDateString() });
+  }
+  chooseStud(e) {
+    console.log(e.target)
   }
   render() {
     let students = this.props.student.filteredStudents;
@@ -99,15 +102,15 @@ class MoveStudent extends Component {
                       required
                       onChange={this.handleChange}
                       style={marginLeft130vw}
-                      id="class"
+                      id="classvalue"
                     >
                       <option value="" defaultValue>
                         {" "}
                         -select-
                       </option>
-                      <option value="V">V</option>
-                      <option value="H">H</option>
-                      <option value="mango">Mango</option>
+                      <option value="v">V</option>
+                      <option value="h">H</option>
+
                     </select>
                   </div>
                   <div className="flexrow" style={marginLeft380vw}>
@@ -123,11 +126,10 @@ class MoveStudent extends Component {
                         {" "}
                         -select-
                       </option>
-                      <option value="TL">TL</option>
-                      <option value="english">English</option>
-                      <option value="science">Science</option>
-                      <option value="history">History</option>
-                      <option value="pe">PE</option>
+                      <option value="tl">TL</option>
+                      <option value="th">TH</option>
+                      <option value="h">H</option>
+
                     </select>
                   </div>
                 </form>
@@ -149,12 +151,13 @@ class MoveStudent extends Component {
                     {students &&
                       students.map(
                         (el) => (
-                          console.log(students),
+                          // console.log(students),
                           (
                             <div
                               style={{ display: "flex", marginBottom: "12px" }}
                             >
                               <input
+                                onClick={this.chooseStud}
                                 className="bac"
                                 type="checkbox"
                                 style={{

@@ -34,7 +34,7 @@ const eventReducer = (state = {}, action) => {
       let textvalue = action.payload.text;
       let todayDate = new Date();
 
-      state.filteredEvents = (state.events || []).filter((event) => {
+      state.filteredEvents = (state.events).filter((event) => {
         switch (eventvalue) {
           case "upcoming":
             return (
