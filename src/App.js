@@ -5,7 +5,7 @@ import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
 import RaiseTicket from "./pages/Ticket/RaiseTicket";
 import TicketList from "./pages/Ticket/TicketList";
-import Events from "./pages/Events/Events";
+import CreateEvent from "./pages/Events/CreateEvent";
 import EventList from "./pages/Events/EventList";
 import TeacherProfile from "./pages/Teacher/TeacherProfile";
 import TeacherSearch from "./pages/Teacher/TeacherSearch";
@@ -57,7 +57,7 @@ function App() {
           <Route path="/resetpassword" component={ResetPassword} />
           <Route path="/ticket" component={TicketList} />
           <Route path="/raiseticket" component={RaiseTicket} />
-          <Route path="/event/raiseevent" component={Events} />
+          <Route path="/event/raiseevent" component={CreateEvent} />
           <Route path="/event" component={EventList} />
           <Route path="/teacher" component={TeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />

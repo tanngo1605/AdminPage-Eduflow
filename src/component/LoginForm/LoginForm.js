@@ -28,8 +28,8 @@ class LoginForm extends Component {
     try {
       this.setState({isLoading:true})
       
-      await loginAccount(this.state);
-      
+      let userdata= await loginAccount(this.state);
+      this.props.dispatch(setCurrentUser({userdata}))
       this.props.history.push("/homescreen")
       
       

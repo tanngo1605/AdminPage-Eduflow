@@ -24,14 +24,13 @@ class Drawer extends Component {
     }
     //show icon with the menu  
     Show(item){
-        const list = ['Students','Teacher','Calendar events'];
-        list.forEach((subject)=>{
-            if (subject===item ) 
+        
+        if (item==='Students' || item==='Teacher' || item==='Calendar events'  ) 
               return ( 
                 <div style={{marginLeft:'auto',marginRight:'0.8vw',marginTop:'-0.1vw'}}>
                     <IoIosArrowDown size={'1.5vw'} color="#FFFFFF"/>
                 </div>)
-        })
+        
         return <div></div>
     }  
     // handle change
