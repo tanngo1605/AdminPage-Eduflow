@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import { connect } from "react-redux";
 import {
@@ -133,131 +134,132 @@ class ATeacherProfile extends Component {
               <div className="flexrow">
                 {this.displayImage()}
                 <div className="flexcolumn">
-                  <div
-                    className="flexcolumn"
-                    style={{
-                      overflowY: "scroll",
-                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                      width: "730px",
-                      height: "550px",
-                      background: "#FAFBFC",
-                      boxShadow:
-                        "0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)",
-                      paddingLeft: "25px",
-                    }}
-                  >
-                    {teacherprofiledata &&
-                      teacherprofiledata.map((item) => (
-                        <div
-                          key={item.id}
-                          className="flexrow"
-                          style={
-                            (marginBottom55vh,
-                            {
-                              marginTop:
-                                item.content === "Name" ? "20px" : "40px",
-                            })
-                          }
-                        >
-                          {this.state.edit ? (
-                            <div
-                              style={{
-                                marginBottom: "20px",
-                                display:
-                                  item.content === "Dob" ? "flex" : "default",
-                              }}
-                            >
-                              <label
-                                htmlFor={item.id}
-                                className="section"
+                  <Scrollbars style={{ width: "730px", height: "700px" }}>
+                    <div
+                      className="flexcolumn"
+                      style={{
+                        // overflowY: "scroll",
+                        filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                        width: "730px",
+                        height: "auto",
+                        background: "#FAFBFC",
+                        boxShadow:
+                          "0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)",
+                        paddingLeft: "25px",
+                      }}
+                    >
+                      {teacherprofiledata &&
+                        teacherprofiledata.map((item) => (
+                          <div
+                            key={item.id}
+                            className="flexrow"
+                            style={
+                              (marginBottom55vh,
+                              {
+                                marginTop:
+                                  item.content === "Name" ? "20px" : "40px",
+                              })
+                            }
+                          >
+                            {this.state.edit ? (
+                              <div
                                 style={{
-                                  width: "20%",
-                                  fontSize: "1vw",
-                                  marginLeft: "10px",
+                                  marginBottom: "20px",
+                                  display:
+                                    item.content === "Dob" ? "flex" : "default",
                                 }}
                               >
-                                {item.content}{" "}
-                              </label>
-                              {item.content === "Dob" ? (
-                                <DayPickerInput
-                                  className="shortbox"
-                                  style={marginLeft150vw}
-                                  onDayChange={(day) =>
-                                    this.handleDayChange(day)
-                                  }
-                                  placeholder="Enter date of birth"
-                                />
-                              ) : item.content === "Gender" ? (
-                                <select
-                                  className="shortbox"
-                                  style={
-                                    (marginLeft150vw,
-                                    {
-                                      marginLeft: "20vw",
-                                      background:
-                                        "url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right ",
-                                      backgroundPositionX: "288px",
-                                      backgroundSize: "12px",
-                                    })
-                                  }
+                                <label
+                                  htmlFor={item.id}
+                                  className="section"
+                                  style={{
+                                    width: "20%",
+                                    fontSize: "1vw",
+                                    marginLeft: "10px",
+                                  }}
                                 >
-                                  <option>Male</option>
-                                  <option>Female</option>
-                                </select>
-                              ) : (
-                                <input
-                                  type={item.type}
-                                  required
-                                  id={item.id}
-                                  placeholder={this.state.student[item.id]}
+                                  {item.content}{" "}
+                                </label>
+                                {item.content === "Dob" ? (
+                                  <DayPickerInput
+                                    className="shortbox"
+                                    style={marginLeft150vw}
+                                    onDayChange={(day) =>
+                                      this.handleDayChange(day)
+                                    }
+                                    placeholder="Enter date of birth"
+                                  />
+                                ) : item.content === "Gender" ? (
+                                  <select
+                                    className="shortbox"
+                                    style={
+                                      (marginLeft150vw,
+                                      {
+                                        marginLeft: "20vw",
+                                        background:
+                                          "url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right ",
+                                        backgroundPositionX: "288px",
+                                        backgroundSize: "12px",
+                                      })
+                                    }
+                                  >
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                  </select>
+                                ) : (
+                                  <input
+                                    type={item.type}
+                                    required
+                                    id={item.id}
+                                    placeholder={this.state.student[item.id]}
+                                    className="shortbox"
+                                    onChange={this.handleChange}
+                                    style={marginLeft150vw}
+                                  />
+                                )}
+                              </div>
+                            ) : (
+                              <div>
+                                <div
+                                  className="section"
+                                  style={{ marginRight: "10vw" }}
+                                >
+                                  {item.content}{" "}
+                                </div>
+                                <div
                                   className="shortbox"
-                                  onChange={this.handleChange}
-                                  style={marginLeft150vw}
-                                />
-                              )}
-                            </div>
-                          ) : (
-                            <div>
-                              <div
-                                className="section"
-                                style={{ marginRight: "10vw" }}
-                              >
-                                {item.content}{" "}
+                                  style={{
+                                    backgroundColor: "#F2F4F7",
+                                    marginLeft: "15vw",
+                                  }}
+                                >
+                                  {this.state.student[item.id]}
+                                </div>
                               </div>
-                              <div
-                                className="shortbox"
-                                style={{
-                                  backgroundColor: "#F2F4F7",
-                                  marginLeft: "15vw",
-                                }}
-                              >
-                                {this.state.student[item.id]}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    <div style={{ marginTop: "40px", marginBottom: "20px" }}>
-                      <label
-                        htmlFor=""
-                        className="section"
-                        style={{
-                          width: "25%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        {/* {content}{" "} */}Correspondense address
-                      </label>
-                      <textarea
-                        placeholder="Enter correspondense address"
-                        className="shortbox"
-                        style={
-                          (marginLeft150vw,
-                          { height: "100px", marginLeft: "20vw" })
-                        }
-                      />
-                      {/* <input
+                            )}
+                          </div>
+                        ))}
+                      <div style={{ marginTop: "40px", marginBottom: "20px" }}>
+                        <label
+                          htmlFor=""
+                          className="section"
+                          style={{
+                            width: "25%",
+                            fontSize: "1vw",
+                            marginLeft: "10px",
+                          }}
+                        >
+                          {/* {content}{" "} */}Correspondense address
+                        </label>
+                        <textarea
+                          placeholder="Enter correspondense address"
+                          className="shortbox"
+                          style={
+                            (marginLeft150vw,
+                            { height: "100px", marginLeft: "20vw" })
+                          }
+                        />
+                        {/* <input
                         type="text"
                         required
                         id="corAddress"
@@ -269,11 +271,99 @@ class ATeacherProfile extends Component {
                           { height: "100px", marginLeft: "20vw" })
                         }
                       /> */}
-                    </div>
-                    <div style={{ display: "flex", marginBottom: "20px" }}>
-                      {" "}
-                      {/*city,state,postcode*/}
-                      <div className="flexrow" style={{ marginTop: "15vh" }}>
+                      </div>
+                      <div style={{ display: "flex", marginBottom: "20px" }}>
+                        {" "}
+                        {/*city,state,postcode*/}
+                        <div className="flexrow" style={{ marginTop: "15vh" }}>
+                          <label
+                            htmlFor=""
+                            className="section"
+                            style={{
+                              width: "25%",
+                              fontSize: "1vw",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            City
+                          </label>
+                          <input
+                            type={Text}
+                            required
+                            // id="corAddress"
+                            placeholder=""
+                            className="shortbox"
+                            // onChange={this.handleChange}
+                            style={{
+                              marginLeft: "49px",
+                              width: "129px",
+                              height: "39px",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="flexrow"
+                          style={{ marginTop: "15vh", marginLeft: "15vw" }}
+                        >
+                          <label
+                            htmlFor=""
+                            className="section"
+                            style={{
+                              width: "25%",
+                              fontSize: "1vw",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            State
+                          </label>
+                          <input
+                            type={Text}
+                            required
+                            // id="corAddress"
+                            placeholder=""
+                            className="shortbox"
+                            // onChange={this.handleChange}
+                            style={{
+                              marginLeft: "49px",
+                              width: "129px",
+                              height: "39px",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="flexrow"
+                          style={{ marginTop: "15vh", marginLeft: "15vw" }}
+                        >
+                          <label
+                            htmlFor=""
+                            className="section"
+                            style={{
+                              width: "25%",
+                              fontSize: "1vw",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            Postcode
+                          </label>
+                          <input
+                            type={Text}
+                            required
+                            // id="corAddress"
+                            placeholder=""
+                            className="shortbox"
+                            // onChange={this.handleChange}
+                            style={{
+                              marginLeft: "84px",
+                              width: "129px",
+                              height: "39px",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        style={{ marginTop: "8.5vh  ", marginBottom: "20px" }}
+                      >
                         <label
                           htmlFor=""
                           className="section"
@@ -283,332 +373,247 @@ class ATeacherProfile extends Component {
                             marginLeft: "10px",
                           }}
                         >
-                          City
+                          Same permanent address
+                        </label>
+                        <input
+                          className="abc"
+                          type="checkbox"
+                          style={{ marginTop: "14px", marginLeft: "200px" }}
+                        />
+                      </div>
+
+                      <div style={{ marginBottom: "20px" }}>
+                        <label
+                          htmlFor=""
+                          className="section"
+                          style={{
+                            width: "25%",
+                            fontSize: "1vw",
+                            marginLeft: "10px",
+                          }}
+                        >
+                          {/* {content}{" "} */}Permanent address
                         </label>
                         <input
                           type={Text}
                           required
-                          // id="corAddress"
-                          placeholder=""
+                          id="corAddress"
+                          placeholder="Enter permanent address"
                           className="shortbox"
-                          // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "49px",
-                            width: "129px",
-                            height: "39px",
-                          }}
+                          onChange={this.handleChange}
+                          style={
+                            (marginLeft150vw,
+                            { height: "100px", marginLeft: "20vw" })
+                          }
                         />
+                      </div>
+
+                      <div style={{ display: "flex", marginBottom: "20px" }}>
+                        {" "}
+                        {/*city,state,postcode*/}
+                        <div className="flexrow" style={{ marginTop: "15vh" }}>
+                          <label
+                            htmlFor=""
+                            className="section"
+                            style={{
+                              width: "25%",
+                              fontSize: "1vw",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            City
+                          </label>
+                          <input
+                            type={Text}
+                            required
+                            // id="corAddress"
+                            placeholder=""
+                            className="shortbox"
+                            // onChange={this.handleChange}
+                            style={{
+                              marginLeft: "49px",
+                              width: "129px",
+                              height: "39px",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="flexrow"
+                          style={{ marginTop: "15vh", marginLeft: "15vw" }}
+                        >
+                          <label
+                            htmlFor=""
+                            className="section"
+                            style={{
+                              width: "25%",
+                              fontSize: "1vw",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            State
+                          </label>
+                          <input
+                            type={Text}
+                            required
+                            // id="corAddress"
+                            placeholder=""
+                            className="shortbox"
+                            // onChange={this.handleChange}
+                            style={{
+                              marginLeft: "49px",
+                              width: "129px",
+                              height: "39px",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="flexrow"
+                          style={{ marginTop: "15vh", marginLeft: "15vw" }}
+                        >
+                          <label
+                            htmlFor=""
+                            className="section"
+                            style={{
+                              width: "25%",
+                              fontSize: "1vw",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            Postcode
+                          </label>
+                          <input
+                            type={Text}
+                            required
+                            // id="corAddress"
+                            placeholder=""
+                            className="shortbox"
+                            // onChange={this.handleChange}
+                            style={{
+                              marginLeft: "84px",
+                              width: "129px",
+                              height: "39px",
+                            }}
+                          />
+                        </div>
                       </div>
                       <div
+                        // key={item.id}
                         className="flexrow"
-                        style={{ marginTop: "15vh", marginLeft: "15vw" }}
-                      >
-                        <label
-                          htmlFor=""
-                          className="section"
-                          style={{
-                            width: "25%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
-                        >
-                          State
-                        </label>
-                        <input
-                          type={Text}
-                          required
-                          // id="corAddress"
-                          placeholder=""
-                          className="shortbox"
-                          // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "49px",
-                            width: "129px",
-                            height: "39px",
-                          }}
-                        />
-                      </div>
-                      <div
-                        className="flexrow"
-                        style={{ marginTop: "15vh", marginLeft: "15vw" }}
-                      >
-                        <label
-                          htmlFor=""
-                          className="section"
-                          style={{
-                            width: "25%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
-                        >
-                          Postcode
-                        </label>
-                        <input
-                          type={Text}
-                          required
-                          // id="corAddress"
-                          placeholder=""
-                          className="shortbox"
-                          // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "84px",
-                            width: "129px",
-                            height: "39px",
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div style={{ marginTop: "8.5vh  ", marginBottom: "20px" }}>
-                      <label
-                        htmlFor=""
-                        className="section"
-                        style={{
-                          width: "25%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        Same permanent address
-                      </label>
-                      <input
-                        className="abc"
-                        type="checkbox"
-                        style={{ marginTop: "14px", marginLeft: "200px" }}
-                      />
-                    </div>
-
-                    <div style={{ marginBottom: "20px" }}>
-                      <label
-                        htmlFor=""
-                        className="section"
-                        style={{
-                          width: "25%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        {/* {content}{" "} */}Permanent address
-                      </label>
-                      <input
-                        type={Text}
-                        required
-                        id="corAddress"
-                        placeholder="Enter permanent address"
-                        className="shortbox"
-                        onChange={this.handleChange}
                         style={
-                          (marginLeft150vw,
-                          { height: "100px", marginLeft: "20vw" })
+                          (marginBottom55vh,
+                          { marginTop: "8vh", marginBottom: "10px" })
                         }
-                      />
-                    </div>
-
-                    <div style={{ display: "flex", marginBottom: "20px" }}>
-                      {" "}
-                      {/*city,state,postcode*/}
-                      <div className="flexrow" style={{ marginTop: "15vh" }}>
+                      >
                         <label
-                          htmlFor=""
+                          // htmlFor={item.id}
                           className="section"
                           style={{
-                            width: "25%",
+                            width: "20%",
                             fontSize: "1vw",
                             marginLeft: "10px",
                           }}
                         >
-                          City
+                          Subject
                         </label>
                         <input
-                          type={Text}
+                          type="text"
                           required
-                          // id="corAddress"
+                          // id={item.id}
                           placeholder=""
                           className="shortbox"
-                          // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "49px",
-                            width: "129px",
-                            height: "39px",
-                          }}
+                          onChange={this.handleChange}
+                          style={marginLeft150vw}
                         />
                       </div>
                       <div
+                        // key={item.id}
                         className="flexrow"
-                        style={{ marginTop: "15vh", marginLeft: "15vw" }}
+                        style={
+                          (marginBottom55vh,
+                          { marginTop: "8vh", marginBottom: "10px" })
+                        }
                       >
                         <label
-                          htmlFor=""
+                          // htmlFor={item.id}
                           className="section"
                           style={{
-                            width: "25%",
+                            width: "20%",
                             fontSize: "1vw",
                             marginLeft: "10px",
                           }}
                         >
-                          State
+                          Role
                         </label>
                         <input
-                          type={Text}
+                          type="text"
                           required
-                          // id="corAddress"
+                          // id={item.id}
                           placeholder=""
                           className="shortbox"
-                          // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "49px",
-                            width: "129px",
-                            height: "39px",
-                          }}
+                          onChange={this.handleChange}
+                          style={marginLeft150vw}
                         />
                       </div>
                       <div
+                        // key={item.id}
                         className="flexrow"
-                        style={{ marginTop: "15vh", marginLeft: "15vw" }}
+                        style={
+                          (marginBottom55vh,
+                          { marginTop: "8vh", marginBottom: "10px" })
+                        }
                       >
                         <label
-                          htmlFor=""
+                          // htmlFor={item.id}
                           className="section"
                           style={{
-                            width: "25%",
+                            width: "20%",
                             fontSize: "1vw",
                             marginLeft: "10px",
                           }}
                         >
-                          Postcode
+                          Phone No.
                         </label>
                         <input
-                          type={Text}
+                          type="text"
                           required
-                          // id="corAddress"
+                          // id={item.id}
                           placeholder=""
                           className="shortbox"
-                          // onChange={this.handleChange}
+                          onChange={this.handleChange}
+                          style={marginLeft150vw}
+                        />
+                      </div>
+                      <div
+                        // key={item.id}
+                        className="flexrow"
+                        style={
+                          (marginBottom55vh,
+                          { marginTop: "8vh", marginBottom: "5vw" })
+                        }
+                      >
+                        <label
+                          // htmlFor={item.id}
+                          className="section"
                           style={{
-                            marginLeft: "84px",
-                            width: "129px",
-                            height: "39px",
+                            width: "20%",
+                            fontSize: "1vw",
+                            marginLeft: "10px",
                           }}
+                        >
+                          Alternate phone No.
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          // id={item.id}
+                          placeholder=""
+                          className="shortbox"
+                          onChange={this.handleChange}
+                          style={marginLeft150vw}
                         />
                       </div>
                     </div>
-                    <div
-                      // key={item.id}
-                      className="flexrow"
-                      style={
-                        (marginBottom55vh,
-                        { marginTop: "8vh", marginBottom: "10px" })
-                      }
-                    >
-                      <label
-                        // htmlFor={item.id}
-                        className="section"
-                        style={{
-                          width: "20%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        // id={item.id}
-                        placeholder=""
-                        className="shortbox"
-                        onChange={this.handleChange}
-                        style={marginLeft150vw}
-                      />
-                    </div>
-                    <div
-                      // key={item.id}
-                      className="flexrow"
-                      style={
-                        (marginBottom55vh,
-                        { marginTop: "8vh", marginBottom: "10px" })
-                      }
-                    >
-                      <label
-                        // htmlFor={item.id}
-                        className="section"
-                        style={{
-                          width: "20%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        Role
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        // id={item.id}
-                        placeholder=""
-                        className="shortbox"
-                        onChange={this.handleChange}
-                        style={marginLeft150vw}
-                      />
-                    </div>
-                    <div
-                      // key={item.id}
-                      className="flexrow"
-                      style={
-                        (marginBottom55vh,
-                        { marginTop: "8vh", marginBottom: "10px" })
-                      }
-                    >
-                      <label
-                        // htmlFor={item.id}
-                        className="section"
-                        style={{
-                          width: "20%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        Phone No.
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        // id={item.id}
-                        placeholder=""
-                        className="shortbox"
-                        onChange={this.handleChange}
-                        style={marginLeft150vw}
-                      />
-                    </div>
-                    <div
-                      // key={item.id}
-                      className="flexrow"
-                      style={
-                        (marginBottom55vh,
-                        { marginTop: "8vh", marginBottom: "30px" })
-                      }
-                    >
-                      <label
-                        // htmlFor={item.id}
-                        className="section"
-                        style={{
-                          width: "20%",
-                          fontSize: "1vw",
-                          marginLeft: "10px",
-                        }}
-                      >
-                        Alternate phone No.
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        // id={item.id}
-                        placeholder=""
-                        className="shortbox"
-                        onChange={this.handleChange}
-                        style={marginLeft150vw}
-                      />
-                    </div>
-                  </div>
+                  </Scrollbars>
                   {/*end of form*/}
                   <div className="flexrow" style={{ marginTop: "2%" }}>
                     <input

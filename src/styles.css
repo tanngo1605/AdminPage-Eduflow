@@ -10,17 +10,18 @@
   background-color: #04044e;
   width: 15vw;
   height: 110vh;
-  border-bottom-right-radius: 6vw;
 }
 .activesubjectindrawer {
   width: 100%;
-  height: 5vh;
+  
+
   background-color: rgba(217, 217, 217, 0.13);
   border-bottom-right-radius: 2vw;
   border-top-right-radius: 2vw;
   margin-bottom: 1vh;
   display: flex;
-  align-items: center;
+  overflow: hidden;
+  /* align-items: center; */
 }
 .notactivesubjectindrawer {
   display: flex;
@@ -607,3 +608,38 @@ input[type="checkbox"].abc:checked:after {
   top: 3px;
   left: 8px;
 }
+.textMoveScreenField {
+  display: inline-flex;
+  margin-left: 300px;
+}
+.textMoveScreenField > div {
+  color: #262f56;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  margin-right: 100px;
+}
+
+.textMigrationScreenField {
+  display: inline-flex;
+  padding-left: 30px;
+  background: #FAFBFB;
+box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+border-radius: 3px;
+}
+.customWidth {
+  width: 100%;
+}
+
+.textMigrationScreenField >div {
+  margin-right: 140px;
+  width: 70px;
+}
+.barUl{
+  margin-bottom: 0;
+}
+/* .barUl > li {
+  list-style-type:circle ;
+} */

@@ -10,6 +10,8 @@ import EventList from "./pages/Events/EventList";
 import TeacherProfile from "./pages/Teacher/TeacherProfile";
 import TeacherSearch from "./pages/Teacher/TeacherSearch";
 import StudentSearch from "./pages/Student/StudentSearch";
+import MoveStudent from "./pages/StudentMigration/MoveStudent";
+import StudentMigration from "./pages/StudentMigration/StudentMigration";
 // import StudentProfile from "./pages/Student/StudentProfile";
 import AStudentProfile from "./pages/Student/AnotherSP";
 import ATeacherProfile from "./pages/Student/AnotherTP";
@@ -29,9 +31,9 @@ import CreateSubject from "./pages/Class/createSubject";
 import AddCircular from "./pages/Circular/AddCircular";
 import CircularList from "./pages/Circular/CircularList";
 import Feedback from "./pages/Feedback/Feedback";
-import Attendance from './pages/TeacherAttendance/Attendance';
-import SearchAttendace from './pages/TeacherAttendance/SearchAttendance';
-import EditAttendance from './pages/TeacherAttendance/EditAttendance';
+import Attendance from "./pages/TeacherAttendance/Attendance";
+import SearchAttendace from "./pages/TeacherAttendance/SearchAttendance";
+import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
 import "./styles.css";
 
 function App() {
@@ -41,7 +43,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/editattendance" component={EditAttendance}/>
+          <Route path="/studentmigration" component={StudentMigration} />
+          <Route path="/movestudent" component={MoveStudent} />
+          <Route path="/editattendance" component={EditAttendance} />
           <Route path="/searchattendance" component={SearchAttendace} />
           <Route path="/attendance" component={Attendance} />
           <Route path="/feedback" component={Feedback} />
