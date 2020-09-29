@@ -42,6 +42,16 @@ const drawercontent = [
     inactiveimage: "exam_inactive.png",
     subcontent: [
       { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
+      { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Arrange exam duty', web: 'examduty', clicked: false }
     ],
     clicked: false,

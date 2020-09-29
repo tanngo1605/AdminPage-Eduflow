@@ -456,7 +456,9 @@
   align-items: center;
   resize: none;
 }
-
+input.profileDatepicker {
+  margin : -20px 0
+}
 .button {
   width: 15vw;
   height: 6vh;
@@ -594,6 +596,20 @@ input[type="checkbox"]:before {
   border-radius: 3px;
   background-color: white;
 }
+input[type="checkbox"].bac:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 3px;
+  left: 8px;
+}
 input[type="checkbox"].abc:checked:after {
   content: "";
   display: block;
@@ -604,7 +620,7 @@ input[type="checkbox"].abc:checked:after {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  /* position: absolute; */
+  position: absolute;
   top: 3px;
   left: 8px;
 }
@@ -640,6 +656,10 @@ border-radius: 3px;
 .barUl{
   margin-bottom: 0;
 }
+.viceSection{
+  padding-bottom: 20px;
+}
+
 /* .barUl > li {
   list-style-type:circle ;
 } */

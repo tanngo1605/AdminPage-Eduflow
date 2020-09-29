@@ -149,7 +149,7 @@ class AStudentProfile extends Component {
               <div className="flexrow">
                 {this.displayImage()}
                 <div className="flexcolumn">
-                  <Scrollbars style={{ width: "730px", height: "700px" }}>
+                  <Scrollbars style={{ width: "730px", height: "600px" }}>
                     <div
                       className="flexcolumn"
                       style={{
@@ -169,33 +169,35 @@ class AStudentProfile extends Component {
                             key={item.id}
                             className="flexrow"
                             style={
-                              (marginBottom55vh,
-                              {
-                                marginTop:
-                                  item.content === "Name" ? "20px" : "40px",
-                              })
+                              (
+                                {
+                                  marginTop: "20px"
+                                  // item.content === "Name" ? "20px" : "40px",
+                                })
                             }
                           >
                             {this.state.edit ? (
                               <div
                                 style={{
-                                  marginBottom: "20px",
-                                  display:
-                                    item.content === "Dob" ? "flex" : "default",
+                                  marginBottom:
+                                    item.comtent === "Name" || item.content === "Date of birth" ? "20px" : "40px",
+                                  height:
+                                    item.content === "Date of birth" ? "20px" : null
                                 }}
                               >
                                 <label
                                   htmlFor={item.id}
-                                  className="section"
+                                  className="section viceSection"
                                   style={labelStyle}
                                 >
                                   {item.content}{" "}
                                 </label>
                                 {item.content === "Date of birth" ? (
                                   <DayPickerInput
+                                    required
                                     id={item.id}
-                                    className="shortbox"
-                                    style={marginLeft150vw}
+                                    className="shortbox "
+                                    style={{ marginLeft: "20vw", marginBottom: "15px" }}
                                     onDayChange={(day) =>
                                       this.handleDayChange(day)
                                     }
@@ -203,6 +205,7 @@ class AStudentProfile extends Component {
                                   />
                                 ) : item.content === "Gender" ? (
                                   <select
+                                    required
                                     id={item.id}
                                     onChange={this.handleChange}
                                     className="shortbox"

@@ -21,12 +21,13 @@ import {
   marginTop45vh,
   fontsize12vw,
 } from "../../styles/marginStyles";
+import { forEach } from "lodash";
 
 class MoveStudent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      name: "",
       classvalue: "",
       section: "",
 
@@ -44,7 +45,7 @@ class MoveStudent extends Component {
   handleChange = (event, key) => {
     // console.log(event.target.id, event.target.value);
     // this.setState({ [event.target.id]: event.target.value });
-    console.log(this.state);
+    console.log(event.target);
     let updatesearch = Object.assign({}, this.state, { [event.target.id]: event.target.value })
     console.log(updatesearch)
     this.setState(updatesearch)
@@ -76,8 +77,47 @@ class MoveStudent extends Component {
   handleDayChange(day) {
     this.setState({ date: day.toLocaleDateString() });
   }
-  chooseStud(e) {
-    console.log(e.target)
+  chooseStud = (e) => {
+    // console.log(e.target)
+    // let updatesearch = Object.assign({}, this.state, { [e.target.id]: true })
+    // console.log(updatesearch)
+    // this.setState(updatesearch)
+    let students = this.props.student.filteredStudents
+    console.log(students.length)
+    students.forEach(el => {
+      if (el.key === e.target.value) {
+        el.ticked = !el.ticked
+      }
+    });
+    let abc = students.forEach(el => {
+      for (var i = 0; i < students.length; i++) {
+        if (el.classvalue) {
+          console.log(el);
+        }
+      }
+    })
+    // console.log(students)
+    // let bao = students.find(student => {
+    //   return student.key === e.target.value
+    // });
+    // // console.log(bao)
+    // bao.ticked = !bao.ticked
+    // console.log(students, this.props.student.filteredStudents);
+    // // students.forEach(student => {
+    // //   console.log(student);
+    // // })
+    // let b = []
+
+    // let a = students.find(student => {
+    //   return (student.ticked === true ? Object.assign(...b, student) : null)
+    // })
+    // console.log(a)
+
+
+
+  }
+  handleSubmit = () => {
+    this.props.history.push("/studentmigration");
   }
   render() {
     let students = this.props.student.filteredStudents;
@@ -157,8 +197,12 @@ class MoveStudent extends Component {
                               style={{ display: "flex", marginBottom: "12px" }}
                             >
                               <input
-                                onClick={this.chooseStud}
+                                onClick={(e) => this.chooseStud(e)}
                                 className="bac"
+                                key={el.key.toString()}
+                                // checked={el.ticked === false ? "false" : "checked"}
+                                value={el.key}
+                                id="ticked"
                                 type="checkbox"
                                 style={{
                                   marginTop: "15px",
@@ -249,6 +293,7 @@ class MoveStudent extends Component {
                   type="submit"
                   value="Save"
                   className="button"
+                  onClick={this.handleSubmit}
                   style={{ marginLeft: "27%" }}
                 />
                 <input type="reset" value="Reset" className="button" />

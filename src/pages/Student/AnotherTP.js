@@ -165,13 +165,13 @@ class ATeacherProfile extends Component {
                               <div
                                 style={{
                                   marginBottom: "20px",
-                                  display:
-                                    item.content === "Dob" ? "flex" : "default",
+                                  height:
+                                    item.content === "Date of birth" ? "0px" : null
                                 }}
                               >
                                 <label
                                   htmlFor={item.id}
-                                  className="section"
+                                  className="section viceSection"
                                   style={{
                                     width: "20%",
                                     fontSize: "1vw",
@@ -180,10 +180,12 @@ class ATeacherProfile extends Component {
                                 >
                                   {item.content}{" "}
                                 </label>
-                                {item.content === "Dob" ? (
+                                {item.content === "Date of birth" ? (
                                   <DayPickerInput
+                                    required
+                                    id={item.id}
                                     className="shortbox"
-                                    style={marginLeft150vw}
+                                    style={{ marginLeft: "20vw", marginBottom: "20px" }}
                                     onDayChange={(day) =>
                                       this.handleDayChange(day)
                                     }
@@ -207,36 +209,36 @@ class ATeacherProfile extends Component {
                                     <option>Female</option>
                                   </select>
                                 ) : (
-                                  <input
-                                    type={item.type}
-                                    required
-                                    id={item.id}
-                                    placeholder={this.state.student[item.id]}
-                                    className="shortbox"
-                                    onChange={this.handleChange}
-                                    style={marginLeft150vw}
-                                  />
-                                )}
+                                      <input
+                                        type={item.type}
+                                        required
+                                        id={item.id}
+                                        placeholder={this.state.student[item.id]}
+                                        className="shortbox"
+                                        onChange={this.handleChange}
+                                        style={marginLeft150vw}
+                                      />
+                                    )}
                               </div>
                             ) : (
-                              <div>
-                                <div
-                                  className="section"
-                                  style={{ marginRight: "10vw" }}
-                                >
-                                  {item.content}{" "}
+                                <div>
+                                  <div
+                                    className="section"
+                                    style={{ marginRight: "10vw" }}
+                                  >
+                                    {item.content}{" "}
+                                  </div>
+                                  <div
+                                    className="shortbox"
+                                    style={{
+                                      backgroundColor: "#F2F4F7",
+                                      marginLeft: "15vw",
+                                    }}
+                                  >
+                                    {this.state.student[item.id]}
+                                  </div>
                                 </div>
-                                <div
-                                  className="shortbox"
-                                  style={{
-                                    backgroundColor: "#F2F4F7",
-                                    marginLeft: "15vw",
-                                  }}
-                                >
-                                  {this.state.student[item.id]}
-                                </div>
-                              </div>
-                            )}
+                              )}
                           </div>
                         ))}
                       <div style={{ marginTop: "40px", marginBottom: "20px" }}>
@@ -256,7 +258,7 @@ class ATeacherProfile extends Component {
                           className="shortbox"
                           style={
                             (marginLeft150vw,
-                            { height: "100px", marginLeft: "20vw" })
+                              { height: "100px", marginLeft: "20vw" })
                           }
                         />
                         {/* <input
@@ -403,7 +405,7 @@ class ATeacherProfile extends Component {
                           onChange={this.handleChange}
                           style={
                             (marginLeft150vw,
-                            { height: "100px", marginLeft: "20vw" })
+                              { height: "100px", marginLeft: "20vw" })
                           }
                         />
                       </div>
@@ -501,7 +503,7 @@ class ATeacherProfile extends Component {
                         className="flexrow"
                         style={
                           (marginBottom55vh,
-                          { marginTop: "8vh", marginBottom: "10px" })
+                            { marginTop: "8vh", marginBottom: "10px" })
                         }
                       >
                         <label
@@ -530,7 +532,7 @@ class ATeacherProfile extends Component {
                         className="flexrow"
                         style={
                           (marginBottom55vh,
-                          { marginTop: "8vh", marginBottom: "10px" })
+                            { marginTop: "8vh", marginBottom: "10px" })
                         }
                       >
                         <label
@@ -559,7 +561,7 @@ class ATeacherProfile extends Component {
                         className="flexrow"
                         style={
                           (marginBottom55vh,
-                          { marginTop: "8vh", marginBottom: "10px" })
+                            { marginTop: "8vh", marginBottom: "10px" })
                         }
                       >
                         <label
@@ -588,7 +590,7 @@ class ATeacherProfile extends Component {
                         className="flexrow"
                         style={
                           (marginBottom55vh,
-                          { marginTop: "8vh", marginBottom: "5vw" })
+                            { marginTop: "8vh", marginBottom: "5vw" })
                         }
                       >
                         <label
@@ -625,8 +627,8 @@ class ATeacherProfile extends Component {
                         !this.state.edit
                           ? this.setState({ edit: true })
                           : console.log(
-                              "You have gone to edit page or havent change anything"
-                            );
+                            "You have gone to edit page or havent change anything"
+                          );
                       }}
                     />
 

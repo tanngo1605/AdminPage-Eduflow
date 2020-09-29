@@ -12,7 +12,7 @@ import TeacherSearch from "./pages/Teacher/TeacherSearch";
 import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
-// import StudentProfile from "./pages/Student/StudentProfile";
+import StudentProfile from "./pages/Student/StudentProfile";
 import AStudentProfile from "./pages/Student/AnotherSP";
 import ATeacherProfile from "./pages/Student/AnotherTP";
 import Syllabus from "./pages/Syllabus/Syllabus";
@@ -63,10 +63,10 @@ function App() {
           <Route path="/raiseticket" component={RaiseTicket} />
           <Route path="/event/raiseevent" component={Events} />
           <Route path="/event" component={EventList} />
-          <Route path="/teacher" component={TeacherProfile} />
+          <Route path="/teacher" component={ATeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />
-          <Route path="/student" component={AStudentProfile} />
-          <Route path="/studentsearch" component={StudentSearch} />
+          <Route path="/student/profile" component={AStudentProfile} />
+          <Route path="/student" component={StudentSearch} />
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />
