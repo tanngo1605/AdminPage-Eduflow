@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Scrollbars} from 'react-custom-scrollbars';
 import {connect} from 'react-redux';
 import {loadData, filterByValue,deleteData} from '../../redux/Stores/EventReducer';
+import {getSchoolEvent} from "../../redux/Action/EventAction";
+import {getCurrentUser} from '../../redux/Stores/AccountReducer';
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import { BsPencilSquare } from "react-icons/bs";
@@ -16,11 +18,24 @@ class EventList extends Component {
       classteacher:'',
       text:'',
       event:'',
+      schoolEvents:{}
     }
   }
-  componentDidMount() {
+  componentDidMount =  () => {
       this.props.dispatch(loadData());
+      this.props.dispatch( getCurrentUser())
       
+      
+      const userData = this.props.account.userData;
+      
+      setTimeout(()=>{
+        
+        if (userData) {
+          console.log(userData.data)
+          const schoolEvents = getSchoolEvent(userData.userdata.data.id)
+          this.setState({schoolEvents:schoolEvents})
+        }
+      },100)
   }
 
   handleChange = (event) => {
@@ -32,7 +47,9 @@ class EventList extends Component {
   }
   
   render() {
+      const userData = this.props.account.userData;
       let events = this.props.event.filteredEvents;
+      
       return (
           <div className='dashboard'>
               
@@ -109,6 +126,7 @@ class EventList extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  account:state.account,
   event: state.event
 })
 

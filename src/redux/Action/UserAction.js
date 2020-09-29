@@ -1,5 +1,4 @@
 import ServerDomain from "../../serverdomain";
-import {setCurrentUser} from '../Stores/AccountReducer'
 
 export const loginAccount = async (userInput) => {
     const {schoolCode,username,password} = userInput;
@@ -22,9 +21,7 @@ export const loginAccount = async (userInput) => {
     }
   
     const resData = await loginUser.json();
-    console.log(resData)
+    
     return resData
-    
-    
-    
+
 }

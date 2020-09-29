@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 
 import { connect } from 'react-redux'
-import {loadData,addEvent} from '../../redux/Stores/EventReducer';
+import {getCurrentUser} from '../../redux/Stores/AccountReducer';
+import {addSchoolEvent} from "../../redux/Action/EventAction";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
 import Dropzone from 'react-dropzone';
@@ -14,15 +15,15 @@ class createEvent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      event:{
-        class: '',
+      eventInput:{
+        title:'',
         datefrom:new Date(),
         dateto:new Date(),
-        timefrom:'',
-        timeto:'',
-        eventtitle:'',
-        files:[],  
+        startTime:'',
+        endTime:'',        
+        attachment:[],  
         description:'',
+        classvalue:'',
         key:Math.random().toString()
       },
       openmodal:false
@@ -31,29 +32,36 @@ class createEvent extends Component {
 
   componentDidMount() {
     Modal.setAppElement('body');
-    this.props.dispatch(loadData());
+    
+    this.props.dispatch(getCurrentUser())
+
+    
   }
 
   onDrop = (files) => {
     console.log(files);
-    let update = Object.assign({},this.state.event,{files: files})
-    this.setState({event:update})
+    let update = Object.assign({},this.state.eventInput,{attachment: files})
+    this.setState({eventInput:update})
   }
 
   handleChange = (event) => {
-    let update = Object.assign({},this.state.event,{[event.target.id]: event.target.value})
-    this.setState({event:update})
+    let update = Object.assign({},this.state.eventInput,{[event.target.id]: event.target.value})
+    this.setState({eventInput:update})
   }
   handleDayChange(day,typeofpicker) {
-    let update= Object.assign({},this.state.event,{[typeofpicker]: day})
-    this.setState({event: update});
+    let update= Object.assign({},this.state.eventInput,{[typeofpicker]: day})
+    this.setState({eventInput: update});
   }
 
-  handleSubmit = (event) => {
+  handleSubmit =  (event) => {
     event.preventDefault();
     document.getElementById('create-course-form').reset();
+    
+    const userData = this.props.account.userData;
+
+    addSchoolEvent(userData.data.id,this.state.eventInput)
     this.setState({openmodal:true})
-    setTimeout(()=>{ this.props.dispatch(addEvent({value: this.state.event})) },50)
+    
   }
 
   render() {
@@ -68,8 +76,8 @@ class createEvent extends Component {
               
                 <h1 className='titleform'>Create an event for your class</h1>
                 <div style={marginBottom65vh}>
-                  <label htmlFor='class' className='section'>Class</label>
-                  <input type='text' id='class' className='shortbox' style={marginLeft130vw} placeholder='Maths' onChange={this.handleChange} />
+                  <label htmlFor='classvalue' className='section'>Class</label>
+                  <input type='text' id='classvalue' className='shortbox' style={marginLeft130vw} placeholder='Maths' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow' style={marginBottom65vh}>
                   <div className='flexrow'>
@@ -83,17 +91,17 @@ class createEvent extends Component {
                 </div>
                 <div className='flexrow' style={marginBottom65vh}>
                   <div>
-                    <label htmlFor='timefrom' className='section'>Time from: </label>
-                    <input type='time' id='timefrom' className='shortbox' style={marginLeft130vw}  onChange={this.handleChange} />
+                    <label htmlFor='startTime' className='section'>Time from: </label>
+                    <input type='time' id='startTime' className='shortbox' style={marginLeft130vw}  onChange={this.handleChange} />
                   </div>
                   <div className='flexrow' style={marginLeft380vw}>
-                    <label htmlFor='timeto' className='section'>Time To: </label>
-                    <input type='time' id='timeto' className='shortbox' style={marginLeft130vw} onChange={this.handleChange} />
+                    <label htmlFor='endTime' className='section'>Time To: </label>
+                    <input type='time' id='endTime' className='shortbox' style={marginLeft130vw} onChange={this.handleChange} />
                   </div>
                 </div>
                 <div className='flexrow' style={marginBottom65vh}>
-                  <label htmlFor='eventtitle' className='section'>Event title </label>
-                  <input type='text' id='eventtitle' className='shortbox' style={marginLeft130vw} placeholder='Type here' onChange={this.handleChange} />
+                  <label htmlFor='title' className='section'>Event title </label>
+                  <input type='text' id='title' className='shortbox' style={marginLeft130vw} placeholder='Type here' onChange={this.handleChange} />
                 </div>
                 <div className='flexrow'>
                   <label htmlFor='description' className='section'>Description </label>
@@ -112,7 +120,7 @@ class createEvent extends Component {
                         </div>
                         
                         <div>
-                        {this.state.event.files.map((file)=>(
+                        {this.state.eventInput.attachment.map((file)=>(
                           <div className='flexrow'  style={{marginLeft:'1.5vw',marginTop:'0.8vh'}} key={file.name}>
                             <p> {file.name} </p>
                             <MdClose onClick={()=>this.removeItem(file)} style={{marginTop:'1vh'}}/>
@@ -147,7 +155,8 @@ class createEvent extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  event: state.event
+  account:state.account,
 })
+
 export default connect(mapStateToProps)(createEvent);
 
