@@ -70,7 +70,9 @@ const drawercontent = [
     web: 'event',
     activeimage: 'event_active.png',
     inactiveimage: "event_inactive.png",
-    subcontent: [],
+    subcontent: [
+      { content: 'Create event', web: 'event/createevent', clicked: false },
+    ],
     clicked: false,
     key: 8
   },

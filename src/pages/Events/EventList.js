@@ -21,19 +21,24 @@ class EventList extends Component {
       schoolEvents:{}
     }
   }
-  componentDidMount =  () => {
+  componentDidMount = () => {
       this.props.dispatch(loadData());
-      this.props.dispatch( getCurrentUser())
+      this.props.dispatch(getCurrentUser())
       
       
       const userData = this.props.account.userData;
       
-      setTimeout(()=>{
+      setTimeout( ()=>{
         
-        if (userData) {
-          console.log(userData.data)
-          const schoolEvents = getSchoolEvent(userData.userdata.data.id)
+        try {
+          /*userData.userdata.data.schoolId */
+          
+          const schoolEvents = getSchoolEvent(userData.userdata.data.school.uuid,userData.userdata.data.token)
+          console.log(schoolEvents)
           this.setState({schoolEvents:schoolEvents})
+        } 
+        catch (err){
+          console.log(err)
         }
       },100)
   }
@@ -49,7 +54,7 @@ class EventList extends Component {
   render() {
       const userData = this.props.account.userData;
       let events = this.props.event.filteredEvents;
-      
+      console.log(this.state.schoolEvents)
       return (
           <div className='dashboard'>
               
@@ -61,9 +66,11 @@ class EventList extends Component {
                   
                     <h1 className='titleform'>Events list</h1>
                     <form onSubmit={this.filterByInput} style={{marginLeft:'1vw',paddingTop:'3vh'}}>
-                      <div style={marginBottom100vh}>
+                      <div className='flexrow' style={marginBottom100vh}>
                         <label htmlFor='classteacher' className='section'>Class</label>
                         <input type='text' id='classteacher' className='shortbox' style={marginLeft130vw} placeholder='Type here' onChange={this.handleChange} />
+                        <label htmlFor='section' className='section' style={{marginLeft:'36vw'}}>Section</label>
+                        <input type='text' id='section' className='shortbox' style={{marginLeft:'45vw'}} placeholder='Type here' onChange={this.handleChange} />
                       </div>
                       <div style={marginBottom65vh}> 
                         <label className='section'>Events</label>

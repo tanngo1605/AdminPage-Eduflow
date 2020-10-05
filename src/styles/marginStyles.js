@@ -16,7 +16,9 @@ const marginBottom130vhandTop10vh = {
   marginBottom: "13vh",
   marginTop: "1vh",
 };
-
+const marginLeft450vw ={
+  marginLeft: "45vw",
+}
 const marginLeft380vw = {
   marginLeft: "38vw",
 };
@@ -80,13 +82,11 @@ const labelStyle = {
   marginLeft: "10px",
   width: "25%",
 };
-var t0 = performance.now();
-var t1 = performance.now();
-const combineMargin = Object.assign(marginTop8vh, marginBottom55vh);
+
+
 export {
-  t0,
-  t1,
-  combineMargin,
+
+  
   labelStyle,
   marginTop8vh,
   marginBottom130vhandTop10vh,
@@ -94,6 +94,7 @@ export {
   marginBottom100vh,
   marginBottom65vh,
   marginBottom55vh,
+  marginLeft450vw,
   marginLeft380vw,
   marginLeft250vw,
   marginLeft240vw,

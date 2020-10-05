@@ -4,7 +4,8 @@ import {Scrollbars} from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-
+import classes from '../../userData/GlobalData/classData'
+import sections from '../../userData/GlobalData/sectionData'
 import {
   marginBottom125vh,
   marginBottom65vh,
@@ -18,13 +19,15 @@ import {
   fontsize12vw} from '../../styles/marginStyles'
 import {image100vw} from '../../styles/imageStyles'
 
+
 let numberofperiod=5;
 const subjects = [
   {subject:'Math',value:'math'},
   {subject:'History',value:'history'},
   {subject:'Math',value:'math'},
-
 ]
+
+
 
 class TimeTable extends Component {
   constructor(props) {
@@ -120,7 +123,8 @@ class TimeTable extends Component {
   };
 
   handleDayChange(day) {
-    this.setState({ date: day.toLocaleDateString() });
+    console.log(this.state.date)
+    this.setState({ date: day.getDay() });
   }
   render() {
     return (
@@ -139,20 +143,14 @@ class TimeTable extends Component {
                         <p className='section'>Enter Class</p>
                         <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='class'>
                           <option value="" defaultValue>{" "}-select-</option>
-                          <option value='lime'>Lime</option>
-                          <option value='coconut'>Coconut</option>
-                          <option value='mango'>Mango</option>
+                          {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                         </select>
                       </div>
                       <div className='flexrow' style={marginLeft380vw}>
                         <p className='section'>Enter Section</p>
                         <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw}   id='section'>
                           <option value="" defaultValue>{" "}-select-</option>
-                          <option value='maths'>maths</option>
-                          <option value='english'>English</option>
-                          <option value='science'>Science</option>
-                          <option value='history'>History</option>
-                          <option value='pe'>PE</option>
+                          {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
                         </select>
                       </div>
                     </div>

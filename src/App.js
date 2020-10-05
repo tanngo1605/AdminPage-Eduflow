@@ -61,7 +61,7 @@ function App() {
           <Route path="/resetpassword" component={ResetPassword} />
           <Route path="/ticket" component={TicketList} />
           <Route path="/raiseticket" component={RaiseTicket} />
-          <Route path="/event/raiseevent" component={CreateEvent} />
+          <Route path="/event/createevent" component={CreateEvent} />
           <Route path="/event" component={EventList} />
           <Route path="/teacher" component={TeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />

@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import Dropzone from "react-dropzone";
 import { Scrollbars } from "react-custom-scrollbars";
+import {getSchoolEvent} from "../../redux/Action/EventAction";
+import {getCurrentUser} from '../../redux/Stores/AccountReducer';
 import { addAlbum, loadAlbum } from "../../redux/Stores/GalleryReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
@@ -27,11 +29,31 @@ class Gallery extends Component {
       album: { image: null, title: "", imagesize: " " },
       openmodal: false,
       trigger: false,
+      userData:{},
     };
   }
   componentDidMount() {
     Modal.setAppElement("body");
     this.props.dispatch(loadAlbum());
+    this.props.dispatch(getCurrentUser())
+      
+      
+      
+      
+    setTimeout( ()=>{
+        
+        try {
+          /*userData.userdata.data.schoolId */
+          const userData = this.props.account.userData;
+          const schoolEvents = getSchoolEvent(userData.userdata.data.school.uuid,userData.userdata.data.token)
+          console.log(schoolEvents)
+          this.setState({schoolEvents:schoolEvents})
+        } 
+        catch (err){
+          console.log(err)
+        }
+      },100)
+  
   }
 
   onDrop = (album) => {
