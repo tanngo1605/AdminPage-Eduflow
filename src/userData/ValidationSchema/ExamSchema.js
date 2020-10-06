@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const eventSchema = yup.object({
+const examSchema = yup.object({
   title: yup.string()
     .required(),
   classvalue: yup.string()
@@ -15,9 +15,7 @@ const eventSchema = yup.object({
     .required("required"),
   dateto: yup.date()
     .required(),
-  description:yup.string()
-    .required(),
   attachment: yup.array()
 });
 
-export default eventSchema;
+export default examSchema;

@@ -1,4 +1,4 @@
-const initialvalue= {
+const initialValue= {
     classvalue:"",
     section:"",
     title:"",
@@ -6,6 +6,7 @@ const initialvalue= {
     datefrom:{},
     dateto:{},
     startTime:"",
-    endTime:""
+    endTime:"",
+    attachment:[]
 }
-export default initialvalue;
+export default initialValue;

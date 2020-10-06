@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
-import DayPickerInput from "react-day-picker/DayPickerInput";
+
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
 import {
   loadData,
   filterByValue,
-  deleteData,
+  
 } from "../../redux/Stores/StudentReducer";
 import {
-  marginBottom125vh,
+  
   marginBottom65vh,
   marginLeft380vw,
-  marginLeft200vw,
-  marginLeft150vw,
+  
+  
   marginLeft130vw,
-  marginLeft55vw,
-  marginTop55vh,
+
   marginTop45vh,
-  fontsize12vw,
+  
 } from "../../styles/marginStyles";
 
 class MoveStudent extends Component {

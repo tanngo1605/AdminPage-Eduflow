@@ -1,58 +1,54 @@
-import React, { Component } from 'react';
+import React, {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import { NavLink} from 'react-router-dom'
 import DayPickerInput from "react-day-picker/DayPickerInput";
+import { Formik,Form,Field} from "formik";
 import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/Header'
-import {loadCircularData,deleteCircularData,filterCircularData} from "../../redux/Stores/CircularReducer";
+import {getSchoolCircular} from "../../redux/Action/CircularAction";
+
+import {getCurrentUser} from "../../redux/Stores/AccountReducer";
+import {initListCircular} from "../../userData/InitialData/Circular"
+import {listCircularSchema} from "../../userData/ValidationSchema/CircularSchema"
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import {
-  marginLeft250vw,
+  marginLeft450vw,
+  marginLeft380vw,
   marginLeft130vw,
-  marginTop55vh,
+  marginLeft55vw,
+  
   addaProfileAttachment,
-  marginBottom130vhandTop10vh,
+  marginBottom130vhandTop30vh,
   } from '../../styles/marginStyles'
 
-class CircularList extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      circularsearchinput:{
-        date:'',
-        subject:'',
-      },
-    }
-  }
-  componentDidMount() {
-    this.props.dispatch(loadCircularData());
-}
+const CircularList = (props) => {
+  let [circularData,setCircularData] = useState([])
 
-
-  handleChange = (event) => {
-    let updatesearch= Object.assign({},this.state.circularsearchinput,{[event.target.id]: event.target.value})
-        
-    this.setState({ circularsearchinput: updatesearch })
-  }
-  handleDayChange(day) {
-    let update= Object.assign({},this.state.circularsearchinput,{date: day})
-    console.log(this.state.circularsearchinput)
-    this.setState({circularsearchinput: update});
-  }
-  searchResult=(event)=>{
-    event.preventDefault();
-    console.log(this.state)
-    setTimeout(()=>{
-      
-      this.props.dispatch(
-        filterCircularData({value:this.state.circularsearchinput}))}, 50);
-  }
-  
-
-  render() {
-    let circulars = this.props.circular.filteredCirculars;
+  useEffect(() => {
+    const getCircularData = async ()=>{
+      props.dispatch(getCurrentUser())
     
+    try {
+      const userData=props.account.userData.userdata.data.data;
+      const circular = await getSchoolCircular(userData.school.uuid,userData.token)
+      setCircularData( circular )
+    }
+    catch(err){
+      console.log(err)
+    }
+    }
+    
+    getCircularData()
+  })
+
+
+  
+  const searchResult=(event)=>{
+    
+    
+    
+  }
     return (
       <div className='dashboard'>
         <div className='flexrow'>
@@ -60,46 +56,47 @@ class CircularList extends Component {
           <div className='flexcolumn'>
             <Header/>
             <div className='form'>
-              
+                
                 <h1 className='titleform'>Teacher Info</h1>
-                <NavLink exact to={{pathname:'/teacher/profile'}} className='attachment' style={addaProfileAttachment}>
+                <NavLink exact to={{pathname:'/circular'}} className='attachment' style={addaProfileAttachment}>
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a circular </p>
                 </NavLink>
-                <form className='flexrow' onChange={this.searchResult} style={marginBottom130vhandTop10vh}>
-                  
-                    <div className='flexcolumn' style={marginLeft130vw} >
-                      <p className='section'>Date </p>
-                      <DayPickerInput className='shortbox' style={marginTop55vh} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
-                    </div>
-                    <div className='flexcolumn' style={marginLeft250vw}>
-                      <label htmlFor='Subject' className='section' >Subject</label>
-                      <input type='text' id='Subject' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
-                    </div>
-                  
-                  
-                </form>
+                <Formik
+                  initialValues={initListCircular}
+                  validationSchema={listCircularSchema}
+                >  
+                  {(props)=>(
+                    <Form className='flexrow' onChange={()=>console.log(props.values)} style={marginBottom130vhandTop30vh}>
+                      <label htmlFor='Subject' className='section' style={marginLeft55vw}>Title</label>
+                      <Field type="text" name="title" className="shortbox"  style={marginLeft130vw} placeholder="Type here"/>
+                      <label className="section" style={marginLeft380vw}>Date from: </label>
+                      <DayPickerInput  className="shortbox" name="date" onDayChange={(day)=> props.setFieldValue("date",day)} style={marginLeft450vw}  inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                    </Form>
+
+                  )}
+                </Formik>
                 <div className='eventlistArea' style={{width:'70vw',textAlign:'center'}}>
                   <div className='headereventList'>
                     <p style={{width:'15%'}}>Serial No</p>
                     <p style={{width:'20%'}}>Date</p>
-                    <p style={{width:'20%'}}>Subject</p>
+                    <p style={{width:'20%'}}>Title</p>
                     <p style={{width:'20%'}}>Attachment</p>
                     <p style={{width:'10%'}}>Delete</p>
                     <p style={{width:'10%'}}>Edit</p>
                   </div>
+                  
+                  <div className="bodyeventList">
+                      {circularData&&circularData.map((circular,index)=>
 
-                  <div className="flexcolumn" style={{height:'30vh'}}>
-                      {circulars&&circulars.map((circular,index)=>
-
-                        <div  className="bodyeventList"  key={circular.key} >
+                        <div  className="flexrow"  key={index} >
                           
                           <p style={{width:'15%'}}>{index+1}</p>
-                          <p style={{width:'20%'}}>{circular.date.toLocaleDateString()}</p>
-                          <p style={{width:'20%'}}>{circular.subject}</p>
-                          <p style={{width:'20%'}}>{circular.files.name}</p>
+                          <p style={{width:'20%'}}></p>
+                          <p style={{width:'20%'}}>{circular.title}</p>
+                          <p style={{width:'20%'}}>{circular.url}</p>
                           <div className='itemcenter' style={{width:"10%"}}>
-                            <MdDeleteForever size='1.5vw' onClick={()=>this.props.dispatch(deleteCircularData(circular))}/>
+                            <MdDeleteForever size='1.5vw' onClick={()=>console.log('khanh ')}/>
                           </div>
                           <div className='itemcenter' style={{width:"10%",marginTop:'0.1vh'}}>
                             <NavLink exact to={{pathname:'/circular',circulardata:circular}}>
@@ -120,10 +117,10 @@ class CircularList extends Component {
       </div>
     );
   }
-}
+
 
 const mapStateToProps = (state) => ({
-  circular: state.circular
+  account: state.account,
 })
 
 export default connect(mapStateToProps)(CircularList);

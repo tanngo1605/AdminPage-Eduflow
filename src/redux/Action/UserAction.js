@@ -1,27 +1,84 @@
 import ServerDomain from "../../serverdomain";
-
-export const loginAccount = async (userInput) => {
+import axios from 'axios';
+const loginAccount = async (userInput) => {
     const {schoolCode,username,password} = userInput;
-    const loginUser = await fetch(`${ServerDomain}/auth/login`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    });
+    const inputData =JSON.stringify({
+      username: username,
+      password: password,
+    })
+    let userData= axios.post(`${ServerDomain}/auth/login`,inputData,{
+              headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+              },
+        })
+        .then( resData =>{
+              console.log(`Login ${username} success`)
+              return resData;
+        })
+        .catch( err =>{
+              const error= "Something went wrong. Check your input again"
+              throw new Error(error)
+        })
   
-    if(!loginUser.ok){
-  
-      const error= "Something went wrong. Check your userID or password"
-      throw new Error (error)
-    }
-  
-    const resData = await loginUser.json();
-    
-    return resData
+    return userData
 
 }
+const createUsers =  (schoolId,jwtToken,userInput,role) => {
+  const {
+    name,
+    email,
+    address,
+    mobile,
+    fatherName,
+    motherName,
+    gender,
+    fatherOccupation,
+    fatherMobile,
+    alternativeMobile,
+    admissionNo,
+    dob
+    } = userInput;
+  
+  
+  const inputData = JSON.stringify({
+    
+    name: name,
+    email:email,
+    address:address,
+    mobile:mobile,
+    fatherName:fatherName,
+    motherName:motherName,
+    gender:gender,
+    fatherOccupation:fatherOccupation,
+    fatherMobile:fatherMobile,
+    alternativeMobile:alternativeMobile,
+    admissionNo:admissionNo,
+    dob: dob.toLocaleDateString(),
+    isHosteler:"false",
+    role:role
+    
+    
+    
+  })
+
+  
+  axios.post(`${ServerDomain}/users`,inputData,{
+              headers: { 
+                  "Content-Type":"application/json",
+                    "Authorization":`Bearer ${jwtToken}`
+              },
+            })
+        .then(resData=>{
+              console.log('New Users has been created')
+        })
+        .catch(err=>{
+              const error= "Something went wrong. Check your input again"
+              throw new Error(error)    
+        });
+  
+  
+  
+}
+
+export {loginAccount,createUsers}

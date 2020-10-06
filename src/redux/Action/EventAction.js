@@ -1,6 +1,6 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
-import { Alert } from "react-bootstrap";
+
 
 const addSchoolEvent =  (schoolId,jwtToken,eventInput) => {
     const {title,datefrom,dateto,startTime,endTime,attachment,description,classvalue} = eventInput;
@@ -30,6 +30,7 @@ const addSchoolEvent =  (schoolId,jwtToken,eventInput) => {
           })
           .catch(err=>{
                     const error= "Something went wrong. Check your input again"
+                    throw new Error(error)
                     
           });
     

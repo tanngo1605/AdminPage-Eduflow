@@ -64,8 +64,8 @@ class Drawer extends Component {
                 <div>
                 <Scrollbars style={{height:'60vh'}}>
                 {drawercontent.map((item, index) =>
-                    <React.Fragment >
-                        <div key={item.key} className={item.clicked ? "activesubjectindrawer" : 'notactivesubjectindrawer'} onClick={(e) => this.handleClick(e, item.clicked, index, drawercontent)}>
+                    <React.Fragment key={index}>
+                        <div className={item.clicked ? "activesubjectindrawer" : 'notactivesubjectindrawer'} onClick={(e) => this.handleClick(e, item.clicked, index, drawercontent)}>
                             {(item.clicked) ?
                                 <img src={require('../../assets/' + item.activeimage)} alt={item.imagedescription} style={{ width: '8%', height: '8%',marginTop:'0.2vw', marginLeft: '0.9vw' }} />
 
@@ -84,7 +84,9 @@ class Drawer extends Component {
                                     <li key={index2} style={{ color: "white", width: "8vw", cursor: "pointer" }}>
                                         <NavLink exact to={`/${el.web}`} style={{ color: '#FFFFFF',fontSize:'75%' }}>{el.content}</NavLink>
                                     </li>)
-                                : null}</div>
+                                : null
+                            }
+                        </div>
                     </React.Fragment>
                 )}
                 </Scrollbars>  

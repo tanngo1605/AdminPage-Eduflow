@@ -12,9 +12,7 @@ import TeacherSearch from "./pages/Teacher/TeacherSearch";
 import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
-// import StudentProfile from "./pages/Student/StudentProfile";
-import AStudentProfile from "./pages/Student/AnotherSP";
-import ATeacherProfile from "./pages/Student/AnotherTP";
+import StudentProfile from "./pages/Student/StudentProfile";
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
 import Timetable from "./pages/TimeTable/TimeTable";
@@ -65,7 +63,7 @@ function App() {
           <Route path="/event" component={EventList} />
           <Route path="/teacher" component={TeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />
-          <Route path="/student" component={AStudentProfile} />
+          <Route path="/student" component={StudentProfile} />
           <Route path="/studentsearch" component={StudentSearch} />
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />

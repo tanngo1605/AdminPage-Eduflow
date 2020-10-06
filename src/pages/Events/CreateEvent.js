@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import Modal from "react-modal";
 import { Formik,Form,Field} from "formik";
 import { connect } from "react-redux"
@@ -9,75 +9,67 @@ import Header from "../../component/Header/Header"
 import Dropzone from "react-dropzone";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPlus } from "react-icons/bs";
-import EventSchema from "../../userData/ValidationSchema/EventSchema"
 import classes from '../../userData/GlobalData/classData'
 import sections from '../../userData/GlobalData/sectionData'
+import EventSchema from "../../userData/ValidationSchema/EventSchema"
 import eventInitialValues from '../../userData/InitialData/Event'
-import {marginLeft450vw,marginLeft380vw,marginLeft130vw,marginBottom65vh,marginTop120vh} from "../../styles/marginStyles"
+import {
+  marginBottom65vhandTop120vh,
+  marginLeft450vw,
+  marginLeft380vw,
+  marginLeft320vw,
+  marginLeft130vw,
+  marginBottom65vh,
+  marginBottom30vh,
+  } from "../../styles/marginStyles"
 
 
 
-class createEvent extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      attachment:"",
-      userData:"",
-      jwtToken:"",
-      openmodal:false
-    }  
-  }
+const CreateEvent = (props) => {
+  
+  let [modalState,setModalState] = useState(false)
 
-  componentDidMount() {
+  useEffect((props)=>{
     Modal.setAppElement("body");
-    this.props.dispatch(getCurrentUser())
-    setTimeout(()=>{
-        const userData = this.props.account.userData;
-        this.setState({userData:userData})
-    },100)
-  }
+    props.dispatch(getCurrentUser())
+    
+  }) 
 
-  onDrop = (files) => {
-    console.log(files);
-    let update = Object.assign({},this.state,{attachment: files})
-    this.setState({eventInput:update})
-  }
 
-  handleSubmit =  (values) => {
-   
+  const handleSubmit =  (values) => {
     try {
-      let userData = this.state.userData.userdata.data
+      const userData = props.account.userData.userdata.data.data;
       addSchoolEvent(userData.school.uuid,userData.token,values)
+      setModalState(true);
     }
     catch(error) {
       console.log(error)
     }
-    this.setState({openmodal:true})
+    
    
   }
   
 
-  render() {
-    
-    return (
+  
+  return (
       <div className="dashboard">
         <div className="flexrow">
           <Drawer/>
           <div className="flexcolumn">
             <Header/>
             <div className="form">
-              <h1 className="titleform" style={{marginBottom:'3vh'}}>Create an event for your class</h1>
+              <h1 className="titleform" style={marginBottom30vh}>Create an event for your class</h1>
               <Formik
                 initialValues={eventInitialValues}
                 validationSchema={EventSchema}
                 onSubmit={(values, actions) => {
-                  this.handleSubmit(values);
+                  handleSubmit(values);
                   actions.resetForm()
                 }}
               >
-                {(props)=>(
+                {(propsForm)=>(
                   <Form>
-                    <div style={marginBottom65vh}>
+                    <div className='flexrow' style={marginBottom65vh}>
                       {/* Class*/}
                       <label htmlFor="classvalue" className="section">Class</label>
                       
@@ -94,9 +86,9 @@ class createEvent extends Component {
                     </div>
                     <div className="flexrow" style={marginBottom65vh}>
                       <label className="section">Date from: </label>
-                      <DayPickerInput  className="shortbox" name="datefrom" onDayChange={(day)=> props.setFieldValue('datefrom',day)} style={marginLeft130vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                      <DayPickerInput  className="shortbox" name="datefrom" onDayChange={(day)=> propsForm.setFieldValue('datefrom',day)} style={marginLeft130vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
                       <label htmlFor="dateto" className="section" style={marginLeft380vw}>Date to:</label>
-                      <DayPickerInput  className="shortbox" name="dateto" onDayChange={(day)=>props.setFieldValue('dateto',day)} style={{marginLeft:"32vw"}} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                      <DayPickerInput  className="shortbox" name="dateto" onDayChange={(day)=>propsForm.setFieldValue('dateto',day)} style={marginLeft320vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
                       
                     </div>
                     <div className="flexrow" style={marginBottom65vh}>
@@ -114,10 +106,10 @@ class createEvent extends Component {
                       <label htmlFor="description" className="section">Description </label>
                       <Field component='textarea' name='description' className="shortbox"  style={Object.assign({},{height:"10vh",width:"58vw"},marginLeft130vw)} placeholder="Type here" />
                     </div>
-                    <div className="flexrow" style={Object.assign({},marginBottom65vh,marginTop120vh)}>
+                    <div className="flexrow" style={marginBottom65vhandTop120vh}>
                       <p className="section">Attachment </p>
                 
-                      <Dropzone onDrop={this.onDrop}>
+                      <Dropzone name="attachment" onDrop={(files)=> propsForm.setFieldValue("attachment",files)}>
                         {({getRootProps, getInputProps}) => (
                           <section className="flexrow" style={marginLeft130vw}>
                             <div {...getRootProps({ className:"attachment"})}>
@@ -133,8 +125,8 @@ class createEvent extends Component {
 
                     <div className="flexrow" style={{marginLeft:"15vw",marginTop:"2vh"}}>
                       <button type="submit" className="button">Create</button>
-                      <button type="reset" value="Reset" className="button">Reset</button>
-                      <button className="button" onClick={()=>this.props.history.push("/")} style={{color:"#FFFFFF"}}>Cancel</button>
+                      <button type="reset" className="button">Reset</button>
+                      <button type='button' className="button" onClick={()=>props.history.push("/")} style={{color:"#FFFFFF"}}>Cancel</button>
                     </div>
                   </Form>
                 )}
@@ -143,10 +135,10 @@ class createEvent extends Component {
                 
               
             </div>
-            <Modal isOpen={this.state.openmodal} onRequestClose={()=>this.setState({openmodal:false})} className="Modal"> 
+            <Modal isOpen={modalState} onRequestClose={()=>setModalState(false)} className="Modal"> 
                 <div className="headermodal" style={{textAlign:"center",color:"#262F56",fontWeight:"bold"}}>Events</div>
                 <p style={{marginTop:"15%",textAlign:"center"}}>Event saved successfully</p>
-                <button className="button" onClick={()=>this.props.history.push("/event")} style={{marginTop:"5%",marginLeft:"29%"}}> Ok</button>
+                <button className="button" onClick={()=>props.history.push("/event")} style={{marginTop:"5%",marginLeft:"29%"}}> Ok</button>
      
             </Modal>
           </div>
@@ -155,10 +147,9 @@ class createEvent extends Component {
     </div>
     );
   }
-}
 const mapStateToProps = (state) => ({
   account:state.account,
 })
 
-export default connect(mapStateToProps)(createEvent);
+export default connect(mapStateToProps)(CreateEvent);
 

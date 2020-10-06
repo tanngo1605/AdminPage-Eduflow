@@ -1,26 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
-import DayPickerInput from "react-day-picker/DayPickerInput";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
-
-import {
-  marginBottom125vh,
-  marginBottom65vh,
-  marginLeft380vw,
-  marginLeft200vw,
-  marginLeft150vw,
-  marginLeft130vw,
-  marginLeft55vw,
-  marginTop55vh,
+import { 
   marginTop45vh,
-  fontsize12vw,
 } from "../../styles/marginStyles";
-import { image100vw } from "../../styles/imageStyles";
-import { BsPencilSquare, BsPlus } from "react-icons/bs";
+
+import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-import { el } from "date-fns/locale";
+//import { el } from "date-fns/locale";
 
 class StudentMigration extends Component {
   constructor(props) {
@@ -140,7 +129,7 @@ class StudentMigration extends Component {
                     {this.state.student &&
                       this.state.student.map(
                         (el) => (
-                          console.log(el),
+                          console.log(el)
                           (
                             <div
                               className="textMigrationScreenField"

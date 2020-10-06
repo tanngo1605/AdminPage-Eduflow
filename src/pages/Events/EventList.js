@@ -52,9 +52,8 @@ class EventList extends Component {
   }
   
   render() {
-      const userData = this.props.account.userData;
       let events = this.props.event.filteredEvents;
-      console.log(this.state.schoolEvents)
+      
       return (
           <div className='dashboard'>
               

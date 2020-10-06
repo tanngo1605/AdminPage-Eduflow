@@ -11,16 +11,29 @@ const marginBottom65vh = {
 const marginBottom55vh = {
   marginBottom: "5.5vh",
 };
-
+const marginBottom30vh = {
+  marginBottom: "3vh",
+};
+const marginBottom65vhandTop120vh = {
+  marginBottom: "6.5vh",
+  marginTop: "12vh",
+};
 const marginBottom130vhandTop10vh = {
   marginBottom: "13vh",
   marginTop: "1vh",
+};
+const marginBottom130vhandTop30vh = {
+  marginBottom: "13vh",
+  marginTop: "3vh",
 };
 const marginLeft450vw ={
   marginLeft: "45vw",
 }
 const marginLeft380vw = {
   marginLeft: "38vw",
+};
+const marginLeft320vw = {
+  marginLeft: "32vw",
 };
 const marginLeft250vw = {
   marginLeft: "25vw",
@@ -89,13 +102,17 @@ export {
   
   labelStyle,
   marginTop8vh,
+  marginBottom130vhandTop30vh,
   marginBottom130vhandTop10vh,
+  marginBottom65vhandTop120vh,
   marginBottom125vh,
   marginBottom100vh,
   marginBottom65vh,
   marginBottom55vh,
+  marginBottom30vh,
   marginLeft450vw,
   marginLeft380vw,
+  marginLeft320vw,
   marginLeft250vw,
   marginLeft240vw,
   marginLeft200vw,
