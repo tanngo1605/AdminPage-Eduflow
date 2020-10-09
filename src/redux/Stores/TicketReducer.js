@@ -50,7 +50,7 @@ const ticketReducer = (state = {}, action) => {
       ]
       counterToActiviateLoadDataOnce++;
       if (counterToActiviateLoadDataOnce === 1) return (Object.assign({}, state, { tickets: tickets, filteredTickets: tickets }));
-
+      return state;
     default:
       return state;
   }

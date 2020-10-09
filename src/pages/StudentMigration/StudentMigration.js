@@ -1,27 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
-import DayPickerInput from "react-day-picker/DayPickerInput";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
-
-import {
-  marginBottom125vh,
-  marginBottom65vh,
-  marginLeft380vw,
-  marginLeft200vw,
-  marginLeft150vw,
-  marginLeft130vw,
-  marginLeft55vw,
-  marginTop55vh,
+import { 
   marginTop45vh,
-  fontsize12vw,
 } from "../../styles/marginStyles";
-import { image100vw } from "../../styles/imageStyles";
-import { BsPencilSquare, BsPlus } from "react-icons/bs";
+
+import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
+<<<<<<< HEAD
 import { el } from "date-fns/locale";
 import { loadMoveStudentData } from '../../redux/Stores/StudentReducer';
+=======
+//import { el } from "date-fns/locale";
+
+>>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
 class StudentMigration extends Component {
   constructor(props) {
     super(props);
@@ -151,6 +145,7 @@ class StudentMigration extends Component {
                     <div>Edit</div>
                   </div>
                   <div>
+<<<<<<< HEAD
                     {dataOfMoveSt && dataOfMoveSt.map(
                       (el, index) => {
                         if (Array.isArray(el) && index === 0) {
@@ -158,6 +153,13 @@ class StudentMigration extends Component {
                             className="textMigrationScreenField"
                             key={index}
                           >
+=======
+                    {this.state.student &&
+                      this.state.student.map(
+                        (el) => (
+                          console.log(el)
+                          (
+>>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
                             <div
                               className="customWidth"
                             // onClick={() => this.deleteStudents(el)}

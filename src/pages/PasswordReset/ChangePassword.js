@@ -113,7 +113,7 @@ class ChangePassword extends Component {
                       modal
                       
                       trigger={
-                        <button type="button" value="submit" className="buttonPass" onClick={this.handleChange}>
+                        <button type="button" value="submit" className="buttonPass">
                           Reset
                         </button>
                       }

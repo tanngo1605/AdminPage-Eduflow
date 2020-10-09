@@ -1,55 +1,55 @@
 import ServerDomain from "../../serverdomain";
+import axios from 'axios';
 
-const addSchoolEvent =  (schoolId,eventInput) => {
+
+const addSchoolEvent =  (schoolId,jwtToken,eventInput) => {
     const {title,datefrom,dateto,startTime,endTime,attachment,description,classvalue} = eventInput;
-    console.log(schoolId)
-    const addEvent =  fetch(`${ServerDomain}/schools/${schoolId}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        startTime: startTime,
-        endTime:endTime,
-        attachment:attachment,
-        description:description,
-        class:classvalue,
-        section:title,
-      }),
-    });
-  
-    if(!addEvent.ok){
-  
-      const error= "Something went wrong. Check your input again"
-      throw new Error (error)
-    }
-  
-    const resData =  addEvent.json();
     
-    return resData
+    console.log(eventInput)
+    const inputData = JSON.stringify({
+      
+      title: title,
+      startTime: new Date(`${datefrom.toLocaleDateString()} ${startTime}`),
+      endTime: new Date(`${dateto.toLocaleDateString()} ${endTime}`),
+      //class:classvalue,
+      description:description,
+      //attachment:[]
+      
+      
+    })
+
+    console.log(inputData)
+    axios.post(`${ServerDomain}/schools/${schoolId}/events`,inputData,{
+                    headers: { 
+                      "Content-Type":"application/json",
+                      "Authorization":`Bearer ${jwtToken}`
+                    },
+          })
+          .then(resData=>{
+                    console.log("New Events has been created")
+          })
+          .catch(err=>{
+                    const error= "Something went wrong. Check your input again"
+                    throw new Error(error)
+                    
+          });
+    
+    
     
 }
-const getSchoolEvent = async (schoolId) => {
-    console.log(schoolId)
-    const schoolEvents = await fetch(`${ServerDomain}/schools/${schoolId}/events`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
+const getSchoolEvent = (schoolId,jwtToken) => {
     
-    if(!schoolEvents.ok){
-  
-      const error= "Something went wrong. School Id not working"
-      throw new Error (error)
-    }
-  
-    const resData = await schoolEvents.json();
-    
-    return resData
-    
+    axios
+        .get(`${ServerDomain}/schools/${schoolId}/events`,{
+                    headers: { "Authorization":`Bearer ${jwtToken}`},
+          })
+        .then( resData=> {
+                    return resData
+        })
+        .catch(err=> {
+                    const error= "Something went wrong. Check your input again"
+                    throw new Error (error)
+        })
+ 
 }
 export {addSchoolEvent,getSchoolEvent}
