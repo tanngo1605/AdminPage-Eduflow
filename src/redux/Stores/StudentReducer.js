@@ -1,7 +1,7 @@
 import { act } from "react-dom/test-utils";
 
 let counterToActiviateLoadDataOnce = 0;
-
+let counter = 0
 export const addData = (payload) => ({
   type: "ADD_STUDENT_DATA",
   payload,
@@ -9,6 +9,10 @@ export const addData = (payload) => ({
 
 export const loadData = (payload) => ({
   type: "LOAD_STUDENT_DATA",
+  payload,
+});
+export const loadMoveStudentData = (payload) => ({
+  type: "MOVE_STUDENT_DATA",
   payload,
 });
 export const deleteData = (payload) => ({
@@ -32,16 +36,7 @@ const StudentReducer = (state = [], action) => {
   switch (action.type) {
     case 'FILTER_STUDENT_DATA':
       let { name = '', classvalue = '', section = '', ticked = false } = action.payload.value;
-      console.log({ classvalue });
-      // let arrStu = state.students.map(student => {
-      //   console.log(ticked && student.name.toLowerCase().includes(name) ? student.ticked = true : null)
 
-      //   // student.chosen ? student.ticked = true : student.ticked = false
-      //   return (
-      //     ticked && student.name === name ? student.ticked = true : student.ticked = false
-      //   )
-      // });
-      console.log(state.filteredStudents)
       state.filteredStudents = state.students.filter(student => {
         return (
           student.name.toLowerCase().includes(name) &&
@@ -75,17 +70,28 @@ const StudentReducer = (state = [], action) => {
     case 'DELETE_STUDENT_DATA':
       state.filteredStudents.splice(action.payload.value, 1);
       return (Object.assign({}, state));
+    // case 'DELETE_STUDENT_DATA':
+    //   const moveStudentsInfo = [
+    //     {name:"",fromclassvalue:"",toclassvalue:"",fromsection:"",tosection:""}
+    //   ]
     case 'LOAD_STUDENT_DATA':
       const students = [
         { name: "Adam", classvalue: "V", section: "H", rollno: '25', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '41321321', admission: '5464', image: null, ticked: false, key: '1' },
-        { name: "Akhil", classvalue: "H", section: "TL", rollno: '24', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '3000', admission: '40', image: null, ticked: false, key: '2' },
+        { name: "Akhil", classvalue: "V", section: "H", rollno: '24', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '3000', admission: '40', image: null, ticked: false, key: '2' },
         { name: "Adin", classvalue: "H", section: "TL", rollno: '23', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '3000', admission: '40', image: null, ticked: false, key: '3' },
       ]
       counterToActiviateLoadDataOnce++;
       if (counterToActiviateLoadDataOnce === 1) return (Object.assign({}, state, { students, filteredStudents: students }));
 
       return (Object.assign({}, state))
+    case 'MOVE_STUDENT_DATA':
+      let dataOfMoveStudent = action.payload
+      console.log(action.payload);
+      counter++;
+      if (counter === 1)
+        return (Object.assign({}, state, { moveStudentData: dataOfMoveStudent }))
 
+      return (Object.assign({}, state))
 
     default:
       return state;

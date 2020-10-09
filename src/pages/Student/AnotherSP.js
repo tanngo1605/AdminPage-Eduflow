@@ -128,9 +128,7 @@ class AStudentProfile extends Component {
     let update = Object.assign({}, this.state.student, {
       date: a,
     });
-    // console.log(day.toLocaleDateString("en-GB"));
     this.setState({ student: update });
-    // console.log(this.props);
     console.log(this.state.student);
 
     console.log(a);
@@ -153,7 +151,6 @@ class AStudentProfile extends Component {
                     <div
                       className="flexcolumn"
                       style={{
-                        // overflowY: "scroll",
                         filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
                         width: "730px",
                         height: "auto",
@@ -172,7 +169,6 @@ class AStudentProfile extends Component {
                               (
                                 {
                                   marginTop: "20px"
-                                  // item.content === "Name" ? "20px" : "40px",
                                 })
                             }
                           >
@@ -236,7 +232,7 @@ class AStudentProfile extends Component {
                                 <div style={{ marginBottom: "3vh" }}>
                                   <div
                                     className="section"
-                                    style={{ marginRight: "10vw", width: "25%" }}
+                                    style={labelStyle}
                                   >
                                     {item.content}{" "}
                                   </div>
@@ -265,7 +261,7 @@ class AStudentProfile extends Component {
                           className="section"
                           style={labelStyle}
                         >
-                          {/* {content}{" "} */}Correspondense address
+                          Correspondense address
                         </label>
                         <textarea
                           placeholder="Enter correspondense address"
@@ -296,14 +292,12 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -318,14 +312,12 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -340,14 +332,12 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "84px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -401,12 +391,11 @@ class AStudentProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -424,14 +413,12 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -449,14 +436,12 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "84px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -475,15 +460,10 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
-                            // onChange={this.handleChange}
-                            style={{
-                              marginLeft: "84px",
-                              width: "190px",
-                              height: "39px",
-                            }}
+                            className="shortbox csInput"
+                          // onChange={this.handleChange}
+
                           />
                         </div>
                         <div style={{ marginLeft: "20vw" }}>
@@ -498,15 +478,10 @@ class AStudentProfile extends Component {
                           <input
                             type={Text}
                             required
-                            // id="corAddress"
                             placeholder=""
-                            className="shortbox"
-                            // onChange={this.handleChange}
-                            style={{
-                              marginLeft: "84px",
-                              width: "190px",
-                              height: "39px",
-                            }}
+                            className="shortbox csInput"
+                          // onChange={this.handleChange}
+
                           />
                         </div>
                       </div>
@@ -557,6 +532,7 @@ class AStudentProfile extends Component {
                         ) : (
                             <div
                               className="shortbox"
+
                               style={{
                                 backgroundColor: "#F2F4F7",
                                 marginLeft: "20vw",
@@ -612,9 +588,6 @@ class AStudentProfile extends Component {
                       value="Save"
                       className="button"
                       style={{ marginLeft: "15%" }}
-                      // onClick={(event) =>
-                      //   this.state.edit ? this.handleSubmit(event) : null
-                      // }
                       onClick={this.handleSubmit}
                     />
                   </div>

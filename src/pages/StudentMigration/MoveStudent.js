@@ -4,25 +4,21 @@ import { Scrollbars } from "react-custom-scrollbars";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
+import Popup from "reactjs-popup";
+// import StudentMigration from "./StudentMigration"
 import {
   loadData,
   filterByValue,
-  deleteData,
+  loadMoveStudentData
 } from "../../redux/Stores/StudentReducer";
 import {
-  marginBottom125vh,
   marginBottom65vh,
   marginLeft380vw,
-  marginLeft200vw,
-  marginLeft150vw,
   marginLeft130vw,
-  marginLeft55vw,
-  marginTop55vh,
   marginTop45vh,
-  fontsize12vw,
 } from "../../styles/marginStyles";
 import { forEach } from "lodash";
-
+// let arr = []
 class MoveStudent extends Component {
   constructor(props) {
     super(props);
@@ -30,37 +26,31 @@ class MoveStudent extends Component {
       name: "",
       classvalue: "",
       section: "",
-
-      // '1': { class: '', section: '', date: '', subject: '', teacher: '' },
-      // '2': { class: '', section: '', date: '', subject: '', teacher: '' },
-      // '3': { class: '', section: '', date: '', subject: '', teacher: '' },
-
+      studentArr: [],
+      flag: false
       //   date: '',
       // trigger: false,
     };
   }
   componentDidMount() {
     this.props.dispatch(loadData());
+    // console.log("componetDidMount() lifecycle");
   }
-  handleChange = (event, key) => {
-    // console.log(event.target.id, event.target.value);
-    // this.setState({ [event.target.id]: event.target.value });
-    console.log(event.target);
+  handleChange = (event) => {
     let updatesearch = Object.assign({}, this.state, { [event.target.id]: event.target.value })
     console.log(updatesearch)
     this.setState(updatesearch)
-    console.log(this.state)
-    // this.props.dispatch(loadData());
+    // let a = document.getElementById("classvalue").value
+    // console.log(a);
+
   };
 
   filterStudent = (e) => {
-    // console.log(this.state);
     e.preventDefault();
-    // console.log(this.state);
     setTimeout(() => {
       this.props.dispatch(filterByValue({ value: this.state }))
     }, 100);
-    console.log(filterByValue({ value: this.state }))
+    console.log(this.state)
     // console.log(this.state);
     // console.log(
     //   filterByValue({
@@ -78,51 +68,120 @@ class MoveStudent extends Component {
     this.setState({ date: day.toLocaleDateString() });
   }
   chooseStud = (e) => {
-    // console.log(e.target)
-    // let updatesearch = Object.assign({}, this.state, { [e.target.id]: true })
-    // console.log(updatesearch)
-    // this.setState(updatesearch)
+    // console.log(this.state.from, this.state.from.class);
+    // this.setState({ flag: true })
     let students = this.props.student.filteredStudents
-    console.log(students.length)
+    // if (this.state.flag) {
     students.forEach(el => {
       if (el.key === e.target.value) {
         el.ticked = !el.ticked
-      }
-    });
-    let abc = students.forEach(el => {
-      for (var i = 0; i < students.length; i++) {
-        if (el.classvalue) {
-          console.log(el);
+        // arr.push([{ nameof: el.name, classOf: el.classvalue, sectionOf: el.section }])
+        // this.setState(prevState => {
+        //   studentArr: {
+        //     Object.assign({}, ...prevState.studentArr, [{ nameof: el.name, classOf: el.classvalue, sectionOf: el.section }])
+        //   }
+        // })
+        if (el.ticked === true) {
+          console.log(Object.assign([], this.state.studentArr));
+          this.setState({
+            studentArr: this.state.studentArr.concat([{ nameof: el.name, classOf: el.classvalue, sectionOf: el.section }])
+          })
+
         }
+        else {
+          // this.se
+          // console.log(this.state.studentArr.find(ele => ele !== [{ nameof: el.name, classOf: el.classvalue, sectionOf: el.section }]))
+          // console.log(item !== { nameof: el.name, classOf: el.classvalue, sectionOf: el.section });
+          // return item !== { nameof: el.name, classOf: el.classvalue, sectionOf: el.section }
+          // }));
+
+          // this.setState({
+          //   studentArr: this.state.studentArr.filter(el => {
+          //     return el !== { nameof: el.name, classOf: el.classvalue, sectionOf: el.section }
+          //   })
+          // })
+        }
+
+
+
+
       }
     })
-    // console.log(students)
-    // let bao = students.find(student => {
-    //   return student.key === e.target.value
-    // });
-    // // console.log(bao)
-    // bao.ticked = !bao.ticked
-    // console.log(students, this.props.student.filteredStudents);
-    // // students.forEach(student => {
-    // //   console.log(student);
-    // // })
-    // let b = []
+    // }
+    // console.log(this.state);
+    // else {
+    //   students.forEach(el => {
+    //     if (el.key === e.target.value) {
+    //       if (el.ticked === true) {
 
-    // let a = students.find(student => {
-    //   return (student.ticked === true ? Object.assign(...b, student) : null)
-    // })
-    // console.log(a)
+    //       }
+    //       else {
+
+    //       }
+    //     }
+    //   });
+    // }
+    // console.log(students);
+
+  }
+  handleDataOfStudent = () => {
+    // this.setState({ flag: true })
+    let students = this.props.student.filteredStudents
+    let arr = []
+    arr.push([this.state.classvalue, this.state.section])
+    students.forEach(el => {
+      // console.log(el);
 
 
+      if (el.ticked === true) {
+        console.log(el);
+
+        // this.setState({ studentArr: a })
+        arr.push({ nameof: el.name, classOf: el.classvalue, sectionOf: el.section })
+        // console.log(arr);
+      }
+
+      // console.log(students);
+      // Object.assign({}, ...this.state.studentArr, [{ nameOf: el.name, classOf: el.classvalue, sectionOf: el.section }])
+      // const arr = []
+      // students.forEach(el => {
+      //   if (el.ticked) {
+      //     arr.push([el.name, el.classvalue, el.section])
+      //   }
+      // })
+      // console.log(arr);
+      // e.preventDefault();
+
+
+    }
+    )
+
+    console.log(arr, this.state.studentArr);
+    setTimeout(() => {
+      this.props.dispatch(loadMoveStudentData(arr))
+    }, 100);
 
   }
   handleSubmit = () => {
+
+    // this.setState({ flag: true })
     this.props.history.push("/studentmigration");
+  }
+  handleFlag = () => {
+    console.log("object");
+    // this.setState({ flag: false })
   }
   render() {
     let students = this.props.student.filteredStudents;
+    // console.log(students);
+
+    // students.map(el => {
+    //   if (!el.ticked && !this.state.flag) {
+
+    //   }
+    // })
     return (
-      <div className="dashboard">
+      <div className="dashboard" >
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
@@ -140,7 +199,7 @@ class MoveStudent extends Component {
                     <select
                       className="shortbox"
                       required
-                      onChange={this.handleChange}
+                      onChange={(e) => this.setState({ classvalue: e.target.value })}
                       style={marginLeft130vw}
                       id="classvalue"
                     >
@@ -158,7 +217,7 @@ class MoveStudent extends Component {
                     <select
                       className="shortbox"
                       required
-                      onChange={this.handleChange}
+                      onChange={(e) => this.setState({ section: e.target.value })}
                       style={marginLeft130vw}
                       id="section"
                     >
@@ -191,13 +250,13 @@ class MoveStudent extends Component {
                     {students &&
                       students.map(
                         (el) => (
-                          // console.log(students),
+                          console.log(el.ticked),
                           (
                             <div
                               style={{ display: "flex", marginBottom: "12px" }}
                             >
                               <input
-                                onClick={(e) => this.chooseStud(e)}
+                                onClick={() => { el.ticked = !el.ticked; this.setState({ flag: !this.flag }) }}
                                 className="bac"
                                 key={el.key.toString()}
                                 // checked={el.ticked === false ? "false" : "checked"}
@@ -210,6 +269,7 @@ class MoveStudent extends Component {
                                   border: "1px solid #555555",
                                 }}
                               />
+
                               <div
                                 className="shortbox"
                                 style={{
@@ -238,7 +298,8 @@ class MoveStudent extends Component {
                                     boxShadow:
                                       "0px 1px 10px rgba(0, 0, 0, 0.1)",
                                   }}
-                                  id="section"
+                                  id="toclassvalue"
+                                  name="classvalue"
                                 >
                                   <option value="" defaultValue>
                                     {" "}
@@ -246,9 +307,7 @@ class MoveStudent extends Component {
                                   </option>
                                   <option value="TH">TH</option>
                                   <option value="TL">TL</option>
-                                  <option value="science">Science</option>
-                                  <option value="history">History</option>
-                                  <option value="pe">PE</option>
+
                                 </select>
                               </div>
                               <div>
@@ -266,17 +325,14 @@ class MoveStudent extends Component {
                                     boxShadow:
                                       "0px 1px 10px rgba(0, 0, 0, 0.1)",
                                   }}
-                                  id="section"
+                                  id="tosection"
+                                  name="section"
                                 >
                                   <option value="" defaultValue>
                                     {" "}
                                     -select-
                                   </option>
                                   <option value="TL">TL</option>
-                                  <option value="english">English</option>
-                                  <option value="science">Science</option>
-                                  <option value="history">History</option>
-                                  <option value="pe">PE</option>
                                 </select>
                               </div>
                             </div>
@@ -289,13 +345,89 @@ class MoveStudent extends Component {
 
               <div className="flexrow" style={marginTop45vh}>
                 {/* <button>Save</button> <button>Reset</button> */}
-                <input
+                {/* <input
                   type="submit"
                   value="Save"
                   className="button"
                   onClick={this.handleSubmit}
                   style={{ marginLeft: "27%" }}
-                />
+                /> */}
+                <Popup
+                  modal
+                  className="moveStudentPopup"
+
+                  trigger={
+                    <div onClick={() => this.setState({ flag: true })} style={{
+                      marginLeft: "250px",
+                      marginRight: "100px"
+                    }}>
+                      <button
+                        type="button"
+                        value="Save"
+                        className="button"
+                        // closeOnDocumentClick
+                        style={{ marginLeft: "27%" }}
+                      // open={false}
+                      >
+
+                        Save
+                  </button>
+                    </div>
+
+                  }
+                >
+                  {close => (<div style={{ width: "inherit" }}>
+                    <div className="headerOfPopupMoveSt">Submit</div>
+                    <div className="textPopupmoveSt">Press OK if you want to migrate or cancle to go back</div>
+                    <div style={{ display: "flex", width: "inherit", margin: "0 -15%" }}>
+                      {/* <button className="button" onClick={() => this.handleDataOfStudent()} style={{ marginLeft: "27%" }}>OK</button> */}
+                      {/* <div style={{ display: "flex", marginLeft: "80px" }} onClick={this.handleDataOfStudent}> */}
+                      <Popup
+                        modal
+                        // onClick={() => this.handleDataOfStudent()}
+                        className="moveStudentPopup"
+                        trigger={
+                          <div style={{ position: "absolute", display: "flex" }} onClick={this.handleDataOfStudent}>
+                            <button
+                              // type="button"
+                              value="Submit"
+                              className="button"
+                              onClick={() => this.handleDataOfStudent()}
+                              // onOpen={() => this.handleDataOfStudent()}
+                              style={{ position: "absolute", width: "12vw", left: "5vw" }}
+                            // onClick={(e) => this.handleDataOfStudent(e)}
+                            >
+                              OK
+                          </button>
+                          </div>
+
+
+
+                        }
+                      >
+                        <div style={{ width: "inherit" }}>
+                          <div className="headerOfPopupMoveSt">Submit</div>
+                          <div className="textPopupmoveSt">Student migrated successfully</div>
+                          <div style={{ display: "flex", width: "inherit", marginLeft: "1vw", marginTop: "16vh" }}>
+                            <button className="button buttonCompletePopup" onClick={this.handleSubmit} >OK</button>
+                            <button className="button buttonCompletePopup" onClick={() => console.log(this.state)}>Cancle</button>
+                          </div>
+                        </div>
+                      </Popup>
+                    </div>
+
+                    <div onClick={this.handleFlag} style={{ position: "relative" }}>
+                      <button className="button" style={{ width: "12vw", position: "absolute", left: "15vw" }} onClick={close} >Cancle</button>
+                    </div>
+
+                  </div>
+                    // </div>
+                  )}
+
+
+                </Popup>
+
+
                 <input type="reset" value="Reset" className="button" />
               </div>
             </div>

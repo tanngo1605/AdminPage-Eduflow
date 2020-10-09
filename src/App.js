@@ -35,6 +35,7 @@ import Attendance from "./pages/TeacherAttendance/Attendance";
 import SearchAttendace from "./pages/TeacherAttendance/SearchAttendance";
 import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
 import "./styles.css";
+import FormikForm from "./pages/TimeTable/TimeTable(New)"
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
+          {/* <FormikForm /> */}
+          <Route path="/formik" component={FormikForm} />
           <Route path="/studentmigration" component={StudentMigration} />
           <Route path="/movestudent" component={MoveStudent} />
           <Route path="/editattendance" component={EditAttendance} />

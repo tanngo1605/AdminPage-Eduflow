@@ -59,9 +59,9 @@ class ResetPassword extends Component {
                   type={
                     this.state.id === "1" && temp % 2 == 0
                       ? // id[0] === "1" && this.state.hidden && this.state.id === "1"
-                        // ? this.state.hidden
-                        // : this.state.temp
-                        "text"
+                      // ? this.state.hidden
+                      // : this.state.temp
+                      "text"
                       : "password"
                   }
                 />
@@ -84,12 +84,12 @@ class ResetPassword extends Component {
                   type={
                     this.state.id === "2" && temp % 2 == 0
                       ? //  this.state.hidden && this.state.id === "2"
-                        // ? this.state.hidden
-                        // : this.state.temp
-                        "text"
+                      // ? this.state.hidden
+                      // : this.state.temp
+                      "text"
                       : "password"
                   }
-                  // onClick={(e) => (e.target.type = "password")}
+                // onClick={(e) => (e.target.type = "password")}
                 />
 
                 <label className="eyeIcon" htmlFor="button2">
@@ -103,8 +103,9 @@ class ResetPassword extends Component {
               <div className="checkField">
                 <input
                   type="checkbox"
-                  checked={this.state.checked}
-                  onChange={this.toggleCheck}
+                  className="resetPass"
+                  // checked={this.state.checked}
+                  onClick={() => this.toggleCheck()}
                 />
                 <span>Remember me</span>
               </div>

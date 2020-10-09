@@ -21,29 +21,35 @@ import { image100vw } from "../../styles/imageStyles";
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import { el } from "date-fns/locale";
-
+import { loadMoveStudentData } from '../../redux/Stores/StudentReducer';
 class StudentMigration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: [
-        { no: "1", class: "1A", date: "13/11/1999" },
-        { no: "2", class: "1A", date: "13/11/1999" },
-        { no: "3" },
-      ],
+      // student: [
+      //   { no: "1", class: "1A", date: "13/11/1999" },
+      //   { no: "2", class: "1A", date: "13/11/1999" },
+      //   { no: "3" },
+      // ],
     };
     this.deleteStudents = this.deleteStudents.bind(this);
   }
 
+  componentDidMount = () => {
+    this.props.dispatch(loadMoveStudentData([]));
+  }
   editStudents = (e) => {
     e.preventDefault();
     console.log(this.props.history);
     this.props.history.push("/movestudent");
   };
   deleteStudents = (e) => {
-    let update = this.state.student;
-    update.splice([e], 1);
-    console.log(update);
+    let update = this.props.student.moveStudentData;
+    // update.splice([e], 1);
+    // console.log([e]);
+    // console.log(update);
+    update.splice(update.indexOf(e), 1);
+    // console.log(update);
     this.setState({ student: update });
   };
   handleChange = (event, key) => {
@@ -62,7 +68,15 @@ class StudentMigration extends Component {
     this.setState({ date: day.toLocaleDateString() });
   }
   render() {
-    console.log(this.props.student);
+    // console.log(this.props.student.moveStudentData.value);
+    // console.log(this.props.student);
+    // let dataOfMoveSt = []
+    let dataOfMoveSt = this.props.student.moveStudentData
+    console.log(dataOfMoveSt);
+    // console.log(dataOfMoveStudent);
+    // let moveStudent = this.props.student.moveStudentData
+    // console.log(moveStudent[0]);
+
     return (
       <div className="dashboard">
         <div className="flexrow">
@@ -131,48 +145,50 @@ class StudentMigration extends Component {
                   <div className="textMigrationScreenField">
                     <div>No</div>
                     <div>From class</div>
+                    <div>From section</div>
                     <div>Date</div>
                     <div>Delete</div>
                     <div>Edit</div>
-                    <div>View</div>
                   </div>
                   <div>
-                    {this.state.student &&
-                      this.state.student.map(
-                        (el) => (
-                          console.log(el),
-                          (
+                    {dataOfMoveSt && dataOfMoveSt.map(
+                      (el, index) => {
+                        if (Array.isArray(el) && index === 0) {
+                          return <div
+                            className="textMigrationScreenField"
+                            key={index}
+                          >
                             <div
-                              className="textMigrationScreenField"
-                              // key={el.no}
+                              className="customWidth"
+                            // onClick={() => this.deleteStudents(el)}
                             >
-                              <div
-                                className="customWidth"
-                                onClick={() => this.deleteStudents(el)}
-                              >
-                                {el.no}
-                              </div>
-                              <div className="customWidth">{el.class}</div>
-                              <div className="customWidth">{el.date}</div>
-                              <div>
-                                {" "}
-                                <MdDeleteForever
-                                  size="1.5vw"
-                                  onClick={() => this.deleteStudents(el)}
-                                />
-                              </div>
-                              <div>
-                                <BsPencilSquare
-                                  size="1.3vw"
-                                  color="black"
-                                  onClick={this.editStudents}
-                                />
-                              </div>
-                              <div></div>
+                              {index + 1}
                             </div>
-                          )
-                        )
-                      )}
+                            <div className="customWidth" style={{ textAlign: "center", textTransform: "uppercase" }}>{el[0]}</div>
+                            <div className="customWidth" style={{ textAlign: "center", textTransform: "uppercase" }}>{el[1]}</div>
+                            <div className="customWidth" style={{ textAlign: "center", textTransform: "uppercase" }}>{el[1]}</div>
+                            <div key={index}>
+                              {" "}
+                              <MdDeleteForever
+                                size="1.5vw"
+                                key={index}
+                                onClick={() => this.deleteStudents(el)}
+                              />
+                            </div>
+                            <div>
+                              <BsPencilSquare
+                                size="1.3vw"
+                                color="black"
+                                onClick={this.editStudents}
+                              />
+                            </div>
+                            <div></div>
+                          </div>
+
+
+                        }
+                      }
+                    )}
                     {/* {students &&
                       students.map((el) => (
                         <div style={{ display: "flex", marginBottom: "12px" }}>
@@ -258,6 +274,7 @@ class StudentMigration extends Component {
 
               <div className="flexrow" style={marginTop45vh}>
                 {/* <button>Save</button> <button>Reset</button> */}
+
                 <input
                   type="submit"
                   value="Save"

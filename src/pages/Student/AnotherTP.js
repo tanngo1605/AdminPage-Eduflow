@@ -14,6 +14,7 @@ import {
   marginBottom55vh,
   marginLeft150vw,
   marginLeft55vw,
+  labelStyle,
 } from "../../styles/marginStyles";
 import "./../../styles.css";
 
@@ -154,11 +155,11 @@ class ATeacherProfile extends Component {
                             key={item.id}
                             className="flexrow"
                             style={
-                              (marginBottom55vh,
-                              {
-                                marginTop:
-                                  item.content === "Name" ? "20px" : "40px",
-                              })
+                              (
+                                {
+                                  marginTop:
+                                    item.content === "Name" ? "20px" : "40px",
+                                })
                             }
                           >
                             {this.state.edit ? (
@@ -172,11 +173,7 @@ class ATeacherProfile extends Component {
                                 <label
                                   htmlFor={item.id}
                                   className="section viceSection"
-                                  style={{
-                                    width: "20%",
-                                    fontSize: "1vw",
-                                    marginLeft: "10px",
-                                  }}
+                                  style={labelStyle}
                                 >
                                   {item.content}{" "}
                                 </label>
@@ -281,11 +278,7 @@ class ATeacherProfile extends Component {
                           <label
                             htmlFor=""
                             className="section"
-                            style={{
-                              width: "25%",
-                              fontSize: "1vw",
-                              marginLeft: "10px",
-                            }}
+                            style={labelStyle}
                           >
                             City
                           </label>
@@ -294,12 +287,11 @@ class ATeacherProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -310,11 +302,7 @@ class ATeacherProfile extends Component {
                           <label
                             htmlFor=""
                             className="section"
-                            style={{
-                              width: "25%",
-                              fontSize: "1vw",
-                              marginLeft: "10px",
-                            }}
+                            style={labelStyle}
                           >
                             State
                           </label>
@@ -323,12 +311,10 @@ class ATeacherProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
                             }}
                           />
                         </div>
@@ -339,11 +325,7 @@ class ATeacherProfile extends Component {
                           <label
                             htmlFor=""
                             className="section"
-                            style={{
-                              width: "25%",
-                              fontSize: "1vw",
-                              marginLeft: "10px",
-                            }}
+                            style={labelStyle}
                           >
                             Postcode
                           </label>
@@ -352,12 +334,10 @@ class ATeacherProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "84px",
-                              width: "129px",
-                              height: "39px",
                             }}
                           />
                         </div>
@@ -369,11 +349,7 @@ class ATeacherProfile extends Component {
                         <label
                           htmlFor=""
                           className="section"
-                          style={{
-                            width: "25%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
+                          style={labelStyle}
                         >
                           Same permanent address
                         </label>
@@ -388,11 +364,7 @@ class ATeacherProfile extends Component {
                         <label
                           htmlFor=""
                           className="section"
-                          style={{
-                            width: "25%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
+                          style={labelStyle}
                         >
                           {/* {content}{" "} */}Permanent address
                         </label>
@@ -417,11 +389,7 @@ class ATeacherProfile extends Component {
                           <label
                             htmlFor=""
                             className="section"
-                            style={{
-                              width: "25%",
-                              fontSize: "1vw",
-                              marginLeft: "10px",
-                            }}
+                            style={labelStyle}
                           >
                             City
                           </label>
@@ -430,12 +398,11 @@ class ATeacherProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -446,11 +413,7 @@ class ATeacherProfile extends Component {
                           <label
                             htmlFor=""
                             className="section"
-                            style={{
-                              width: "25%",
-                              fontSize: "1vw",
-                              marginLeft: "10px",
-                            }}
+                            style={labelStyle}
                           >
                             State
                           </label>
@@ -459,12 +422,11 @@ class ATeacherProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "49px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -475,11 +437,7 @@ class ATeacherProfile extends Component {
                           <label
                             htmlFor=""
                             className="section"
-                            style={{
-                              width: "25%",
-                              fontSize: "1vw",
-                              marginLeft: "10px",
-                            }}
+                            style={labelStyle}
                           >
                             Postcode
                           </label>
@@ -488,12 +446,11 @@ class ATeacherProfile extends Component {
                             required
                             // id="corAddress"
                             placeholder=""
-                            className="shortbox"
+                            className="shortbox cspInput"
                             // onChange={this.handleChange}
                             style={{
                               marginLeft: "84px",
-                              width: "129px",
-                              height: "39px",
+
                             }}
                           />
                         </div>
@@ -509,11 +466,7 @@ class ATeacherProfile extends Component {
                         <label
                           // htmlFor={item.id}
                           className="section"
-                          style={{
-                            width: "20%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
+                          style={labelStyle}
                         >
                           Subject
                         </label>
@@ -538,11 +491,7 @@ class ATeacherProfile extends Component {
                         <label
                           // htmlFor={item.id}
                           className="section"
-                          style={{
-                            width: "20%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
+                          style={labelStyle}
                         >
                           Role
                         </label>
@@ -567,11 +516,7 @@ class ATeacherProfile extends Component {
                         <label
                           // htmlFor={item.id}
                           className="section"
-                          style={{
-                            width: "20%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
+                          style={labelStyle}
                         >
                           Phone No.
                         </label>
@@ -596,11 +541,7 @@ class ATeacherProfile extends Component {
                         <label
                           // htmlFor={item.id}
                           className="section"
-                          style={{
-                            width: "20%",
-                            fontSize: "1vw",
-                            marginLeft: "10px",
-                          }}
+                          style={labelStyle}
                         >
                           Alternate phone No.
                         </label>

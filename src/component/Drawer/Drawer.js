@@ -27,44 +27,15 @@ class Drawer extends Component {
 
 
     //show icon with the menu  
-<<<<<<< HEAD
-    Show(item){
-        
-        if (item==='Students' || item==='Teacher' || item==='Calendar events'  ) 
-              return ( 
-                <div style={{marginLeft:'auto',marginRight:'0.8vw',marginTop:'-0.1vw'}}>
-                    <IoIosArrowDown size={'1.5vw'} color="#FFFFFF"/>
-                </div>)
-        
-=======
-
     Show(item) {
-        const list = ['Students', 'Teacher', 'Exams', 'Calendar events'];
-        // for (var i = 0; i < list.length; i++) {
-        //     if (list[i] === item)
-        //         return (
-        //             <div style={{
-        //                 marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw'
-        //             }}>
-        //                 <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" style={{
-        //                     position: "absolute",
-        //                     right: "auto"
-        //                 }} />
-        //             </div>)
-        // }
-        if (list.includes(item))
+
+        if (item === 'Students' || item === 'Teacher' || item === 'Calendar events' || item === 'Exams')
             return (
-                <div style={{ marginLeft: 'auto', marginTop: '-0.1vw' }}>
+                <div style={{ marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw' }}>
                     <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" />
                 </div>)
-        // if (item === 'Students' ||  item === 'Teacher'|| item === 'Exams'|| item === 'Calendar events')
-        //     return (
-        //         <div style={{ marginLeft: 'auto', marginRight: '0.8vw', marginTop: '-0.1vw' }}>
-        //             <IoIosArrowDown size={'1.5vw'} color="#FFFFFF" />
-        //         </div>)
 
->>>>>>> 596cda520b70172de16f58e53feabc1d243af83a
-        return <div></div>
+
     }
     // handle change
     handleClick(e, condition, index, array) {
