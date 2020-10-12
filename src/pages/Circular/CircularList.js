@@ -40,7 +40,7 @@ const CircularList = (props) => {
     }
     
     getCircularData()
-  })
+  },[])
 
 
   
@@ -123,5 +123,5 @@ const mapStateToProps = (state) => ({
   account: state.account,
 })
 
-export default connect(mapStateToProps)(CircularList);
+export default React.memo(connect(mapStateToProps)(CircularList));
 

@@ -1,3 +1,6 @@
+const marginBottom180vh = {
+  marginBottom: "18vh",
+};
 const marginBottom125vh = {
   marginBottom: "12.5vh",
 };
@@ -35,6 +38,9 @@ const marginLeft380vw = {
 const marginLeft320vw = {
   marginLeft: "32vw",
 };
+const marginLeft270vw ={
+  marginLeft:'27vw'
+}
 const marginLeft250vw = {
   marginLeft: "25vw",
 };
@@ -92,8 +98,8 @@ const marginTop8vh = {
 };
 const labelStyle = {
   fontSize: "1vw",
-  marginLeft: "10px",
-  width: "25%",
+  
+  width: "20vw",
 };
 
 
@@ -105,6 +111,7 @@ export {
   marginBottom130vhandTop30vh,
   marginBottom130vhandTop10vh,
   marginBottom65vhandTop120vh,
+  marginBottom180vh,
   marginBottom125vh,
   marginBottom100vh,
   marginBottom65vh,
@@ -113,6 +120,7 @@ export {
   marginLeft450vw,
   marginLeft380vw,
   marginLeft320vw,
+  marginLeft270vw,
   marginLeft250vw,
   marginLeft240vw,
   marginLeft200vw,

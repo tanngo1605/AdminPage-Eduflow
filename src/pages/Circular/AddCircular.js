@@ -15,10 +15,13 @@ import {marginLeft130vw,marginBottom65vh} from "../../styles/marginStyles"
 
 
 const AddCircular = (props)=> {
-  
-
+ 
   useEffect((props)=>{
-    props.dispatch(getCurrentUser())
+    const getUserInfo = () =>{
+      props.dispatch(getCurrentUser())
+    }
+    getUserInfo()
+
   },[])
 
   const handleSubmit = (values) => {
@@ -30,6 +33,7 @@ const AddCircular = (props)=> {
     }
     catch(error) {
       console.log(error)
+      
     }
     
     
@@ -85,13 +89,8 @@ const AddCircular = (props)=> {
                   
                       </div>
                   </Form>
-
                   )}
-                </Formik>  
-                
-
-                
-              
+                </Formik>    
             </div>
             
           </div>
@@ -105,5 +104,5 @@ const mapStateToProps = (state) => ({
   account: state.account,
   
 })
-export default connect(mapStateToProps)(AddCircular);
+export default React.memo(connect(mapStateToProps)(AddCircular));
 

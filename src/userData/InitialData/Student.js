@@ -1,0 +1,34 @@
+const studentProfileInitialValue={
+    name: "",
+    dob: "",
+    admissnumber:"",
+    gender: "",
+    fathername:"",
+    mothername:"",
+    fatheroccupation:"",
+    motheroccupation:"",
+    corresaddress:"",
+    correscity:"",
+    corresstate:"",
+    correspcode:"",
+    checkbox:false,
+    permaaddress: "",
+    permacity: "",
+    permastate: "",
+    permapcode: "",
+    classvalue:"",
+    section:"",
+    teachername:"",
+    fathermobileno:"",
+    alternatephoneno:"",
+    image:null,
+}
+
+const studentSearchInitialValue = {
+    name:"",
+    classvalue:"",
+    section:"",
+    subject:"",
+    attachment:[],
+}
+export  {studentProfileInitialValue,studentSearchInitialValue};

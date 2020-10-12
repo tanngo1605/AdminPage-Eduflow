@@ -71,15 +71,15 @@ const ticketReducer = (state = [], action) => {
           name: "Rine",
           dateofbirth: "29/06/99",
           gender: "Male",
-          address: "",
-          phone: "",
+          address: "22 High Stree",
+          phone: "7325238101",
           classteacher: "",
-          subject: "",
-          role: "",
+          subject: "Math",
+          role: "Teacher",
           image: null,
-          value: "rine",
+          
           section:"V",
-          key: "1",
+          
           attendance:false,
         },
         {
@@ -92,9 +92,9 @@ const ticketReducer = (state = [], action) => {
           subject: "",
           role: "",
           image: null,
-          value: "sam",
+          
           section:"V",
-          key: "2",
+          
           attendance:false,
         },
         {
@@ -107,9 +107,9 @@ const ticketReducer = (state = [], action) => {
           subject: "",
           role: "",
           image: null,
-          value: "samuel",
+          
           section:"V",
-          key: "3",
+          
           attendance:false,
         },
       ];

@@ -43,7 +43,6 @@ const drawercontent = [
     activeimage: 'exam_active.png',
     inactiveimage: "exam_inactive.png",
     subcontent: [
-<<<<<<< HEAD
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
@@ -56,10 +55,6 @@ const drawercontent = [
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Arrange exam duty', web: 'examduty', clicked: false }
-=======
-      { content: 'Schedule an exam', web: 'exam', clicked: false},
-      { content: 'Arrange exam duty', web: 'examduty', clicked: false}
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
     ],
     clicked: false,
     

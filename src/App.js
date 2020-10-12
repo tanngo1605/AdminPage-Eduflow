@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
 import { Route, BrowserRouter, Switch, } from "react-router-dom";
 import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
+import SchoolProfile from './pages/Accounts/SchoolProfile'
 import RaiseTicket from "./pages/Ticket/RaiseTicket";
 import TicketList from "./pages/Ticket/TicketList";
 import CreateEvent from "./pages/Events/CreateEvent";
@@ -13,11 +13,6 @@ import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
 import StudentProfile from "./pages/Student/StudentProfile";
-<<<<<<< HEAD
-import AStudentProfile from "./pages/Student/AnotherSP";
-import ATeacherProfile from "./pages/Student/AnotherTP";
-=======
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
 import Timetable from "./pages/TimeTable/TimeTable";
@@ -37,9 +32,10 @@ import Feedback from "./pages/Feedback/Feedback";
 import Attendance from "./pages/TeacherAttendance/Attendance";
 import SearchAttendace from "./pages/TeacherAttendance/SearchAttendance";
 import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
-import "./styles.css";
-import FormikForm from "./pages/TimeTable/TimeTable(New)"
 
+import FormikForm from "./pages/TimeTable/TimeTable(New)"
+import "./App.css";
+import "./styles.css";
 function App() {
   return (
     // <ScreenSyllabus />
@@ -49,6 +45,7 @@ function App() {
         <Switch>
           {/* <FormikForm /> */}
           <Route path="/formik" component={FormikForm} />
+          <Route path="/schoolprofile" component={SchoolProfile} />
           <Route path="/studentmigration" component={StudentMigration} />
           <Route path="/movestudent" component={MoveStudent} />
           <Route path="/editattendance" component={EditAttendance} />
@@ -69,15 +66,10 @@ function App() {
           <Route path="/raiseticket" component={RaiseTicket} />
           <Route path="/event/createevent" component={CreateEvent} />
           <Route path="/event" component={EventList} />
-          <Route path="/teacher" component={ATeacherProfile} />
+          <Route path="/teacher" component={TeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />
-<<<<<<< HEAD
-          <Route path="/student/profile" component={AStudentProfile} />
-          <Route path="/student" component={StudentSearch} />
-=======
           <Route path="/student" component={StudentProfile} />
           <Route path="/studentsearch" component={StudentSearch} />
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />

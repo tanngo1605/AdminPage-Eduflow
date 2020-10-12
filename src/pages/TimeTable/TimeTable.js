@@ -4,8 +4,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-import classes from '../../userData/GlobalData/classData'
-import sections from '../../userData/GlobalData/sectionData'
+//import classes from '../../userData/GlobalData/classData'
+//import sections from '../../userData/GlobalData/sectionData'
 import {
   marginBottom125vh,
   marginBottom65vh,
@@ -20,21 +20,12 @@ import {
 } from '../../styles/marginStyles'
 import { image100vw } from '../../styles/imageStyles'
 
-<<<<<<< HEAD
 let numberofperiod = 5;
 const subjects = [
   { subject: 'Math', value: 'math' },
   { subject: 'History', value: 'history' },
   { subject: 'Math', value: 'math' },
 
-=======
-
-let numberofperiod=5;
-const subjects = [
-  {subject:'Math',value:'math'},
-  {subject:'History',value:'history'},
-  {subject:'Math',value:'math'},
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
 ]
 
 
@@ -144,34 +135,6 @@ class TimeTable extends Component {
           <div className='flexcolumn'>
             <Header />
             <div className='form' >
-<<<<<<< HEAD
-=======
-              
-                <h1 className='titleform'>Time table</h1>
-                
-                  <div className='flexcolumn' style={{marginLeft:'1.5vw',marginTop:'3%'}}>
-                    <div className='flexrow'>
-                      <div className='flexrow' style={marginBottom65vh}>
-                        <p className='section'>Enter Class</p>
-                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='class'>
-                          <option value="" defaultValue>{" "}-select-</option>
-                          {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
-                        </select>
-                      </div>
-                      <div className='flexrow' style={marginLeft380vw}>
-                        <p className='section'>Enter Section</p>
-                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw}   id='section'>
-                          <option value="" defaultValue>{" "}-select-</option>
-                          {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
-                        </select>
-                      </div>
-                    </div>
-                    <div className='flexrow' style={marginTop45vh}>
-                      <p className='section'>Choose Day</p>
-                      <DayPickerInput className='shortbox' style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -'/>
-                    </div>
-                  </div>
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
 
               <h1 className='titleform'>Time table</h1>
 

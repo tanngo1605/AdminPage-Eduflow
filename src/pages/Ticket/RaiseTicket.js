@@ -66,7 +66,7 @@ class RaiseTicket extends Component {
 
                 <div className='flexrow' style={marginBottom65vh}>
                   <label htmlFor="subject" className="section">Subject</label>
-                  <input type="text" id="subject" className="shortbox" style={marginLeft130vw} onChange={this.handleChange}/>
+                  <input type="text" id="subject" className="shortbox" required style={marginLeft130vw} onChange={this.handleChange}/>
                 </div>
 
                 <div className='flexrow' style={marginBottom65vh} >
