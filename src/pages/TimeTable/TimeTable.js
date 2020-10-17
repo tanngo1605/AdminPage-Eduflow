@@ -90,9 +90,9 @@ class TimeTable extends Component {
       <div className='eventlistArea' style={{ marginTop: '8vh', paddingTop: '2%', width: '75vw' }}>
         <Scrollbars>
           <form>
-          {period}
+            {period}
           </form>
-          
+
           <button className='buttonshownothing'
             onClick={() => { numberofperiod = numberofperiod + 1; this.setState({ trigger: !this.state.trigger }) }}
             style={{ fontSize: '1vw', marginLeft: '45%', marginBottom: '1vh', background: 'white' }}> + Add More </button>
@@ -135,6 +135,34 @@ class TimeTable extends Component {
           <div className='flexcolumn'>
             <Header />
             <div className='form' >
+<<<<<<< HEAD
+
+              <h1 className='titleform'>Time table</h1>
+
+              <div className='flexcolumn' style={{ marginLeft: '1.5vw', marginTop: '3%' }}>
+                <div className='flexrow'>
+                  <div className='flexrow' style={marginBottom65vh}>
+                    <p className='section'>Enter Class</p>
+                    <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='class'>
+                      <option value="" defaultValue>{" "}-select-</option>
+                      {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                    </select>
+                  </div>
+                  <div className='flexrow' style={marginLeft380vw}>
+                    <p className='section'>Enter Section</p>
+                    <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='section'>
+                      <option value="" defaultValue>{" "}-select-</option>
+                      {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <div className='flexrow' style={marginTop45vh}>
+                  <p className='section'>Choose Day</p>
+                  <DayPickerInput className='shortbox' style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -' />
+                </div>
+              </div>
+=======
+>>>>>>> 190269cad532369f755ba34bdfa9ce58e8f98bec
 
               <h1 className='titleform'>Time table</h1>
 

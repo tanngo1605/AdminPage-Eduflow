@@ -4,8 +4,8 @@ const drawercontent = [
     activeimage: 'person_active.png',
     inactiveimage: "person_inactive.png",
     subcontent: [
-      { content: 'Move student', web: 'movestudent', clicked: false},
-      { content: 'Migration', web: 'studentmigration', clicked: false}
+      { content: 'Move student', web: 'movestudent', clicked: false },
+      { content: 'Migration', web: 'studentmigration', clicked: false }
     ],
     clicked: false,
 
@@ -15,8 +15,8 @@ const drawercontent = [
     web: 'teacher',
     activeimage: 'people_active.png',
     inactiveimage: "people_inactive.png",
-    subcontent: [{ content: 'Find a teacher', web: 'teachersearch', clicked: false}], 
-    clicked: false, 
+    subcontent: [{ content: 'Find a teacher', web: 'teachersearch', clicked: false }],
+    clicked: false,
 
   },
   {
@@ -43,6 +43,8 @@ const drawercontent = [
     activeimage: 'exam_active.png',
     inactiveimage: "exam_inactive.png",
     subcontent: [
+<<<<<<< HEAD
+=======
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
@@ -53,11 +55,12 @@ const drawercontent = [
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Schedule an exam', web: 'exam', clicked: false },
+>>>>>>> 190269cad532369f755ba34bdfa9ce58e8f98bec
       { content: 'Schedule an exam', web: 'exam', clicked: false },
       { content: 'Arrange exam duty', web: 'examduty', clicked: false }
     ],
     clicked: false,
-    
+
   },
   {
     content: 'Syllabus',
@@ -66,7 +69,7 @@ const drawercontent = [
     inactiveimage: "syllabus_inactive.png",
     subcontent: [],
     clicked: false,
-    
+
   },
   {
     content: 'Results',
@@ -75,7 +78,7 @@ const drawercontent = [
     inactiveimage: "done_inactive.png",
     subcontent: [],
     clicked: false,
-    
+
   },
   {
     content: 'Calendar events',
@@ -86,7 +89,7 @@ const drawercontent = [
       { content: 'Create event', web: 'event/createevent', clicked: false },
     ],
     clicked: false,
-    
+
   },
   {
     content: 'Check tickets',
@@ -95,7 +98,7 @@ const drawercontent = [
     inactiveimage: "noti.png",
     subcontent: [],
     clicked: false,
-    
+
   },
   {
     content: 'Communication',
@@ -103,7 +106,7 @@ const drawercontent = [
     inactiveimage: "chat_inactive.png",
     subcontent: [],
     clicked: false,
-    
+
   },
   {
     content: 'Fees',
@@ -112,7 +115,7 @@ const drawercontent = [
     inactiveimage: "coin_inactive.png",
     subcontent: [],
     clicked: false,
-    
+
   },
   {
     content: 'School Profile',
