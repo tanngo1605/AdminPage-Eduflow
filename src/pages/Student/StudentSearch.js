@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
+import { Formik,Form,Field} from "formik";
 import Dropzone from "react-dropzone";
 import { NavLink } from "react-router-dom";
 import Drawer from "../../component/Drawer/Drawer";
@@ -11,29 +12,26 @@ import {
 } from "../../redux/Stores/StudentReducer";
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
+import {studentSearchSchema} from "../../userData/ValidationSchema/StudentSchema"
+import {studentSearchInitialValue} from '../../userData/InitialData/Student'
 import * as xlsx from "xlsx";
 import {
   marginTop55vh,
   marginLeft250vw,
+  marginLeft130vw,
+  marginTop110vh,
   addaProfileAttachment,
-  marginBottom130vhandTop10vh,
 } from "../../styles/marginStyles";
-class StudentSearch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      studentseacrhinput: {
-        name: "",
-        classvalue: "",
-        section: "",
-      },
-      files: null,
-    };
+const StudentSearch = (props) => {
+  
+  useEffect(()=>{
+    getStudentInfo()
+  },[]) 
+
+  const getStudentInfo = () => {
+    props.dispatch(loadData());
   }
-  componentDidMount() {
-    this.props.dispatch(loadData());
-  }
-  onDrop = (files) => {
+  const onDrop = (files) => {
     if (files.length === 0 || files.length > 1) return;
     var f = files[0];
     console.log(files);
@@ -49,28 +47,20 @@ class StudentSearch extends Component {
       console.log(dataParse);
     };
     reader.readAsBinaryString(f);
-    this.setState({ files: files });
+    
   };
 
-  handleChange = (event) => {
-    let updatesearch = Object.assign({}, this.state.studentsearchinput, { [event.target.id]: event.target.value })
-    console.log(updatesearch)
-    this.setState({ studentsearchinput: updatesearch })
-  }
-  searchResult = (event) => {
+  
+  const handleSearch = (event) => {
 
-
-
-    event.preventDefault();
-    console.log(filterByValue({ value: this.state.studentsearchinput }))
-    setTimeout(() => {
-      this.props.dispatch(filterByValue({ value: this.state.studentsearchinput }))
-    }, 100);
+    
+    props.dispatch(filterByValue({ value: event }))
+    
   }
 
 
-  render() {
-    let students = this.props.student.filteredStudents;
+
+    let students = props.student.filteredStudents;
 
     return (
       <div className='dashboard'>
@@ -85,38 +75,52 @@ class StudentSearch extends Component {
                 <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
                 <p style={{ color: '#FFFFFF' }}> Add a student </p>
               </NavLink>
-              <form className='flexrow' onChange={this.searchResult} style={marginBottom130vhandTop10vh}>
-                <div className='flexrow'>
-                  <label htmlFor='name' className='section'>Enter Stud Name: </label>
-                  <input type='text' id='name' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
-                </div>
-                <div className='flexrow' style={marginLeft250vw}>
-                  <label htmlFor='class' className='section'>Enter Class:</label>
-                  <input type='text' id='classvalue' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
-                </div>
-                <div className='flexrow' style={marginLeft250vw}>
-                  <label htmlFor='section' className='section'>Enter Section:</label>
-                  <input type='text' id='section' className='shortbox' style={marginTop55vh} onChange={this.handleChange} />
-                </div>
-              </form>
-              <div className='flexrow' style={marginLeft250vw}>
-
-                <Dropzone onDrop={this.onDrop}>
-                  {({ getRootProps, getInputProps }) => (
-                    <section className='flexrow'>
-                      <div {...getRootProps({ className: 'attachment' })}>
-                        <input {...getInputProps()} />
-                        <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
-                        <p>Import file</p>
+              <Formik
+                      initialValues={studentSearchInitialValue}
+                      validationSchema={studentSearchSchema}
+                > 
+                  {(propsForm)=>(
+                    <Form className="flexcolumn" onChange={()=>handleSearch(propsForm.values)} style={{marginBottom:"5vh"}}>
+                      <div className="flexrow">
+                        <div className="flexcolumn" style={marginLeft130vw} >
+                          <label htmlFor="name" className="section">Enter Student"s Name </label>
+                          <Field type="text" name="name" className="shortbox" style={marginTop55vh} placeholder="Type here" />
                       </div>
-                    </section>
+                        <div className="flexcolumn" style={marginLeft250vw}>
+                          <label htmlFor="classvalur" className="section" >Enter Class</label>
+                          <Field type="text" name="classvalue" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                        </div>
+                      </div>
+                      <div className="flexrow" style={marginTop110vh}>
+                        <div className="flexcolumn" style={marginLeft130vw}>
+                          <label htmlFor="section" className="section" >Enter Section</label>
+                          <Field type="text" name="section" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                        </div>
+                        <div className="flexcolumn" style={marginLeft250vw}>
+                          <label htmlFor="subject" className="section" >Enter Subject</label>
+                          <Field type="text" name="subject" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                        </div>
+                      </div>
+                      <div className="flexrow" style={{marginTop:"12vh",marginLeft:"21vw"}}>
+                        <Dropzone name="attachment" onDrop={(files)=> propsForm.setFieldValue("attachment",files)}>
+                          {({getRootProps, getInputProps}) => (
+                            <section className="flexrow">
+                              <div {...getRootProps({className: "attachment"})}>
+                                <input {...getInputProps()} />
+                                  <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
+                                  <p>Import file</p>
+                              </div>
+                            </section>
+                          )}
+                        </Dropzone>
+                        <div className="attachment" style={{marginLeft:"5vw"}}>
+                          <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
+                          <p>Export file</p>
+                        </div>
+                      </div>
+                    </Form>
                   )}
-                </Dropzone>
-                <div className="attachment" style={{ marginLeft: '5vw' }}>
-                  <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
-                  <p>Export file</p>
-                </div>
-              </div>
+              </Formik>
               <div className='eventlistArea' style={{ width: '75vw', marginTop: '3vh' }}>
                 <div className='headereventList'>
                   <p className='textaligncenter' style={{ width: '10%' }}>User ID</p>
@@ -136,7 +140,7 @@ class StudentSearch extends Component {
                       <p style={{ width: '10%' }}>{student.classvalue}</p>
                       <p style={{ width: '10%' }}>{student.section}</p>
                       <div className='itemcenter' style={{ width: "20%" }}>
-                        <MdDeleteForever size='1.5vw' onClick={() => this.props.dispatch(deleteData(student))} />
+                        <MdDeleteForever size='1.5vw' onClick={() => props.dispatch(deleteData(student))} />
                       </div>
                       <div className='itemcenter' style={{ width: "20%", marginTop: '0.1vh' }}>
                         <NavLink exact to={{ pathname: '/student/profile', studentdata: student }}>
@@ -153,11 +157,11 @@ class StudentSearch extends Component {
         </div>
       </div>
     );
-  }
 }
+
 
 const mapStateToProps = (state) => ({
   student: state.student,
 });
 
-export default connect(mapStateToProps)(StudentSearch);
+export default React.memo(connect(mapStateToProps)(StudentSearch));

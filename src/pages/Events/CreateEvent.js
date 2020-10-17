@@ -29,7 +29,7 @@ const CreateEvent = (props) => {
   
   let [modalState,setModalState] = useState(false)
 
-  useEffect((props)=>{
+  useEffect(()=>{
     Modal.setAppElement("body");
     props.dispatch(getCurrentUser())
     
@@ -151,5 +151,5 @@ const mapStateToProps = (state) => ({
   account:state.account,
 })
 
-export default connect(mapStateToProps)(CreateEvent);
+export default React.memo(connect(mapStateToProps)(CreateEvent));
 

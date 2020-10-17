@@ -61,6 +61,7 @@ class StudentProfile extends Component {
             </div>
         )
     }
+    classname='abc' type='checkbox'
   handleChange = (event) => {
     let update;
     if (event.target.id==='image')

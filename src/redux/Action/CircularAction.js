@@ -28,10 +28,7 @@ const addSchoolCircular =  (schoolId,jwtToken,circularInput) => {
                     throw new Error(error)
                     
                     
-          });
-    
-    
-    
+          });    
 }
 const getSchoolCircular = async (schoolId,jwtToken) => {
     

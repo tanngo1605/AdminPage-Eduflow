@@ -4,8 +4,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-import classes from '../../userData/GlobalData/classData'
-import sections from '../../userData/GlobalData/sectionData'
+//import classes from '../../userData/GlobalData/classData'
+//import sections from '../../userData/GlobalData/sectionData'
 import {
   marginBottom125vh,
   marginBottom65vh,
@@ -135,6 +135,7 @@ class TimeTable extends Component {
           <div className='flexcolumn'>
             <Header />
             <div className='form' >
+<<<<<<< HEAD
 
               <h1 className='titleform'>Time table</h1>
 
@@ -160,6 +161,8 @@ class TimeTable extends Component {
                   <DayPickerInput className='shortbox' style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day)} placeholder='- select -' />
                 </div>
               </div>
+=======
+>>>>>>> 190269cad532369f755ba34bdfa9ce58e8f98bec
 
               <h1 className='titleform'>Time table</h1>
 
