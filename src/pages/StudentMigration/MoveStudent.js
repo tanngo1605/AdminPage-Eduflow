@@ -9,7 +9,6 @@ import Popup from "reactjs-popup";
 import {
   loadData,
   filterByValue,
-<<<<<<< HEAD
   loadMoveStudentData
 } from "../../redux/Stores/StudentReducer";
 import {
@@ -17,20 +16,6 @@ import {
   marginLeft380vw,
   marginLeft130vw,
   marginTop45vh,
-=======
-  
-} from "../../redux/Stores/StudentReducer";
-import {
-  
-  marginBottom65vh,
-  marginLeft380vw,
-  
-  
-  marginLeft130vw,
-
-  marginTop45vh,
-  
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
 } from "../../styles/marginStyles";
 import { forEach } from "lodash";
 // let arr = []

@@ -13,11 +13,8 @@ import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
 import StudentProfile from "./pages/Student/StudentProfile";
-<<<<<<< HEAD
 import AStudentProfile from "./pages/Student/AnotherSP";
 import ATeacherProfile from "./pages/Student/AnotherTP";
-=======
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
 import Timetable from "./pages/TimeTable/TimeTable";
@@ -71,13 +68,8 @@ function App() {
           <Route path="/event" component={EventList} />
           <Route path="/teacher" component={ATeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />
-<<<<<<< HEAD
           <Route path="/student/profile" component={AStudentProfile} />
           <Route path="/student" component={StudentSearch} />
-=======
-          <Route path="/student" component={StudentProfile} />
-          <Route path="/studentsearch" component={StudentSearch} />
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />

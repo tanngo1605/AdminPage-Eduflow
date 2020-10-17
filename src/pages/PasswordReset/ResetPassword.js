@@ -22,12 +22,12 @@ class ResetPassword extends Component {
     // temp = 1;
   };
   toggleShow(id) {
-    console.log(temp, this.state.id);
-    if (this.state.id === id && temp % 2 === 0) temp++;
-    else if (this.state.id === id && temp % 2 === 1) temp = 0;
-    else {
-      temp = 0;
-      this.setState({ id: id });
+    // console.log(temp, this.state.id);
+    this.setState({ id: id });
+    if (id === "1") {
+      this.setState({ hidden: !this.state.hidden });
+    } else {
+      this.setState({ hidden1: !this.state.hidden1 });
     }
   }
   toggleCheck() {
@@ -57,7 +57,7 @@ class ResetPassword extends Component {
                   // onFocus={(e) => (e.target.type = "password")}
                   id="1"
                   type={
-                    this.state.id === "1" && temp % 2 === 0
+                    this.state.hidden
                       ? // id[0] === "1" && this.state.hidden && this.state.id === "1"
                       // ? this.state.hidden
                       // : this.state.temp
@@ -82,7 +82,7 @@ class ResetPassword extends Component {
                   placeholder="****************"
                   id="2"
                   type={
-                    this.state.id === "2" && temp % 2 === 0
+                    this.state.hidden1
                       ? //  this.state.hidden && this.state.id === "2"
                       // ? this.state.hidden
                       // : this.state.temp

@@ -1,0 +1,52 @@
+.errMess {
+     color: red; 
+     font-size: 12px; 
+     position: relative; 
+     top: 11vh; 
+     /* left: 200px;  */
+     width: 12vw;
+}
+.errMessOuter {
+    position: absolute;
+    padding-top: 4px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    color: rgb(0, 0, 0); 
+    font-size: 12px;
+    top: 44px; left: 200px;
+    width: 11vw;
+    background:white
+}
+.errMessOuter::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    transform: rotateX(180deg);
+    top: -9px;
+    left: 40px;
+}
+.errMessOuter::before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid black;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    transform: rotateX(180deg);
+    top: -10px;
+    left: 40px;
+
+}
+.iconErrMess {
+    position: relative;
+    left: -8px;
+    bottom: 3px;
+    size: 1.5vw;
+}

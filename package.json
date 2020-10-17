@@ -13,10 +13,6 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "date-fns": "^2.15.0",
-<<<<<<< HEAD
-=======
-    
->>>>>>> 4716c8b3f602e18994ecd39b61b1aae10b9bce06
     "formik": "^2.1.7",
     "lodash": "^4.17.20",
     "pdf-viewer-reactjs": "^2.0.7",
