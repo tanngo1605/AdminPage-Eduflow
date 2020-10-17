@@ -47,7 +47,7 @@ class ResetPassword extends Component {
             <form className="formPass" onSubmit={this.handleSubmit}>
               <label className="titlePass">Reset your password</label>
               <div className="passwordFieldd" style={{ marginTop: "15px" }}>
-                <div style={{ display: "inline-flex" }}>
+                <div className="flexrow">
                   <div className="textPass">Enter your new password</div>
                   <div className="textTypePass">Type</div>
                 </div>

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const eventSchema = yup.object({
+const createEventSchema = yup.object({
   title: yup.string()
     .required(),
   classvalue: yup.string()
@@ -19,5 +19,13 @@ const eventSchema = yup.object({
     .required(),
   attachment: yup.array()
 });
+const searchEventSchema = yup.object({
+  text: yup.string(),
+  classvalue: yup.string(),
+  section: yup.string(),
+  time: yup.string(),
+    
+  
+});
 
-export default eventSchema;
+export {createEventSchema,searchEventSchema};

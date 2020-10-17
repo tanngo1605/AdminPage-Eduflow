@@ -16,7 +16,7 @@ import {marginLeft130vw,marginBottom65vh} from "../../styles/marginStyles"
 
 const AddCircular = (props)=> {
  
-  useEffect((props)=>{
+  useEffect(()=>{
     const getUserInfo = () =>{
       props.dispatch(getCurrentUser())
     }
@@ -100,7 +100,6 @@ const AddCircular = (props)=> {
 )}
 
 const mapStateToProps = (state) => ({
-  
   account: state.account,
   
 })

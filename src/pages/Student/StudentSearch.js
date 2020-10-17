@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Formik,Form,Field} from "formik";
 import Dropzone from "react-dropzone";
@@ -25,12 +25,13 @@ import {
 const StudentSearch = (props) => {
   
   useEffect(()=>{
+    const getStudentInfo = () => {
+      props.dispatch(loadData());
+    }
     getStudentInfo()
   },[]) 
 
-  const getStudentInfo = () => {
-    props.dispatch(loadData());
-  }
+  
   const onDrop = (files) => {
     if (files.length === 0 || files.length > 1) return;
     var f = files[0];

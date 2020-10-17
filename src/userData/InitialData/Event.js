@@ -1,4 +1,4 @@
-const initialValue= {
+const initialCreateEvent= {
     classvalue:"",
     section:"",
     title:"",
@@ -9,4 +9,11 @@ const initialValue= {
     endTime:"",
     attachment:[]
 }
-export default initialValue;
+const initialSearchEvent= {
+    text:"",
+    time:"",
+    section:"",
+    classvalue:"",
+    
+}
+export {initialCreateEvent,initialSearchEvent};

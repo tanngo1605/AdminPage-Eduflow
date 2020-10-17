@@ -5,6 +5,7 @@ const loginAccount = async (userInput) => {
     const inputData =JSON.stringify({
       username: username,
       password: password,
+      role:"admin",
     })
     let userData= axios.post(`${ServerDomain}/auth/login`,inputData,{
               headers: {

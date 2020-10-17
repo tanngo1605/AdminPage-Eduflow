@@ -19,20 +19,21 @@ import {
   marginTop110vh} from "../../styles/marginStyles"
 
 const TeacherSearch = (props)=>{
-  const [error,setError] = useState()
+  
   useEffect(()=>{
     const loaddata= () => {
     props.dispatch(loadTeacherData());
     }
     loaddata()
-  },[error]) 
+  },[]) 
+
   const handleSearch =(values)=>{
     console.log(values)
     try {
 
     }
     catch (err){
-      setError(err)
+      
     }
   }
   let teachers = props.teacher.filteredTeachers;

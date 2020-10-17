@@ -11,8 +11,8 @@ import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPlus } from "react-icons/bs";
 import classes from '../../userData/GlobalData/classData'
 import sections from '../../userData/GlobalData/sectionData'
-import EventSchema from "../../userData/ValidationSchema/EventSchema"
-import eventInitialValues from '../../userData/InitialData/Event'
+import {createEventSchema} from "../../userData/ValidationSchema/EventSchema"
+import {initialCreateEvent} from '../../userData/InitialData/Event'
 import {
   marginBottom65vhandTop120vh,
   marginLeft450vw,
@@ -33,7 +33,7 @@ const CreateEvent = (props) => {
     Modal.setAppElement("body");
     props.dispatch(getCurrentUser())
     
-  }) 
+  },[]) 
 
 
   const handleSubmit =  (values) => {
@@ -60,8 +60,8 @@ const CreateEvent = (props) => {
             <div className="form">
               <h1 className="titleform" style={marginBottom30vh}>Create an event for your class</h1>
               <Formik
-                initialValues={eventInitialValues}
-                validationSchema={EventSchema}
+                initialValues={initialCreateEvent}
+                validationSchema={createEventSchema}
                 onSubmit={(values, actions) => {
                   handleSubmit(values);
                   actions.resetForm()

@@ -10,7 +10,6 @@ import {teacherProfileInitialValue} from "../../userData/InitialData/Teacher"
 import {
   marginBottom180vh,
   marginBottom65vh,
-
   marginLeft270vw,
   marginLeft200vw,
   marginLeft130vw,
@@ -25,21 +24,22 @@ import {
 const TeacherProfile = (props) => {
   const [teacherData,setTeacherData] = useState([])
   const [edit,setEdit] = useState(true)
-  const [error,setError] = useState()
+  
   useEffect(()=>{
     //props.dispatch(loadTeacherData());
     //view or add new students
+    const checkstatus = () =>{
+      if (props.location.teacherdata){
+        setTeacherData(props.location.teacherdata)
+        setEdit(false) 
+        
+      }  
+    } 
 
     checkstatus()
   },[]) 
 
-  const checkstatus = () =>{
-    if (props.location.teacherdata){
-      setTeacherData(props.location.teacherdata)
-      setEdit(false) 
-      
-    }   
-  }
+  
 
   const displayImage = (propsForm) => {
     
