@@ -1,41 +1,40 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
-const addGalleryImages =  (schoolId,jwtToken,imagesInput) => {
-    const {title,datefrom,dateto,startTime,endTime,attachment,description,classvalue} = eventInput;
-    
-    
-    const inputData = JSON.stringify({
-      imageUrls:imagesInput
+const addTimetable = (schoolId, jwtToken, eventInput) => {
+  const { period, day, startTime, endTime, classvalue, section } = eventInput;
+
+
+  const inputData = JSON.stringify({
+    period: period,
+    day: day,
+    startTime: startTime,
+    endTime: endTime,
+    class: classvalue,
+    section: section
+  }, null, 4)
+
+  console.log(inputData);
+  axios.post(`${ServerDomain}/schools/${schoolId}/timetables`, inputData,
+    {
+
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${jwtToken} ` },
     })
+    .then(
+      res => {
+        console.log(res);
+        // console.log(res.data);
+      }
+    )
+    .catch(
+      err => {
+        const error = "Something went wrong. Check your input again"
+        // throw new Error(error)
+      }
+    )
+
+  // return resData;
+
+}
 
 
-    const resData =  axios.post(`${ServerDomain}/schools/${schoolId}/gallery`,inputData,{
-                        headers: { "Authorization":`Bearer ${jwtToken}`},})
-                        .then( 
-                            function(resData) {
-                                return resData.json()
-                        })
-                        .catch(
-                            function(err) {
-                                throw new Error (err)
-                        });
-   
-    return;
-    
-}
-const getGalleryImages = (schoolId,jwtToken) => {
-    
-    const resData = axios.get(`${ServerDomain}/schools/${schoolId}/gallery`,{
-                                  headers: { "Authorization":`Bearer ${jwtToken}`},
-                    }).then( 
-                        function(resData) {
-                          return resData.json
-                        })
-                      .catch(
-                        function(err) {
-                          throw new Error (err)
-                      })
-    return resData;
-    
-}
-export {addGalleryImages,getGalleryImages}
+export default addTimetable 

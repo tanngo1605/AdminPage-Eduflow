@@ -9,6 +9,7 @@ class ResetPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      password: '',
       hidden: false,
       hidden1: false,
       checked: false,
@@ -18,7 +19,11 @@ class ResetPassword extends Component {
     this.toggleCheck = this.toggleCheck.bind(this);
   }
 
-  handleChange = () => {
+  handleChange = (e) => {
+    console.log(e.target.value);
+    this.setState({ password: e.target.value })
+    console.log(this.state.password);
+
     // temp = 1;
   };
   toggleShow(id) {
@@ -56,6 +61,7 @@ class ResetPassword extends Component {
                   placeholder="****************"
                   // onFocus={(e) => (e.target.type = "password")}
                   id="1"
+                  onChange={this.handleChange}
                   type={
                     this.state.hidden
                       ? // id[0] === "1" && this.state.hidden && this.state.id === "1"
@@ -81,6 +87,7 @@ class ResetPassword extends Component {
                   className="inputPassword resetPassword"
                   placeholder="****************"
                   id="2"
+                  onChange={this.handleChange}
                   type={
                     this.state.hidden1
                       ? //  this.state.hidden && this.state.id === "2"

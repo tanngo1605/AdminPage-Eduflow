@@ -5,6 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
+// import getTimeTableData from "../../redux/Action/TimeTableAction"
 import {
     marginBottom125vh,
     marginBottom65vh,
@@ -26,6 +27,9 @@ import * as Yup from 'yup';
 import TimetableSchema from '../../userData/ValidationSchema/TimeTableSchema';
 // import TimeTable from './TimeTable';
 import { FcHighPriority } from "react-icons/fc";
+import ServerDomain from "../../serverdomain";
+import axios from 'axios';
+import addTimeTable from "../../redux/Action/TimeTableAction"
 const numOfPeriods = 4
 const arrayOfPeriods = []
 for (let i = 0; i < numOfPeriods; i++) {
@@ -41,24 +45,21 @@ const subjects = [
     { subject: 'Math', value: 'math' },
 
 ]
-// const SignupSchema = Yup.object().shape({
-//     class: Yup.string()
-//         .required("Please fill out this field"),
-//     section: Yup.string()
-//         .required("Please fill out this field"),
-//     day: Yup.date()
-//         .required("Please fill out this field"),
-//     period: Yup.array()
-//         .of(
-//             Yup.object().shape({
-//                 starttime: Yup.string().required("Please fill out this field"),
-//                 endtime: Yup.string().required("Please fill out this field"),
-//                 subject: Yup.string().required("Please fill out this field"),
-//             })
-//         )
-//         .required()
-// });
+
+
+
 const FormiForm = () => {
+    addTimeTable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI",
+        {
+            period: "3",
+            day: "tuesday",
+            startTime: "22:22",
+            endTime: "22:22",
+            classvalue: "ONE",
+            section: "A"
+        });
+
     return (
 
         <div>
@@ -72,6 +73,7 @@ const FormiForm = () => {
                 validationSchema={TimetableSchema}
                 onSubmit={(values, actions) => {
                     console.log(values);
+
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 4));
                         // alert(JSON.stringify(values.period[0].startTime, null, 4))
@@ -81,7 +83,17 @@ const FormiForm = () => {
             >
                 {props => (
                     // console.log(Array.of(props.values.period).map(el => console.log(el))),\
-                    console.log(props.errors.period),
+
+                    // console.log(addTimetable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI", {
+                    //     "period": "2",
+                    //     "day": "tuesday",
+                    //     "startTime": "22:22",
+                    //     "endTime": "22:22",
+                    //     "class": "ONE",
+                    //     "section": "A"
+
+                    // console.log(dataof()),
+                    // }).then(res => { console.log(res); })),
                     <Form>
                         {/* <input
                             type="text"
@@ -96,6 +108,7 @@ const FormiForm = () => {
                                 <Drawer />
                                 <div className='flexcolumn'>
                                     <Header />
+
                                     <div className='form' >
 
 
