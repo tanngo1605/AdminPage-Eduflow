@@ -23,30 +23,24 @@ import {
 const SchoolProfile =  (props) => {
   const [schoolData,setSchoolData] = useState([])
 
+  const getSchoolData = async ()=>{
+    props.dispatch(getCurrentUser())
   
-  useEffect(()=>{
-    const getSchoolData = async ()=>{
-      props.dispatch(getCurrentUser())
-    
-      try {
-        const userData=props.account.userData.userdata.data.data;
-        const schooldata = await getSchoolInfo(userData.school.uuid,userData.token)
-        console.log(schooldata)
-        setSchoolData( schooldata )
-      }
-        catch(err){
-      }
+    try {
+      const userData=props.account.userData.userdata.data.data;
+      const schooldata = await getSchoolInfo(userData.school.uuid,userData.token)
+      console.log(schooldata)
+      setSchoolData( schooldata )
     }
-    
-    getSchoolData()
- 
-  },[]) 
+      catch(err){
+    }
+  }
+
+  useEffect(getSchoolData,[]) 
 
   
   const displayImage = (propsForm) => {
-    
 
-    
     const image = propsForm.values.image;
     if (image)
       return (

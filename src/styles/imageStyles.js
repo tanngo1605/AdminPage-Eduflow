@@ -13,6 +13,9 @@ const image100vw={
     width:'10vw',
     
 }
+const image300percent={
+    width:'30%'
+}
 const image200percent={
     width:'20%'
 }
@@ -25,6 +28,7 @@ export {
     image580vw,
     image200vw,
     image100vw,
+    image300percent,
     image200percent,
     image100percent
 }

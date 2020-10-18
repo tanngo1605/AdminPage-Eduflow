@@ -8,12 +8,13 @@ const SendOTP =(props)=>  {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.history.push({pathname:"/resetpassword",OTP:OTP});
+    props.history.push({pathname:"/resetpassword",OTP:OTP,emailID:props.location.emailID});
   };
   
     
   return (
       <div className="passScreen ">
+        
         <div className="containerPassScreen">
           <img alt="#" src={ppll1} className="imgField" />
           

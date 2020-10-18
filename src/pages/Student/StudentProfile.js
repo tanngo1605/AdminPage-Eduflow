@@ -1,10 +1,12 @@
 import React, { useEffect,useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Formik,Form,Field} from "formik";
+import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
+import {createUsers} from "../../redux/Action/UserAction";
 import {studentProfileSchema} from "../../userData/ValidationSchema/StudentSchema"
 import {studentProfileInitialValue} from '../../userData/InitialData/Student'
 import {
@@ -22,30 +24,25 @@ import {
   image80vwLeft160vw,
   image80vwLeft30vw} from "../../styles/imageMarginStyles"
 const StudentProfile = (props) => {
-  const [studentData,setStudentData] = useState([])
-  const [edit,setEdit] = useState(true)
-  const [error,setError] = useState()
-  useEffect(()=>{
-    //props.dispatch(loadstudentData());
-    //view or add new students
-    const checkstatus = () =>{
-      if (props.location.studentdata){
-        setStudentData(props.location.studentdata)
-        setEdit(false) 
-      } 
-    }
-    checkstatus()
-  },[error]) 
+  
+  const [studentData,setStudentData] = useState(props.location.studentdata?props.location.studentdata:[])
+  const [edit,setEdit] = useState(props.location.studentdata?false:true)
+
+  const getUserInfo= () => {
+    props.dispatch(getCurrentUser());
+  }
+  
+  useEffect(getUserInfo,[]) 
   
   const displayImage = (propsForm) => {
     
-    if (edit === false) return (
+    if (!edit) return (
       <div className="profileimage">
         <img src={{}} alt="" className="profileimagepreview"/>
       </div>
       );
     
-    const image = propsForm.values.image;
+    const image = propsForm.values.image[0];
     if (image)
       return (
         <div className="profileimage">
@@ -55,7 +52,7 @@ const StudentProfile = (props) => {
           <input type="file" name="image" accept="image/*" onChange={(event)=>propsForm.setFieldValue('image',event.target.files[0])} />
         </div>
 );
-      console.log('k')
+      
     return (
       <div>
        <label htmlFor="image" className="profileimage"></label>
@@ -65,14 +62,32 @@ const StudentProfile = (props) => {
 };
 
   const handleSubmit = (values) => {
-    if (props.location.studentdata) {
-      //props.dispatch(modifystudentData({ value: values }));
+    
+    console.log(values);
+    try {
+      const userData =props.account.userData.userdata.data.data;
       
-    } else {
-      //props.dispatch(addstudentData({ value: values }));
-      
+      if (edit) {
+
+        
+        createUsers(userData.token,values,'student')
+        
+        
+      }
+      else{
+
+        createUsers(userData.token,values,'student')
+        
+      }
+      props.history.push("/studentsearch");
     }
-    props.history.push("/studentsearch");
+    catch(error) {
+      console.log(error)
+    }
+      //props.dispatch(modifystudentData({ value: values }));
+      //props.dispatch(addstudentData({ value: values }));
+
+    
   };
 
   
@@ -111,7 +126,7 @@ const StudentProfile = (props) => {
                             </div>
                             <div className="flexrow" style={marginBottom65vh}>
                               <label className="section" >Date of birth</label>
-                              <DayPickerInput  className="shortbox" name="dob" onDayChange={(day)=> propsForm.setFieldValue('dob',day)} style={marginLeft200vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{after: new Date()}}} placeholder={studentData.dateofbirth}/>
+                              <DayPickerInput format={'yyyy/MM/dd'} className="shortbox" name="dob" onDayChange={(day)=> propsForm.setFieldValue('dob',day)} style={marginLeft200vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{after: new Date()}}} placeholder={studentData.dateofbirth}/>
                             </div>
                             <div className="flexrow" style={marginBottom65vh}>
                               <label htmlFor='admissnumber' className="section" style={image200vw} >Admission number</label>
@@ -307,7 +322,7 @@ const StudentProfile = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  student: state.student,
+  account: state.account,
 });
 
 export default React.memo(connect(mapStateToProps)(StudentProfile));

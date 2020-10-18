@@ -4,6 +4,7 @@ import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
 import SchoolProfile from './pages/Accounts/SchoolProfile'
 import RaiseTicket from "./pages/Ticket/RaiseTicket";
+import RaiseTicketAdmin from "./pages/Ticket/RaiseTicketAdmin";
 import TicketList from "./pages/Ticket/TicketList";
 import CreateEvent from "./pages/Events/CreateEvent";
 import EventList from "./pages/Events/EventList";
@@ -13,11 +14,6 @@ import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
 import StudentProfile from "./pages/Student/StudentProfile";
-<<<<<<< HEAD
-import AStudentProfile from "./pages/Student/AnotherSP";
-import ATeacherProfile from "./pages/Student/AnotherTP";
-=======
->>>>>>> 190269cad532369f755ba34bdfa9ce58e8f98bec
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
 import Timetable from "./pages/TimeTable/TimeTable";
@@ -41,7 +37,7 @@ import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
 import FormikForm from "./pages/TimeTable/TimeTable(New)"
 import "./App.css";
 import "./styles.css";
-function App() {
+const App = () => {
   return (
     // <ScreenSyllabus />
 
@@ -68,18 +64,14 @@ function App() {
           <Route path="/forgotpassword" component={ForgotPassword} />
           <Route path="/resetpassword" component={ResetPassword} />
           <Route path="/ticket" component={TicketList} />
+          <Route path="/raiseticketadmin" component={RaiseTicketAdmin} />
           <Route path="/raiseticket" component={RaiseTicket} />
           <Route path="/event/createevent" component={CreateEvent} />
           <Route path="/event" component={EventList} />
           <Route path="/teacher" component={TeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />
-<<<<<<< HEAD
-          <Route path="/student/profile" component={AStudentProfile} />
-          <Route path="/student" component={StudentSearch} />
-=======
           <Route path="/student" component={StudentProfile} />
           <Route path="/studentsearch" component={StudentSearch} />
->>>>>>> 190269cad532369f755ba34bdfa9ce58e8f98bec
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />

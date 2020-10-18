@@ -25,22 +25,20 @@ import {
 const CircularList = (props) => {
   let [circularData,setCircularData] = useState([])
 
-  useEffect(() => {
-    const getCircularData = async ()=>{
-      props.dispatch(getCurrentUser())
-    
-      try {
-        const userData=props.account.userData.userdata.data.data;
-        const circular = await getSchoolCircular(userData.school.uuid,userData.token)
-        setCircularData( circular )
-      }
-      catch(err){
-        console.log(err)
-      }
+  const getCircularData = async ()=>{
+    props.dispatch(getCurrentUser())
+  
+    try {
+      const userData=props.account.userData.userdata.data.data;
+      const circular = await getSchoolCircular(userData.school.uuid,userData.token)
+      setCircularData( circular )
     }
-    
-    getCircularData()
-  },[])
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(getCircularData,[])
 
 
   

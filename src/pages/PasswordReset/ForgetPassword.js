@@ -8,15 +8,15 @@ const ForgetPassword =(props)=> {
   const [confirmemailID,setconfirmEmail] =useState("")
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (emailID!=confirmemailID){
+    if (emailID!==confirmemailID){
       alert("Different Email")
       return 
     }
     try {
       
-      const OTP = await forgetPassword(emailID);
+      //const OTP = await forgetPassword(emailID);
       //send user OTP 
-      props.history.push({pathname:"/sendotp"});
+      props.history.push({pathname:"/sendotp",emailID:emailID});
       
     }
     catch(error) {

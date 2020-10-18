@@ -2,39 +2,27 @@ import React, {useEffect} from "react";
 import { connect } from "react-redux"
 import { Formik,Form,Field} from "formik";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
-import {addSchoolCircular} from "../../redux/Action/CircularAction";
-import DayPickerInput from "react-day-picker/DayPickerInput";
+
 import Dropzone from "react-dropzone";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/Header"
-import {createCircularSchema} from "../../userData/ValidationSchema/CircularSchema"
-import {initCreateCircular} from "../../userData/InitialData/Circular"
-import {marginLeft130vw,marginBottom65vh} from "../../styles/marginStyles"
+import {createTickedAdmin} from "../../userData/ValidationSchema/TicketSchema"
+import {intialTickedAdmin} from "../../userData/InitialData/Ticket"
+import {marginLeft130vw,marginBottom180vh,marginBottom65vh} from "../../styles/marginStyles"
 
 
 
-const AddCircular = (props)=> {
-
+const RaiseTicketAdmin = (props)=> {
   const getUserInfo = () =>{
     props.dispatch(getCurrentUser())
   }
+  
   useEffect(getUserInfo,[])
 
+  
   const handleSubmit = (values) => {
-    
-    try {
-      const userData = props.account.userData.userdata.data.data;
-      addSchoolCircular(userData.school.uuid,userData.token,values);
-      props.history.push("/circular/circularlist");
-    }
-    catch(error) {
-      console.log(error)
-      
-    }
-    
-    
-    
+
   }
 
 
@@ -46,11 +34,12 @@ const AddCircular = (props)=> {
             <Header/>
             <div className="form">
                 
-                <h1 className="titleform" style={{marginBottom:"3vh"}}>Create a new class</h1>
+                <h1 className="titleform" style={{marginBottom:"3vh"}}>Raise a ticket(Admin)</h1>
                 <Formik
-                  initialValues={initCreateCircular}
-                  validationSchema={createCircularSchema}
+                  initialValues={intialTickedAdmin}
+                  validationSchema={createTickedAdmin}
                   onSubmit={(values, actions) => {
+                    
                     handleSubmit(values);
                     actions.resetForm()
                 }}
@@ -58,12 +47,12 @@ const AddCircular = (props)=> {
                   {(props)=>(
                     <Form>
                       <div className="flexrow" style={marginBottom65vh}>
-                        <label htmlFor="title" className="section">Subject</label>
-                        <Field type="text" name="title" className="shortbox"  style={marginLeft130vw} placeholder="Type here"/>
+                        <label htmlFor="topic" className="section">Topic</label>
+                        <Field type="text" name="topic" className="shortbox"  style={marginLeft130vw} placeholder="Type here"/>
                       </div>
-                      <div className="flexrow" style={marginBottom65vh}>
-                        <p className="section">Date</p>
-                        <DayPickerInput  className="shortbox" name="date" onDayChange={(day)=> props.setFieldValue("date",day)} style={marginLeft130vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                      <div className="flexrow" style={marginBottom180vh}>
+                        <label htmlFor="desc" className="section">Description</label>
+                        <Field component='textarea' name="desc" className="shortbox" style={{marginLeft:'13vw',height:'15vh'}}  placeholder="Type here"/>
                       </div>
                       <div className="flexrow">
                         <p className="section">Attachment </p>
@@ -100,5 +89,5 @@ const mapStateToProps = (state) => ({
   account: state.account,
   
 })
-export default React.memo(connect(mapStateToProps)(AddCircular));
+export default React.memo(connect(mapStateToProps)(RaiseTicketAdmin));
 

@@ -1,10 +1,12 @@
 import React, { useEffect,useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Formik,Form,Field} from "formik";
+import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
+import {createUsers} from "../../redux/Action/UserAction";
 import {teacherProfileSchema} from "../../userData/ValidationSchema/TeacherSchema"
 import {teacherProfileInitialValue} from "../../userData/InitialData/Teacher"
 import {
@@ -22,24 +24,14 @@ import {
   image80vwLeft30vw} from "../../styles/imageMarginStyles"
 
 const TeacherProfile = (props) => {
-  const [teacherData,setTeacherData] = useState([])
-  const [edit,setEdit] = useState(true)
+  const [teacherData,setTeacherData] = useState(props.location.teacherdata?props.location.teacherdata:[])
+  const [edit,setEdit] = useState(props.location.teacherdata?false:true)
   
-  useEffect(()=>{
-    //props.dispatch(loadTeacherData());
-    //view or add new students
-    const checkstatus = () =>{
-      if (props.location.teacherdata){
-        setTeacherData(props.location.teacherdata)
-        setEdit(false) 
-        
-      }  
-    } 
+  const getUserInfo= () => {
+    props.dispatch(getCurrentUser());
+  }
 
-    checkstatus()
-  },[]) 
-
-  
+  useEffect(getUserInfo,[]) 
 
   const displayImage = (propsForm) => {
     
@@ -68,12 +60,26 @@ const TeacherProfile = (props) => {
 };
 
   const handleSubmit = (values) => {
-    if (props.location.studentdata) {
-      //props.dispatch(modifyTeacherData({ value: values }));
-    } else {
-      //props.dispatch(addTeacherData({ value: values }));
+    try {
+      const userData =props.account.userData.userdata.data.data;
+      
+      if (edit) {
+
+        
+        createUsers(userData.token,values,'student')
+        
+        
+      }
+      else{
+
+        createUsers(userData.token,values,'student')
+        
+      }
+      props.history.push("/teachersearch");
     }
-    props.history.push("/teachersearch");
+    catch(error) {
+      console.log(error)
+    }
   };
 
   

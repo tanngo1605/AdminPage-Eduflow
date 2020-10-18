@@ -35,25 +35,22 @@ import {
 const EventList = (props) => {
   let [schoolEvent,setSchoolEvent]= useState([])
   let [filterschoolEvent,setFilterSchoolEvent] = useState([])
-
-  useEffect(() => {
-    const getSchoolEventData = async ()=>{
-      props.dispatch(getCurrentUser())
-    
-      try {
-        const userData=props.account.userData.userdata.data.data;
-        const schooleventdata = await getSchoolEvent(userData.school.uuid,userData.token)
-        
-        setFilterSchoolEvent( schooleventdata )
-        setSchoolEvent(schooleventdata)
-      }
-      catch(err){
-        console.log(err)
-      }
+  const getSchoolEventData = async ()=>{
+    props.dispatch(getCurrentUser())
+  
+    try {
+      const userData=props.account.userData.userdata.data.data;
+      const schooleventdata = await getSchoolEvent(userData.school.uuid,userData.token)
+      
+      setFilterSchoolEvent( schooleventdata )
+      setSchoolEvent(schooleventdata)
     }
-    
-    getSchoolEventData()
-  },[])
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(getSchoolEventData,[])
 
 
   const deleteEvent = async (eventId)=>{

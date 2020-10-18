@@ -22,14 +22,14 @@ import {
   marginTop110vh,
   addaProfileAttachment,
 } from "../../styles/marginStyles";
+import {image300percent,image200percent,image100percent} from "../../styles/imageStyles";
 const StudentSearch = (props) => {
   
-  useEffect(()=>{
-    const getStudentInfo = () => {
-      props.dispatch(loadData());
+  const loaddata= () => {
+    props.dispatch(loadData());
     }
-    getStudentInfo()
-  },[]) 
+    
+  useEffect(loaddata,[]) 
 
   
   const onDrop = (files) => {
@@ -124,23 +124,23 @@ const StudentSearch = (props) => {
               </Formik>
               <div className='eventlistArea' style={{ width: '75vw', marginTop: '3vh' }}>
                 <div className='headereventList'>
-                  <p className='textaligncenter' style={{ width: '10%' }}>User ID</p>
-                  <p className='textaligncenter' style={{ width: '30%' }}>Name of Student</p>
-                  <p className='textaligncenter' style={{ width: '10%' }}>Class</p>
-                  <p className='textaligncenter' style={{ width: '10%' }}>Section</p>
-                  <p className='textaligncenter' style={{ width: '20%' }}>Delete</p>
-                  <p className='textaligncenter' style={{ width: '20%' }}>Edit</p>
+                  <p className='textaligncenter' style={image100percent}>User ID</p>
+                  <p className='textaligncenter' style={image300percent}>Name of Student</p>
+                  <p className='textaligncenter' style={image100percent}>Class</p>
+                  <p className='textaligncenter' style={image100percent}>Section</p>
+                  <p className='textaligncenter' style={image200percent}>Delete</p>
+                  <p className='textaligncenter' style={image200percent}>Edit</p>
                 </div>
 
                 <div className="bodyeventList">
-                  {students && students.map((student) =>
-                    <div className="flexrow" key={student.key} >
+                  {students && students.map((student,index) =>
+                    <div className="flexrow" key={index} >
 
-                      <p style={{ width: '10%' }}>User ID</p>
-                      <p style={{ width: '30%' }}>{student.name}</p>
-                      <p style={{ width: '10%' }}>{student.classvalue}</p>
-                      <p style={{ width: '10%' }}>{student.section}</p>
-                      <div className='itemcenter' style={{ width: "20%" }}>
+                      <p style={image100percent}>{index+1}</p>
+                      <p style={image300percent}>{student.name}</p>
+                      <p style={image100percent}>{student.classvalue}</p>
+                      <p style={image100percent}>{student.section}</p>
+                      <div className='itemcenter' style={image200percent}>
                         <MdDeleteForever size='1.5vw' onClick={() => props.dispatch(deleteData(student))} />
                       </div>
                       <div className='itemcenter' style={{ width: "20%", marginTop: '0.1vh' }}>
