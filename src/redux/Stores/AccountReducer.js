@@ -1,6 +1,4 @@
 
-const initState = {}
-
 export const setCurrentUser = (payload) => ({
   type: "SET_USER",
   payload,
@@ -11,7 +9,7 @@ export const getCurrentUser = (payload) => ({
 });
 
 
-const accountReducer =   (state = initState, action) => {
+const accountReducer =   (state = {}, action) => {
   switch(action.type){
     case "SET_USER":
       let userData = action.payload;

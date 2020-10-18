@@ -14,7 +14,7 @@ const addSchoolCircular =  (schoolId,jwtToken,circularInput) => {
     })
 
     console.log(inputData)
-    axios.post(`${ServerDomain}/schools/circular`,inputData,{
+    axios.post(`${ServerDomain}/schools/${schoolId}/circulars`,inputData,{
                     headers: { 
                       "Content-Type":"application/json",
                       "Authorization":`Bearer ${jwtToken}`

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import { Formik,Form,Field} from "formik";
 import Dropzone from "react-dropzone"
@@ -17,22 +17,21 @@ import {
   marginTop55vh,
   addaProfileAttachment,
   marginTop110vh} from "../../styles/marginStyles"
-
+import {image300percent,image200percent,image100percent} from "../../styles/imageStyles";
 const TeacherSearch = (props)=>{
-  const [error,setError] = useState()
-  useEffect(()=>{
-    const loaddata= () => {
+
+  const loaddata= () => {
     props.dispatch(loadTeacherData());
     }
-    loaddata()
-  },[error]) 
+  useEffect(loaddata,[]) 
+
   const handleSearch =(values)=>{
     console.log(values)
     try {
 
     }
     catch (err){
-      setError(err)
+      
     }
   }
   let teachers = props.teacher.filteredTeachers;
@@ -100,24 +99,24 @@ const TeacherSearch = (props)=>{
                 
                 <div className="eventlistArea" style={{width:"70vw",textAlign:"center"}}>
                   <div className="headereventList">
-                    <p style={{width:"10%"}}>User ID</p>
-                    <p style={{width:"30%"}}>Name of Teacher</p>
-                    <p style={{width:"10%"}}>Class</p>
-                    <p style={{width:"10%"}}>Section</p>
-                    <p style={{width:"20%"}}>Delete</p>
-                    <p style={{width:"20%"}}>Edit</p>
+                    <p style={image100percent}>User ID</p>
+                    <p style={image300percent}>Name of Teacher</p>
+                    <p style={image100percent}>Class</p>
+                    <p style={image100percent}>Section</p>
+                    <p style={image200percent}>Delete</p>
+                    <p style={image200percent}>Edit</p>
                   </div>
 
                   <div className="bodyeventList" >
-                      {teachers&&teachers.map((teacher)=>
+                      {teachers&&teachers.map((teacher,index)=>
 
-                        <div className="flexrow"  key={teacher.key} >
+                        <div className="flexrow"  key={index} >
                           
-                          <p style={{width:"10%"}}>User ID</p>
-                          <p style={{width:"30%"}}>{teacher.name}</p>
-                          <p style={{width:"10%"}}>{teacher.classteacher}</p>
-                          <p style={{width:"10%"}}>{teacher.section}</p>
-                          <div className="itemcenter" style={{width:"20%"}}>
+                          <p style={image100percent}>User ID</p>
+                          <p style={image300percent}>{teacher.name}</p>
+                          <p style={image100percent}>{teacher.classteacher}</p>
+                          <p style={image100percent}>{teacher.section}</p>
+                          <div className="itemcenter" style={image200percent}>
                             <MdDeleteForever size="1.5vw" onClick={()=>props.dispatch(deleteTeacherData(teacher))}/>
                           </div>
                           <div className="itemcenter" style={{width:"20%",marginTop:"0.1vh"}}>

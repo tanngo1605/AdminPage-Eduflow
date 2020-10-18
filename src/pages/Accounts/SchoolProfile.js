@@ -4,7 +4,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { Formik,Form,Field} from "formik";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/Header";
-import {getSchoolInfo} from "../../redux/Action/SchoolAction";
+import {getSchoolInfo,updateSchoolInfo} from "../../redux/Action/SchoolAction";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import schoolSchema from "../../userData/ValidationSchema/SchoolSchema"
 import schoolInitialValue from '../../userData/InitialData/School'
@@ -14,7 +14,6 @@ import {
   marginLeft200vw,
   marginLeft130vw,  
   marginLeft270vw,
-  
 } from "../../styles/marginStyles";
 import {image200vw} from "../../styles/imageStyles"
 import {
@@ -23,14 +22,6 @@ import {
   image80vwLeft30vw} from "../../styles/imageMarginStyles"
 const SchoolProfile =  (props) => {
   const [schoolData,setSchoolData] = useState([])
-
-  
-  useEffect(()=>{
-    
-    
-    getSchoolData()
- 
-  },[]) 
 
   const getSchoolData = async ()=>{
     props.dispatch(getCurrentUser())
@@ -44,10 +35,12 @@ const SchoolProfile =  (props) => {
       catch(err){
     }
   }
-  const displayImage = (propsForm) => {
-    
 
-    
+  useEffect(getSchoolData,[]) 
+
+  
+  const displayImage = (propsForm) => {
+
     const image = propsForm.values.image;
     if (image)
       return (
@@ -68,7 +61,15 @@ const SchoolProfile =  (props) => {
 };
 
   const handleSubmit = (values) => {
- 
+    try {
+      const userData = props.account.userData.userdata.data.data;
+      updateSchoolInfo(userData.school.uuid,userData.token,values);
+      
+    }
+    catch(error) {
+      console.log(error)
+      
+    }
   };
 
   
@@ -169,4 +170,4 @@ const SchoolProfile =  (props) => {
 const mapStateToProps = (state) => ({
   account: state.account,
 })
-export default React.memo(connect(mapStateToProps)(SchoolProfile));
+export default connect(mapStateToProps)(SchoolProfile);

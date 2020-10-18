@@ -22,19 +22,30 @@ const getSchoolInfo =  async (schoolId,jwtToken) => {
     
 }
 const updateSchoolInfo =  (schoolId,jwtToken,updateInput) => {
-    const {title,date,attachment} = updateInput;
+    const {
+      name,
+      schoolname,
+      schoolcode,
+      permaaddress,
+      permacity,
+      permastate,
+      permapcode,
+      schoolweb,
+      schoolemail,
+      contactnum,
+      alternatephoneno,
+      image} = updateInput;
     
     
     const inputData = JSON.stringify({
 
-      name: title,
-      email:'',
-      address:'',
-      mobile:'',
-      affiliationCode:'',
-      board:'',
-      landLine:'',
-      ssss:'',
+      name: schoolname,
+      email:schoolemail,
+      address:`${permaaddress} ,${permacity},${permastate},${permapcode}`,
+      mobile:contactnum,
+      affiliationCode:schoolweb,
+      board:'nhieulammoi',
+      landLine:alternatephoneno
         
 
     })

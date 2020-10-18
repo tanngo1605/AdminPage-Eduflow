@@ -2,7 +2,6 @@ const schoolInitialValue={
     name: "",
     schoolname: "",
     schoolcode:"",
-
     permaaddress: "",
     permacity: "",
     permastate: "",

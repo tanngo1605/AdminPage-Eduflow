@@ -4,8 +4,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/Header';
-//import classes from '../../userData/GlobalData/classData'
-//import sections from '../../userData/GlobalData/sectionData'
+import classes from '../../userData/GlobalData/classData'
+import sections from '../../userData/GlobalData/sectionData'
 import {
   marginBottom125vh,
   marginBottom65vh,
@@ -144,20 +144,28 @@ class TimeTable extends Component {
                     <p className='section'>Enter Class</p>
                     <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='class'>
                       <option value="" defaultValue>{" "}-select-</option>
+<<<<<<< HEAD
                       <option value='lime'>Lime</option>
                       <option value='coconut'>Coconut</option>
                       <option value='mango'>Mango</option>
+=======
+                      {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+>>>>>>> 34cef57cb8c189da9d3785f728353a09ba31f5c8
                     </select>
                   </div>
                   <div className='flexrow' style={marginLeft380vw}>
                     <p className='section'>Enter Section</p>
                     <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='section'>
                       <option value="" defaultValue>{" "}-select-</option>
+<<<<<<< HEAD
                       <option value='maths'>maths</option>
                       <option value='english'>English</option>
                       <option value='science'>Science</option>
                       <option value='history'>History</option>
                       <option value='pe'>PE</option>
+=======
+                      {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
+>>>>>>> 34cef57cb8c189da9d3785f728353a09ba31f5c8
                     </select>
                   </div>
                 </div>

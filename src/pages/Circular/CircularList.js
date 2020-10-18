@@ -25,10 +25,9 @@ import {
 const CircularList = (props) => {
   let [circularData,setCircularData] = useState([])
 
-  useEffect(() => {
-    const getCircularData = async ()=>{
-      props.dispatch(getCurrentUser())
-    
+  const getCircularData = async ()=>{
+    props.dispatch(getCurrentUser())
+  
     try {
       const userData=props.account.userData.userdata.data.data;
       const circular = await getSchoolCircular(userData.school.uuid,userData.token)
@@ -37,10 +36,9 @@ const CircularList = (props) => {
     catch(err){
       console.log(err)
     }
-    }
-    
-    getCircularData()
-  },[])
+  }
+
+  useEffect(getCircularData,[])
 
 
   
@@ -57,7 +55,7 @@ const CircularList = (props) => {
             <Header/>
             <div className='form'>
                 
-                <h1 className='titleform'>Teacher Info</h1>
+                <h1 className='titleform'>Circular List</h1>
                 <NavLink exact to={{pathname:'/circular'}} className='attachment' style={addaProfileAttachment}>
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a circular </p>
@@ -123,5 +121,5 @@ const mapStateToProps = (state) => ({
   account: state.account,
 })
 
-export default React.memo(connect(mapStateToProps)(CircularList));
+export default connect(mapStateToProps)(CircularList);
 

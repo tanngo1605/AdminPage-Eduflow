@@ -1,10 +1,13 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
+import { format } from 'date-fns';
+
 const loginAccount = async (userInput) => {
     const {schoolCode,username,password} = userInput;
     const inputData =JSON.stringify({
       username: username,
       password: password,
+      role:"admin",
     })
     let userData= axios.post(`${ServerDomain}/auth/login`,inputData,{
               headers: {
@@ -24,45 +27,35 @@ const loginAccount = async (userInput) => {
     return userData
 
 }
-const createUsers =  (schoolId,jwtToken,userInput,role) => {
-  const {
-    name,
-    email,
-    address,
-    mobile,
-    fatherName,
-    motherName,
-    gender,
-    fatherOccupation,
-    fatherMobile,
-    alternativeMobile,
-    admissionNo,
-    dob
-    } = userInput;
+const createUsers = (jwtToken,userInput,role) => {
+  let inputData = {};
   
+  console.log(format(userInput.dob,`yyyy-MM-dd`))
   
-  const inputData = JSON.stringify({
-    
-    name: name,
-    email:email,
-    address:address,
-    mobile:mobile,
-    fatherName:fatherName,
-    motherName:motherName,
-    gender:gender,
-    fatherOccupation:fatherOccupation,
-    fatherMobile:fatherMobile,
-    alternativeMobile:alternativeMobile,
-    admissionNo:admissionNo,
-    dob: dob.toLocaleDateString(),
-    isHosteler:"false",
-    role:role
-    
-    
-    
-  })
+  if (role ==='student')
+      inputData = JSON.stringify({
+            name:userInput.name,
+            email:"mmr337779999231@gmail.com",
+            address:`${userInput.permaaddress}, ${userInput.permacity}, ${userInput.permastate}, ${userInput.permapcode}`,
+            mobile:userInput.fathermobileno,
+            fatherName:userInput.fathername,
+            motherName:userInput.mothername,
+            gender:userInput.gender,
+            fatherOccupation:userInput.fatheroccupation,
+            fatherMobile:userInput.fathermobileno,
+            alternateMobile:userInput.alternatephoneno,
+            admissionNo:userInput.admissnumber,
+            //dob:,
+            isHosteler:"false",
+            role:role,
+            class:userInput.classvalue,
+            section:userInput.section
 
-  
+    })
+  else{
+        
+  }
+  console.log(inputData)
   axios.post(`${ServerDomain}/users`,inputData,{
               headers: { 
                   "Content-Type":"application/json",
@@ -74,11 +67,9 @@ const createUsers =  (schoolId,jwtToken,userInput,role) => {
         })
         .catch(err=>{
               const error= "Something went wrong. Check your input again"
-              throw new Error(error)    
+              throw new Error(error)
         });
-  
-  
-  
+
 }
 
 export {loginAccount,createUsers}
