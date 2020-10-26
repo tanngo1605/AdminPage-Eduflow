@@ -2,18 +2,16 @@ import ServerDomain from "../../serverdomain";
 import axios from 'axios';
 
 const addSchoolCircular =  (schoolId,jwtToken,circularInput) => {
-    const {title,date,attachment} = circularInput;
+    const {title,attachment} = circularInput;
     
     
     const inputData = JSON.stringify({
 
       title: title,
-      //date:date
       url:URL.createObjectURL(attachment[0])
 
     })
 
-    console.log(inputData)
     axios.post(`${ServerDomain}/schools/${schoolId}/circulars`,inputData,{
                     headers: { 
                       "Content-Type":"application/json",

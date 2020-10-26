@@ -14,11 +14,6 @@ import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
 import StudentProfile from "./pages/Student/StudentProfile";
-<<<<<<< HEAD
-import AStudentProfile from "./pages/Student/AnotherSP";
-// import ATeacherProfile from "./pages/Student/AnotherTP";
-=======
->>>>>>> 34cef57cb8c189da9d3785f728353a09ba31f5c8
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
 import Timetable from "./pages/TimeTable/TimeTable";
@@ -75,13 +70,8 @@ const App = () => {
           <Route path="/event" component={EventList} />
           <Route path="/teacher" component={TeacherProfile} />
           <Route path="/teachersearch" component={TeacherSearch} />
-<<<<<<< HEAD
-          <Route path="/student/profile" component={AStudentProfile} />
-          <Route path="/student" component={StudentSearch} />
-=======
           <Route path="/student" component={StudentProfile} />
           <Route path="/studentsearch" component={StudentSearch} />
->>>>>>> 34cef57cb8c189da9d3785f728353a09ba31f5c8
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />

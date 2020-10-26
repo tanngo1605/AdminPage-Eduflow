@@ -63,7 +63,7 @@ const AddCircular = (props)=> {
                       </div>
                       <div className="flexrow" style={marginBottom65vh}>
                         <p className="section">Date</p>
-                        <DayPickerInput  className="shortbox" name="date" onDayChange={(day)=> props.setFieldValue("date",day)} style={marginLeft130vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                        <p className="shortbox">{new Date()}</p>
                       </div>
                       <div className="flexrow">
                         <p className="section">Attachment </p>
