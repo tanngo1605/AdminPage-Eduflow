@@ -1,6 +1,5 @@
 const initCreateCircular= {
     title:"",
-    date:{},
     attachment:{},
     
 }

@@ -21,7 +21,11 @@ class ResetPassword extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value })
+    console.log(e.target.value);
+    this.setState({ password: e.target.value })
+    console.log(this.state.password);
+
+    // temp = 1;
   };
   toggleShow(id) {
     // console.log(temp, this.state.id);
@@ -93,14 +97,7 @@ class ResetPassword extends Component {
               <Popup
                 modal
                 trigger={
-                  <button
-                    type="button"
-                    value="submit"
-                    className="buttonPass"
-                    onClick={this.handleChange}
-                  >
-                    Reset
-                  </button>
+                  <button type="button" value="submit" className="buttonPass" onClick={this.handleChange}>Reset</button>
                 }
               >
                 <img src={passwordImg} alt="" />

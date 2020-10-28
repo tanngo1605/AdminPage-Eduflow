@@ -31,7 +31,7 @@ const createUsers = (jwtToken,userInput,role) => {
   let inputData = {};
   
   console.log(format(userInput.dob,`yyyy-MM-dd`))
-  
+  //fix date of birth tomorrow
   if (role ==='student')
       inputData = JSON.stringify({
             name:userInput.name,
