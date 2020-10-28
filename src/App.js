@@ -16,7 +16,7 @@ import StudentMigration from "./pages/StudentMigration/StudentMigration";
 import StudentProfile from "./pages/Student/StudentProfile";
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
-import Timetable from "./pages/TimeTable/TimeTable(New)";
+import Timetable from "./pages/TimeTable/TimeTable";
 import ForgotPassword from "./pages/PasswordReset/ForgetPassword";
 import ResetPassword from "./pages/PasswordReset/ResetPassword";
 import SendOTP from "./pages/PasswordReset/SendOTP";
