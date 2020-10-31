@@ -51,11 +51,7 @@ class Drawer extends Component {
         return (
 
             <div className="drawer">
-<<<<<<< HEAD
-
-=======
                 
->>>>>>> 34cef57cb8c189da9d3785f728353a09ba31f5c8
                 <div className="outeravatarcircle">
                     <div className="inneravatarcircle">
                         <img src={require("../../assets/Ellipse.png")} alt={'ava'} style={{ width: "82%", height: "82%", marginLeft: "0.9vw", marginTop: "1.8vh" }} />
@@ -66,37 +62,6 @@ class Drawer extends Component {
                     <h1 style={{ textAlign: 'center', color: '#FFFFFF', fontSize: "180%", marginTop: '0.5vw' }}>Akhil</h1>
                 </div>
                 <div>
-<<<<<<< HEAD
-                    <Scrollbars style={{ height: '60vh' }}>
-                        {drawercontent.map((item, index) =>
-                            <React.Fragment key={index}>
-                                <div className={item.clicked ? "activesubjectindrawer" : 'notactivesubjectindrawer'} onClick={(e) => this.handleClick(e, item.clicked, index, drawercontent)}>
-                                    {(item.clicked) ?
-                                        <img src={require('../../assets/' + item.activeimage)} alt={item.imagedescription} style={{ width: '8%', height: '8%', marginTop: '0.2vw', marginLeft: '0.9vw' }} />
-
-
-                                        :
-                                        <img src={require('../../assets/' + item.inactiveimage)} alt={item.imagedescription} style={{ width: '8%', height: '8%', marginLeft: '1vw', marginTop: '0.2vw' }} />
-                                    }
-
-                                    <NavLink exact to={'/' + item.web} style={{ color: '#FFFFFF', fontSize: '85%', marginTop: '0.1vw', marginLeft: '1.5vw' }}>{item.content}</NavLink>
-                                    {this.Show(item.content)}
-
-                                </div>
-                                <div style={{ margin: " 0vh 3vw" }}>
-                                    {item.clicked && item.subcontent ?
-                                        item.subcontent.map((el, index2) =>
-                                            <li key={index2} style={{ color: "white", width: "8vw", cursor: "pointer" }}>
-                                                <NavLink exact to={`/${el.web}`} style={{ color: '#FFFFFF', fontSize: '75%' }}>{el.content}</NavLink>
-                                            </li>)
-                                        : null
-                                    }
-                                </div>
-                            </React.Fragment>
-                        )}
-                    </Scrollbars>
-                </div>
-=======
                 <Scrollbars style={{height:'60vh'}}>
                 {drawercontent.map((item, index) =>
                     <React.Fragment key={index}>
@@ -126,7 +91,6 @@ class Drawer extends Component {
                 )}
                 </Scrollbars>  
                 </div>  
->>>>>>> 34cef57cb8c189da9d3785f728353a09ba31f5c8
 
             </div>
 
