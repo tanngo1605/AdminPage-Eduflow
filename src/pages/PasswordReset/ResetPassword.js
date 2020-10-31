@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ii from "../../assets/ii1.png";
 import "./password.css";
 import Popup from "reactjs-popup";
-import {resetPassword} from "../../redux/Action/PasswordAction";
+import { resetPassword } from "../../redux/Action/PasswordAction";
 import passwordImg from "../../assets/password2.png";
 var temp = 0;
 let id = ["1", "2"];
@@ -44,21 +44,21 @@ class ResetPassword extends Component {
     //console.log(this.props.history);
     //const prop = this.props.location
     //if (password!=confirmPassword){
-     // alert("Different Password")
-     // return 
+    // alert("Different Password")
+    // return 
     //}
-    
+
     //try {
-      
+
     //  const OTP = await resetPassword(emailID);
     //  //send user OTP 
     //  this.props.history.push({pathname:"/",OTP:prop.OTP:,email:prop.email,password,confirmpassword});
-      
+
     //}
     //catch(error) {
-     // console.log(error)
+    // console.log(error)
     //}
-    
+
   };
   render() {
     return (
@@ -73,9 +73,9 @@ class ResetPassword extends Component {
                   <div className="textPass">Enter your new password</div>
                   <div className="textTypePass">Type</div>
                 </div>
-                <input className="inputPassword resetPassword" placeholder="****************" id="1" onChange={this.handleChange}type={this.state.hidden? "text": "password"}/>
+                <input className="inputPassword resetPassword" placeholder="****************" id="1" onChange={this.handleChange} type={this.state.hidden ? "text" : "password"} />
                 <label className="eyeIcon" htmlFor="button1">
-                  <i  className="hideshowBtn" onClick={() => this.toggleShow("1")}></i>
+                  <i className="hideshowBtn" onClick={() => this.toggleShow("1")}></i>
                 </label>
               </div>
               <div className="passwordFieldd" style={{ marginTop: "30px" }}>
@@ -83,14 +83,14 @@ class ResetPassword extends Component {
                   <div className="textPass">Confirm your new password</div>
                   <div className="textTypePass">Type</div>
                 </div>
-                <input className="inputPassword resetPassword" placeholder="****************" id="2" onChange={this.handleChange} type={this.state.hidden1? "text": "password"}/>
+                <input className="inputPassword resetPassword" placeholder="****************" id="2" onChange={this.handleChange} type={this.state.hidden1 ? "text" : "password"} />
 
                 <label className="eyeIcon" htmlFor="button2">
-                  <i className="hideshowBtn"onClick={() => this.toggleShow("2")}></i>
+                  <i className="hideshowBtn" onClick={() => this.toggleShow("2")}></i>
                 </label>
               </div>
               <div className="checkField">
-                <input type="checkbox" className="resetPass"onClick={() => this.toggleCheck()}/>
+                <input type="checkbox" className="resetPass" onClick={() => this.toggleCheck()} />
                 <span>Remember me</span>
               </div>
 
