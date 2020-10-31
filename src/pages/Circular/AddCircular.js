@@ -3,11 +3,10 @@ import { connect } from "react-redux"
 import { Formik,Form,Field} from "formik";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import {addSchoolCircular} from "../../redux/Action/CircularAction";
-import DayPickerInput from "react-day-picker/DayPickerInput";
 import Dropzone from "react-dropzone";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import {createCircularSchema} from "../../userData/ValidationSchema/CircularSchema"
 import {initCreateCircular} from "../../userData/InitialData/Circular"
 import {marginLeft130vw,marginBottom65vh} from "../../styles/marginStyles"

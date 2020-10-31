@@ -4,7 +4,7 @@ import { Formik,Form,Field} from "formik";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import accountSchema from "../../userData/ValidationSchema/AccountSchema"
 import initialvalue from "../../userData/InitialData/Account"
 import {marginLeft240vw,marginTop45vh,marginLeft380vw,marginBottom100vh} from "../../styles/marginStyles"

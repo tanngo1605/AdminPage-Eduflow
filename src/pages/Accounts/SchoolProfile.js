@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { Scrollbars } from "react-custom-scrollbars";
 import { Formik,Form,Field} from "formik";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import {getSchoolInfo,updateSchoolInfo} from "../../redux/Action/SchoolAction";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import schoolSchema from "../../userData/ValidationSchema/SchoolSchema"
@@ -97,9 +97,9 @@ const SchoolProfile =  (props) => {
                       {(propsForm)=>(
                   
                         <Form className='flexrow'>
-                         {displayImage(propsForm)}
+                         
                          <div className='flexcolumn'>
-                          <div className="formforinfo" style={{paddingTop:'3.5vh'}}>
+                          <div className="formforinfo">
                            <Scrollbars>
                             <div className="flexrow" style={marginBottom65vh}>
                              

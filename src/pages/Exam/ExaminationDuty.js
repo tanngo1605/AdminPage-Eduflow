@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {Scrollbars} from 'react-custom-scrollbars';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import {marginBottom100vh,marginBottom65vh,marginLeft130vw} from '../../styles/marginStyles'

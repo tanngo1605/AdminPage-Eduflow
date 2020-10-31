@@ -32,6 +32,9 @@ const marginBottom130vhandTop30vh = {
 const marginLeft600vw ={
   marginLeft: "60vw",
 }
+const marginLeft480vw ={
+  marginLeft: "48vw",
+}
 const marginLeft470vw ={
   marginLeft: "47vw",
 }
@@ -63,6 +66,9 @@ const marginLeft150vw = {
 const marginLeft130vw = {
   marginLeft: "13vw",
 };
+const marginLeft120vw={
+  marginLeft:"12vw"
+}
 const marginLeft100vw = {
   marginLeft: "10vw",
 };
@@ -131,6 +137,7 @@ export {
   marginBottom55vh,
   marginBottom30vh,
   marginLeft600vw,
+  marginLeft480vw,
   marginLeft470vw,
   marginLeft450vw,
   marginLeft380vw,
@@ -141,6 +148,7 @@ export {
   marginLeft200vw,
   marginLeft150vw,
   marginLeft130vw,
+  marginLeft120vw,
   marginLeft100vw,
   marginLeft55vw,
   marginLeft15vw,

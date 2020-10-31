@@ -8,7 +8,7 @@ import {getSchoolEvent} from "../../redux/Action/EventAction";
 import {getCurrentUser} from '../../redux/Stores/AccountReducer';
 import { addAlbum, loadAlbum } from "../../redux/Stores/GalleryReducer";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
 import {

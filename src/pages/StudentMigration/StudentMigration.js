@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import {
   marginTop45vh,
 } from "../../styles/marginStyles";

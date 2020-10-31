@@ -3,7 +3,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { connect } from "react-redux";
 import { loadData, filterByValue } from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 
 class TicketList extends Component {
   constructor(props) {

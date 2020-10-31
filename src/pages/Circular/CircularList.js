@@ -4,7 +4,7 @@ import { NavLink} from 'react-router-dom'
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { Formik,Form,Field} from "formik";
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {getSchoolCircular} from "../../redux/Action/CircularAction";
 
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";

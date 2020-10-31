@@ -4,7 +4,7 @@ import { Formik, Form, Field, FieldArray, useFormik, useFormikContext, ErrorMess
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
-import Header from '../../component/Header/Header';
+import Header from '../../component/Header/HeaderAdmin';
 // import getTimeTableData from "../../redux/Action/TimeTableAction"
 import {
     marginBottom125vh,

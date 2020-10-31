@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Formik,Form,Field} from "formik";
 import { loadData, addTicket } from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import {marginBottom65vh,marginLeft130vw} from '../../styles/marginStyles'
 class RaiseTicket extends Component {
   constructor(props) {

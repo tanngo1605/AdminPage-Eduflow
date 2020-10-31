@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import {addSchoolEvent} from "../../redux/Action/EventAction";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import Dropzone from "react-dropzone";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPlus } from "react-icons/bs";

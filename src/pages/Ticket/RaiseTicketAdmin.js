@@ -6,7 +6,7 @@ import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import Dropzone from "react-dropzone";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import {createTickedAdmin} from "../../userData/ValidationSchema/TicketSchema"
 import {intialTickedAdmin} from "../../userData/InitialData/Ticket"
 import {marginLeft130vw,marginBottom180vh,marginBottom65vh} from "../../styles/marginStyles"

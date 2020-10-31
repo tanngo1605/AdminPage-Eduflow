@@ -10,7 +10,7 @@ import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPencilSquare,BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import classes from "../../userData/GlobalData/classData"
 import sections from "../../userData/GlobalData/sectionData"
 import ExamSchema from "../../userData/ValidationSchema/ExamSchema"

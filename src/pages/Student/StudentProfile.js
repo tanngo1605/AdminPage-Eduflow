@@ -5,7 +5,7 @@ import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import {createUsers} from "../../redux/Action/UserAction";
 import {studentProfileSchema} from "../../userData/ValidationSchema/StudentSchema"
 import {studentProfileInitialValue} from '../../userData/InitialData/Student'

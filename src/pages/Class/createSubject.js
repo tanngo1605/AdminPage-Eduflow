@@ -4,7 +4,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
 import {loadClassData} from "../../redux/Stores/ClassReducer";
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import Drawer from '../../component/Drawer/Drawer';
-import Header from '../../component/Header/Header';
+import Header from '../../component/Header/HeaderAdmin';
 import {
   marginBottom65vh,
   marginLeft380vw,

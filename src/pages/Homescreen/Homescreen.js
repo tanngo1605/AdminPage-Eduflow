@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import DayPicker from 'react-day-picker';
 import {Scrollbars} from 'react-custom-scrollbars';
 import './calendar.styles.css';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../component/Drawer/Drawer';
-import Header from '../../component/Header/Header';
+import Header from '../../component/Header/HeaderAdmin';
 import classes from '../../userData/GlobalData/classData'
 import sections from '../../userData/GlobalData/sectionData'
 import {

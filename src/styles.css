@@ -1,3 +1,29 @@
+/*------------------------------Teacher------------------------*/
+
+.headerteacher{
+  background-color: #ffffff;
+  width: 120vw;
+  height: 15vh;
+  padding-left:25vw;
+  display: flex;
+  flex-direction: row;
+}
+/* Shared Styles*/
+.formTeacher {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 249, 255, 0.0001) 0%,
+    #f4f9ff 26.23%
+  );
+  width: 100%;
+  height: 100%;
+  margin-left: 1vw;
+  margin-top: 1.2vh;
+  padding-left: 15vw;
+  display: flex;
+  flex-direction: column;
+}
+/* -----------------------------Admin--------------------------*/
 .dashboard {
   background-color: rgba(229, 233, 238, 0.5);
   width: 100vw;
@@ -607,9 +633,11 @@ input[type="checkbox"]:before {
   height: 20px;
   top: 0;
   left: 0;
-  border: 2px solid #555555;
+  
+  border: 1px solid #555555;
   border-radius: 3px;
   background-color: white;
+  
 }
 input[type="checkbox"].bac:checked:after {
   content: "";
@@ -622,8 +650,10 @@ input[type="checkbox"].bac:checked:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   position: absolute;
-  top: 3px;
+ 
+  top: 7px;
   left: 8px;
+  
 }
 input[type="checkbox"].abc:checked:after {
   content: "";
@@ -636,8 +666,10 @@ input[type="checkbox"].abc:checked:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   position: absolute;
+  
   top: 3px;
   left: 8px;
+  
 }
 .textMoveScreenField {
   display: inline-flex;

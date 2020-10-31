@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import Popup from "reactjs-popup";
 // import StudentMigration from "./StudentMigration"
 import {

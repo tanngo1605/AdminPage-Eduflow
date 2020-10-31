@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Scrollbars} from 'react-custom-scrollbars';
 import { Formik,Form,Field} from "formik";
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {getSchoolEvent,searchSchoolEvent,deleteSchoolEvent} from "../../redux/Action/EventAction";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import {searchEventSchema} from "../../userData/ValidationSchema/EventSchema"
@@ -170,7 +170,7 @@ const EventList = (props) => {
                       
                         </div>
                     ))}
-                  </Scrollbars>
+                    </Scrollbars>
                     
                   </div>
                 </div>

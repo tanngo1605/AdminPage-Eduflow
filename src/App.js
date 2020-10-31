@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ Suspense } from "react";
 import { Route, BrowserRouter, Switch, } from "react-router-dom";
 import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
@@ -6,14 +6,8 @@ import SchoolProfile from './pages/Accounts/SchoolProfile'
 import RaiseTicket from "./pages/Ticket/RaiseTicket";
 import RaiseTicketAdmin from "./pages/Ticket/RaiseTicketAdmin";
 import TicketList from "./pages/Ticket/TicketList";
-import CreateEvent from "./pages/Events/CreateEvent";
-import EventList from "./pages/Events/EventList";
-import TeacherProfile from "./pages/Teacher/TeacherProfile";
-import TeacherSearch from "./pages/Teacher/TeacherSearch";
-import StudentSearch from "./pages/Student/StudentSearch";
 import MoveStudent from "./pages/StudentMigration/MoveStudent";
 import StudentMigration from "./pages/StudentMigration/StudentMigration";
-import StudentProfile from "./pages/Student/StudentProfile";
 import Syllabus from "./pages/Syllabus/Syllabus";
 import Gallery from "./pages/Gallery/Gallery";
 import Timetable from "./pages/TimeTable/TimeTable";
@@ -33,18 +27,28 @@ import Feedback from "./pages/Feedback/Feedback";
 import Attendance from "./pages/TeacherAttendance/Attendance";
 import SearchAttendace from "./pages/TeacherAttendance/SearchAttendance";
 import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
-
-import FormikForm from "./pages/TimeTable/TimeTable(New)"
+import UserRouter from "./navigation/UserRouter";
+import CircularRouter from "./navigation/CircularRouter";
+import EventRouter from "./navigation/EventRouter";
+import FormikForm from "./pages/TimeTable/TimeTable(New)";
+import SchoolResults from "./pages/Results/SchoolResults";
+import ClassResults from "./pages/Results/ClassResults";
+import EnterMarks from "./pages/Results/EnterMarks";
+import Results from "./pages/Results/Results";
 import "./App.css";
 import "./styles.css";
 const App = () => {
   return (
     // <ScreenSyllabus />
-
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
+    <div className="App">
+      <Suspense fallback={<h1>Loading....</h1>}>
+        <BrowserRouter >
+      
+          
           {/* <FormikForm /> */}
+          {UserRouter()}
+          {EventRouter()}
+          {CircularRouter()}
           <Route path="/formik" component={FormikForm} />
           <Route path="/schoolprofile" component={SchoolProfile} />
           <Route path="/studentmigration" component={StudentMigration} />
@@ -65,23 +69,23 @@ const App = () => {
           <Route path="/resetpassword" component={ResetPassword} />
           <Route path="/ticket" component={TicketList} />
           <Route path="/raiseticketadmin" component={RaiseTicketAdmin} />
-          <Route path="/raiseticket" component={RaiseTicket} />
-          <Route path="/event/createevent" component={CreateEvent} />
-          <Route path="/event" component={EventList} />
-          <Route path="/teacher" component={TeacherProfile} />
-          <Route path="/teachersearch" component={TeacherSearch} />
-          <Route path="/student" component={StudentProfile} />
-          <Route path="/studentsearch" component={StudentSearch} />
+          <Route path="/raiseticket" component={RaiseTicket} />   
           <Route path="/gallery/:album_name" component={ImageInAlbum} />
           <Route path="/gallery" component={Gallery} />
           <Route path="/account" component={AccountSetting} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/timetable" component={Timetable} />
           <Route path="/homescreen" component={Homescreen} />
+          <Route path='/schoolresults' component={SchoolResults}/>
+          <Route path='/classresults' component={ClassResults}/>
+          <Route path='/entermarks' component={EnterMarks}/>
+          <Route path='/results' component={Results}/>
           <Route exact path="/" component={LoginPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+          
+      
+        </BrowserRouter>
+      </Suspense>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {loadTeacherData,filterTeacherData} from "../../redux/Stores/TeacherReducer";
 import {loadAttendance,addAttendance} from "../../redux/Stores/AttendanceReducer";
 import { BsPlus } from "react-icons/bs";

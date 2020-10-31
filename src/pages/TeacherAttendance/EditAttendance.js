@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import {loadAttendance,loadSpecificAttendance,modifyAttendance} from "../../redux/Stores/AttendanceReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
