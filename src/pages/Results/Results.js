@@ -8,7 +8,6 @@ import schoolInitialValue from '../../userData/InitialData/School'
 import {
     marginBottom65vh,
     marginTop55vh,
-    marginLeft480vw,
     marginLeft450vw,
     marginLeft380vw,
     marginLeft130vw,

@@ -7,7 +7,7 @@ import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import {loadAttendance,filterAttendance} from "../../redux/Stores/AttendanceReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPencilSquare } from "react-icons/bs";
-import {marginTop45vh,marginLeft55vw,} from '../../styles/marginStyles'
+import {marginTop45vh} from '../../styles/marginStyles'
 
 
 
@@ -69,17 +69,17 @@ class SearchAttendance extends Component {
                 <form className='flexcolumn' onSubmit={this.searchResult} style={marginTop45vh}>
                   <div className='flexrow' >
                     
-                    <p className='section' style={marginLeft55vw}>Date From </p>
-                    <DayPickerInput className="shortbox" style={{marginLeft:'15vw'}} onDayChange={(day) => this.handleDayChange(day,'datefrom')}/>
-                    <p className='section' style={{marginLeft:'38vw'}}>Date To </p>
-                    <DayPickerInput className="shortbox" style={{marginLeft:'33vw'}} onDayChange={(day) => this.handleDayChange(day,'dateto')}/>
+                    <p className='section' >Date From </p>
+                    <DayPickerInput className="shortbox"  onDayChange={(day) => this.handleDayChange(day,'datefrom')}/>
+                    <p className='section' style={{marginLeft:'25vw '}}>Date To </p>
+                    <DayPickerInput className="shortbox"  onDayChange={(day) => this.handleDayChange(day,'dateto')}/>
                     
                   </div>
                   
                   <input type='submit' value='Search' className='button' style={{marginLeft:'35%',marginTop:'8vh',marginBottom:'5vh'}}/>
                 </form>
                 
-                <div className='eventlistArea' style={{width:'70vw',textAlign:'center',height:'40vh'}}>
+                <div className='eventlistArea' style={{width:'70vw',height:'40vh'}}>
                   <div className='headereventList'>
                     
                     <p style={{width:'33%'}}>Date</p>

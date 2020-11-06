@@ -70,5 +70,48 @@ const updateSchoolInfo =  (schoolId,jwtToken,updateInput) => {
     
     
 }
+const createSubject =  (schoolId,jwtToken,subjectInput) => {
+  const {name,text} = subjectInput;
+  
+  
+  const inputData = JSON.stringify({
+    name: name,
+    "":text,
+  })
 
-export {getSchoolInfo,updateSchoolInfo}
+  
+  axios.put(`${ServerDomain}/subjects`,inputData,{
+                  headers: { 
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${jwtToken}`
+                  },
+        })
+        .then(resData=>{
+                  console.log("Success creating a subject")
+        })
+        .catch(err=>{
+                  const error= "Something went wrong. Check your input again"               
+        });
+}
+
+const getSubject =  async (schoolId,jwtToken) => {
+    
+
+    
+  const subjectData = await axios.get(`${ServerDomain}/subjects`,{
+                              headers: { 
+                                  "Content-Type":"application/json",
+                                  "Authorization":`Bearer ${jwtToken}`
+                              },
+                          })
+
+                          .catch(err=>{
+                              const error= "Something went wrong. Check your input again"
+                              throw new Error(error)
+                          });
+  return subjectData.data.data
+  
+  
+  
+}
+export {getSchoolInfo,updateSchoolInfo,createSubject,getSubject}

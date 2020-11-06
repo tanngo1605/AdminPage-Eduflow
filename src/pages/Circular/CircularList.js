@@ -10,18 +10,10 @@ import {getSchoolCircular} from "../../redux/Action/CircularAction";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import {initListCircular} from "../../userData/InitialData/Circular"
 import {listCircularSchema} from "../../userData/ValidationSchema/CircularSchema"
-import { BsPencilSquare,BsPlus } from "react-icons/bs";
-import { MdDeleteForever } from "react-icons/md";
-import {
-  marginLeft450vw,
-  marginLeft380vw,
-  marginLeft130vw,
-  marginLeft55vw,
-  
-  addaProfileAttachment,
-  marginBottom130vhandTop30vh,
-  } from '../../styles/marginStyles'
-
+import {BsPencilSquare,BsPlus} from "react-icons/bs";
+import {MdDeleteForever} from "react-icons/md";
+import {addaProfileAttachment,marginLeft60vw,marginLeft20vw,marginTop20vh} from '../../styles/marginStyles'
+import {image200percent,image150percent,image100percent} from '../../styles/imageStyles'
 const CircularList = (props) => {
   let [circularData,setCircularData] = useState([])
 
@@ -60,28 +52,29 @@ const CircularList = (props) => {
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Add a circular </p>
                 </NavLink>
+                
                 <Formik
                   initialValues={initListCircular}
                   validationSchema={listCircularSchema}
                 >  
                   {(props)=>(
-                    <Form className='flexrow' onChange={()=>console.log(props.values)} style={marginBottom130vhandTop30vh}>
-                      <label htmlFor='Subject' className='section' style={marginLeft55vw}>Title</label>
-                      <Field type="text" name="title" className="shortbox"  style={marginLeft130vw} placeholder="Type here"/>
-                      <label className="section" style={marginLeft380vw}>Date from: </label>
-                      <DayPickerInput  className="shortbox" name="date" onDayChange={(day)=> props.setFieldValue("date",day)} style={marginLeft450vw}  inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                    <Form className='flexrow' onChange={()=>searchResult()} style={marginTop20vh} >
+                      <label htmlFor='Subject' className='section' style={marginLeft20vw}>Title</label>
+                      <Field type="text" name="title" className="shortbox" placeholder="Type here"/>
+                      <label className="section" style={marginLeft60vw}>Date from: </label>
+                      <DayPickerInput  className="shortbox" name="date" onDayChange={(day)=> props.setFieldValue("date",day)} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
                     </Form>
 
                   )}
                 </Formik>
-                <div className='eventlistArea' style={{width:'70vw',textAlign:'center'}}>
+                <div className='eventlistArea' style={{width:'70vw',marginTop:'5vh'}}>
                   <div className='headereventList'>
-                    <p style={{width:'15%'}}>Serial No</p>
-                    <p style={{width:'20%'}}>Date</p>
-                    <p style={{width:'20%'}}>Title</p>
-                    <p style={{width:'20%'}}>Attachment</p>
-                    <p style={{width:'10%'}}>Delete</p>
-                    <p style={{width:'10%'}}>Edit</p>
+                    <p style={image150percent}>Serial No</p>
+                    <p style={image200percent}>Date</p>
+                    <p style={image200percent}>Title</p>
+                    <p style={image200percent}>Attachment</p>
+                    <p style={image100percent}>Delete</p>
+                    <p style={image100percent}>Edit</p>
                   </div>
                   
                   <div className="bodyeventList">
@@ -89,14 +82,14 @@ const CircularList = (props) => {
 
                         <div  className="flexrow"  key={index} >
                           
-                          <p style={{width:'15%'}}>{index+1}</p>
-                          <p style={{width:'20%'}}></p>
-                          <p style={{width:'20%'}}>{circular.title}</p>
-                          <p style={{width:'20%'}}>{circular.url}</p>
-                          <div className='itemcenter' style={{width:"10%"}}>
+                          <p style={image150percent}>{index+1}</p>
+                          <p style={image200percent}></p>
+                          <p style={image200percent}>{circular.title}</p>
+                          <p style={image200percent}>{circular.url}</p>
+                          <div className='itemcenter' style={image100percent}>
                             <MdDeleteForever size='1.5vw' onClick={()=>console.log('khanh ')}/>
                           </div>
-                          <div className='itemcenter' style={{width:"10%",marginTop:'0.1vh'}}>
+                          <div className='itemcenter' style={image100percent}>
                             <NavLink exact to={{pathname:'/circular',circulardata:circular}}>
                               <BsPencilSquare size='1.3vw' color='black' />
                             </NavLink>

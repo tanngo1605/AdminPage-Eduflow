@@ -5,7 +5,7 @@ import { Formik,Form,Field} from "formik";
 import { loadData, addTicket } from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/HeaderAdmin";
-import {marginBottom65vh,marginLeft130vw} from '../../styles/marginStyles'
+import {marginBottom20vh} from '../../styles/marginStyles'
 class RaiseTicket extends Component {
   constructor(props) {
     super(props);
@@ -52,49 +52,50 @@ class RaiseTicket extends Component {
           <Drawer />
           <div className="flexcolumn">
             <Header />
-            <form className="form" onSubmit={this.handleSubmit} id="create-course-form">
+            <div className="form">
               <h1 className="titleform">Raise a ticket</h1>
-              <div style={{ marginLeft: "1.5vw" }}>
-                <div style={marginBottom65vh}>
+              <form  onSubmit={this.handleSubmit} id="create-course-form">
+                <div className="flexrow" style={marginBottom20vh}>
                   <label htmlFor="serialno" className="section">Serial No</label>
-                  <input type="text" id="serialno" className="longbox" style={marginLeft130vw} placeholder="Type here" onChange={this.handleChange}/>
+                  <input type="text" id="serialno" className="longbox" placeholder="Type here" onChange={this.handleChange}/>
                 </div>
 
-                <div className="flexrow" style={marginBottom65vh}>
+                <div className="flexrow" style={marginBottom20vh}>
                   <label htmlFor="date" className="section">Date</label>
-                  <DayPickerInput className="shortbox" style={{marginLeft:'13vw'}} onDayChange={(day) => this.handleDayChange(day)} placeholder="- select -"/>
+                  <DayPickerInput className="shortbox" onDayChange={(day) => this.handleDayChange(day)} placeholder="- select -"/>
                 </div>
 
-                <div className='flexrow' style={marginBottom65vh}>
+                <div className='flexrow' style={marginBottom20vh}>
                   <label htmlFor="subject" className="section">Subject</label>
-                  <input type="text" id="subject" className="shortbox" required style={marginLeft130vw} onChange={this.handleChange}/>
+                  <input type="text" id="subject" className="shortbox" required onChange={this.handleChange}/>
                 </div>
 
-                <div className='flexrow' style={marginBottom65vh} >
+                <div className='flexrow' style={marginBottom20vh} >
                   <label htmlFor="topic" className="section">Topic</label>
-                  <input type="text" id="topic" className="longbox" style={marginLeft130vw} placeholder="Type here" onChange={this.handleChange}/>
+                  <input type="text" id="topic" className="longbox" placeholder="Type here" onChange={this.handleChange}/>
                 </div>
 
-                <div className='flexrow' style={marginBottom65vh} >
+                <div className='flexrow' style={marginBottom20vh} >
                   <label htmlFor="name" className="section">Name</label>
-                  <input type="text" id="name" className="longbox" style={marginLeft130vw} placeholder="Type here" onChange={this.handleChange}/>
+                  <input type="text" id="name" className="longbox" placeholder="Type here" onChange={this.handleChange}/>
                 </div>
 
-                <div className='flexrow' style={marginBottom65vh} >
+                <div className='flexrow' style={marginBottom20vh} >
                   <label htmlFor="problem" className="section">Problem</label>
-                  <textarea type="text" id="problem" className="longbox" style={marginLeft130vw} placeholder="Type here" onChange={this.handleChange}></textarea>
+                  <textarea type="text" id="problem" className="longbox" placeholder="Type here" onChange={this.handleChange}></textarea>
                 </div>
 
-                <div className='flexrow' style={marginBottom65vh} >
+                <div className='flexrow' style={marginBottom20vh} >
                   <label htmlFor="status" className="section">Status</label>
-                  <input type="text" id="status" className="longbox" style={marginLeft130vw} placeholder="Type here" onChange={this.handleChange}/>
+                  <input type="text" id="status" className="longbox" placeholder="Type here" onChange={this.handleChange}/>
                 </div>
-              </div>
-              <div className="flexrow">
-                <input type="submit" value="Save" className="button" style={{ marginLeft: "8vw" }}/>
-                <input type="reset" value="Reset" className="button" />
-              </div>
-            </form>
+                <div className="flexrow" style={{ marginLeft: "8vw" }}>
+                  <input type="submit" value="Save" className="button" />
+                  <input type="reset" value="Reset" className="button" />
+                </div>
+              </form>
+              
+            </div>
           </div>
         </div>
       </div>

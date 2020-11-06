@@ -30,7 +30,7 @@ import EditAttendance from "./pages/TeacherAttendance/EditAttendance";
 import UserRouter from "./navigation/UserRouter";
 import CircularRouter from "./navigation/CircularRouter";
 import EventRouter from "./navigation/EventRouter";
-import FormikForm from "./pages/TimeTable/TimeTable(New)";
+import TimeTable from "./pages/TimeTable/TimeTable";
 import SchoolResults from "./pages/Results/SchoolResults";
 import ClassResults from "./pages/Results/ClassResults";
 import EnterMarks from "./pages/Results/EnterMarks";
@@ -49,7 +49,7 @@ const App = () => {
           {UserRouter()}
           {EventRouter()}
           {CircularRouter()}
-          <Route path="/formik" component={FormikForm} />
+          {/*<Route path="/formik" component={FormikForm} />*/}
           <Route path="/schoolprofile" component={SchoolProfile} />
           <Route path="/studentmigration" component={StudentMigration} />
           <Route path="/movestudent" component={MoveStudent} />

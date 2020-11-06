@@ -12,25 +12,8 @@ import classes from '../../userData/GlobalData/classData'
 import sections from '../../userData/GlobalData/sectionData'
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-import {
-  marginLeft600vw,
-  marginLeft470vw,
-  marginLeft450vw,
-  marginLeft380vw,
-  marginLeft150vw,
-  marginLeft130vw,
-  marginLeft15vw,
-  marginBottom100vh,
-  marginBottom65vh} from '../../styles/marginStyles'
-
-import {
-    image580vw,
-    image200percent,
-    image100percent
-    
-    
-    
-    } from '../../styles/imageStyles'
+import {marginLeft130vw,marginLeft60vw,marginLeft15vw,marginBottom20vh} from '../../styles/marginStyles'
+import {image580vw,image200percent,image100percent} from '../../styles/imageStyles'
 
 const EventList = (props) => {
   let [schoolEvent,setSchoolEvent]= useState([])
@@ -91,13 +74,10 @@ const EventList = (props) => {
       <div className='dashboard'>
         <div className='flexrow'>
           <Drawer/>
-          
           <div className='flexcolumn'>
             <Header/>
             <div className='form'>
-                
                 <h1 className='titleform'>Event List</h1>
-                
                 <Formik
                       initialValues={initialSearchEvent}
                       validationSchema={searchEventSchema}
@@ -109,23 +89,22 @@ const EventList = (props) => {
                     >
                      {(propsForm)=>(
                       <Form>
-                    
-                        <div className='flexrow' style={marginBottom100vh}>
-                          <label htmlFor="classvalue" className="section" >Class</label>
-                          <Field as="select" name="classvalue" className="shortbox"  style={marginLeft130vw} placeholder="Your class">
+                        <div className='flexrow' style={marginBottom20vh}>
+                          <label htmlFor="classvalue" className="section" >Enter Class</label>
+                          <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
                             <option value="" defaultValue>{" "}-select-</option>
                             {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                           </Field>
                           {/* Section*/}
-                          <label htmlFor="section" className="section" style={marginLeft380vw}>Section</label>
-                            <Field as="select" name="section" className="shortbox"  style={marginLeft450vw} placeholder="Your section">
-                              <option value="" defaultValue>{" "}-select-</option>
-                              {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
-                            </Field>
+                          <label htmlFor="section" className="section" style={marginLeft60vw}>Enter Section</label>
+                          <Field as="select" name="section" className="shortbox" placeholder="Your section">
+                            <option value="" defaultValue>{" "}-select-</option>
+                            {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
+                          </Field>
                         </div>
-                        <div style={marginBottom65vh}> 
-                          <label className='section'>Events</label>
-                          <Field type='radio' value='upcoming' name='time' style={marginLeft150vw}/>
+                        <div className='flexrow' style={marginBottom20vh}> 
+                          <label className='section' >Events</label>
+                          <Field type='radio' value='upcoming' name='time' style={marginLeft60vw}/>
                           <label htmlFor='time' className='radiostyle'>Upcoming</label>
                           <Field type='radio' value='past' name='time' style={marginLeft15vw}/>
                           <label htmlFor='time' className='radiostyle'>Past due</label>
@@ -135,16 +114,16 @@ const EventList = (props) => {
                           <label htmlFor='time' className='radiostyle'>Custom date</label>
                               
                         </div>
-                        <div className='flexrow' style={marginBottom65vh}>
+                        <div className='flexrow' style={marginBottom20vh}>
                           <label htmlFor='text' className='section'>Search text</label>
-                          <Field type='text' name='text' className='longbox' style={marginLeft130vw} placeholder='Type here' />
-                          <button type='submit' className='gallerybutton' style={marginLeft470vw}>Search</button>
-                          <button type='reset' className='gallerybutton' style={marginLeft600vw}>Reset</button>
+                          <Field type='text' name='text' className='longbox' placeholder='Type here' />
+                          <button type='submit' className='gallerybutton'>Search</button>
+                          <button type='reset' className='gallerybutton'>Reset</button>
                         </div>
                     </Form>
                     )}
                   </Formik>
-                <div className='eventlistArea' style={{marginTop:'5%',marginLeft:'17%',width:'58vw'}}>
+                <div className='eventlistArea' style={{marginTop:'5%',marginLeft:'10vw',width:'60vw'}}>
                   <div className='headereventList' style={image580vw}>
                     <p style={image100percent}>#</p>
                     <p style={image200percent}>From Date</p>
@@ -158,16 +137,13 @@ const EventList = (props) => {
                     <Scrollbars>   
                       {filterschoolEvent.length>0 && filterschoolEvent.map((event,index) => (        
                         <div key={index} className='flexrow'>
-                    
                           <p style={image100percent}>{index+1}</p>
                           <p style={image200percent}>{event.startTime}</p>
                           <p style={image200percent} className='textoverflowellipsis'>{event.endTime}</p>
                           <p style={image200percent} className='textoverflowellipsis'>{event.attachment}</p>
                           <BsPencilSquare size={'1.1vw'} style={image100percent}/>
                           <MdDeleteForever size={'1.3vw'} style={image100percent} onClick={()=>deleteEvent(event.id)}/>
-                        
-                          
-                      
+
                         </div>
                     ))}
                     </Scrollbars>

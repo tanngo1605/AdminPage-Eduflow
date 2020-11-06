@@ -9,19 +9,9 @@ import Header from "../../component/Header/HeaderAdmin";
 import {createUsers} from "../../redux/Action/UserAction";
 import {teacherProfileSchema} from "../../userData/ValidationSchema/TeacherSchema"
 import {teacherProfileInitialValue} from "../../userData/InitialData/Teacher"
-import {
-  marginBottom180vh,
-  marginBottom65vh,
-  marginLeft270vw,
-  marginLeft200vw,
-  marginLeft130vw,
-
-} from "../../styles/marginStyles";
-import {image200vw} from "../../styles/imageStyles"
-import {
-  image80vwLeft320vw,
-  image80vwLeft160vw,
-  image80vwLeft30vw} from "../../styles/imageMarginStyles"
+import {marginBottom20vh,marginLeft20vw,marginLeft60vw,} from "../../styles/marginStyles";
+import {image130vw} from "../../styles/imageStyles"
+import {image40vwLeft10vw} from "../../styles/imageMarginStyles"
 
 const TeacherProfile = (props) => {
   const [teacherData,setTeacherData] = useState(props.location.teacherdata?props.location.teacherdata:[])
@@ -110,64 +100,64 @@ const TeacherProfile = (props) => {
                         <Form className="flexrow">
                          {displayImage(propsForm)}
                          <div className="flexcolumn">
-                          <div className="formforinfo" style={{paddingTop:"3.5vh"}}>
+                          <div className="formforinfo">
                            <Scrollbars>
-                            <div className="flexrow" style={marginBottom65vh}>
+                            <div className="flexrow" style={marginBottom20vh}>
                              
-                              <label htmlFor="name" className="section" >Name</label>
-                              <Field type="text" name="name" className="shortbox" style={marginLeft200vw}  placeholder={teacherData.name}/>
+                              <label htmlFor="name" className="section" style={image130vw}>Name</label>
+                              <Field type="text" name="name" className="shortbox" style={marginLeft60vw}  placeholder={teacherData.name}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label className="section" >Date of birth</label>
-                              <DayPickerInput  className="shortbox" name="dob" onDayChange={(day)=> propsForm.setFieldValue("dob",day)} style={marginLeft200vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{after: new Date()}}} placeholder={teacherData.dateofbirth}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label className="section" style={image130vw}>Date of birth</label>
+                              <DayPickerInput  className="shortbox" name="dob" onDayChange={(day)=> propsForm.setFieldValue("dob",day)} style={marginLeft60vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{after: new Date()}}} placeholder={teacherData.dateofbirth}/>
                             </div>
-                            <div  className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor="gender" className="section" >Gender</label>
-                              <Field as="select" name="gender" className="shortbox"  style={marginLeft200vw}>
+                            <div  className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="gender" className="section" style={image130vw}>Gender</label>
+                              <Field as="select" name="gender" className="shortbox"  style={marginLeft60vw}>
                                 <option value="" defaultValue>{" "}{teacherData.gender}</option>
                                 <option value="male" >{" "}Male</option>
                                 <option value="female">{" "}Female</option>
                               </Field>
                             </div>
-                            <div className="flexrow" style={marginBottom180vh}>
-                              <label htmlFor="corresaddress" className="section" style={image200vw}>Correspondence Address</label>
-                              <Field component="textarea" name="corresaddress" className="shortbox" style={{marginLeft:"20vw",height:"15vh"}}  placeholder="Type here"/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="corresaddress" className="section" style={image130vw}>Correspondence Address</label>
+                              <Field component="textarea" name="corresaddress" className="shortbox" style={{marginLeft:"6vw",height:"15vh"}}  placeholder="Type here"/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
+                            <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor="correscity" className="section">City</label>
-                              <Field type="text" name="correscity" className="shortbox" style={image80vwLeft30vw}  placeholder="Type here"/>
-                              <label htmlFor="corresstate" className="section" style={marginLeft130vw} >State</label>
-                              <Field type="text" name="corresstate" className="shortbox" style={image80vwLeft160vw}  placeholder="Type here"/>
-                              <label htmlFor="correspcode" className="section" style={marginLeft270vw}>Postcode</label>
-                              <Field type="text" name="correspcode" className="shortbox"  style={image80vwLeft320vw}  placeholder="Type here"/>
+                              <Field type="text" name="correscity" className="shortbox" style={image40vwLeft10vw}  placeholder="Type here"/>
+                              <label htmlFor="corresstate" className="section" style={marginLeft20vw}>State</label>
+                              <Field type="text" name="corresstate" className="shortbox" style={image40vwLeft10vw}  placeholder="Type here"/>
+                              <label htmlFor="correspcode" className="section" style={marginLeft20vw}>Postcode</label>
+                              <Field type="text" name="correspcode" className="shortbox"  style={image40vwLeft10vw}  placeholder="Type here"/>
                             </div>
-                            <div className="flexrow" style={marginBottom180vh}>
-                              <label htmlFor="permaaddress" className="section">Permanent Address</label>
-                              <Field component="textarea" name="permaaddress" className="shortbox" style={{marginLeft:"20vw",height:"15vh"}}  placeholder="Type here"/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="permaaddress" className="section" style={image130vw}>Permanent Address</label>
+                              <Field component="textarea" name="permaaddress" className="shortbox" style={{marginLeft:"6vw",height:"15vh"}}  placeholder="Type here"/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor="permacity" className="section">City</label>
-                              <Field type="text" name="permacity" className="shortbox"  style={image80vwLeft30vw}  placeholder="Type here"/>
-                              <label htmlFor="permastate" className="section" style={marginLeft130vw} >State</label>
-                              <Field type="text" name="permastate" className="shortbox" style={image80vwLeft160vw}  placeholder="Type here"/>
-                              <label htmlFor="permapcode" className="section" style={marginLeft270vw} >Postcode</label>
-                              <Field type="text" name="permapcode" className="shortbox" style={image80vwLeft320vw}  placeholder="Type here"/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="permacity" className="section" >City</label>
+                              <Field type="text" name="permacity" className="shortbox"  style={image40vwLeft10vw}  placeholder="Type here"/>
+                              <label htmlFor="permastate" className="section" style={marginLeft20vw}>State</label>
+                              <Field type="text" name="permastate" className="shortbox" style={image40vwLeft10vw}  placeholder="Type here"/>
+                              <label htmlFor="permapcode" className="section" style={marginLeft20vw}>Postcode</label>
+                              <Field type="text" name="permapcode" className="shortbox" style={image40vwLeft10vw}  placeholder="Type here"/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor="subject" className="section">Subject</label>
-                              <Field type="text" name="subject" className="shortbox" style={marginLeft200vw}  placeholder={teacherData.subject}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="subject" className="section" style={image130vw}>Subject</label>
+                              <Field type="text" name="subject" className="shortbox" style={marginLeft60vw}  placeholder={teacherData.subject}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor="roleno" className="section">Role</label>
-                              <Field type="text" name="roleno" className="shortbox" style={marginLeft200vw}  placeholder={teacherData.role}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="roleno" className="section" style={image130vw}>Role</label>
+                              <Field type="text" name="roleno" className="shortbox" style={marginLeft60vw}  placeholder={teacherData.role}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor="phoneno" className="section" >Phone No</label>
-                              <Field type="text" name="phoneno" className="shortbox" style={marginLeft200vw}  placeholder={teacherData.phone}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="phoneno" className="section" style={image130vw}>Phone No</label>
+                              <Field type="text" name="phoneno" className="shortbox" style={marginLeft60vw}  placeholder={teacherData.phone}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor="alternatephoneno" className="section" style={image200vw}  >Alternate Phone No</label>
-                              <Field type="text" name="alternatephoneno" className="shortbox" style={marginLeft200vw}  placeholder="Type here"/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="alternatephoneno" className="section" style={image130vw}>Alternate Phone No</label>
+                              <Field type="text" name="alternatephoneno" className="shortbox" style={marginLeft60vw}  placeholder="Type here"/>
                             </div>    
                            </Scrollbars>
                           
@@ -191,57 +181,57 @@ const TeacherProfile = (props) => {
                       
                       <div className = "formforinfo" style={{paddingTop:"3.5vh"}}>
                        <Scrollbars>
-                        <section className="flexrow" style={marginBottom65vh}>
-                          <div className="section">Name</div>
-                          <div className="shortbox" style={marginLeft200vw}>{teacherData.name}</div>
+                        <section className="flexrow" style={marginBottom20vh}>
+                          <div className="section" style={image130vw}>Name</div>
+                          <div className="shortbox" style={marginLeft60vw}>{teacherData.name}</div>
                         </section>
-                        <section className="flexrow" style={marginBottom65vh}>
-                          <div className="section" >Date of birth</div>
-                          <div  className="shortbox" style={marginLeft200vw}>{teacherData.dateofbirth}</div>
+                        <section className="flexrow" style={marginBottom20vh}>
+                          <div className="section" style={image130vw}>Date of birth</div>
+                          <div  className="shortbox" style={marginLeft60vw}>{teacherData.dateofbirth}</div>
                         </section>
-                        <section  className="flexrow" style={marginBottom65vh}>
-                          <div className="section" >Gender</div>
-                          <div  className="shortbox" style={marginLeft200vw}>{teacherData.gender}</div>
+                        <section  className="flexrow" style={marginBottom20vh}>
+                          <div className="section" style={image130vw}>Gender</div>
+                          <div  className="shortbox" style={marginLeft60vw}>{teacherData.gender}</div>
                         </section>
-                        <section className="flexrow" style={marginBottom180vh}>
-                          <div htmlFor="corresaddress" className="section" style={image200vw} >Correspondence Address</div>
-                          <div className="shortbox" style={{marginLeft:"20vw",height:"15vh"}}></div>
+                        <section className="flexrow" style={marginBottom20vh}>
+                          <div htmlFor="corresaddress" className="section" style={image130vw}>Correspondence Address</div>
+                          <div className="shortbox" style={{marginLeft:"6vw",height:"15vh"}}></div>
                         </section>
-                        <section className="flexrow" style={marginBottom65vh}>
-                          <div className="section" >City</div>
-                          <div className="shortbox" style={image80vwLeft30vw}></div>
-                          <div htmlFor="state" className="section" style={marginLeft130vw} >State</div>
-                          <div className="shortbox" style={image80vwLeft160vw}></div>
-                          <div htmlFor="Postcode" className="section" style={marginLeft270vw} >Postcode</div>
-                          <div className="shortbox"  style={image80vwLeft320vw}></div>
-                        </section>
-                        <section className="flexrow" style={marginBottom180vh}>
-                          <div htmlFor="permaaddress" className="section" style={image200vw}>Permanent Address</div>
-                          <div  className="shortbox" style={{marginLeft:"20vw",height:"15vh"}}  placeholder="Type here">{teacherData.address}</div>
-                        </section>
-                        <section className="flexrow" style={marginBottom65vh}>
+                        <section className="flexrow" style={marginBottom20vh}>
                           <div className="section">City</div>
-                          <div className="shortbox" style={image80vwLeft30vw}></div>
-                          <div className="section"  style={marginLeft130vw} >State</div>
-                          <div className="shortbox" style={image80vwLeft160vw}></div>
-                          <div className="section" style={marginLeft270vw}>Postcode</div>
-                          <div className="shortbox" style={image80vwLeft320vw}></div>
+                          <div className="shortbox" style={image40vwLeft10vw}></div>
+                          <div htmlFor="state" className="section" style={marginLeft20vw}>State</div>
+                          <div className="shortbox" style={image40vwLeft10vw}></div>
+                          <div htmlFor="Postcode" className="section" style={marginLeft20vw}>Postcode</div>
+                          <div className="shortbox"  style={image40vwLeft10vw}></div>
                         </section>
-                        <section className="flexrow" style={marginBottom65vh}>
+                        <section className="flexrow" style={marginBottom20vh}>
+                          <div htmlFor="permaaddress" className="section" style={image130vw}>Permanent Address</div>
+                          <div  className="shortbox" style={{marginLeft:"6vw",height:"15vh"}}  placeholder="Type here">{teacherData.address}</div>
+                        </section>
+                        <section className="flexrow" style={marginBottom20vh}>
+                          <div className="section">City</div>
+                          <div className="shortbox" style={image40vwLeft10vw}></div>
+                          <div className="section" style={marginLeft20vw}>State</div>
+                          <div className="shortbox" style={image40vwLeft10vw}></div>
+                          <div className="section" style={marginLeft20vw}>Postcode</div>
+                          <div className="shortbox" style={image40vwLeft10vw}></div>
+                        </section>
+                        <section className="flexrow" style={marginBottom20vh}>
                           <div className="section">Subject</div>
-                          <div className="shortbox" style={marginLeft200vw}>{teacherData.subject}</div>
+                          <div className="shortbox" style={marginLeft60vw}>{teacherData.subject}</div>
                         </section>
-                        <section className="flexrow" style={marginBottom65vh}>
+                        <section className="flexrow" style={marginBottom20vh}>
                           <div className="section" >Role</div>
-                          <div className="shortbox" style={marginLeft200vw}>{teacherData.role}</div>
+                          <div className="shortbox" style={marginLeft60vw}>{teacherData.role}</div>
                         </section>
-                        <section className="flexrow" style={marginBottom65vh}>
+                        <section className="flexrow" style={marginBottom20vh}>
                           <div className="section">Phone No</div>
-                          <div className="shortbox" style={marginLeft200vw}>{teacherData.phone}</div>
+                          <div className="shortbox" style={marginLeft60vw}>{teacherData.phone}</div>
                         </section>
-                        <section className="flexrow" style={marginBottom65vh}>
-                          <div className="section" style={image200vw} >Alternate Phone No</div>
-                          <div className="shortbox" style={marginLeft200vw}></div>
+                        <section className="flexrow" style={marginBottom20vh}>
+                          <div className="section" style={image130vw} >Alternate Phone No</div>
+                          <div className="shortbox" style={marginLeft60vw}></div>
                         </section>
                        </Scrollbars>
                       </div>

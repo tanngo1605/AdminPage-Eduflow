@@ -13,17 +13,7 @@ import classes from '../../userData/GlobalData/classData'
 import sections from '../../userData/GlobalData/sectionData'
 import {createEventSchema} from "../../userData/ValidationSchema/EventSchema"
 import {initialCreateEvent} from '../../userData/InitialData/Event'
-import {
-  marginBottom65vhandTop120vh,
-  marginLeft450vw,
-  marginLeft380vw,
-  marginLeft320vw,
-  marginLeft130vw,
-  marginBottom65vh,
-  marginBottom30vh,
-  } from "../../styles/marginStyles"
-
-
+import {marginLeft260vw,marginLeft60vw,marginBottom30vh,marginBottom20vh} from "../../styles/marginStyles"
 
 const CreateEvent = (props) => {
   
@@ -45,11 +35,8 @@ const CreateEvent = (props) => {
     catch(error) {
       console.log(error)
     }
-    
-   
-  }
-  
 
+  }
   
   return (
       <div className="dashboard">
@@ -69,49 +56,49 @@ const CreateEvent = (props) => {
               >
                 {(propsForm)=>(
                   <Form>
-                    <div className='flexrow' style={marginBottom65vh}>
+                    <div className='flexrow' style={marginBottom20vh}>
                       {/* Class*/}
                       <label htmlFor="classvalue" className="section">Class</label>
                       
-                      <Field as="select" name="classvalue" className="shortbox"  style={marginLeft130vw} placeholder="Your class">
+                      <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
                         <option value="" defaultValue>{" "}-select-</option>
                         {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                       </Field>
                       {/* Section*/}
-                      <label htmlFor="section" className="section" style={marginLeft380vw}>Section</label>
-                      <Field as="select" name="section" className="shortbox"  style={marginLeft450vw} placeholder="Your class">
+                      <label htmlFor="section" className="section" style={marginLeft60vw}>Section</label>
+                      <Field as="select" name="section" className="shortbox" placeholder="Your section">
                         <option value="" defaultValue>{" "}-select-</option>
                         {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
                       </Field>
                     </div>
-                    <div className="flexrow" style={marginBottom65vh}>
+                    <div className="flexrow" style={marginBottom20vh}>
                       <label className="section">Date from: </label>
-                      <DayPickerInput  className="shortbox" name="datefrom" onDayChange={(day)=> propsForm.setFieldValue('datefrom',day)} style={marginLeft130vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
-                      <label htmlFor="dateto" className="section" style={marginLeft380vw}>Date to:</label>
-                      <DayPickerInput  className="shortbox" name="dateto" onDayChange={(day)=>propsForm.setFieldValue('dateto',day)} style={marginLeft320vw} inputProps={{readOnly: true}} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                      <DayPickerInput  className="shortbox" name="datefrom" onDayChange={(day)=> propsForm.setFieldValue('datefrom',day)} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
+                      <label className="section" style={marginLeft260vw}>Date to</label>
+                      <DayPickerInput  className="shortbox" name="dateto" onDayChange={(day)=>propsForm.setFieldValue('dateto',day)} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
                       
                     </div>
-                    <div className="flexrow" style={marginBottom65vh}>
-                      <label htmlFor="startTime" className="section">Time from: </label>
-                      <Field type="time" name="startTime" className="shortbox"  style={marginLeft130vw}/>
-                      <label htmlFor="endTime" className="section" style={marginLeft380vw}>Time To: </label>
-                      <Field type="time" name="endTime" className="shortbox"  style={marginLeft450vw}/>
+                    <div className="flexrow" style={marginBottom20vh}>
+                      <label htmlFor="startTime" className="section">Time from</label>
+                      <Field type="time" name="startTime" className="shortbox" />
+                      <label htmlFor="endTime" className="section" style={marginLeft60vw}>Time To</label>
+                      <Field type="time" name="endTime" className="shortbox"/>
          
                     </div>
-                    <div className="flexrow" style={marginBottom65vh}>
+                    <div className="flexrow" style={marginBottom20vh}>
                       <label htmlFor="title" className="section">Event title </label>
-                      <Field type="text" name="title" className="shortbox"  style={marginLeft130vw} placeholder="Type here"/>
+                      <Field type="text" name="title" className="shortbox" placeholder="Type here"/>
                     </div>
-                    <div className="flexrow">
+                    <div className="flexrow" style={marginBottom20vh}>
                       <label htmlFor="description" className="section">Description </label>
-                      <Field component='textarea' name='description' className="shortbox"  style={Object.assign({},{height:"10vh",width:"58vw"},marginLeft130vw)} placeholder="Type here" />
+                      <Field component='textarea' name='description' className="shortbox"  style={{height:"10vh",width:"58vw"}} placeholder="Type here" />
                     </div>
-                    <div className="flexrow" style={marginBottom65vhandTop120vh}>
+                    <div className="flexrow" style={marginBottom20vh}>
                       <p className="section">Attachment </p>
                 
                       <Dropzone name="attachment" onDrop={(files)=> propsForm.setFieldValue("attachment",files)}>
                         {({getRootProps, getInputProps}) => (
-                          <section className="flexrow" style={marginLeft130vw}>
+                          <section className="flexrow">
                             <div {...getRootProps({ className:"attachment"})}>
                               <input {...getInputProps()} />
                                 <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
@@ -123,7 +110,7 @@ const CreateEvent = (props) => {
                 
                     </div>
 
-                    <div className="flexrow" style={{marginLeft:"15vw",marginTop:"2vh"}}>
+                    <div className="flexrow" style={{marginLeft:"15vw",marginTop:"10vh"}}>
                       <button type="submit" className="button">Create</button>
                       <button type="reset" className="button">Reset</button>
                       <button type='button' className="button" onClick={()=>props.history.push("/")} style={{color:"#FFFFFF"}}>Cancel</button>

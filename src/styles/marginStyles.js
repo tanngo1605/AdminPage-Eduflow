@@ -17,6 +17,12 @@ const marginBottom55vh = {
 const marginBottom30vh = {
   marginBottom: "3vh",
 };
+const marginBottom20vh = {
+  marginBottom: "2vh",
+};
+const marginBottom10vh = {
+  marginBottom: "1vh",
+};
 const marginBottom65vhandTop120vh = {
   marginBottom: "6.5vh",
   marginTop: "12vh",
@@ -50,6 +56,9 @@ const marginLeft320vw = {
 const marginLeft270vw ={
   marginLeft:'27vw'
 }
+const marginLeft260vw = {
+  marginLeft: "26vw",
+};
 const marginLeft250vw = {
   marginLeft: "25vw",
 };
@@ -72,8 +81,20 @@ const marginLeft120vw={
 const marginLeft100vw = {
   marginLeft: "10vw",
 };
+const marginLeft80vw ={
+  marginLeft:"8vw"
+}
+const marginLeft60vw ={
+  marginLeft:"6vw"
+}
 const marginLeft55vw = {
   marginLeft: "5.5vw",
+};
+const marginLeft50vw = {
+  marginLeft: "5vw",
+};
+const marginLeft20vw = {
+  marginLeft: "2vw",
 };
 const marginLeft15vw={
   marginLeft:'1.5vw'
@@ -100,14 +121,19 @@ const marginTop55vh = {
 const marginTop45vh = {
   marginTop: "4.5vh",
 };
-
+const marginTop20vh ={
+  marginTop:"2vh"
+}
+const marginTop10vh ={
+  marginTop:"1vh"
+}
 
 const fontsize12vw = {
   fontSize: "1.2vw",
 };
 const addaProfileAttachment = {
   backgroundColor: "#04044E",
-  marginLeft: "60vw",
+  marginLeft: "59vw",
 };
 const positionabsolute = {
   position: "absolute",
@@ -136,6 +162,8 @@ export {
   marginBottom65vh,
   marginBottom55vh,
   marginBottom30vh,
+  marginBottom20vh,
+  marginBottom10vh,
   marginLeft600vw,
   marginLeft480vw,
   marginLeft470vw,
@@ -143,6 +171,7 @@ export {
   marginLeft380vw,
   marginLeft320vw,
   marginLeft270vw,
+  marginLeft260vw,
   marginLeft250vw,
   marginLeft240vw,
   marginLeft200vw,
@@ -150,15 +179,21 @@ export {
   marginLeft130vw,
   marginLeft120vw,
   marginLeft100vw,
+  marginLeft60vw,
   marginLeft55vw,
+  marginLeft50vw,
+  marginLeft20vw,
   marginLeft15vw,
   marginTop220vh,
   marginTop130vh,
   marginTop120vh,
   marginTop110vh,
+  marginLeft80vw,
   marginTop75vh,
   marginTop55vh,
   marginTop45vh,
+  marginTop20vh,
+  marginTop10vh,
   fontsize12vw,
   addaProfileAttachment,
   positionabsolute,

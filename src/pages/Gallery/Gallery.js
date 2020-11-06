@@ -11,12 +11,7 @@ import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/HeaderAdmin";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
-import {
-  marginTop75vh,
-  marginTop130vh,
-  marginTop220vh,
-  positionabsolute,
-} from "../../styles/marginStyles";
+import {marginTop75vh,marginTop130vh,marginTop220vh,positionabsolute} from "../../styles/marginStyles";
 import { image150 } from "../../styles/imageStyles";
 
 const todayDate = new Date();

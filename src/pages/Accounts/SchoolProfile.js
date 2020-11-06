@@ -8,18 +8,9 @@ import {getSchoolInfo,updateSchoolInfo} from "../../redux/Action/SchoolAction";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import schoolSchema from "../../userData/ValidationSchema/SchoolSchema"
 import schoolInitialValue from '../../userData/InitialData/School'
-import {
-  marginBottom180vh,
-  marginBottom65vh,
-  marginLeft200vw,
-  marginLeft130vw,  
-  marginLeft270vw,
-} from "../../styles/marginStyles";
-import {image200vw} from "../../styles/imageStyles"
-import {
-  image80vwLeft320vw,
-  image80vwLeft160vw,
-  image80vwLeft30vw} from "../../styles/imageMarginStyles"
+import {marginBottom20vh,marginLeft60vw,marginLeft20vw,} from "../../styles/marginStyles";
+import {image130vw} from "../../styles/imageStyles"
+import {image40vwLeft10vw} from "../../styles/imageMarginStyles"
 const SchoolProfile =  (props) => {
   const [schoolData,setSchoolData] = useState([])
 
@@ -81,66 +72,62 @@ const SchoolProfile =  (props) => {
             <Header />
             <div className="form">
               <h1 className="titleform">School Profile</h1>
-              <div className="flexrow">
-                
-                <div >
-                  
-                   
-                    <Formik
-                      initialValues={schoolInitialValue}
-                      validationSchema={schoolSchema}
-                      onSubmit={(values, actions) => {
-                        handleSubmit(values);
-                        actions.resetForm()
-                      }}
-                    >  
+              
+              <Formik
+                initialValues={schoolInitialValue}
+                validationSchema={schoolSchema}
+                onSubmit={(values, actions) => {
+                    handleSubmit(values);
+                    actions.resetForm()
+                }}
+              >  
                       {(propsForm)=>(
-                  
+                        
                         <Form className='flexrow'>
-                         
+                         {displayImage(propsForm)}
                          <div className='flexcolumn'>
                           <div className="formforinfo">
                            <Scrollbars>
-                            <div className="flexrow" style={marginBottom65vh}>
+                            <div className="flexrow" style={marginBottom20vh}>
                              
-                              <label htmlFor='name' className="section" >Name</label>
-                              <Field type="text" name="name" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.name}/>
+                              <label htmlFor='name' className="section" style={image130vw}>Name</label>
+                              <Field type="text" name="name" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.name}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor='schoolname' className="section" >School Name</label>
-                              <Field type="text" name="schoolname" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.schoolname}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor='schoolname' className="section" style={image130vw}>School Name</label>
+                              <Field type="text" name="schoolname" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.schoolname}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor='schoolcode' className="section" >School Code</label>
-                              <Field type="text" name="schoolcode" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.schoolCode}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor='schoolcode' className="section" style={image130vw}>School Code</label>
+                              <Field type="text" name="schoolcode" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.schoolCode}/>
                             </div>
-                            <div className="flexrow" style={marginBottom180vh}>
-                              <label htmlFor="permaaddress" className="section" style={image200vw}>Permanent Address</label>
-                              <Field component='textarea' name="permaaddress" className="shortbox" style={{marginLeft:'20vw',height:'15vh'}}  placeholder="Type here"/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor="permaaddress" className="section" style={image130vw}>Permanent Address</label>
+                              <Field component='textarea' name="permaaddress" className="shortbox" style={{marginLeft:'6vw',height:'15vh'}}  placeholder="Type here"/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
+                            <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor="permacity" className="section">City</label>
-                              <Field type="text" name="permacity" className="shortbox"  style={image80vwLeft30vw}  placeholder={schoolData.address}/>
-                              <label htmlFor='permastate' className="section" style={marginLeft130vw} >State</label>
-                              <Field type="text" name="permastate" className="shortbox" style={image80vwLeft160vw}  placeholder="Type here"/>
-                              <label htmlFor="permapcode" className="section" style={marginLeft270vw} >Postcode</label>
-                              <Field type="text" name="permapcode" className="shortbox" style={image80vwLeft320vw}  placeholder="Type here"/>
+                              <Field type="text" name="permacity" className="shortbox"  style={image40vwLeft10vw}  placeholder={schoolData.address}/>
+                              <label htmlFor='permastate' className="section" style={marginLeft20vw} >State</label>
+                              <Field type="text" name="permastate" className="shortbox" style={image40vwLeft10vw}  placeholder="Type here"/>
+                              <label htmlFor="permapcode" className="section" style={marginLeft20vw} >Postcode</label>
+                              <Field type="text" name="permapcode" className="shortbox" style={image40vwLeft10vw}  placeholder="Type here"/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor='schoolweb' className="section" style={image200vw}>School Website(if any)</label>
-                              <Field type="text" name="schoolweb" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.schoolweb}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor='schoolweb' className="section" style={image130vw}>School Website(if any)</label>
+                              <Field type="text" name="schoolweb" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.schoolweb}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor='schoolemail' className="section" style={image200vw}>School Email ID</label>
-                              <Field type="text" name="schoolemail" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.schoolemail}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor='schoolemail' className="section" style={image130vw}>School Email ID</label>
+                              <Field type="text" name="schoolemail" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.schoolemail}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor='contactnum' className="section" style={image200vw} >Contact Number</label>
-                              <Field type="text" name="contactnum" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.contactnum}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor='contactnum' className="section" style={image130vw} >Contact Number</label>
+                              <Field type="text" name="contactnum" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.contactnum}/>
                             </div>
-                            <div className="flexrow" style={marginBottom65vh}>
-                              <label htmlFor='alternatephoneno' className="section" style={image200vw}>Alternate Phone No</label>
-                              <Field type="text" name="alternatephoneno" className="shortbox" style={marginLeft200vw}  placeholder={schoolData.alternatephoneno}/>
+                            <div className="flexrow" style={marginBottom20vh}>
+                              <label htmlFor='alternatephoneno' className="section" style={image130vw}>Alternate Phone No</label>
+                              <Field type="text" name="alternatephoneno" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.alternatephoneno}/>
                             </div>    
                            </Scrollbars>
                           
@@ -151,15 +138,11 @@ const SchoolProfile =  (props) => {
                          </div>
                           
                         </Form>
-                  
-                      )}
-                     
-                    
-                    </Formik>
-                  </div> 
-                  
 
-              </div>
+                      )}
+    
+              </Formik>
+              
             </div>
           </div>
         </div>

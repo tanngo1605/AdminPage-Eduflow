@@ -3,17 +3,10 @@ import Drawer from '../../component/Drawer/Drawer'
 import Header from '../../component/Header/HeaderAdmin'
 import {Scrollbars} from 'react-custom-scrollbars';
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import {marginBottom100vh,marginBottom65vh,marginLeft130vw} from '../../styles/marginStyles'
-
-import {image100vw} from '../../styles/imageStyles'
-
+import {marginBottom20vh, marginLeft20vw} from '../../styles/marginStyles'
+import subjects from '../../userData/GlobalData/subjectData';
+import {image200percent,image150percent} from '../../styles/imageStyles'
 let numberofperiod=5;
-const subjects = [
-  {subject:'Math',value:'math'},
-  {subject:'History',value:'history'},
-  {subject:'Math',value:'math'},
-
-]
 
 class Exam extends Component {
   constructor (props) {
@@ -36,28 +29,26 @@ class Exam extends Component {
     
     for (let i = 1;i<=numberofperiod;i++) 
       period.push(
-        <div className='flexcolumn' key={i} style={marginBottom65vh}>
-          <div className='flexrow'>  
-            <p className='section' style={{width:'15%'}}>{i}</p>
-            <input type='text' id='room' className='shortbox' style={{marginLeft:'20%',width:'8vw'}}  onChange={(event) => this.handleChange(event,i.toString())} />
-            <select className="shortbox" required id='teacher' style={{marginLeft:'40%',width:'8vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
+        <div className='flexrow' key={i} style={marginBottom20vh}>
+          
+            <p className='section' style={{marginLeft:'5vw'}}>{i}</p>
+            <input type='text' id='room' className='shortbox' style={{width:'8vw',marginLeft:'-3vw'}}  onChange={(event) => this.handleChange(event,i.toString())} />
+            <select className="shortbox" required id='teacher' style={{width:'8vw',marginLeft:'7vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
               <option disabled value="" defaultValue>{" "}- select -</option>
               {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               
             </select>
 
-            <select className="shortbox" required id='teacher' style={{marginLeft:'60%',width:'8vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
+            <select className="shortbox" required id='teacher' style={{width:'8vw',marginLeft:'6vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
               <option disabled value="" defaultValue>{" "}- select -</option>
               {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               
             </select>
-            <select className="shortbox" required id='teacher' style={{marginLeft:'80%',width:'8vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
+            <select className="shortbox" required id='teacher' style={{width:'8vw',marginLeft:'6vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
               <option disabled value="" defaultValue>{" "}- select -</option>
               {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
               
             </select>
-            
-        </div>
       </div>)
 
     return (
@@ -68,27 +59,9 @@ class Exam extends Component {
       </div>
     )
   }
-  handleChange = (event,key) => {
-    let update;
-    if (key){
-      update= {...this.state.exam.task,[key]:{...this.state.exam.task[key],[event.target.id]: event.target.value}}
-      this.setState({exam:{...this.state.exam,task:update}})
-    }
-    else {
-      update= {...this.state.exam,[event.target.id]: event.target.value}
-      this.setState({exam:update})
-    }
-    console.log(this.state)
-  }
   
-  handleDayChange(day) {
-    let update= Object.assign({},this.state.exam,{date: day})
-    this.setState({exam: update});
-  }
 
   handleSubmit = (event) => {
-    event.preventDefault();
-    document.getElementById('create-course-form').reset();
   }
 
   render() {
@@ -102,31 +75,28 @@ class Exam extends Component {
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
               
                 <h1 className='titleform'>Schedule an exam</h1>
-                <div style={marginBottom65vh}>
+                <div className='flexrow' style={marginBottom20vh}>
                   <label htmlFor='exam' className='section'>Exam name</label>
-                  <input type='text' id='exam' className='shortbox' style={marginLeft130vw} placeholder='Maths' onChange={this.handleChange} />
+                  <input type='text' id='exam' className='shortbox' style={marginLeft20vw} placeholder='Maths' onChange={this.handleChange} />
                 </div>
-                <div className='flexrow' style={marginBottom65vh}>
+                <div className='flexrow' style={marginBottom20vh}>
                   <label htmlFor='date' className='section'>Choose Date: </label>
-                  <DayPickerInput className="shortbox" style={marginLeft130vw} onDayChange={(day) => this.handleDayChange(day)} placeholder="- select -"/>
+                  <DayPickerInput className="shortbox" style={marginLeft20vw} onDayChange={(day) => this.handleDayChange(day)} placeholder="- select -"/>
                 </div>
-                <div className='flexrow' style={marginBottom100vh}>
-                  <div className='flexrow'>
-                    <label htmlFor='1shifttiming' className='section'>1 Shift Timing: </label>
-                    <input type='time' id='1shifttiming' className='shortbox' style={Object.assign({},marginLeft130vw,image100vw)}  onChange={this.handleChange} />
-                  </div>
-                  <div className='flexrow' style={{marginLeft:'30vw'}}>
-                    <label htmlFor='2shifttiming' className='section'>2 Shift Timing: </label>
-                    <input type='time' id='2shifttiming' className='shortbox' style={Object.assign({},marginLeft130vw,image100vw)}  onChange={this.handleChange} />
-                  </div>
+                <div className='flexrow' style={marginBottom20vh}>
+                  <label htmlFor='1shifttiming' className='section'>1 Shift Timing: </label>
+                  <input type='time' id='1shifttiming' className='shortbox' style={marginLeft20vw}  onChange={this.handleChange} />
+                  <label htmlFor='2shifttiming' className='section' style={marginLeft20vw}>2 Shift Timing: </label>
+                  <input type='time' id='2shifttiming' className='shortbox' style={marginLeft20vw}  onChange={this.handleChange} />
+                  
                 </div>
-                <div className='eventlistArea' style={{width:'70vw',height:'32.5vh',textAlign:'center'}}>
+                <div className='eventlistArea' style={{width:'70vw',height:'32.5vh'}}>
                   <div className='headereventList'>
-                    <p style={{width:'15%'}}>Serial No</p>
-                    <p style={{width:'20%'}}>Room No</p>
-                    <p style={{width:'20%'}}>Shift</p>
-                    <p style={{width:'20%'}}>Teacher 1</p>
-                    <p style={{width:'20%'}}>Teacher 2</p>
+                    <p style={image150percent}>Serial No</p>
+                    <p style={image200percent}>Room No</p>
+                    <p style={image200percent}>Shift</p>
+                    <p style={image200percent}>Teacher 1</p>
+                    <p style={image200percent}>Teacher 2</p>
                     
                   </div>
                   {this.displayPeriod()}
