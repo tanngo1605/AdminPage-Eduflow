@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {loadClassData,addClassData} from "../../redux/Stores/ClassReducer";
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {marginLeft130vw,marginBottom65vh} from '../../styles/marginStyles'
 class createClass extends Component {
   constructor (props) {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import Popup from "reactjs-popup";
 // import StudentMigration from "./StudentMigration"
 import {
@@ -16,6 +16,8 @@ import {
   marginLeft380vw,
   marginLeft130vw,
   marginTop45vh,
+  marginBottom20vh,
+  marginLeft20vw,
 } from "../../styles/marginStyles";
 import { forEach } from "lodash";
 // let arr = []
@@ -194,13 +196,13 @@ class MoveStudent extends Component {
                 style={{ marginLeft: "1.5vw", marginTop: "3%" }}
               >
                 <form className="flexrow" onChange={this.filterStudent}>
-                  <div className="flexrow" style={marginBottom65vh}>
-                    <p className="section">Enter Class</p>
+                  <div className="flexrow" style={marginBottom20vh}>
+                    <label className="section">Enter Class</label>
                     <select
                       className="shortbox"
                       required
                       onChange={(e) => this.setState({ classvalue: e.target.value })}
-                      style={marginLeft130vw}
+                      
                       id="classvalue"
                     >
                       <option value="" defaultValue>
@@ -212,13 +214,13 @@ class MoveStudent extends Component {
 
                     </select>
                   </div>
-                  <div className="flexrow" style={marginLeft380vw}>
-                    <p className="section">Enter Section</p>
+                  <div className="flexrow" style={marginLeft20vw}>
+                    <label className="section">Enter Section</label>
                     <select
                       className="shortbox"
                       required
                       onChange={(e) => this.setState({ section: e.target.value })}
-                      style={marginLeft130vw}
+                      
                       id="section"
                     >
                       <option value="" defaultValue>

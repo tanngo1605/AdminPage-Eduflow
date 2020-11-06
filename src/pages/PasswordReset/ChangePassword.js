@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import ppo1 from "../../assets/ppo1.png";
 import Popup from "reactjs-popup";
 import passwordImg from "../../assets/password2.png";

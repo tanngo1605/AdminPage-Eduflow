@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import {loadAttendance,loadSpecificAttendance,modifyAttendance} from "../../redux/Stores/AttendanceReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import {
   marginTop45vh,
   marginLeft55vw,
+  marginLeft100vw,
+  marginLeft150vw,
 } from '../../styles/marginStyles'
 
 class SearchAttendance extends Component {
@@ -64,10 +66,10 @@ class SearchAttendance extends Component {
                 <form className='flexcolumn' onChange={(event)=>this.searchResult(event,attendances)} id='create-course-form' style={marginTop45vh}>
 
                     <div className='flexrow'>
-                        <p className='section' style={marginLeft55vw}>Date</p>
-                        <DayPickerInput className="shortbox" style={{marginLeft:'11vw'}} placeholder={this.state.date?`${this.state.date.toLocaleDateString()}`:'Choosing date'} onDayChange={(day) => this.handleDayChange(day)}/>
-                        <p className='section' style={{marginLeft:'34vw'}}>Teacher's Name</p>
-                        <select className="shortbox" required id='name' style={{marginLeft:'45vw'}} onChange={(event) => this.handleChange(event,originalteacherdata)}>
+                        <p className='section' >Date</p>
+                        <DayPickerInput className="shortbox" placeholder={this.state.date?`${this.state.date.toLocaleDateString()}`:'Choosing date'} onDayChange={(day) => this.handleDayChange(day)}/>
+                        <p className='section' style={{marginLeft:'25vw '}}>Teacher's Name</p>
+                        <select className="shortbox" required id='name' onChange={(event) => this.handleChange(event,originalteacherdata)}>
                             <option value="" defaultValue>{" "}-select-</option>
                             {originalteacherdata&&originalteacherdata.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
                         </select>
@@ -78,7 +80,7 @@ class SearchAttendance extends Component {
                   
                 </form>
                 
-                <div className='eventlistArea' style={{width:'70vw',textAlign:'center',height:'40vh',marginTop:'8vh'}}>
+                <div className='eventlistArea' style={{width:'70vw',height:'40vh',marginTop:'8vh'}}>
                   <div className='headereventList'>
                     
                     <p style={{width:'33%'}}>Date</p>

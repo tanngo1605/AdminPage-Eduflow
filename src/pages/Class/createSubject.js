@@ -1,102 +1,92 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {Scrollbars} from 'react-custom-scrollbars';
-import {loadClassData} from "../../redux/Stores/ClassReducer";
-import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
+import {getCurrentUser} from "../../redux/Stores/AccountReducer";
+import { Formik,Form,Field} from "formik";
 import Drawer from '../../component/Drawer/Drawer';
-import Header from '../../component/Header/Header';
+import Header from '../../component/Header/HeaderAdmin';
+import createSubjectSchema from "../../userData/ValidationSchema/SubjectSchema"
+import initialSubjectValue from '../../userData/InitialData/Subject'
 import {
   marginBottom65vh,
+  marginLeft450vw,
   marginLeft380vw,
   marginLeft200vw,
   marginLeft130vw,
   marginTop45vh,
   } from '../../styles/marginStyles'
 
-let numberofperiod=6;
-const subjects = [
-  {subject:'Math',value:'math'},
-  {subject:'History',value:'history'},
-  {subject:'Math',value:'math'},
+  import {
+    image450percent,
+    image200percent,
+    image100percent
+    
+    
+    
+    } from '../../styles/imageStyles'
+import classes from '../../userData/GlobalData/classData';
+import sections from '../../userData/GlobalData/sectionData';
+import subjects from '../../userData/GlobalData/subjectData';
+import teachers from '../../userData/GlobalData/teacherData';
 
-]
+const CreateSubject = (props)=>{
 
-class createSubject extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      class: '',
-      section: '',
-      trigger:false
-    };
-  }
-  componentDidMount() {
-    this.props.dispatch(loadClassData());
-    this.props.dispatch(loadTeacherData());
-  }
-  assignSubject=(teachers)=>{
+  const [numperiod,setNumPeriod] = useState(6)
+  useEffect(()=>{
+
+  },[])
+  const assignSubject=()=>{
     let period=[];
-    console.log(teachers)
-    for (let i = 1;i<=numberofperiod;i++) 
+    
+    for (let i = 1;i<=numperiod;i++) 
       period.push(
         
           <div className='flexrow' key={i} style={marginBottom65vh}>
-
-            <p className='section'>{i}</p>
-            
-
-            <select className='shortbox' required onChange={this.handleChange} style={marginLeft200vw}  id='subject'>
+            <p style={image200percent}>{i}</p>
+            <div style={image450percent}>
+            <Field as="select" name="classvalue" className="shortbox"  placeholder="Your class">
                 <option value="" defaultValue>{" "}-select-</option>
                 {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
-              
-            </select>
-            
-            <select className="shortbox" required id='subject' style={{marginLeft:'50vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
-                <option value="" defaultValue>{" "}-select-</option>
-                {teachers&&teachers.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
-            </select>
-            
+            </Field>
+            </div>
+            <div style={image450percent}>
+            <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
+              <option value="" defaultValue>{" "}-select-</option>
+              {teachers.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
+            </Field>
+            </div>
         </div>
       )
-
+    
+    
     return (
-      <div className='eventlistArea' style={{marginTop:'8vh'}}>
+      <section className='eventlistArea' style={{marginTop:'8vh',width:'75vw'}}>
         <div className='headereventList'>
-            <p className='section' >Serial No</p>
-            <p className='section' style={{marginLeft:'17vw'}}>Enter Subject </p>
-            <p className='section' style={{marginLeft:'48vw'}}>Assign a teacher</p>
+            <p style={image200percent}>Serial No</p>
+            <p style={image450percent}>Enter Subject </p>
+            <p style={image450percent}>Assign a teacher</p>
         </div>
         <div className='bodyeventList'>
           <Scrollbars>
             {period}
-            <p className='textaligncenter' 
-                onClick={()=>{ numberofperiod=numberofperiod+1; this.setState({trigger:!this.state.trigger})}} 
+            <p className='textaligncenter' onClick={()=>{ setNumPeriod(numperiod++)}} 
                 style={{color: '#0F1E36',fontSize:'1vw'}}> + Add More </p> 
           </Scrollbars>
         </div>
-      </div>
+      </section>
     )
   }
-  handleChange = (event, key) => {
-    if (typeof [event.target.id].includes(key)) {
-      let update = Object.assign({},this.state[key], {[event.target.id]: event.target.value});
-      if (key) 
-        this.setState({[key]:update})  
-      else 
-        this.setState({[event.target.id]: event.target.value});
-
-      console.log(this.state);
+  const handleSubmit =  (values) => {
+    try {
+      const userData = props.account.userData.userdata.data.data;
+      
     }
-  };
-
-  handleDayChange(day) {
-    this.setState({ date: day.toLocaleDateString() });
+    catch(error) {
+      console.log(error)
+    }
   }
-  render() {
-    let classdata = this.props.class.filteredClass; 
-    let teachers = this.props.teacher.filteredTeachers;
-    
-    return (
+
+  return (
       <div className='dashboard'>
         <div className='flexrow'>
           <Drawer/>
@@ -105,36 +95,39 @@ class createSubject extends Component {
             <div className='form' >
               
                 <h1 className='titleform'>Create Subject</h1>
-                
-                  <div className='flexrow'>
-                    
+                <Formik
+                initialValues={initialSubjectValue}
+                validationSchema={createSubjectSchema}
+                onSubmit={(values, actions) => {
+                  handleSubmit(values);
+                  actions.resetForm()
+                }}
+                >
+                {(propsForm)=>(
+                  <Form>
                     <div className='flexrow'>
-                        <p className='section'>Enter Class</p>
-                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw} id='class'>
-                          <option value="" defaultValue>{" "}-select-</option>
-                          {classdata&&classdata.map((item,index)=><option key={index} value={item.class}>{item.class}</option>)}
-                        </select>
+                      <p className='section'>Enter Class</p>
+                      <Field as="select" name="classvalue" className="shortbox"  style={marginLeft130vw} placeholder="Your class">
+                        <option value="" defaultValue>{" "}-select-</option>
+                        {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                      </Field>
+                      <p className='section' style={marginLeft380vw}>Enter Section</p>
+                      <Field as="select" name="section" className="shortbox"  style={marginLeft450vw} placeholder="Your class">
+                        <option value="" defaultValue>{" "}-select-</option>
+                        {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
+                      </Field>
                     </div>
-                    
-                    <div className='flexrow' style={marginLeft380vw}>
-                        <p className='section'>Enter Section</p>
-                        <select className='shortbox' required onChange={this.handleChange} style={marginLeft130vw}  id='section'>
-                          <option value="" defaultValue>{" "}-select-</option>
-                          {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
-              
-                        </select>
-                    </div>
-                  </div>
 
-                  {this.assignSubject(teachers)}
+                    {assignSubject(teachers,propsForm)}
                   
-                  <div className='flexrow' style={marginTop45vh}>
-                    {/* <button>Save</button> <button>Reset</button> */}
-                    <input type='submit' value='Save' className='button' style={{marginLeft:'27%'}} />
-                    <input type='reset' value='Reset' className='button' />
-                  </div>
-                
-              
+                    <div className='flexrow' style={marginTop45vh}>
+                      {/* <button>Save</button> <button>Reset</button> */}
+                      <button type="submit" className="button">Create</button>
+                      <button type="reset" className="button">Reset</button>
+                    </div>
+                  </Form>
+                )}
+                </Formik>
             </div>
           </div>    
         
@@ -142,9 +135,10 @@ class createSubject extends Component {
       </div>
     );
   }
-}
+
 const mapStateToProps = (state) => ({
-  teacher: state.teacher,
-  class:state.class,
-});
-export default connect(mapStateToProps)(createSubject);
+  account: state.account,
+    
+})
+
+export default React.memo(connect(mapStateToProps)(CreateSubject));

@@ -4,25 +4,15 @@ import { Formik,Form,Field} from "formik";
 import Dropzone from "react-dropzone";
 import { NavLink } from "react-router-dom";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
-import {
-  loadData,
-  filterByValue,
-  deleteData,
-} from "../../redux/Stores/StudentReducer";
+import Header from "../../component/Header/HeaderAdmin";
+import {loadData,filterByValue,deleteData} from "../../redux/Stores/StudentReducer";
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import {studentSearchSchema} from "../../userData/ValidationSchema/StudentSchema"
 import {studentSearchInitialValue} from '../../userData/InitialData/Student'
 import * as xlsx from "xlsx";
-import {
-  marginTop55vh,
-  marginLeft250vw,
-  marginLeft130vw,
-  marginTop110vh,
-  addaProfileAttachment,
-} from "../../styles/marginStyles";
-import {image300percent,image200percent,image100percent} from "../../styles/imageStyles";
+import {addaProfileAttachment,marginLeft100vw,marginTop20vh} from "../../styles/marginStyles"
+import {image300percent,image200percent,image100percent,image130vw} from "../../styles/imageStyles";
 const StudentSearch = (props) => {
   
   const loaddata= () => {
@@ -83,26 +73,26 @@ const StudentSearch = (props) => {
                   {(propsForm)=>(
                     <Form className="flexcolumn" onChange={()=>handleSearch(propsForm.values)} style={{marginBottom:"5vh"}}>
                       <div className="flexrow">
-                        <div className="flexcolumn" style={marginLeft130vw} >
-                          <label htmlFor="name" className="section">Enter Student"s Name </label>
-                          <Field type="text" name="name" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                        <div className="flexcolumn" style={marginLeft100vw} >
+                          <label htmlFor="name" className="section" style={image130vw}>Enter Student"s Name </label>
+                          <Field type="text" name="name" className="shortbox" placeholder="Type here" />
                       </div>
-                        <div className="flexcolumn" style={marginLeft250vw}>
-                          <label htmlFor="classvalur" className="section" >Enter Class</label>
-                          <Field type="text" name="classvalue" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                        <div className="flexcolumn" style={marginLeft100vw}>
+                          <label htmlFor="classvalur" className="section" style={image130vw}>Enter Class</label>
+                          <Field type="text" name="classvalue" className="shortbox" placeholder="Type here" />
                         </div>
                       </div>
-                      <div className="flexrow" style={marginTop110vh}>
-                        <div className="flexcolumn" style={marginLeft130vw}>
-                          <label htmlFor="section" className="section" >Enter Section</label>
-                          <Field type="text" name="section" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                      <div className="flexrow" style={marginTop20vh}>
+                        <div className="flexcolumn" style={marginLeft100vw}>
+                          <label htmlFor="section" className="section" style={image130vw}>Enter Section</label>
+                          <Field type="text" name="section" className="shortbox" placeholder="Type here" />
                         </div>
-                        <div className="flexcolumn" style={marginLeft250vw}>
-                          <label htmlFor="subject" className="section" >Enter Subject</label>
-                          <Field type="text" name="subject" className="shortbox" style={marginTop55vh} placeholder="Type here" />
+                        <div className="flexcolumn" style={marginLeft100vw}>
+                          <label htmlFor="subject" className="section" style={image130vw}>Enter Subject</label>
+                          <Field type="text" name="subject" className="shortbox" placeholder="Type here" />
                         </div>
                       </div>
-                      <div className="flexrow" style={{marginTop:"12vh",marginLeft:"21vw"}}>
+                      <div className="flexrow" style={{marginTop:"3vh",marginLeft:"21vw"}}>
                         <Dropzone name="attachment" onDrop={(files)=> propsForm.setFieldValue("attachment",files)}>
                           {({getRootProps, getInputProps}) => (
                             <section className="flexrow">
@@ -122,14 +112,14 @@ const StudentSearch = (props) => {
                     </Form>
                   )}
               </Formik>
-              <div className='eventlistArea' style={{ width: '75vw', marginTop: '3vh' }}>
+              <div className='eventlistArea' style={{ width: '75vw'}}>
                 <div className='headereventList'>
-                  <p className='textaligncenter' style={image100percent}>User ID</p>
-                  <p className='textaligncenter' style={image300percent}>Name of Student</p>
-                  <p className='textaligncenter' style={image100percent}>Class</p>
-                  <p className='textaligncenter' style={image100percent}>Section</p>
-                  <p className='textaligncenter' style={image200percent}>Delete</p>
-                  <p className='textaligncenter' style={image200percent}>Edit</p>
+                  <p style={image100percent}>User ID</p>
+                  <p style={image300percent}>Name of Student</p>
+                  <p style={image100percent}>Class</p>
+                  <p style={image100percent}>Section</p>
+                  <p style={image200percent}>Delete</p>
+                  <p style={image200percent}>Edit</p>
                 </div>
 
                 <div className="bodyeventList">
@@ -143,7 +133,7 @@ const StudentSearch = (props) => {
                       <div className='itemcenter' style={image200percent}>
                         <MdDeleteForever size='1.5vw' onClick={() => props.dispatch(deleteData(student))} />
                       </div>
-                      <div className='itemcenter' style={{ width: "20%", marginTop: '0.1vh' }}>
+                      <div className='itemcenter' style={image200percent}>
                         <NavLink exact to={{ pathname: '/student/profile', studentdata: student }}>
                           <BsPencilSquare size='1.3vw' color='black' />
                         </NavLink>

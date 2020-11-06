@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { NavLink} from 'react-router-dom'
 import Drawer from '../../component/Drawer/Drawer'
-import Header from '../../component/Header/Header'
+import Header from '../../component/Header/HeaderAdmin'
 import {loadTeacherData,filterTeacherData} from "../../redux/Stores/TeacherReducer";
 import {loadAttendance,addAttendance} from "../../redux/Stores/AttendanceReducer";
 import { BsPlus } from "react-icons/bs";
-import {marginTop45vh,marginLeft55vw,addaProfileAttachment} from '../../styles/marginStyles'
-
+import {addaProfileAttachment, marginTop20vh, marginLeft60vw} from '../../styles/marginStyles'
+import {image300percent,image200percent} from "../../styles/imageStyles";
 let currentdate = new Date();
 class Attendance extends Component {
   constructor (props) {
@@ -62,26 +62,24 @@ class Attendance extends Component {
                     <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon'/>
                     <p style={{color:'#FFFFFF'}}> Find Attendance </p>
                 </NavLink>
-                <form className='flexrow' onChange={this.searchResult} style={marginTop45vh}>
+                <form className='flexrow' onChange={this.searchResult} style={marginTop20vh}>
                   
                     
-                  <p className='section' style={marginLeft55vw}>Date</p>
-                  <p className="shortbox" style={{marginLeft:'11vw'}}> {currentdate.toLocaleDateString()}</p>
-                    
-                  
-                  <p className='section' style={{marginLeft:'34vw'}}>Teacher's Name</p>
-                    <select className="shortbox" required id='name' style={{marginLeft:'45vw'}} onChange={(event) => this.handleChange(event)}>
+                  <p className='section'>Date</p>
+                  <p className="shortbox"> {currentdate.toLocaleDateString()}</p>
+                  <p className='section' style={marginLeft60vw}>Teacher's Name</p>
+                    <select className="shortbox" required id='name' onChange={(event) => this.handleChange(event)}>
                         <option value="" defaultValue>{" "}-select-</option>
                         {originalteacherdata&&originalteacherdata.map((teacher,index)=><option key={index} value={teacher.value}>{teacher.name}</option>)}
                     </select>
                 </form>
                 
-                <div className='eventlistArea' style={{width:'70vw',textAlign:'center',height:'40vh',marginTop:'10vh'}}>
+                <div className='eventlistArea' style={{width:'70vw',height:'40vh',marginTop:'2vh'}}>
                   <div className='headereventList'>
-                    <p style={{width:'20%'}}>No</p>
-                    <p style={{width:'30%'}}>Teacher's Name</p>
-                    <p style={{width:'30%'}}>Date</p>
-                    <p style={{width:'20%'}}>Attendance</p>
+                    <p style={image200percent}>No</p>
+                    <p style={image300percent}>Teacher's Name</p>
+                    <p style={image300percent}>Date</p>
+                    <p style={image200percent}>Attendance</p>
                     
                   </div>
 
@@ -90,10 +88,10 @@ class Attendance extends Component {
 
                         <div className='flexrow'  key={index} >
                           
-                          <p style={{width:'20%'}}>{index}</p>
-                          <p style={{width:'30%'}}>{teacher.name}</p>
-                          <p style={{width:'30%'}}>{currentdate.toLocaleDateString()}</p>
-                          <div style={{width:'20%'}}>
+                          <p style={image200percent}>{index}</p>
+                          <p style={image300percent}>{teacher.name}</p>
+                          <p style={image300percent}>{currentdate.toLocaleDateString()}</p>
+                          <div style={image200percent}>
                             {teacher.attendance?
                                 <button className='switchbox' style={{backgroundColor:'#27AE60'}} onClick={()=>{teacher.attendance=false;this.setState({trigger:false})}}></button>
                                 :
@@ -104,7 +102,7 @@ class Attendance extends Component {
                       )}
                     
                   </div>
-                  <button className='button' style={{marginTop:'3vh'}} onClick={()=>this.submitTodayAttendance(teachers)}>Save</button>
+                  <button className='button' style={{marginTop:'3vh',marginLeft:'15vw'}} onClick={()=>this.submitTodayAttendance(teachers)}>Save</button>
                 </div>
       
               

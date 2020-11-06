@@ -6,10 +6,10 @@ import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import Dropzone from "react-dropzone";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import {createTickedAdmin} from "../../userData/ValidationSchema/TicketSchema"
 import {intialTickedAdmin} from "../../userData/InitialData/Ticket"
-import {marginLeft130vw,marginBottom180vh,marginBottom65vh} from "../../styles/marginStyles"
+import {marginLeft130vw,marginBottom180vh,marginBottom65vh, marginBottom20vh} from "../../styles/marginStyles"
 
 
 
@@ -46,19 +46,19 @@ const RaiseTicketAdmin = (props)=> {
                 >
                   {(props)=>(
                     <Form>
-                      <div className="flexrow" style={marginBottom65vh}>
+                      <div className="flexrow" style={marginBottom20vh}>
                         <label htmlFor="topic" className="section">Topic</label>
-                        <Field type="text" name="topic" className="shortbox"  style={marginLeft130vw} placeholder="Type here"/>
+                        <Field type="text" name="topic" className="shortbox" placeholder="Type here"/>
                       </div>
-                      <div className="flexrow" style={marginBottom180vh}>
+                      <div className="flexrow" style={marginBottom20vh}>
                         <label htmlFor="desc" className="section">Description</label>
-                        <Field component='textarea' name="desc" className="shortbox" style={{marginLeft:'13vw',height:'15vh'}}  placeholder="Type here"/>
+                        <Field component='textarea' name="desc" className="shortbox" style={{height:'15vh'}}  placeholder="Type here"/>
                       </div>
                       <div className="flexrow">
                         <p className="section">Attachment </p>
                         <Dropzone name="attachment" onDrop={(files)=> props.setFieldValue("attachment",files)}>
                           {({getRootProps, getInputProps}) => (
-                            <section className="flexrow" style={marginLeft130vw}>
+                            <section className="flexrow" >
                               <div {...getRootProps({ className:"attachment"})}>
                                 <input {...getInputProps()} />
                                   <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>

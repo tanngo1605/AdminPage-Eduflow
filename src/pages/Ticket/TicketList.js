@@ -3,7 +3,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { connect } from "react-redux";
 import { loadData, filterByValue } from "../../redux/Stores/TicketReducer";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 
 class TicketList extends Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class TicketList extends Component {
                   }}
                 />
 
-                <div className="searchBox" style={{ marginLeft: "18vw" }}>
+                <div className="searchBox" style={{ marginLeft: "5vw" }}>
                   <select id="status" className="searchBox" onChange={this.handleChange}>
                     <option value="">Status</option>
                     <option value="Pending">Pending</option>
@@ -81,7 +81,7 @@ class TicketList extends Component {
                   </select>
                 </div>
               </form>
-              <div className="ticketList" style={{ marginTop: "8%" }}>
+              <div className="ticketList" style={{ marginTop: "2%" }}>
                 <div className="headerticketList">
                   <p style={{ width: "13%" }}>ID</p>
                   <p style={{ width: "18%" }}>Name</p>

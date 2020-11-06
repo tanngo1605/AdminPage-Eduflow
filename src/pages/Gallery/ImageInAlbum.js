@@ -11,7 +11,7 @@ import {
   updateAlbum,
 } from "../../redux/Stores/GalleryReducer";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import { positionabsolute } from "../../styles/marginStyles";
 import { image150 } from "../../styles/imageStyles";
 

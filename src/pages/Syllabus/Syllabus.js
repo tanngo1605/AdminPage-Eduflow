@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BsPlus, BsFillFolderFill } from "react-icons/bs";
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import Dropzone from "react-dropzone";
 
 const syllabus = {

@@ -4,10 +4,10 @@ import { Formik,Form,Field} from "formik";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
-import Header from "../../component/Header/Header"
+import Header from "../../component/Header/HeaderAdmin"
 import accountSchema from "../../userData/ValidationSchema/AccountSchema"
 import initialvalue from "../../userData/InitialData/Account"
-import {marginLeft240vw,marginTop45vh,marginLeft380vw,marginBottom100vh} from "../../styles/marginStyles"
+import {marginLeft80vw,marginLeft60vw,marginLeft50vw,marginTop10vh, marginBottom10vh} from "../../styles/marginStyles"
 
 const AccountSetting = (props) => {
   const [imageAccount,setImageAccount] = useState(null)
@@ -40,56 +40,54 @@ const AccountSetting = (props) => {
           <div className="flexcolumn">
             <Header/>
             <div className="form">
-              
                 <h1 className="titleform">Account Settings</h1>
                 <Formik
                   initialValues={initialvalue}
                   validationSchema={accountSchema}
                   onSubmit={(values, actions) => {
-                    console.log(values)
                     handleSubmit(values);
                     actions.resetForm()
                   }}
                 >
                   {(props)=>(
                     <Form>
-                      <div className="flexrow" style={marginBottom100vh}>
+                      <div className="flexrow" style={marginBottom10vh}>
                         <div className="flexcolumn">
                           <label htmlFor="schoolname" className="section" style={sectionStyle}>School name</label>
-                          <Field type="text" name="schoolname" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="text" name="schoolname" className="longbox" placeholder="Type here"/>
                         </div>
                         
-                        <div className="flexcolumn" style={marginLeft380vw}>
+                        <div className="flexcolumn" style={marginLeft60vw}>
                           <label htmlFor="schooladdress" className="section" style={sectionStyle}>School Address</label>
-                          <Field type="text" name="schooladdress" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="text" name="schooladdress" className="longbox" placeholder="Type here"/>
                         </div>
                       </div>
-                      <div className="flexrow" style={marginBottom100vh}>
+                      <div className="flexrow" style={marginBottom10vh}>
                         <div className="flexcolumn">
                           <label htmlFor="schoolcode" className="section" style={sectionStyle}>School code</label>
-                          <Field type="text" name="schoolcode" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="text" name="schoolcode" className="longbox" placeholder="Type here"/>
                         </div>
                         
-                        <div className="flexcolumn" style={marginLeft380vw}>
+                        <div className="flexcolumn" style={marginLeft60vw}>
                           <label htmlFor="city" className="section" style={sectionStyle}>City</label>
-                          <Field type="text" name="city" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="text" name="city" className="longbox" placeholder="Type here"/>
                         </div>
                       </div>
-                      <div className="flexrow" style={marginBottom100vh}>
+                      <div className="flexrow" style={marginBottom10vh}>
                         <div className="flexcolumn">
-                          <label htmlFor="schoolbranch" className="section" style={sectionStyle}>School branch</label>
-                          <Field type="text" name="schoolbranch" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <label  className="section" style={sectionStyle}>School branch</label>
+                          <Field type="text" name="schoolbranch" className="longbox" placeholder="Type here"/>
                         </div>
                         
-                        <div className="flexcolumn" style={marginLeft380vw}>
+                        <div className="flexcolumn" style={marginLeft60vw}>
                           <label htmlFor="director" className="section" style={sectionStyle}>Director</label>
-                          <Field type="text" name="director" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="text" name="director" className="longbox" placeholder="Type here"/>
                         </div>
                       </div>
                       <div className="flexrow">
                         <div className="flexcolumn">
                             {displayImage(props.values.image)}
-                            <div className="flexrow" style={{marginTop:"1.5vh"}}>
+                            <div className="flexrow" style={marginTop10vh}>
                               <Dropzone name="image" onDrop={(files)=> {props.setFieldValue("image",files[0]);setImageAccount(files[0])}} accept="image/*">
                                 {({getRootProps, getInputProps}) => (
                                   <section className="flexrow" style={{marginLeft:"4vw"}}>
@@ -110,39 +108,39 @@ const AccountSetting = (props) => {
                           </div>
                     
                         </div>
-                        <div className="flexcolumn" style={{marginLeft:"10vw"}} >
-                          <div style={marginBottom100vh} >
+                        <div className="flexcolumn" style={marginLeft80vw} >
+                          <div className='flexcolumn' style={marginBottom10vh} >
                             <label htmlFor="principle" className="section" style={sectionStyle}>Principle</label>
-                            <Field type="text" name="principle" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                            <Field type="text" name="principle" className="longbox" placeholder="Type here"/>
                           </div>
                         
-                          <div style={marginBottom100vh}>
+                          <div className='flexcolumn' style={marginBottom10vh}>
                             <label htmlFor="viceprinciple" className="section" style={sectionStyle}>Vice Principle</label>
-                            <Field type="text" name="viceprinciple" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                            <Field type="text" name="viceprinciple" className="longbox" placeholder="Type here"/>
                           </div>
-                          <div>
+                          <div className='flexcolumn'>
                             <label htmlFor="admin" className="section" style={sectionStyle}>Admin</label>
-                            <Field type="text" name="admin" className="longbox"  style={marginTop45vh} placeholder="Type here"/>
+                            <Field type="text" name="admin" className="longbox" placeholder="Type here"/>
                           </div>
                         </div>
                       </div>
-                      <div className="flexrow" style={{marginTop:"3vh",marginBottom:"7.5%"}}>
+                      <div className="flexrow" style={marginTop10vh}>
                         <div className="flexcolumn">
                           <label htmlFor="totalteacher" className="section" style={sectionStyle}>Total Teachers</label>
-                          <Field type="number" name="totalteacher" className="shortbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="number" name="totalteacher" className="shortbox" placeholder="Type here"/>
                         </div>
                         
-                        <div className="flexcolumn" style={marginLeft240vw}>
+                        <div className="flexcolumn" style={marginLeft50vw}>
                           <label htmlFor="totalstudent" className="section" style={sectionStyle}>Total Staff</label>
-                          <Field type="number" name="totalstudent" className="shortbox"  style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="number" name="totalstudent" className="shortbox" placeholder="Type here"/>
                         </div>
-                        <div className="flexcolumn" style={marginLeft240vw}>
+                        <div className="flexcolumn" style={marginLeft50vw}>
                           <label htmlFor="totalstaff" className="section" style={sectionStyle}>Total Students</label>
-                          <Field type="number" name="totalstaff" className="shortbox" style={marginTop45vh} placeholder="Type here"/>
+                          <Field type="number" name="totalstaff" className="shortbox" placeholder="Type here"/>
                         </div>
                       </div>
-                      <div className="flexrow" >
-                        <button type="submit" className="button" style={{marginLeft:"18%"}}>Save</button>
+                      <div className="flexrow" style={{marginLeft:"18%",marginTop:'2.5vh'}}>
+                        <button type="submit" className="button" >Save</button>
                         <button type="reset" value="Reset" className="button">Reset</button>  
                       </div>
                     </Form>  
@@ -164,5 +162,6 @@ export default AccountSetting;
 
 const sectionStyle = {
     paddingLeft:"1.5vw",
+    width:"45%"
 };
 
