@@ -5,12 +5,7 @@ import Header from '../../component/Header/HeaderAdmin'
 import {loadTeacherData} from "../../redux/Stores/TeacherReducer";
 import {loadAttendance,loadSpecificAttendance,modifyAttendance} from "../../redux/Stores/AttendanceReducer";
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import {
-  marginTop45vh,
-  marginLeft55vw,
-  marginLeft100vw,
-  marginLeft150vw,
-} from '../../styles/marginStyles'
+import {marginTop45vh} from '../../styles/marginStyles'
 
 class SearchAttendance extends Component {
   constructor (props) {
@@ -80,8 +75,8 @@ class SearchAttendance extends Component {
                   
                 </form>
                 
-                <div className='eventlistArea' style={{width:'70vw',height:'40vh',marginTop:'8vh'}}>
-                  <div className='headereventList'>
+                <div className='tablelistArea' style={{width:'70vw',height:'40vh',marginTop:'8vh'}}>
+                  <div className='headertableList'>
                     
                     <p style={{width:'33%'}}>Date</p>
                     <p style={{width:'33%'}}>Teacher</p>
@@ -89,7 +84,7 @@ class SearchAttendance extends Component {
                     
                   </div>
 
-                  <div className="bodyeventList" style={{height:'30vh'}}>
+                  <div className="bodytableList" style={{height:'30vh'}}>
                   {
                     (this.state.date)?
                         (

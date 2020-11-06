@@ -15,18 +15,21 @@ import classes from "../../userData/GlobalData/classData"
 import sections from "../../userData/GlobalData/sectionData"
 import ExamSchema from "../../userData/ValidationSchema/ExamSchema"
 import examInitialValues from "../../userData/InitialData/Exam"
-import {marginLeft130vw, marginLeft20vw, marginBottom20vh} from "../../styles/marginStyles"
+import {marginLeft20vw, marginBottom20vh} from "../../styles/marginStyles"
 import {image200percent,image150percent, image100percent} from '../../styles/imageStyles'
 const exams=[
   {exam:"Math",class:"VI",section:"TR",datefrom:"20/20/20"}
 ]
 const Exam = (props) => {
   let [modalState,setModalState] = useState(false)
-  useEffect(()=>{
+  
+  const getUserInfo = () =>{
     Modal.setAppElement("body");
     props.dispatch(getCurrentUser())
+  }
 
-  })
+  useEffect(getUserInfo,[])
+  
   const handleSubmit = (values) => {
     try {
       const userData = props.account.userData.userdata.data.data;
@@ -106,8 +109,8 @@ const Exam = (props) => {
                         </Dropzone>
                     
                       </div>
-                      <div className="eventlistArea" style={{width:"75vw",height:"33vh"}}>
-                        <div className="headereventList">
+                      <div className="tablelistArea" style={{width:"75vw",height:"33vh"}}>
+                        <div className="headertableList">
                           <p style={image150percent}>Exam</p>
                           <p style={image200percent}>Class</p>
                           <p style={image200percent}>Section</p>
@@ -119,7 +122,7 @@ const Exam = (props) => {
                         <div >
                           {exams&&exams.map((exam,index)=>
   
-                            <div className="bodyeventList"  key={index} >
+                            <div className="bodytableList"  key={index} >
                             
                               <p style={image150percent}>{exam.exam}</p>
                               <p style={image200percent}>{exam.class}</p>

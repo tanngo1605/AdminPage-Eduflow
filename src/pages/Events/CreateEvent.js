@@ -79,18 +79,18 @@ const CreateEvent = (props) => {
                       
                     </div>
                     <div className="flexrow" style={marginBottom20vh}>
-                      <label htmlFor="startTime" className="section">Time from</label>
+                      <label className="section">Time from</label>
                       <Field type="time" name="startTime" className="shortbox" />
-                      <label htmlFor="endTime" className="section" style={marginLeft60vw}>Time To</label>
+                      <label className="section" style={marginLeft60vw}>Time To</label>
                       <Field type="time" name="endTime" className="shortbox"/>
          
                     </div>
                     <div className="flexrow" style={marginBottom20vh}>
-                      <label htmlFor="title" className="section">Event title </label>
+                      <label className="section">Event title </label>
                       <Field type="text" name="title" className="shortbox" placeholder="Type here"/>
                     </div>
                     <div className="flexrow" style={marginBottom20vh}>
-                      <label htmlFor="description" className="section">Description </label>
+                      <label className="section">Description </label>
                       <Field component='textarea' name='description' className="shortbox"  style={{height:"10vh",width:"58vw"}} placeholder="Type here" />
                     </div>
                     <div className="flexrow" style={marginBottom20vh}>

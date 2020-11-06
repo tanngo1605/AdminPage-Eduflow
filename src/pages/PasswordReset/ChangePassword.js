@@ -1,30 +1,55 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+import {connect} from 'react-redux';
+import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/HeaderAdmin";
+import { Formik,Form,Field} from "formik";
 import ppo1 from "../../assets/ppo1.png";
-import Popup from "reactjs-popup";
+import { resetPassword } from "../../redux/Action/PasswordAction";
+import {initchangePasswordSchema} from "../../userData/ValidationSchema/PasswordSchema"
+import {initchangePasswordValue} from "../../userData/InitialData/Password"
 import passwordImg from "../../assets/password2.png";
+import {marginLeft120vw } from "../../styles/marginStyles";
 import "./password.css";
+const ChangePassword = (props) => {
+  let [modalState,setModalState] = useState(false)
+  const getUserInfo = () =>{
+    props.dispatch(getCurrentUser())
+  }
 
-class ChangePassword extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hidden: true };
-  }
-  toggleShow(id) {
-    if (id) {
-      this.setState({ hidden: !this.state.hidden, select: !this.state.select });
+  useEffect(getUserInfo,[]) 
+
+
+  const handleSubmit = async (values) => {
+    const {oldpassword,newpassword,confirmnewpass} = values
+    if (newpassword!=confirmnewpass){
+        alert("New password is not the same")
+        props.history.push({pathname:"/changepassword"});
+        
     }
-    console.log(this.props);
+    if (oldpassword==newpassword){
+      alert("New password is the same with old password")
+      props.history.push({pathname:"/changepassword"});
+      
   }
-  handleChange = (event) => {
-    event.preventDefault();
+
+    try {
+        const prop = props.location;
+        const userInput = {emailID:prop.emailID,OTP:prop.OTP,password:newpassword,confirmPassword:confirmnewpass}
+        await resetPassword(userInput);
+        //send user OTP 
+        setModalState(true)
+        
+
+    }
+    catch(error) {
+     console.log(error)
+    }
+
   };
-  handleSubmit = (event) => {
-    this.props.history.push("/homescreen");
-  };
-  render() {
-    return (
+  
+  return (
       <div className="dashboard">
         <div className="flexrow">
           <Drawer />
@@ -32,110 +57,58 @@ class ChangePassword extends Component {
             <Header />
             <div className="passScreen">
               <div className="containerChangePassword">
-                <img
-                  alt=""
-                  src={ppo1}
-                  className="imgField"
-                  style={{
-                    width: "308px",
-                    height: "239px",
-                    position: "relative",
-                    marginTop: "160px",
-                    right: "250px",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "relative",
-                    bottom: "20px",
-                    right: "100px",
-                  }}
-                >
-                  <form className="formPass" onSubmit={this.handleSubmit}>
-                    <label className="titlePass">Change your password?</label>
-
-                    <div className="passwordField">
-                      <div style={{ display: "inline-flex" }}>
-                        <div className="textPass">Old password</div>
-                        <div className="textTypePass" >Type</div>
-                      </div>
-                      <input
-                        className="inputPassword resetPassword"
-                        placeholder="****************"
-                        type={this.state.hidden ? "password" : "text"}
-                      />
-                      <label className="eyeIcon" htmlFor="button1">
-                        <i
-                          className="hideshowBtn"
-                          id="button1"
-                          onClick={() => this.toggleShow("button1")}
-                        ></i>
-                      </label>
-                    </div>
-                    <div className="passwordField">
-                      <div style={{ display: "inline-flex" }}>
-                        <div className="textPass">New password</div>
-                        <div className="textTypePass">Type</div>
-                      </div>
-                      <input
-                        className="inputPassword resetPassword"
-                        placeholder="****************"
-                        type={this.state.hidden ? "password" : "text"}
-                      />
-                      <label className="eyeIcon" htmlFor="button1">
-                        <i
-                          className="hideshowBtn"
-                          id="button1"
-                          onClick={() => this.toggleShow("button1")}
-                        ></i>
-                      </label>
-                    </div>
-                    <div className="passwordField">
-                      <div style={{ display: "inline-flex" }}>
-                        <div className="textPass">Confirm new password</div>
-                        <div className="textTypePass">Type</div>
-                      </div>
-                      <input
-                        className="inputPassword resetPassword"
-                        placeholder="****************"
-                        type={this.state.hidden ? "password" : "text"}
-                      />
-                      <label className="eyeIcon" htmlFor="button2">
-                        <i
-                          className="hideshowBtn"
-                          id="button2"
-                          onClick={() => this.toggleShow("button2")}
-                        ></i>
-                      </label>
-                    </div>
-
-                    <Popup
-                      modal
+                <img alt="" src={ppo1} className="imgField backgroundImg"/>
+                <div style={{position: "relative",bottom: "20px",right: "100px"}}>
+                  <Formik
+                    initialValues={initchangePasswordValue}
+                    validationSchema={initchangePasswordSchema}
+                    onSubmit={(values, actions) => {
+                      handleSubmit(values);
+                      actions.resetForm()
+                    }}
+                  >
+                  {(props)=>(
+                    <Form className="formPass" >
+                      <label className="titlePass">Change your password?</label>
                       
-                      trigger={
-                        <button type="button" value="submit" className="buttonPass">
-                          Reset
-                        </button>
-                      }
-                      position='center center'>
-                      <img src={passwordImg} alt="" />
-                      Your password was succesfully changed
-                      <button
-                        className="buttonPass"
-                        onSubmit={this.handleSubmit}
-                      >
-                        Login
-                      </button>
-                    </Popup>
-                  </form>
+                      <div className="passwordField">
+                        <label className="textPass">Old password</label>
+                        <Field name="oldpassword" className="inputPassword resetPassword" placeholder="****************" type="password"/>
+                      </div>
+                      <div className="passwordField">
+                        <label className="textPass">New password</label>
+                        <Field name="newpassword" className="inputPassword resetPassword" placeholder="****************" type="password" />
+                      </div>
+                      <div className="passwordField">
+                        <label className="textPass">Confirm new password</label>
+                        <Field name="confirmnewpass" className="inputPassword resetPassword" placeholder="****************" type="password" />
+                      </div>
+                      <button type="submit" className="buttonPass" style={marginLeft120vw}>Reset</button>
+                    </Form>
+                  )}
+                  </Formik>
                 </div>
+                <Modal 
+                  isOpen={modalState} 
+                  className="changepasswordmodal" 
+                  onRequestClose={()=>{
+                    setModalState(false);
+                    props.history.push({pathname:"/"})
+                  }} > 
+                    <img style={{width:'15vw',height:'15vh'}}src={passwordImg} alt="" />
+                    <h4 style={{marginTop:'4vh'}}>Your password was succesfully changed</h4>
+                    <button type="button" className="buttonPass" onSubmit={()=>props.history.push({pathname:"/"})} style={{marginTop:'5vh'}}>Login</button>   
+                </Modal>
               </div>
             </div>
           </div>
         </div>
       </div>
     );
-  }
-}
 
-export default ChangePassword;
+}
+const mapStateToProps = (state) => ({
+  account: state.account,
+})
+
+export default React.memo(connect(mapStateToProps)(ChangePassword));

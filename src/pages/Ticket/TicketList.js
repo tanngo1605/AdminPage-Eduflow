@@ -59,11 +59,7 @@ class TicketList extends Component {
             <div className="form">
               <h1 className="titleform">Raise a ticket</h1>
               <form className="flexrow" onChange={this.searchResult}>
-                <input
-                  type="text"
-                  id="text"
-                  className="searchBox"
-                  placeholder="Search"
+                <input type="text" id="text" className="searchBox" placeholder="Search"
                   onChange={this.handleChange}
                   style={{
                     color: "#FFFFFF",
@@ -97,9 +93,7 @@ class TicketList extends Component {
                         <div className="bodyticketlist" key={ticket.key}>
                           <p style={{ width: "13%" }}>{ticket.serialno}</p>
                           <p style={{ width: "18%" }}>{ticket.name}</p>
-                          <p style={{ width: "18%" }}>
-                            {ticket.date.toLocaleDateString()}
-                          </p>
+                          <p style={{ width: "18%" }}>{ticket.date.toLocaleDateString()}</p>
                           <p style={{ width: "13%" }}>{ticket.subject}</p>
                           <p style={{ width: "13%" }}>{ticket.problem}</p>
                           <p style={{ width: "10%" }}>File</p>

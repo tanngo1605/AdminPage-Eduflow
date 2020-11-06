@@ -127,7 +127,7 @@ class StudentMigration extends Component {
               </div>
 
               <div
-                className="eventlistArea"
+                className="tablelistArea"
                 style={{ marginTop: "2vh", paddingTop: "2%" }}
               >
                 <Scrollbars>

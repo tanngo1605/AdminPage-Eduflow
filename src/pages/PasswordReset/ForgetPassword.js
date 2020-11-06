@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { Formik,Form,Field} from "formik";
 import {forgetPassword} from "../../redux/Action/PasswordAction";
+import {initforgotPasswordSchema} from "../../userData/ValidationSchema/PasswordSchema"
+import {initforgotPasswordValue} from "../../userData/InitialData/Password"
 import ii from "../../assets/ii1.png";
+import {marginLeft120vw} from "../../styles/marginStyles";
 import "./password.css";
 
 const ForgetPassword =(props)=> {
-  const [emailID,setEmail] =useState("")
-  const [confirmemailID,setconfirmEmail] =useState("")
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (emailID!==confirmemailID){
+  useEffect(()=>{},[])
+  const handleSubmit = async (values) => {
+    const {emailid,confirmemailid} = values;
+
+    if (emailid!==confirmemailid){
       alert("Different Email")
       return 
     }
     try {
-      
       //const OTP = await forgetPassword(emailID);
       //send user OTP 
-      props.history.push({pathname:"/sendotp",emailID:emailID});
+      props.history.push({pathname:"/sendotp",emailID:emailid});
       
     }
     catch(error) {
@@ -30,38 +33,39 @@ const ForgetPassword =(props)=> {
       <div className="passScreen ">
         <div className="containerPassScreen">
           <img alt="#" src={ii} className="imgField" />
-          <div>
-            <form className="formPass" onSubmit={(event)=>handleSubmit(event)}>
+          
+          <Formik
+            initialValues={initforgotPasswordValue}
+            validationSchema={initforgotPasswordSchema}
+            onSubmit={(values, actions) => {
+              console.log(values)
+              handleSubmit(values);
+              actions.resetForm()
+            }}
+          >
+          {(props)=>(
+            <Form className="formPass">
               <label className="titlePass">Forgot your password?</label>
               <div className="smallTitlePass">Enter user ID to get OTP</div>
               <div className="schoolCodeField">
-                <div className="flexrow">
-                  <div className="textPass">Enter your school code</div>
-                  <div className="textTypePass">Type</div>
-                </div>
-                <input className="inputPassword" placeholder="345677890"></input>
+                <div className="textPass">Enter your school code</div>
+                <Field name='schoolcode' className="inputPassword" placeholder="345677890"/>
               </div>
               <div className="userIDField">
-                <div className="flexrow">
-                  <div className="textPass">Enter your email ID</div>
-                  <div className="textTypePass">Type</div>
-                </div>
-                <input type="text" value={emailID} onChange={(e)=>setEmail(e.target.value)} required className="inputPassword" placeholder="akhil112@gmail.com"/>
+                <div className="textPass">Enter your email ID</div>
+                <Field name='emailid' type="text" className="inputPassword" placeholder="akhil112@gmail.com"/>
               </div>
 
               <div className="emailField">
-                <div className="flexrow">
-                  <div className="textPass">Confirm your email ID</div>
-                  <div className="textTypePass">Type</div>
-                </div>
-                <input type="text"  value={confirmemailID} onChange={(e)=>setconfirmEmail(e.target.value)} required className="inputPassword" placeholder="akhil112@gmail.com"/>
+                <div className="textPass">Confirm your email ID</div>
+                <Field name='confirmemailid' type="text" className="inputPassword" placeholder="Your email"/>
               </div>
-
-              <button className="buttonPass" type="submit" value="submit">
-                Send OTP
-              </button>
-            </form>
-          </div>
+              
+              <button type="submit" className="buttonPass" style={marginLeft120vw}>Send OTP</button>
+            </Form>
+          )}
+          </Formik>
+          
         </div>
       </div>
     );

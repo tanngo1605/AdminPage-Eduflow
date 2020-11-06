@@ -105,12 +105,8 @@ const FormiForm = () => {
                                 <Drawer />
                                 <div className='flexcolumn'>
                                     <Header />
-
                                     <div className='form' >
-
-
                                         <h1 className='titleform'>Time table</h1>
-
                                         <div className='flexcolumn' style={{ marginLeft: '1.5vw', marginTop: '3%' }}>
                                             <div className='flexrow'>
                                                 <div className='flexrow' style={marginBottom20vh}>
@@ -184,7 +180,7 @@ const FormiForm = () => {
                                                 <div className="errMessOuter" style={props.errors.day ? null : { display: "none" }}>
                                                         <FcHighPriority className="iconErrMess" size="1.5vw" />
                                                         <ErrorMessage name="day" />
-                                                    </div>
+                                                </div>
                                                 
 
                                             </div>
@@ -251,7 +247,7 @@ const FormiForm = () => {
                                             </Scrollbars>
                                             <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" /><div style={{ display: "contents" }}>Need at least {numOfPeriods} period</div></>) : null}</div>
                                         </div>
-
+                                                                    
 
                                         <div className='flexrow' style={marginTop45vh}>
 

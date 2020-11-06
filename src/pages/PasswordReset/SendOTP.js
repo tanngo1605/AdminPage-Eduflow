@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import ppll1 from "../../assets/ppll1.png";
-import "./password.css";
 import OtpInput from "react-otp-input";
-import {marginLeft100vw} from "../../styles/marginStyles";
+import {marginLeft100vw,marginLeft120vw} from "../../styles/marginStyles";
 const SendOTP =(props)=>  {
   const [OTP,setOTP] =useState("")
   
@@ -33,7 +32,7 @@ const SendOTP =(props)=>  {
                 inputStyle={inputStyle}
                 containerStyle={containerStyle}
               />
-              <button className="buttonPass" type="submit" value="submit">Okay</button>
+              <button className="buttonPass" type="submit" value="submit" style={marginLeft120vw}>Okay</button>
           </form>
           
         </div>

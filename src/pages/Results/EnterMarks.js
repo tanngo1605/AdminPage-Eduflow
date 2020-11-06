@@ -69,15 +69,15 @@ const EnterMarks =  (props) => {
                             </section>
                             
                         
-                            <div className='eventlistArea' style={{marginTop:'7%',width:'70vw'}}>
-                                <div className='headereventList'>
+                            <div className='tablelistArea' style={{marginTop:'7%',width:'70vw'}}>
+                                <div className='headertableList'>
                                     <p style={image100percent}>S No</p>
                                     <p style={image450percent}>Student's Name</p>
                                     <p style={image450percent}>Score Out of 20</p>
                                     
                                 </div>
                         
-                                <div className="bodyeventList">
+                                <div className="bodytableList">
                                   <Scrollbars>   
                                     {studentArray&& studentArray.map((student,index) => (        
                                         <div key={index} className='flexrow'>

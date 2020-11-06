@@ -74,8 +74,8 @@ class Attendance extends Component {
                     </select>
                 </form>
                 
-                <div className='eventlistArea' style={{width:'70vw',height:'40vh',marginTop:'2vh'}}>
-                  <div className='headereventList'>
+                <div className='tablelistArea' style={{width:'70vw',height:'40vh',marginTop:'2vh'}}>
+                  <div className='headertableList'>
                     <p style={image200percent}>No</p>
                     <p style={image300percent}>Teacher's Name</p>
                     <p style={image300percent}>Date</p>
@@ -83,7 +83,7 @@ class Attendance extends Component {
                     
                   </div>
 
-                  <div className="bodyeventList" style={{height:'30vh'}}>
+                  <div className="bodytableList" style={{height:'30vh'}}>
                       {teachers&&teachers.map((teacher,index)=>
 
                         <div className='flexrow'  key={index} >
