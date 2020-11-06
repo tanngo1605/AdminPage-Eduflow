@@ -1,15 +1,15 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
 const addGalleryImages =  (schoolId,jwtToken,imagesInput) => {
-    const {title,datefrom,dateto,startTime,endTime,attachment,description,classvalue} = eventInput;
+    const {imageUrls} = imagesInput;
     
     
     const inputData = JSON.stringify({
-      imageUrls:imagesInput
+      imageUrls:imageUrls
     })
 
 
-    const resData =  axios.post(`${ServerDomain}/schools/${schoolId}/gallery`,inputData,{
+    axios.post(`${ServerDomain}/uploads/gallery`,inputData,{
                         headers: { "Authorization":`Bearer ${jwtToken}`},})
                         .then( 
                             function(resData) {
@@ -20,22 +20,18 @@ const addGalleryImages =  (schoolId,jwtToken,imagesInput) => {
                                 throw new Error (err)
                         });
    
-    return;
+    
     
 }
 const getGalleryImages = (schoolId,jwtToken) => {
     
-    const resData = axios.get(`${ServerDomain}/schools/${schoolId}/gallery`,{
+    const imageGallery = axios.get(`${ServerDomain}/uploads/gallery`,{
                                   headers: { "Authorization":`Bearer ${jwtToken}`},
-                    }).then( 
-                        function(resData) {
-                          return resData.json
                         })
-                      .catch(
-                        function(err) {
+                        .catch(err => {
                           throw new Error (err)
-                      })
-    return resData;
+                        })
+    return imageGallery.data.data;
     
 }
 export {addGalleryImages,getGalleryImages}
