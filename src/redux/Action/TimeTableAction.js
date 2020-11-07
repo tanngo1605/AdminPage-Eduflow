@@ -2,8 +2,7 @@ import ServerDomain from "../../serverdomain";
 import axios from 'axios';
 const addTimetable = (schoolId, jwtToken, eventInput) => {
   const { period, day, startTime, endTime, classvalue, section } = eventInput;
-
-
+  
   const inputData = JSON.stringify({
     period: period,
     day: day,

@@ -55,7 +55,7 @@ class Syllabus extends Component {
             >
               <h1 className="titleform">Syllabus</h1>
               <div
-                className="eventlistArea"
+                className="tablelistArea"
                 style={{ width: "70vw", height: "68vh" }}
               >
                 <Scrollbars>

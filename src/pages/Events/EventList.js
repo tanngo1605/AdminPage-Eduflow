@@ -123,8 +123,8 @@ const EventList = (props) => {
                     </Form>
                     )}
                   </Formik>
-                <div className='eventlistArea' style={{marginTop:'5%',marginLeft:'10vw',width:'60vw'}}>
-                  <div className='headereventList' style={image580vw}>
+                <div className='tablelistArea' style={{marginTop:'5%',marginLeft:'10vw',width:'60vw'}}>
+                  <div className='headertableList' style={image580vw}>
                     <p style={image100percent}>#</p>
                     <p style={image200percent}>From Date</p>
                     <p style={image200percent}>To Date</p>
@@ -133,7 +133,7 @@ const EventList = (props) => {
                     <p style={image100percent}>Edit</p>  
                   </div>
                   
-                  <div className="bodyeventList">
+                  <div className="bodytableList">
                     <Scrollbars>   
                       {filterschoolEvent.length>0 && filterschoolEvent.map((event,index) => (        
                         <div key={index} className='flexrow'>

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const createTickedAdmin = yup.object({
+const createTickedAdminScema = yup.object({
   topic: yup.string()
     .required(),
   desc: yup.string()
@@ -9,14 +9,24 @@ const createTickedAdmin = yup.object({
     .required(),
   
 });
-const createTicketStuTea = yup.object({
-  title: yup.string()
+const createTicketStuTeaSchema = yup.object({
+  serialno: yup.string()
     .required(),
   date: yup.date()
     .required(),
+  subject: yup.string()
+    .required(),
+  topic: yup.string()
+    .required(),
+  name: yup.string()
+    .required(),
+  problem: yup.string()
+    .required(),
+  status: yup.string()
+    .required(),
   
 });
-const searchTicket = yup.object({
+const searchTicketScema = yup.object({
     title: yup.string()
       .required(),
     date: yup.date()
@@ -24,4 +34,4 @@ const searchTicket = yup.object({
     
 });
 
-export  {createTickedAdmin,createTicketStuTea,searchTicket};
+export  {createTickedAdminScema,createTicketStuTeaSchema,searchTicketScema};

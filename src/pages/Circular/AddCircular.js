@@ -81,7 +81,7 @@ const AddCircular = (props)=> {
                       </div>
                       <div className="flexrow" style={{marginLeft:"15vw",marginTop:"15vh"}}>
                         <button type="submit" className="button">Save</button>
-                        <button type="reset" value="Reset" className="button">Reset</button>
+                        <button type="reset" className="button">Reset</button>
                   
                       </div>
                   </Form>

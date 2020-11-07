@@ -52,7 +52,7 @@ class Exam extends Component {
       </div>)
 
     return (
-      <div className="bodyeventList" style={{height:'23vh'}}>
+      <div className="bodytableList" style={{height:'23vh'}}>
           <Scrollbars>
             {period}
           </Scrollbars>
@@ -90,8 +90,8 @@ class Exam extends Component {
                   <input type='time' id='2shifttiming' className='shortbox' style={marginLeft20vw}  onChange={this.handleChange} />
                   
                 </div>
-                <div className='eventlistArea' style={{width:'70vw',height:'32.5vh'}}>
-                  <div className='headereventList'>
+                <div className='tablelistArea' style={{width:'70vw',height:'32.5vh'}}>
+                  <div className='headertableList'>
                     <p style={image150percent}>Serial No</p>
                     <p style={image200percent}>Room No</p>
                     <p style={image200percent}>Shift</p>

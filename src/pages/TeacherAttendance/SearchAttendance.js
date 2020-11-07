@@ -79,8 +79,8 @@ class SearchAttendance extends Component {
                   <input type='submit' value='Search' className='button' style={{marginLeft:'35%',marginTop:'8vh',marginBottom:'5vh'}}/>
                 </form>
                 
-                <div className='eventlistArea' style={{width:'70vw',height:'40vh'}}>
-                  <div className='headereventList'>
+                <div className='tablelistArea' style={{width:'70vw',height:'40vh'}}>
+                  <div className='headertableList'>
                     
                     <p style={{width:'33%'}}>Date</p>
                     <p style={{width:'33%'}}>Status</p>
@@ -88,7 +88,7 @@ class SearchAttendance extends Component {
                     
                   </div>
 
-                  <div className="bodyeventList" style={{height:'30vh'}}>
+                  <div className="bodytableList" style={{height:'30vh'}}>
                       {attendances&&attendances.reverse().map((attendance,index)=>
 
                         <div className='flexrow'  key={index} >

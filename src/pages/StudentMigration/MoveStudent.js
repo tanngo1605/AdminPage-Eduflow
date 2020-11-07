@@ -236,7 +236,7 @@ class MoveStudent extends Component {
 
               {/* {this.displayPeriod()} */}
               <div
-                className="eventlistArea"
+                className="tablelistArea"
                 style={{ marginTop: "8vh", paddingTop: "2%" }}
               >
                 <Scrollbars>

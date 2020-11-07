@@ -143,7 +143,7 @@ class SyllabusAnother extends Component {
                 </div>
               </div>
               <div
-                className="eventlistArea"
+                className="tablelistArea"
                 style={{
                   width: "70vw",
                   position: "absolute",

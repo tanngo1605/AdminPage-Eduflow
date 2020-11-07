@@ -1,29 +1,35 @@
-import React,{useState} from "react";
-import backgroundImage from "../../assets/ii1.png";
-import "./password.css";
+import React,{useState,useEffect} from "react";
 import Modal from "react-modal";
-import Popup from "reactjs-popup";
+import { Formik,Form,Field} from "formik";
+import backgroundImage from "../../assets/ii1.png";
 import { resetPassword } from "../../redux/Action/PasswordAction";
+import {initresetPasswordSchema} from "../../userData/ValidationSchema/PasswordSchema"
+import {initresetPasswordValue} from "../../userData/InitialData/Password"
 import passwordImg from "../../assets/password2.png";
-
+import {marginLeft120vw, marginTop20vh, marginTop45vh } from "../../styles/marginStyles";
 const ResetPassword = (props)=> {
-    const [password,setPassword] =useState('')
-    const [confirmPassword,setConfirmPassword] = useState('')
-    
-    const handleSubmit = async (event) => {
-        event.preventDefault();
 
-        if (password!=confirmPassword){
-            alert("Different Password")
-            return 
+    let [modalState,setModalState] = useState(false)
+
+    useEffect(()=>{
+      Modal.setAppElement("body");
+    },[])
+
+    const handleSubmit = async (values) => {
+        console.log(values)
+        const {newpassword,confirmnewpass} = values;
+
+        if (newpassword!=confirmnewpass){
+            alert("Different Password");
+            return ;
         }
-    
         try {
             const prop = props.location;
-            const userInput = {emailID:prop.emailID,OTP:prop.OTP,password:password,confirmPassword:confirmPassword}
+            const userInput = {emailID:prop.emailID,OTP:prop.OTP,password:newpassword,confirmPassword:confirmnewpass}
             await resetPassword(userInput);
-            //send user OTP 
-            props.history.push({pathname:"/"});
+            //send user OTP
+            setModalState(true)
+            
     
         }
         catch(error) {
@@ -35,42 +41,50 @@ const ResetPassword = (props)=> {
         <div className="passScreen ">
           <div className="containerPassScreen">
             <img alt="#" src={backgroundImage} className="imgField" />
-            <div>
-              <form className="formPass" onSubmit={(e)=>handleSubmit(e)}>
+            
+            <Formik
+              initialValues={initresetPasswordValue}
+              validationSchema={initresetPasswordSchema}
+              onSubmit={(values, actions) => {
+                handleSubmit(values);
+                actions.resetForm()
+              }}
+            >
+            {(props)=>(
+              <Form className="formPass">
                 <label className="titlePass">Reset your password</label>
-                <div className="passwordFieldd" style={{ marginTop: "15px" }}>
-                  <div className="flexrow">
-                    <div className="textPass">Enter your new password</div>
-                    <div className="textTypePass">Type</div>
-                  </div>
-                  <input required className="inputPassword resetPassword" type="password" id='password' placeholder="****************" onChange={(e)=>setPassword(e.target.value)}   />
+                <div className="passwordFieldd" style={marginTop45vh}> 
+                  <label className="textPass">Enter your new password</label>
+                  <Field name='newpassword' required className="inputPassword resetPassword" type="password" id='password' placeholder="****************"/>
                   
                 </div>
-                <div className="passwordFieldd" style={{ marginTop: "30px" }}>
-                  <div className='flexrow'>
-                    <div className="textPass">Confirm your new password</div>
-                    <div className="textTypePass">Type</div>
-                  </div>
-                  <input required className="inputPassword resetPassword" type="password" id='confirmpassword' placeholder="****************" onChange={(e)=>setConfirmPassword(e.target.value)}  />
+                <div className="passwordFieldd" style={{ marginTop: "30px" }}> 
+                  <label className="textPass">Confirm your new password</label>
+                  <Field name='confirmnewpass' className="inputPassword resetPassword" type="password" id='confirmpassword' placeholder="****************"/>
   
                 </div>
-                <div className="checkField">
-                  <input type="checkbox" id='checkbox' className="resetPass" />
+                <div className="checkField" style={marginTop20vh}>
+                  <Field component="input" type="checkbox" name='checkbox' className="resetPass" />
                   <span>Remember me</span>
                 </div>
+                <button type="submit" className="buttonPass" style={marginLeft120vw}>Submit</button>
                 
-                <Popup modal
-                  trigger={
-                    <input type="button" value ='reset' className="buttonPass"/>}
-                >
-                  <img src={passwordImg} alt="" />  
-                    Your password was succesfully changed
-                  <button className="buttonPass" onSubmit={(e)=>handleSubmit(e)}>Login</button>
-                    
-                </Popup>
                
-              </form>
-            </div>
+              </Form>
+              )}
+            </Formik>
+            
+            <Modal 
+                  isOpen={modalState} 
+                  className="changepasswordmodal" 
+                  onRequestClose={()=>{
+                    setModalState(false);
+                    props.history.push({pathname:"/"})
+                  }} > 
+                    <img style={{width:'15vw',height:'15vh'}}src={passwordImg} alt="" />
+                    <h4 style={{marginTop:'4vh'}}>Your password was succesfully changed</h4>
+                    <button type="button" className="buttonPass" onSubmit={()=>props.history.push({pathname:"/"})} style={{marginTop:'5vh'}}>Login</button>   
+            </Modal>
           </div>
         </div>
       );

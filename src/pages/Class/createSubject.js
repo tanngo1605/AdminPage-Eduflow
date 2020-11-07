@@ -7,23 +7,8 @@ import Drawer from '../../component/Drawer/Drawer';
 import Header from '../../component/Header/HeaderAdmin';
 import createSubjectSchema from "../../userData/ValidationSchema/SubjectSchema"
 import initialSubjectValue from '../../userData/InitialData/Subject'
-import {
-  marginBottom65vh,
-  marginLeft450vw,
-  marginLeft380vw,
-  marginLeft200vw,
-  marginLeft130vw,
-  marginTop45vh,
-  } from '../../styles/marginStyles'
-
-  import {
-    image450percent,
-    image200percent,
-    image100percent
-    
-    
-    
-    } from '../../styles/imageStyles'
+import {marginBottom65vh,marginTop45vh,marginLeft50vw} from '../../styles/marginStyles'
+import {image450percent,image200percent} from '../../styles/imageStyles'
 import classes from '../../userData/GlobalData/classData';
 import sections from '../../userData/GlobalData/sectionData';
 import subjects from '../../userData/GlobalData/subjectData';
@@ -31,10 +16,14 @@ import teachers from '../../userData/GlobalData/teacherData';
 
 const CreateSubject = (props)=>{
 
-  const [numperiod,setNumPeriod] = useState(6)
-  useEffect(()=>{
+  var [numperiod,setNumPeriod] = useState(6)
 
-  },[])
+  const getUserInfo = () =>{
+    props.dispatch(getCurrentUser())
+  }
+
+  useEffect(getUserInfo,[])
+
   const assignSubject=()=>{
     let period=[];
     
@@ -60,16 +49,16 @@ const CreateSubject = (props)=>{
     
     
     return (
-      <section className='eventlistArea' style={{marginTop:'8vh',width:'75vw'}}>
-        <div className='headereventList'>
+      <section className='tablelistArea' style={{marginTop:'8vh',width:'75vw'}}>
+        <div className='headertableList'>
             <p style={image200percent}>Serial No</p>
             <p style={image450percent}>Enter Subject </p>
             <p style={image450percent}>Assign a teacher</p>
         </div>
-        <div className='bodyeventList'>
+        <div className='bodytableList'>
           <Scrollbars>
             {period}
-            <p className='textaligncenter' onClick={()=>{ setNumPeriod(numperiod++)}} 
+            <p onClick={()=>{ setNumPeriod(numperiod+=1)}} 
                 style={{color: '#0F1E36',fontSize:'1vw'}}> + Add More </p> 
           </Scrollbars>
         </div>
@@ -106,13 +95,13 @@ const CreateSubject = (props)=>{
                 {(propsForm)=>(
                   <Form>
                     <div className='flexrow'>
-                      <p className='section'>Enter Class</p>
-                      <Field as="select" name="classvalue" className="shortbox"  style={marginLeft130vw} placeholder="Your class">
+                      <p className='section' style={marginLeft50vw}>Enter Class</p>
+                      <Field as="select" name="classvalue" className="shortbox"  placeholder="Your class">
                         <option value="" defaultValue>{" "}-select-</option>
                         {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                       </Field>
-                      <p className='section' style={marginLeft380vw}>Enter Section</p>
-                      <Field as="select" name="section" className="shortbox"  style={marginLeft450vw} placeholder="Your class">
+                      <p className='section' style={marginLeft50vw}>Enter Section</p>
+                      <Field as="select" name="section" className="shortbox" placeholder="Your class">
                         <option value="" defaultValue>{" "}-select-</option>
                         {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
                       </Field>

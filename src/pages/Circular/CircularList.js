@@ -39,7 +39,8 @@ const CircularList = (props) => {
     
     
   }
-    return (
+  
+  return (
       <div className='dashboard'>
         <div className='flexrow'>
           <Drawer/>
@@ -67,8 +68,8 @@ const CircularList = (props) => {
 
                   )}
                 </Formik>
-                <div className='eventlistArea' style={{width:'70vw',marginTop:'5vh'}}>
-                  <div className='headereventList'>
+                <div className='tablelistArea' style={{width:'70vw',marginTop:'5vh'}}>
+                  <div className='headertableList'>
                     <p style={image150percent}>Serial No</p>
                     <p style={image200percent}>Date</p>
                     <p style={image200percent}>Title</p>
@@ -77,7 +78,7 @@ const CircularList = (props) => {
                     <p style={image100percent}>Edit</p>
                   </div>
                   
-                  <div className="bodyeventList">
+                  <div className="bodytableList">
                       {circularData&&circularData.map((circular,index)=>
 
                         <div  className="flexrow"  key={index} >

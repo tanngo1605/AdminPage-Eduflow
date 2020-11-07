@@ -92,8 +92,8 @@ const TeacherSearch = (props)=>{
               </Formik>
                   
                 
-                <div className="eventlistArea" style={{width:"70vw"}}>
-                  <div className="headereventList">
+                <div className="tablelistArea" style={{width:"70vw"}}>
+                  <div className="headertableList">
                     <p style={image100percent}>User ID</p>
                     <p style={image300percent}>Name of Teacher</p>
                     <p style={image100percent}>Class</p>
@@ -102,7 +102,7 @@ const TeacherSearch = (props)=>{
                     <p style={image200percent}>Edit</p>
                   </div>
 
-                  <div className="bodyeventList" >
+                  <div className="bodytableList" >
                       {teachers&&teachers.map((teacher,index)=>
 
                         <div className="flexrow"  key={index} >

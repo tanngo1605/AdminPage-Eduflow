@@ -2,14 +2,13 @@ import React, {useEffect} from "react";
 import { connect } from "react-redux"
 import { Formik,Form,Field} from "formik";
 import {getCurrentUser} from "../../redux/Stores/AccountReducer";
-
 import Dropzone from "react-dropzone";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../component/Drawer/Drawer"
 import Header from "../../component/Header/HeaderAdmin"
-import {createTickedAdmin} from "../../userData/ValidationSchema/TicketSchema"
+import {createTickedAdminScema} from "../../userData/ValidationSchema/TicketSchema"
 import {intialTickedAdmin} from "../../userData/InitialData/Ticket"
-import {marginLeft130vw,marginBottom180vh,marginBottom65vh, marginBottom20vh} from "../../styles/marginStyles"
+import {marginBottom20vh} from "../../styles/marginStyles"
 
 
 
@@ -34,10 +33,10 @@ const RaiseTicketAdmin = (props)=> {
             <Header/>
             <div className="form">
                 
-                <h1 className="titleform" style={{marginBottom:"3vh"}}>Raise a ticket(Admin)</h1>
+                <h1 className="titleform">Raise a ticket(Admin)</h1>
                 <Formik
                   initialValues={intialTickedAdmin}
-                  validationSchema={createTickedAdmin}
+                  validationSchema={createTickedAdminScema}
                   onSubmit={(values, actions) => {
                     
                     handleSubmit(values);

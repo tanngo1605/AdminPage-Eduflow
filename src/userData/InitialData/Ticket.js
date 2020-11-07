@@ -5,15 +5,20 @@ const intialTickedAdmin = {
     attachment:[],
     
   };
-  const intialTicketStuTea = {
-    title: '',
-    date: '',
+const intialTicketStuTea = {
+    serialno: "",
+    date: {},
+    subject: "",
+    topic: "",
+    name: "",
+    problem: "",
+    status: "",
     
-  };
-  const intialsearchTicket = {
+};
+const intialsearchTicket = {
       title: '',
       date: '',
       
-  };
+};
   
   export  {intialTickedAdmin,intialTicketStuTea,intialsearchTicket};

@@ -16,18 +16,15 @@ import {
 import classes from '../../userData/GlobalData/classData'
 import sections from '../../userData/GlobalData/sectionData'
 
-const studentArray = [
-    {name:'Khanh',writtengrade:30,practicalgrade:50}
-]
 
 const ClassResults =  (props) => {
   
-  const getSchoolData = async ()=>{
+  const getUserInfo = () =>{
+    
     props.dispatch(getCurrentUser())
-
   }
 
-  useEffect(getSchoolData,[]) 
+  useEffect(getUserInfo,[]) 
 
 
   const handleSubmit = (values) => {
