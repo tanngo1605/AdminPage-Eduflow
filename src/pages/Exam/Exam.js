@@ -15,17 +15,10 @@ import classes from "../../userData/GlobalData/classData"
 import sections from "../../userData/GlobalData/sectionData"
 import ExamSchema from "../../userData/ValidationSchema/ExamSchema"
 import examInitialValues from "../../userData/InitialData/Exam"
-<<<<<<< HEAD
-import { marginBottom65vh, marginLeft450vw, marginLeft380vw, marginLeft130vw } from "../../styles/marginStyles"
-
+import { marginLeft130vw, marginLeft20vw, marginBottom20vh } from "../../styles/marginStyles"
+import { image200percent, image150percent, image100percent } from '../../styles/imageStyles'
 const exams = [
   { exam: "Math", class: "VI", section: "TR", datefrom: "20/20/20" }
-=======
-import {marginLeft130vw, marginLeft20vw, marginBottom20vh} from "../../styles/marginStyles"
-import {image200percent,image150percent, image100percent} from '../../styles/imageStyles'
-const exams=[
-  {exam:"Math",class:"VI",section:"TR",datefrom:"20/20/20"}
->>>>>>> d8220898ae435ff2107585500dce8431fdaf9076
 ]
 const Exam = (props) => {
   let [modalState, setModalState] = useState(false)
@@ -46,7 +39,6 @@ const Exam = (props) => {
   }
 
 
-<<<<<<< HEAD
   return (
     <div className="dashboard">
       <div className="flexrow">
@@ -65,46 +57,45 @@ const Exam = (props) => {
               }}
             >
               {(propsForm) => (
-                <Form>
-                  <div style={marginBottom65vh}>
+                <Form className='flexcolumn'>
+                  <div className='flexrow' style={marginBottom20vh}>
                     <label htmlFor="title" className="section">Exam name</label>
-                    <Field type="text" name="title" className="shortbox" style={marginLeft130vw} placeholder="Type here" />
+                    <Field type="text" name="title" className="shortbox" placeholder="Type here" />
                   </div>
-                  <div className="flexrow" style={marginBottom65vh}>
+                  <div className="flexrow" style={marginBottom20vh}>
                     <label htmlFor="classvalue" className="section">Class</label>
-
-                    <Field as="select" name="classvalue" className="shortbox" style={marginLeft130vw} placeholder="Your class">
+                    <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
                       <option value="" defaultValue>{" "}-select-</option>
                       {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                     </Field>
                     {/* Section*/}
-                    <label htmlFor="section" className="section" style={marginLeft380vw}>Section</label>
-                    <Field as="select" name="section" className="shortbox" style={marginLeft450vw} placeholder="Your class">
+                    <label htmlFor="section" className="section" style={marginLeft20vw}>Section</label>
+                    <Field as="select" name="section" className="shortbox" placeholder="Your class">
                       <option value="" defaultValue>{" "}-select-</option>
                       {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
                     </Field>
                   </div>
-                  <div className="flexrow" style={marginBottom65vh}>
+                  <div className="flexrow" style={marginBottom20vh}>
                     <label className="section">Date from: </label>
-                    <DayPickerInput className="shortbox" name="datefrom" onDayChange={(day) => propsForm.setFieldValue("datefrom", day)} style={marginLeft130vw} inputProps={{ readOnly: true }} dayPickerProps={{ disabledDays: { before: new Date() } }} placeholder="- select -" />
-                    <label htmlFor="dateto" className="section" style={marginLeft380vw}>Date to:</label>
-                    <DayPickerInput className="shortbox" name="dateto" onDayChange={(day) => propsForm.setFieldValue("dateto", day)} style={{ marginLeft: "32vw" }} inputProps={{ readOnly: true }} dayPickerProps={{ disabledDays: { before: new Date() } }} placeholder="- select -" />
+                    <DayPickerInput className="shortbox" name="datefrom" onDayChange={(day) => propsForm.setFieldValue("datefrom", day)} dayPickerProps={{ disabledDays: { before: new Date() } }} placeholder="- select -" />
+                    <label htmlFor="dateto" className="section" style={{ marginLeft: '22vw' }}>Date to:</label>
+                    <DayPickerInput className="shortbox" name="dateto" onDayChange={(day) => propsForm.setFieldValue("dateto", day)} dayPickerProps={{ disabledDays: { before: new Date() } }} placeholder="- select -" />
                   </div>
-                  <div className="flexrow" style={marginBottom65vh}>
+                  <div className="flexrow" style={marginBottom20vh}>
                     <label htmlFor="startTime" className="section">Time from: </label>
-                    <Field type="time" name="startTime" className="shortbox" style={marginLeft130vw} />
-                    <label htmlFor="endTime" className="section" style={marginLeft380vw}>Time To: </label>
-                    <Field type="time" name="endTime" className="shortbox" style={marginLeft450vw} />
+                    <Field type="time" name="startTime" className="shortbox" />
+                    <label htmlFor="endTime" className="section" style={marginLeft20vw}>Time To: </label>
+                    <Field type="time" name="endTime" className="shortbox" />
 
                   </div>
 
 
-                  <div className="flexrow" style={marginBottom65vh}>
+                  <div className="flexrow" style={marginBottom20vh}>
                     <p className="section">Attachment </p>
 
                     <Dropzone name="attachment" onDrop={(files) => propsForm.setFieldValue("attachment", files)}>
                       {({ getRootProps, getInputProps }) => (
-                        <section className="flexrow" style={marginLeft130vw}>
+                        <section className="flexrow">
                           <div {...getRootProps({ className: "attachment" })}>
                             <input {...getInputProps()} />
                             <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon" />
@@ -115,134 +106,37 @@ const Exam = (props) => {
                     </Dropzone>
 
                   </div>
-                  <div className="eventlistArea" style={{ width: "70vw", height: "33vh", textAlign: "center" }}>
+                  <div className="eventlistArea" style={{ width: "75vw", height: "33vh" }}>
                     <div className="headereventList">
-                      <p style={{ width: "15%" }}>Exam</p>
-                      <p style={{ width: "20%" }}>Class</p>
-                      <p style={{ width: "20%" }}>Section</p>
-                      <p style={{ width: "20%" }}>Date</p>
-                      <p style={{ width: "10%" }}>Delete</p>
-                      <p style={{ width: "10%" }}>Edit</p>
+                      <p style={image150percent}>Exam</p>
+                      <p style={image200percent}>Class</p>
+                      <p style={image200percent}>Section</p>
+                      <p style={image200percent}>Date</p>
+                      <p style={image200percent}>Delete</p>
+                      <p style={image100percent}>Edit</p>
                     </div>
 
-                    <div className="bodyeventList">
+                    <div >
                       {exams && exams.map((exam, index) =>
 
-                        <div className="flexrow" key={index} >
+                        <div className="bodyeventList" key={index} >
 
-                          <p style={{ width: "15%" }}>{exam.exam}</p>
-                          <p style={{ width: "20%" }}>{exam.class}</p>
-                          <p style={{ width: "20%" }}>{exam.section}</p>
-                          <p style={{ width: "20%" }}>{exam.datefrom}</p>
-                          <div className="itemcenter" style={{ width: "10%" }}>
+                          <p style={image150percent}>{exam.exam}</p>
+                          <p style={image200percent}>{exam.class}</p>
+                          <p style={image200percent}>{exam.section}</p>
+                          <p style={image200percent}>{exam.datefrom}</p>
+                          <div className="itemcenter" style={image200percent}>
                             <MdDeleteForever size="1.5vw" onClick={() => console.log("delete")} />
                           </div>
-                          <div className="itemcenter" style={{ width: "10%", marginTop: "0.1vh" }}>
+                          <div className="itemcenter" style={image100percent}>
                             <NavLink exact to={{ pathname: "/teacher/profile", examinfo: exam }}>
                               <BsPencilSquare size="1.3vw" color="black" />
                             </NavLink>
                           </div>
-=======
-    return (
-      <div className="dashboard">
-        <div className="flexrow">
-          <Drawer/>
-          <div className="flexcolumn">
-            <Header/>
-            <div className="form" >
-              
-                <h1 className="titleform">Schedule an exam</h1>
-                <Formik
-                initialValues={examInitialValues}
-                validationSchema={ExamSchema}
-                onSubmit={(values, actions) => {
-                  handleSubmit(values);
-                  actions.resetForm()
-                }}
-                >
-                  {(propsForm)=>(
-                    <Form className='flexcolumn'>
-                      <div className='flexrow' style={marginBottom20vh}>
-                        <label htmlFor="title" className="section">Exam name</label>
-                        <Field type="text" name="title" className="shortbox"  placeholder="Type here"/>
-                      </div>
-                      <div className="flexrow" style={marginBottom20vh}>
-                        <label htmlFor="classvalue" className="section">Class</label>
-                        <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
-                          <option value="" defaultValue>{" "}-select-</option>
-                          {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
-                        </Field>
-                        {/* Section*/}
-                        <label htmlFor="section" className="section" style={marginLeft20vw}>Section</label>
-                        <Field as="select" name="section" className="shortbox" placeholder="Your class">
-                          <option value="" defaultValue>{" "}-select-</option>
-                          {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
-                        </Field>
-                      </div>
-                      <div className="flexrow" style={marginBottom20vh}>
-                        <label className="section">Date from: </label>
-                        <DayPickerInput  className="shortbox" name="datefrom" onDayChange={(day)=> propsForm.setFieldValue("datefrom",day)} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
-                        <label htmlFor="dateto" className="section" style={{marginLeft:'22vw'}}>Date to:</label>
-                        <DayPickerInput  className="shortbox" name="dateto" onDayChange={(day)=>propsForm.setFieldValue("dateto",day)} dayPickerProps={{disabledDays:{before: new Date()}}} placeholder="- select -"/>
-                      </div>
-                      <div className="flexrow" style={marginBottom20vh}>
-                        <label htmlFor="startTime" className="section">Time from: </label>
-                        <Field type="time" name="startTime" className="shortbox" />
-                        <label htmlFor="endTime" className="section" style={marginLeft20vw}>Time To: </label>
-                        <Field type="time" name="endTime" className="shortbox"/>
-         
-                      </div>
-                  
-                  
-                      <div className="flexrow" style={marginBottom20vh}>
-                        <p className="section">Attachment </p>
-                    
-                        <Dropzone name="attachment" onDrop={(files)=> propsForm.setFieldValue("attachment",files)}>
-                          {({getRootProps, getInputProps}) => (
-                            <section className="flexrow">
-                              <div {...getRootProps({ className:"attachment"})}>
-                                <input {...getInputProps()} />
-                                  <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
-                                  <p>Choose File</p>
-                              </div>
-                            </section>
-                          )}
-                        </Dropzone>
-                    
-                      </div>
-                      <div className="eventlistArea" style={{width:"75vw",height:"33vh"}}>
-                        <div className="headereventList">
-                          <p style={image150percent}>Exam</p>
-                          <p style={image200percent}>Class</p>
-                          <p style={image200percent}>Section</p>
-                          <p style={image200percent}>Date</p>
-                          <p style={image200percent}>Delete</p>
-                          <p style={image100percent}>Edit</p>
-                        </div>
-  
-                        <div >
-                          {exams&&exams.map((exam,index)=>
-  
-                            <div className="bodyeventList"  key={index} >
-                            
-                              <p style={image150percent}>{exam.exam}</p>
-                              <p style={image200percent}>{exam.class}</p>
-                              <p style={image200percent}>{exam.section}</p>
-                              <p style={image200percent}>{exam.datefrom}</p>
-                              <div className="itemcenter" style={image200percent}>
-                                <MdDeleteForever size="1.5vw" onClick={()=>console.log("delete")}/>
-                              </div>
-                              <div className="itemcenter" style={image100percent}>
-                                <NavLink exact to={{pathname:"/teacher/profile",examinfo:exam}}>
-                                  <BsPencilSquare size="1.3vw" color="black" />
-                                </NavLink>
-                              </div>
-                            </div>
-                          )}
-                      
->>>>>>> d8220898ae435ff2107585500dce8431fdaf9076
                         </div>
                       )}
+
+
 
                     </div>
                   </div>

@@ -677,7 +677,7 @@ input[type="checkbox"].abc:checked:after {
 }
 .textMoveScreenField {
   display: inline-flex;
-  margin-left: 300px;
+  margin-left: 200px;
 }
 .textMoveScreenField > div {
   color: #262f56;
@@ -686,7 +686,7 @@ input[type="checkbox"].abc:checked:after {
   font-weight: normal;
   font-size: 20px;
   line-height: 29px;
-  margin-right: 100px;
+  margin-right: 210px;
 }
 
 .textMigrationScreenField {
@@ -715,6 +715,13 @@ border-radius: 3px;
 /* .barUl > li {
   list-style-type:circle ;
 } */
+
+.moveStuScBox {
+ width: 15vw;
+ margin-left: 50px;
+ margin-right: 50px;
+}
+
 .moveStudentPopup-content{
   /* position: relative; */
   border-radius: 45px;

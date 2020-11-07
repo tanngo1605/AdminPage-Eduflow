@@ -12,14 +12,11 @@ import {
   loadMoveStudentData
 } from "../../redux/Stores/StudentReducer";
 import {
-  marginBottom65vh,
-  marginLeft380vw,
-  marginLeft130vw,
   marginTop45vh,
   marginBottom20vh,
   marginLeft20vw,
 } from "../../styles/marginStyles";
-import { forEach } from "lodash";
+// 
 // let arr = []
 class MoveStudent extends Component {
   constructor(props) {
@@ -199,10 +196,10 @@ class MoveStudent extends Component {
                   <div className="flexrow" style={marginBottom20vh}>
                     <label className="section">Enter Class</label>
                     <select
-                      className="shortbox"
+                      className="shortbox moveStuScBox"
                       required
                       onChange={(e) => this.setState({ classvalue: e.target.value })}
-                      
+
                       id="classvalue"
                     >
                       <option value="" defaultValue>
@@ -217,10 +214,10 @@ class MoveStudent extends Component {
                   <div className="flexrow" style={marginLeft20vw}>
                     <label className="section">Enter Section</label>
                     <select
-                      className="shortbox"
+                      className="shortbox moveStuScBox"
                       required
                       onChange={(e) => this.setState({ section: e.target.value })}
-                      
+
                       id="section"
                     >
                       <option value="" defaultValue>
@@ -244,17 +241,20 @@ class MoveStudent extends Component {
               >
                 <Scrollbars>
                   <div className="textMoveScreenField">
-                    <div style={{ marginRight: "250px" }}>Student's name</div>
+                    <div
+                    // style={{ marginRight: "250px" }}
+                    >Student's name</div>
                     <div>Move to class</div>
                     <div>Move to section</div>
                   </div>
                   <div>
                     {students &&
                       students.map(
-                        (el) => (
-                          console.log(el.ticked),
+                        (el, index) => (
+                          // console.log(el.ticked),
                           (
                             <div
+                              key={index}
                               style={{ display: "flex", marginBottom: "12px" }}
                             >
                               <input
@@ -267,20 +267,21 @@ class MoveStudent extends Component {
                                 type="checkbox"
                                 style={{
                                   marginTop: "15px",
+                                  marginRight: "110px",
                                   marginLeft: "10px",
                                   border: "1px solid #555555",
                                 }}
                               />
 
                               <div
-                                className="shortbox"
+                                className="shortbox moveStuScBox"
                                 style={{
-                                  marginTop: "15px",
-                                  marginLeft: "300px",
-                                  width: "250px",
-                                  paddingLeft: "30px",
-                                  borderRadius: "3px",
-                                  boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)",
+                                  //   marginTop: "15px",
+                                  // marginLeft: "150px",
+                                  //   width: "250px",
+                                  //   paddingLeft: "30px",
+                                  //   borderRadius: "3px",
+                                  //   boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)",
                                 }}
                               >
                                 {el.name}
@@ -289,17 +290,17 @@ class MoveStudent extends Component {
                                 {" "}
                                 <select
                                   key={el.key}
-                                  className="shortbox"
+                                  className="shortbox moveStuScBox"
                                   required
                                   onChange={this.handleChange}
-                                  style={{
-                                    marginLeft: "650px",
-                                    width: "150px",
-                                    marginTop: "15px",
-                                    borderRadius: "3px",
-                                    boxShadow:
-                                      "0px 1px 10px rgba(0, 0, 0, 0.1)",
-                                  }}
+                                  // style={{
+                                  //   marginLeft: "650px",
+                                  //   width: "150px",
+                                  //   marginTop: "15px",
+                                  //   borderRadius: "3px",
+                                  //   boxShadow:
+                                  //     "0px 1px 10px rgba(0, 0, 0, 0.1)",
+                                  // }}
                                   id="toclassvalue"
                                   name="classvalue"
                                 >
@@ -316,17 +317,17 @@ class MoveStudent extends Component {
                                 {" "}
                                 <select
                                   key={el.key}
-                                  className="shortbox"
+                                  className="shortbox moveStuScBox"
                                   required
                                   onChange={this.handleChange}
-                                  style={{
-                                    marginLeft: "860px",
-                                    width: "150px",
-                                    marginTop: "15px",
-                                    borderRadius: "3px",
-                                    boxShadow:
-                                      "0px 1px 10px rgba(0, 0, 0, 0.1)",
-                                  }}
+                                  // style={{
+                                  //   marginLeft: "860px",
+                                  //   width: "150px",
+                                  //   marginTop: "15px",
+                                  //   borderRadius: "3px",
+                                  //   boxShadow:
+                                  //     "0px 1px 10px rgba(0, 0, 0, 0.1)",
+                                  // }}
                                   id="tosection"
                                   name="section"
                                 >
