@@ -23,7 +23,7 @@ import {
 import './animation.css'
 import { image100vw } from '../../styles/imageStyles'
 // import styled from '@emotion/styled';
-import TimeTableSchema from '../../userData/ValidationSchema/TimeTableSchema'
+
 import * as Yup from 'yup';
 import TimetableSchema from '../../userData/ValidationSchema/TimeTableSchema';
 // import TimeTable from './TimeTable';
@@ -71,17 +71,17 @@ const FormiForm = () => {
                 validationSchema={TimetableSchema}
                 onSubmit={(values, actions) => {
                     console.log(values);
-                    alert(JSON.stringify(values, null, 4));
                     setTimeout(() => {
+                        alert(JSON.stringify(values, null, 4));
 
                         // alert(JSON.stringify(values.period[0].startTime, null, 4))
-                        // actions.setSubmitting(false);
+                        actions.setSubmitting(false);
                     }, 1000);
                 }}
             >
                 {props => (
                     // console.log(Array.of(props.values.period).map(el => console.log(el))),\
-                    console.log(props.values),
+                    // console.log(props.values),
                     // console.log(addTimetable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI", {
                     //     "period": "2",
                     //     "day": "tuesday",
@@ -153,22 +153,16 @@ const FormiForm = () => {
                                                     <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
                                                 ) : null} */}
                                                 <div className="errMessOuter" style={props.errors.day ? null : { display: "none" }}>
-<<<<<<< HEAD
                                                     <FcHighPriority className="iconErrMess" size="1.5vw" />
                                                     <ErrorMessage name="day" />
                                                 </div>
 
-=======
-                                                        <FcHighPriority className="iconErrMess" size="1.5vw" />
-                                                        <ErrorMessage name="day" />
-                                                </div>
-                                                
->>>>>>> e11ac87a9875d188b5047b2a39bd15d642e90676
 
                                             </div>
                                         </div>
 
-                                        <div className='eventlistArea' style={{ marginTop: '12vh', paddingTop: '2%', width: '75vw' }}>
+                                        <div className='tablelistArea' style={{ marginTop: '12vh', paddingTop: '2%', width: '75vw' }}>
+
                                             <Scrollbars>
                                                 <FieldArray
                                                     name="period"
@@ -230,7 +224,7 @@ const FormiForm = () => {
                                             </Scrollbars>
                                             <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" /><div style={{ display: "contents" }}>Need at least {numOfPeriods} period</div></>) : null}</div>
                                         </div>
-                                                                    
+
 
                                         <div className='flexrow' style={marginTop45vh}>
 

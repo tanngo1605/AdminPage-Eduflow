@@ -1,4 +1,4 @@
-import React,{ Suspense } from "react";
+import React, { Suspense } from "react";
 import { Route, BrowserRouter, Switch, } from "react-router-dom";
 import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
@@ -17,6 +17,7 @@ import TimeTable from "./pages/TimeTable/TimeTable";
 import ResultRouter from "./navigation/ResultRouter";
 import TicketRouter from "./navigation/TicketRouter";
 import ExamRouter from "./navigation/ExamRouter";
+import Result from "./pages/Results/EnterMarks"
 import "./App.css";
 import "./styles.css";
 import CircularRouter from "./navigation/CircularRouter";
@@ -27,33 +28,33 @@ const App = () => {
       <Suspense fallback={<h1>Loading....</h1>}>
         <BrowserRouter >
           <Switch>
-          
+
             {/* <FormikForm /> */}
-            {UserRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {EventRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {CircularRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {PasswordRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {ResultRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {TicketRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {ExamRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
+            {UserRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+            {EventRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+            {CircularRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+            {PasswordRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+            {ResultRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+            {TicketRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+            {ExamRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
             {/*<Route path="/formik" component={FormikForm} />*/}
-            
+
             <Route path="/feedback" component={Feedback} />
-            
+
             <Route path="/class" component={CreateClass} />
             <Route path="/subject" component={CreateSubject} />
-            
- 
+
+            <Route path="/result" component={Result} />
             <Route path="/gallery/:album_name" component={ImageInAlbum} />
             <Route path="/gallery" component={Gallery} />
             <Route path="/account" component={AccountSetting} />
             <Route path="/syllabus" component={Syllabus} />
             <Route path="/timetable" component={TimeTable} />
             <Route path="/homescreen" component={Homescreen} />
-            
+
             <Route exact path="/" component={LoginPage} />
           </Switch>
-      
+
         </BrowserRouter>
       </Suspense>
     </div>
