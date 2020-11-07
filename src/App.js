@@ -29,13 +29,13 @@ const App = () => {
           <Switch>
           
             {/* <FormikForm /> */}
-            {UserRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {EventRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {CircularRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {PasswordRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {ResultRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {TicketRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
-            {ExamRouter.map((element,index)=><Route key={index} path={element.path} component={element.component}/>)}
+            {UserRouter.map((element,index)=><Route key={index} {...element} />)}
+            {EventRouter.map((element,index)=><Route key={index} {...element} />)}
+            {CircularRouter.map((element,index)=><Route key={index} {...element} />)}
+            {PasswordRouter.map((element,index)=><Route key={index} {...element} />)}
+            {ResultRouter.map((element,index)=><Route key={index} {...element} />)}
+            {TicketRouter.map((element,index)=><Route key={index} {...element} />)}
+            {ExamRouter.map((element,index)=><Route key={index} {...element} />)}
             {/*<Route path="/formik" component={FormikForm} />*/}
             
             <Route path="/feedback" component={Feedback} />
