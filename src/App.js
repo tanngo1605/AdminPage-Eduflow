@@ -30,6 +30,7 @@ const App = () => {
           <Switch>
 
             {/* <FormikForm /> */}
+<<<<<<< HEAD
             {UserRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
             {EventRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
             {CircularRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
@@ -37,6 +38,15 @@ const App = () => {
             {ResultRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
             {TicketRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
             {ExamRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
+=======
+            {UserRouter.map((element,index)=><Route key={index} {...element} />)}
+            {EventRouter.map((element,index)=><Route key={index} {...element} />)}
+            {CircularRouter.map((element,index)=><Route key={index} {...element} />)}
+            {PasswordRouter.map((element,index)=><Route key={index} {...element} />)}
+            {ResultRouter.map((element,index)=><Route key={index} {...element} />)}
+            {TicketRouter.map((element,index)=><Route key={index} {...element} />)}
+            {ExamRouter.map((element,index)=><Route key={index} {...element} />)}
+>>>>>>> a44e72026dbb6ce5d97a2edd8daad1dcdb5427d4
             {/*<Route path="/formik" component={FormikForm} />*/}
 
             <Route path="/feedback" component={Feedback} />
