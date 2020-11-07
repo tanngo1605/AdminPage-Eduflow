@@ -119,10 +119,10 @@ const Exam = (props) => {
                           <p style={image100percent}>Edit</p>
                         </div>
   
-                        <div >
+                        <div className="bodytableList" >
                           {exams&&exams.map((exam,index)=>
   
-                            <div className="bodytableList"  key={index} >
+                            <div className='flexrow' key={index} >
                             
                               <p style={image150percent}>{exam.exam}</p>
                               <p style={image200percent}>{exam.class}</p>

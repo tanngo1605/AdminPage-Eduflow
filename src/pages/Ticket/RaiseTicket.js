@@ -18,7 +18,7 @@ const RaiseTicket =(props)=> {
 
   const handleSubmit = (event) => {
     try {
-      const userData = props.account.userData.userdata.data.data;
+      //const userData = props.account.userData.userdata.data.data;
       //this.props.dispatch(addTicket({ value: this.state.ticket }));
       props.history.push("/ticket/ticketlist");
     }

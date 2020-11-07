@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import {connect} from 'react-redux';
 import { Scrollbars } from "react-custom-scrollbars";
-import { Formik,Form,Field} from "formik";
+import { Formik,Form,Field,ErrorMessage} from "formik";
 import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/HeaderAdmin";
 import {getSchoolInfo,updateSchoolInfo} from "../../redux/Action/SchoolAction";
@@ -9,17 +9,18 @@ import {getCurrentUser} from "../../redux/Stores/AccountReducer";
 import schoolSchema from "../../userData/ValidationSchema/SchoolSchema"
 import schoolInitialValue from '../../userData/InitialData/School'
 import {marginBottom20vh,marginLeft60vw,marginLeft20vw,} from "../../styles/marginStyles";
+import { FcHighPriority } from "react-icons/fc";
 import {image130vw} from "../../styles/imageStyles"
 import {image40vwLeft10vw} from "../../styles/imageMarginStyles"
 const SchoolProfile =  (props) => {
   const [schoolData,setSchoolData] = useState([])
 
-  const getSchoolData = async ()=>{
+  const getSchoolData =  ()=>{
     props.dispatch(getCurrentUser())
   
     try {
       const userData=props.account.userData.userdata.data.data;
-      const schooldata = await getSchoolInfo(userData.school.uuid,userData.token)
+      const schooldata =  getSchoolInfo(userData.school.uuid,userData.token)
       console.log(schooldata)
       setSchoolData( schooldata )
     }
@@ -92,14 +93,26 @@ const SchoolProfile =  (props) => {
                              
                               <label htmlFor='name' className="section" style={image130vw}>Name</label>
                               <Field type="text" name="name" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.name}/>
+                              <div className="errMessOuter flexrow" style={propsForm.errors.name ? null : { display: "none" }}>
+                                <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                <p style={{marginLeft:'6px'}}>This input is required</p>
+                              </div>
                             </div>
                             <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor='schoolname' className="section" style={image130vw}>School Name</label>
                               <Field type="text" name="schoolname" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.schoolname}/>
+                              <div className="errMessOuter flexrow" style={propsForm.errors.schoolname ? null : { display: "none" }}>
+                                <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                <p style={{marginLeft:'6px'}}>This input is required</p>
+                              </div>
                             </div>
                             <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor='schoolcode' className="section" style={image130vw}>School Code</label>
                               <Field type="text" name="schoolcode" className="shortbox" style={marginLeft60vw}  placeholder={schoolData.schoolCode}/>
+                              <div className="errMessOuter flexrow" style={propsForm.errors.schoolcode ? null : { display: "none" }}>
+                                <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                <p style={{marginLeft:'6px'}}>This input is required</p>
+                              </div>
                             </div>
                             <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor="permaaddress" className="section" style={image130vw}>Permanent Address</label>
