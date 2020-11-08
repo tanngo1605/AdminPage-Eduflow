@@ -17,7 +17,10 @@ import TimeTable from "./pages/TimeTable/TimeTable";
 import ResultRouter from "./navigation/ResultRouter";
 import TicketRouter from "./navigation/TicketRouter";
 import ExamRouter from "./navigation/ExamRouter";
-import Result from "./pages/Results/EnterMarks"
+import Result from "./pages/Results/Results"
+import ResultList from "./pages/ApproveResult/Result"
+import ApproveResult from "./pages/ApproveResult/ApproveResult"
+import StudentResult from "./pages/ApproveResult/StudentResult"
 import "./App.css";
 import "./styles.css";
 import CircularRouter from "./navigation/CircularRouter";
@@ -30,30 +33,23 @@ const App = () => {
           <Switch>
 
             {/* <FormikForm /> */}
-<<<<<<< HEAD
-            {UserRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-            {EventRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-            {CircularRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-            {PasswordRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-            {ResultRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-            {TicketRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-            {ExamRouter.map((element, index) => <Route key={index} path={element.path} component={element.component} />)}
-=======
-            {UserRouter.map((element,index)=><Route key={index} {...element} />)}
-            {EventRouter.map((element,index)=><Route key={index} {...element} />)}
-            {CircularRouter.map((element,index)=><Route key={index} {...element} />)}
-            {PasswordRouter.map((element,index)=><Route key={index} {...element} />)}
-            {ResultRouter.map((element,index)=><Route key={index} {...element} />)}
-            {TicketRouter.map((element,index)=><Route key={index} {...element} />)}
-            {ExamRouter.map((element,index)=><Route key={index} {...element} />)}
->>>>>>> a44e72026dbb6ce5d97a2edd8daad1dcdb5427d4
+            {UserRouter.map((element, index) => <Route key={index} {...element} />)}
+            {EventRouter.map((element, index) => <Route key={index} {...element} />)}
+            {CircularRouter.map((element, index) => <Route key={index} {...element} />)}
+            {PasswordRouter.map((element, index) => <Route key={index} {...element} />)}
+            {ResultRouter.map((element, index) => <Route key={index} {...element} />)}
+            {TicketRouter.map((element, index) => <Route key={index} {...element} />)}
+            {ExamRouter.map((element, index) => <Route key={index} {...element} />)}
             {/*<Route path="/formik" component={FormikForm} />*/}
 
             <Route path="/feedback" component={Feedback} />
 
             <Route path="/class" component={CreateClass} />
             <Route path="/subject" component={CreateSubject} />
+            <Route path="/approveresult" component={ApproveResult} />
+            <Route path="/studentresult" component={StudentResult} />
 
+            <Route path="/resultlist" component={ResultList} />
             <Route path="/result" component={Result} />
             <Route path="/gallery/:album_name" component={ImageInAlbum} />
             <Route path="/gallery" component={Gallery} />
