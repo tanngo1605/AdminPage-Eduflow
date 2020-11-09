@@ -11,7 +11,7 @@ import Drawer from "../../component/Drawer/Drawer";
 import Header from "../../component/Header/HeaderAdmin";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
-import {marginTop75vh,marginTop130vh,marginTop220vh,positionabsolute} from "../../styles/marginStyles";
+import {positionabsolute, marginLeft20vw, marginLeft100vw, marginTop20vh} from "../../styles/marginStyles";
 import { image150 } from "../../styles/imageStyles";
 
 const todayDate = new Date();
@@ -154,39 +154,30 @@ class Gallery extends Component {
             </div>
             <Modal
               isOpen={this.state.openmodal}
-              className="Modal"
+              className="GalleryModal"
               onRequestClose={() => this.setState({ openmodal: false })}
             >
               <div className="headermodal">Upload file</div>
-              <div className="flexrow" style={{ marginTop: "2.5vh" }}>
-                <div
-                  className="flexcolumn"
-                  style={{ marginLeft: "2vw", marginTop: "1.5vh" }}
-                >
-                  <div className="flexrow" style={positionabsolute}>
-                    <p style={ modalContent}>Title</p>
-                    <input
-                      type="text"
-                      id="title"
-                      className="shortbox"
-                      style={ { marginLeft: "10.2vw" }}
-                      onChange={this.handleChange}
-                    ></input>
+              <div className="flexcolumn" style={{ marginLeft: "2vw", marginTop: "4vh" }}>
+                
+                  <div className="flexrow">
+                    <p style={modalContent}>Title</p>
+                    <input type="text"id="title"className="shortbox" style={marginLeft20vw} onChange={this.handleChange}/>
                   </div>
-                  <div className="flexrow" style={positionabsolute}>
-                    <p style={Object.assign({}, modalContent, marginTop75vh)}>
-                      Date
-                    </p>
-                    <p style={Object.assign({}, modalContent, marginTop75vh)}>
-                      {todayDate.toLocaleDateString()}
-                    </p>
+                  <div className="flexrow">
+                    <p style={modalContent}>Date</p>
+                    <p style={modalContent}>{todayDate.toLocaleDateString()}</p>
                   </div>
-                </div>
+                  <div className="flexrow">
+                    <p style={modalContent}>Date</p>
+                    <p style={modalContent}>{todayDate.toLocaleDateString()}</p>
+                  </div>
+                
               </div>
-              <div className="flexrow">
+              
                 <Dropzone onDrop={this.onDrop} accept="image/*,video/*">
                   {({ getRootProps, getInputProps }) => (
-                    <section className="flexcolumn" style={marginTop130vh}>
+                    <section className="flexcolumn" style={marginLeft100vw}>
                       <div {...getRootProps({})}>
                         <input {...getInputProps()} />
                         <button className="gallerybutton">Upload Album</button>
@@ -194,48 +185,23 @@ class Gallery extends Component {
                     </section>
                   )}
                 </Dropzone>
-                <div className="imagepreviewarea" style={marginTop220vh}>
+                <div className="imagepreviewarea" style={marginTop20vh}>
                   <Scrollbars>
                     {this.state.album.image &&
                       this.state.album.image.map((image, index) => (
                         <div key={index} className="imagepreview">
                           <div style={positionabsolute}>
-                            <AiOutlineCloseCircle
-                              color="black"
-                              className="imagewithdeleteicon"
-                              size={"1.5vw"}
-                              onClick={() =>
-                                this.removeItem(image, this.state.album.image)
-                              }
+                            <AiOutlineCloseCircle color="black" className="imagewithdeleteicon" size={"1.5vw"}
+                              onClick={() =>this.removeItem(image, this.state.album.image)}
                             />
                           </div>
-                          <img
-                            src={URL.createObjectURL(image.file)}
-                            alt=""
-                            style={{
-                              position: "absolute",
-                              width: "22vw",
-                              height: "10vw",
-                            }}
-                          />
+                          <img src={URL.createObjectURL(image.file)} alt="" style={{ width: "22vw",height: "10vw"}}/>
                         </div>
                       ))}
                   </Scrollbars>
-                </div>
-                <button
-                  className="gallerybutton"
-                  style={
-                    {
-                      marginLeft: "23vw",
-                      marginTop: "50.5vh",
-                      background: "#262F56",
-                    }
-                  }
-                  onClick={() => this.addImageToGallery()}
-                >
-                  Save
-                </button>
               </div>
+              
+              <button className="gallerybutton" style={{ background: "#262F56",marginTop:'2vh',marginLeft:'15vw'}} onClick={() => this.addImageToGallery()}>Save</button>
             </Modal>
           </div>
         </div>
@@ -251,7 +217,7 @@ export default connect(mapStateToProps)(Gallery);
 const modalContent = {
   color: "#8C96AB",
   fontSize: "1.2vw",
-  marginLeft: "0.5vw",
+  
   width: "7.5vw",
   paddingLeft: "1.5vw",
 };

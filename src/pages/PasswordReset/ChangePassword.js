@@ -10,8 +10,11 @@ import { resetPassword } from "../../redux/Action/PasswordAction";
 import {initchangePasswordSchema} from "../../userData/ValidationSchema/PasswordSchema"
 import {initchangePasswordValue} from "../../userData/InitialData/Password"
 import passwordImg from "../../assets/password2.png";
-import {marginLeft120vw } from "../../styles/marginStyles";
+import {marginLeft120vw,marginTop45vh } from "../../styles/marginStyles";
+
+import {image150 } from "../../styles/imageStyles";
 import "./password.css";
+
 const ChangePassword = (props) => {
   let [modalState,setModalState] = useState(false)
   const getUserInfo = () =>{
@@ -95,9 +98,9 @@ const ChangePassword = (props) => {
                     setModalState(false);
                     props.history.push({pathname:"/"})
                   }} > 
-                    <img style={{width:'15vw',height:'15vh'}}src={passwordImg} alt="" />
-                    <h4 style={{marginTop:'4vh'}}>Your password was succesfully changed</h4>
-                    <button type="button" className="buttonPass" onSubmit={()=>props.history.push({pathname:"/"})} style={{marginTop:'5vh'}}>Login</button>   
+                    <img style={image150}src={passwordImg} alt="" />
+                    <h4 style={marginTop45vh}>Your password was succesfully changed</h4>
+                    <button type="button" className="buttonPass" onSubmit={()=>props.history.push({pathname:"/"})} style={marginTop45vh}>Login</button>   
                 </Modal>
               </div>
             </div>

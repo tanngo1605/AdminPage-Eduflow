@@ -1,5 +1,5 @@
 import React,{ Suspense } from "react";
-import { Route, BrowserRouter, Switch, } from "react-router-dom";
+import { Route, BrowserRouter, Switch} from "react-router-dom";
 import Homescreen from "./pages/Homescreen/Homescreen";
 import AccountSetting from "./pages/Accounts/AccountSetting";
 import Syllabus from "./pages/Syllabus/Syllabus";

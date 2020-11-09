@@ -26,27 +26,6 @@ class TicketList extends Component {
       this.props.dispatch(filterByValue({text: this.state.text, status:this.state.status}))}, 50);
   }
 
-
-  changetextstatus = (status) => {
-    if (status === "Pending")
-      return (
-        <div className="boxforstatus" style={{ backgroundColor: "#F4E55E" }}>
-          <p className="textforstatus">Pending</p>
-        </div>
-      );
-    else if (status === "Approved")
-      return (
-        <div className="boxforstatus" style={{ backgroundColor: "#27AE60" }}>
-          <p className="textforstatus">Approved</p>
-        </div>
-      );
-    return (
-      <div className="boxforstatus" style={{ backgroundColor: "#FF6260" }}>
-        <p className="textforstatus">Denied</p>
-      </div>
-    );
-  };
-
   render() {
     let tickets = this.props.ticket.filteredTickets;
 
@@ -97,7 +76,12 @@ class TicketList extends Component {
                           <p style={{ width: "13%" }}>{ticket.subject}</p>
                           <p style={{ width: "13%" }}>{ticket.problem}</p>
                           <p style={{ width: "10%" }}>File</p>
-                          {this.changetextstatus(ticket.status)}
+                          <div 
+                            className="boxforstatus" 
+                            style={ticket.status==='Pending'?{ backgroundColor: "#F4E55E" }:(ticket.status==='Approved'?{ backgroundColor: "#27AE60" }:{ backgroundColor: "#FF6260" })}>
+                            <p className="textforstatus">{ticket.status==='Pending'?'Pending': ticket.status==='Approved'?"Approved":"Denied"}</p>
+                          </div>
+                          
                         </div>
                       ))}
                   </Scrollbars>

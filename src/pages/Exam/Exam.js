@@ -52,13 +52,13 @@ const Exam = (props) => {
               
                 <h1 className="titleform">Schedule an exam</h1>
                 <Formik
-                initialValues={examInitialValues}
-                validationSchema={ExamSchema}
-                onSubmit={(values, actions) => {
-                  handleSubmit(values);
-                  actions.resetForm()
-                }}
-                >
+                  initialValues={examInitialValues}
+                  validationSchema={ExamSchema}
+                  onSubmit={(values, actions) => {
+                    handleSubmit(values);
+                    actions.resetForm()
+                  }}
+                  >
                   {(propsForm)=>(
                     <Form className='flexcolumn'>
                       <div className='flexrow' style={marginBottom20vh}>

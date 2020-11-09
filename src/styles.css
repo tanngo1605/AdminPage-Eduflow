@@ -253,11 +253,11 @@
   margin-top: -1vw;
 }
 /*Galerry styles*/
-.Modal {
+.GalleryModal {
   position: relative;
   width: 35vw;
-  height: 68vh;
-  top: 18vh;
+  height: 72vh;
+  top: 12vh;
   left: 33vw;
   outline: 0;
   background: #ffffff;
