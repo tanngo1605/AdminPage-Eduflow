@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 const TimetableSchema = Yup.object().shape({
-    class: Yup.string()
+    classvalue: Yup.string()
         .required("Please fill out this field"),
     section: Yup.string()
         .required("Please fill out this field"),

@@ -23,7 +23,7 @@ import {
 import './animation.css'
 import { image100vw } from '../../styles/imageStyles'
 // import styled from '@emotion/styled';
-import TimeTableSchema from '../../userData/ValidationSchema/TimeTableSchema'
+
 import * as Yup from 'yup';
 import TimetableSchema from '../../userData/ValidationSchema/TimeTableSchema';
 // import TimeTable from './TimeTable';
@@ -34,8 +34,8 @@ import sections from '../../userData/GlobalData/sectionData'
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
 import addTimeTable from "../../redux/Action/TimeTableAction"
-const numOfPeriods = 4
-const arrayOfPeriods = []
+let numOfPeriods = 4
+let arrayOfPeriods = []
 for (let i = 0; i < numOfPeriods; i++) {
     arrayOfPeriods.push({
         starttime: '',
@@ -63,16 +63,17 @@ const FormiForm = () => {
 
 
             <Formik
+                enableReinitialize
                 initialValues={{
-                    class: '', section: '', day: '',
+                    classvalue: '', section: '', day: '',
                     period: arrayOfPeriods
                 }}
                 validationSchema={TimetableSchema}
                 onSubmit={(values, actions) => {
                     console.log(values);
-
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 4));
+
                         // alert(JSON.stringify(values.period[0].startTime, null, 4))
                         actions.setSubmitting(false);
                     }, 1000);
@@ -80,7 +81,7 @@ const FormiForm = () => {
             >
                 {props => (
                     // console.log(Array.of(props.values.period).map(el => console.log(el))),\
-
+                    // console.log(props.values),
                     // console.log(addTimetable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI", {
                     //     "period": "2",
                     //     "day": "tuesday",
@@ -92,14 +93,7 @@ const FormiForm = () => {
                     // console.log(dataof()),
                     // }).then(res => { console.log(res); })),
                     <Form>
-                        {/* <input
-                            type="text"
-                            onChange={props.handleChange}
-                            onBlur={props.handleBlur}
-                            value={props.values.name}
-                            name="name"
-                        /> */}
-                        {/* {props.errors.name && <div id="feedback">{props.errors.name}</div>} */}
+
                         <div className='dashboard'>
                             <div className='flexrow'>
                                 <Drawer />
@@ -111,21 +105,33 @@ const FormiForm = () => {
                                             <div className='flexrow'>
                                                 <div className='flexrow' style={marginBottom20vh}>
                                                     {/* {console.log(props.errors.class)} */}
-                                                    
+
                                                     <div className='flexrow'>
                                                         <label className='section'>Enter Class</label>
                                                         <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
                                                             <option value="" defaultValue>{" "}-select-</option>
-                                                            {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                                                            {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                                                         </Field>
                                                         {/* {props.errors.class && props.touched.class ? (
                                                             <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
                                                         ) : null} */}
+                                                        <ErrorMessage name="classvalue" />
                                                         <label className="section" style={marginLeft60vw}>Enter Section</label>
                                                         <Field as="select" name="section" className="shortbox" placeholder="Your section">
                                                             <option value="" defaultValue>{" "}-select-</option>
-                                                            {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
+                                                            {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
                                                         </Field>
+                                                        {props.errors.section && props.touched.section ?
+                                                            (
+                                                                <div className="errMessOuter">
+                                                                    <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                                                    <ErrorMessage name="section" />
+                                                                </div>
+
+                                                            ) : null}
+
+
+
                                                     </div>
 
                                                     {/* <ErrorMessage name="class" /> */}
@@ -136,57 +142,27 @@ const FormiForm = () => {
                                                         <option value='mango'>Mango</option>
                                                     </select> */}
                                                 </div>
-                                                <div className='flexrow' style={marginLeft380vw}>
-                                                    <p className='section'>Enter Section</p>
-                                                    <div style={{ position: "relative" }}>
-                                                        <Field as="select" name="section" className='shortbox' style={marginLeft130vw}>
-                                                            <option value="" defaultValue>{" "}-select-</option>
-                                                            <option value='maths'>maths</option>
-                                                            <option value='english'>English</option>
-                                                            <option value='science'>Science</option>
-                                                            <option value='history'>History</option>
-                                                            <option value='pe'>PE</option>
-                                                        </Field>
-                                                        {/* {props.errors.section && props.touched.section ? (
-                                                            <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
-                                                        ) : null} */}
-                                                        <div className="errMessOuter" style={props.errors.section ? null : { display: "none" }}>
-                                                            <FcHighPriority className="iconErrMess" size="1.5vw" />
-                                                            <ErrorMessage name="section" />
-                                                        </div>
 
-                                                    </div>
-
-                                                    {/* <ErrorMessage name="section" /> */}
-                                                    {/* <select className='shortbox' onChange={props.handleChange} style={marginLeft130vw} id='section'>
-                                                        <option value="" defaultValue>{" "}-select-</option>
-                                                        <option value='maths'>maths</option>
-                                                        <option value='english'>English</option>
-                                                        <option value='science'>Science</option>
-                                                        <option value='history'>History</option>
-                                                        <option value='pe'>PE</option>
-                                                    </select> */}
-
-                                                </div>
                                             </div>
                                             <div className='flexrow' >
                                                 <label className='section'>Choose Day</label>
                                                 {/* <DatePickerField name='day' /> */}
-                                                
-                                                <DayPickerInput required className='shortbox' format="D/M/YYYY"  onDayChange={(e) => props.setFieldValue('day', Intl.DateTimeFormat('en-GB').format(e))} value={props.values.day} placeholder='- select -' />
-                                                    {/* {props.errors.day && props.touched.day ? (
-                                                        <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
-                                                    ) : null} */}
+
+                                                <DayPickerInput required className='shortbox' format="D/M/YYYY" onDayChange={(e) => props.setFieldValue('day', Intl.DateTimeFormat('en-GB').format(e))} value={props.values.day} placeholder='- select -' />
+                                                {/* {props.errors.day && props.touched.day ? (
+                                                    <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
+                                                ) : null} */}
                                                 <div className="errMessOuter" style={props.errors.day ? null : { display: "none" }}>
-                                                        <FcHighPriority className="iconErrMess" size="1.5vw" />
-                                                        <ErrorMessage name="day" />
+                                                    <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                                    <ErrorMessage name="day" />
                                                 </div>
-                                                
+
 
                                             </div>
                                         </div>
 
-                                        <div className='eventlistArea' style={{ marginTop: '12vh', paddingTop: '2%', width: '75vw' }}>
+                                        <div className='tablelistArea' style={{ marginTop: '12vh', paddingTop: '2%', width: '75vw' }}>
+
                                             <Scrollbars>
                                                 <FieldArray
                                                     name="period"
@@ -194,6 +170,7 @@ const FormiForm = () => {
                                                         <div>
                                                             {props.values.period.map(
                                                                 (el, index) =>
+
 
                                                                     <div className='flexrow' key={index} style={Object.assign({}, marginBottom125vh, marginLeft55vw)}>
                                                                         <div className='flexcolumn'>
@@ -242,12 +219,12 @@ const FormiForm = () => {
                                                         </div>
                                                     )} />
                                                 <button className='buttonshownothing'
-                                                    onClick={() => { numOfPeriods = numOfPeriods + 1; this.setState({ trigger: !this.state.trigger }) }}
+                                                    onClick={() => { numOfPeriods = numOfPeriods + 1 }}
                                                     style={{ fontSize: '1vw', marginLeft: '45%', marginBottom: '1vh', background: 'white' }}> + Add More </button>
                                             </Scrollbars>
                                             <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" /><div style={{ display: "contents" }}>Need at least {numOfPeriods} period</div></>) : null}</div>
                                         </div>
-                                                                    
+
 
                                         <div className='flexrow' style={marginTop45vh}>
 
