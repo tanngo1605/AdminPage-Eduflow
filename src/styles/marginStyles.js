@@ -158,7 +158,7 @@ export {
   marginBottom65vhandTop120vh,
   marginBottom180vh,
   marginBottom125vh,
-  marginBottsom100vh,
+  marginBottom100vh,
   marginBottom65vh,
   marginBottom55vh,
   marginBottom30vh,

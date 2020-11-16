@@ -8,12 +8,12 @@ const addSchoolEvent =  (schoolId,jwtToken,eventInput) => {
     console.log(eventInput)
     const inputData = JSON.stringify({
       
-      title: title,
+      title,
       startTime: new Date(`${datefrom.toLocaleDateString()} ${startTime}`),
       endTime: new Date(`${dateto.toLocaleDateString()} ${endTime}`),
       //section: section,
       //class:classvalue,
-      description:description,
+      description,
       //attachment:attachment,
       
       

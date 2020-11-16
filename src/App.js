@@ -1,26 +1,26 @@
 import React, { Suspense } from "react";
 import { Route, BrowserRouter, Switch, } from "react-router-dom";
-import Homescreen from "./pages/Homescreen/Homescreen";
-import AccountSetting from "./pages/Accounts/AccountSetting";
-import Syllabus from "./pages/Syllabus/Syllabus";
-import Gallery from "./pages/Gallery/Gallery";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import ImageInAlbum from "./pages/Gallery/ImageInAlbum";
-import CreateClass from "./pages/Class/createClass";
-import CreateSubject from "./pages/Class/createSubject";
-import Feedback from "./pages/Feedback/Feedback";
+import Homescreen from "./pages/AdminScreen/Homescreen/Homescreen";
+import AccountSetting from "./pages/AdminScreen/Accounts/AccountSetting";
+import Syllabus from "./pages/AdminScreen/Syllabus/Syllabus";
+import ScreenSyllabus from "./pages/AdminScreen/Syllabus/ScreenSyllabus";
+import Gallery from "./pages/AdminScreen/Gallery/Gallery";
+import LoginPage from "./pages/AdminScreen/LoginPage/LoginPage";
+import ImageInAlbum from "./pages/AdminScreen/Gallery/ImageInAlbum";
+import CreateClass from "./pages/AdminScreen/Class/createClass";
+import CreateSubject from "./pages/AdminScreen/Class/createSubject";
+import Feedback from "./pages/AdminScreen/Feedback/Feedback";
+import TimeTable from "./pages/AdminScreen/TimeTable/TimeTable";
 
 import UserRouter from "./navigation/UserRouter";
 import EventRouter from "./navigation/EventRouter";
 import PasswordRouter from "./navigation/PasswordRouter";
-import TimeTable from "./pages/TimeTable/TimeTable";
 import ResultRouter from "./navigation/ResultRouter";
 import TicketRouter from "./navigation/TicketRouter";
 import ExamRouter from "./navigation/ExamRouter";
-import Result from "./pages/Results/Results"
-import ResultList from "./pages/ApproveResult/Result"
-import ApproveResult from "./pages/ApproveResult/ApproveResult"
-import StudentResult from "./pages/ApproveResult/StudentResult"
+import ResultList from "./pages/TeacherScreen/ApproveResult/Result"
+import ApproveResult from "./pages/TeacherScreen/ApproveResult/ApproveResult"
+import StudentResult from "./pages/TeacherScreen/ApproveResult/StudentResult"
 import "./App.css";
 import "./styles.css";
 import CircularRouter from "./navigation/CircularRouter";
@@ -43,14 +43,14 @@ const App = () => {
             {/*<Route path="/formik" component={FormikForm} />*/}
 
             <Route path="/feedback" component={Feedback} />
-
+            <Route path="/screensyllabus" component={ScreenSyllabus} />
             <Route path="/class" component={CreateClass} />
             <Route path="/subject" component={CreateSubject} />
             <Route path="/approveresult" component={ApproveResult} />
             <Route path="/studentresult" component={StudentResult} />
 
             <Route path="/resultlist" component={ResultList} />
-            <Route path="/result" component={Result} />
+            
             <Route path="/gallery/:album_name" component={ImageInAlbum} />
             <Route path="/gallery" component={Gallery} />
             <Route path="/account" component={AccountSetting} />

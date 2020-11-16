@@ -1,5 +1,53 @@
 /*------------------------------Teacher------------------------*/
-
+/*Show Menu Screen*/
+.teacheravacontainer{
+  position: absolute;
+  width: 250px;
+  display: inline-flex;
+  flex-direction: row
+}
+.teacherava{
+  width: 90px; 
+  height: 90px; 
+  margin-left: 3vw;
+  margin-top: 1.8vh;
+}
+.imageselection{
+  cursor: pointer; 
+  width: 200px; 
+  height: 200px; 
+  margin-left: 13vw; 
+  margin-top: 15vh
+}
+.textselection{
+  margin-left: 16.5vw;
+  margin-top: 5vh;
+  font-size:15
+}
+.inputsection{
+  width: 15%;
+  height: 4.5vh;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.3vw;
+  color: #262f56;
+}
+.inputshortbox{
+  width: 12vw;
+  height: 4.5vh;
+  
+  background: white;
+  box-shadow: 0vw 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
+  border: 0vw white;
+  border-radius: 0.5vw;
+  padding-left: 1.5vw;
+  margin-left:5vw;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+  resize: none;
+}
+/* Shared Styles*/
 .headerteacher{
   background-color: #ffffff;
   width: 120vw;
@@ -8,7 +56,7 @@
   display: flex;
   flex-direction: row;
 }
-/* Shared Styles*/
+
 .formTeacher {
   background: linear-gradient(
     180deg,
@@ -416,6 +464,7 @@
   box-shadow: 0vw 0.9vw 1.8vw #e4e6e9;
   
 }
+
 /*Shared style*/
 .form {
   background: linear-gradient(
