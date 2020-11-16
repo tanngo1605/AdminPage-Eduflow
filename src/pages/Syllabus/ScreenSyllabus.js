@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/Header";
+import Header from "../../component/Header/HeaderAdmin";
 import "./SyllabusScreen.css";
 import { Document, Page } from "react-pdf";
 import PDFViewer from "pdf-viewer-reactjs";
@@ -230,21 +230,21 @@ class SyllabusAnother extends Component {
                               // value={(e) => this.onChange(e)}
                               // key={index + 1}
                               onChange={(e) => this.onChange(e, index + 1)}
-                              // onSubmit={(e) => this.changeSyllabus(e)}
+                            // onSubmit={(e) => this.changeSyllabus(e)}
                             />
                             {(item[1].edit = "Add")}
                           </React.Fragment>
                         ) : (
-                          <React.Fragment>
-                            <button
-                              id={index + 1}
-                              type="reset"
-                              onClick={(e) => this.onReset(e, index + 1)}
-                              style={{ display: "none" }}
-                            />
-                            {(item[1].edit = "Remove")}
-                          </React.Fragment>
-                        )}
+                            <React.Fragment>
+                              <button
+                                id={index + 1}
+                                type="reset"
+                                onClick={(e) => this.onReset(e, index + 1)}
+                                style={{ display: "none" }}
+                              />
+                              {(item[1].edit = "Remove")}
+                            </React.Fragment>
+                          )}
                       </label>
                     </div>
                   ))}

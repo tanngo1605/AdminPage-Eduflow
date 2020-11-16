@@ -9,7 +9,7 @@ import ImageInAlbum from "./pages/Gallery/ImageInAlbum";
 import CreateClass from "./pages/Class/createClass";
 import CreateSubject from "./pages/Class/createSubject";
 import Feedback from "./pages/Feedback/Feedback";
-
+import ScreenSyllabus from "./pages/Syllabus/ScreenSyllabus"
 import UserRouter from "./navigation/UserRouter";
 import EventRouter from "./navigation/EventRouter";
 import PasswordRouter from "./navigation/PasswordRouter";
@@ -21,6 +21,7 @@ import Result from "./pages/Results/Results"
 import ResultList from "./pages/ApproveResult/Result"
 import ApproveResult from "./pages/ApproveResult/ApproveResult"
 import StudentResult from "./pages/ApproveResult/StudentResult"
+import EResources from './pages/EResources/EResources';
 import "./App.css";
 import "./styles.css";
 import CircularRouter from "./navigation/CircularRouter";
@@ -48,7 +49,8 @@ const App = () => {
             <Route path="/subject" component={CreateSubject} />
             <Route path="/approveresult" component={ApproveResult} />
             <Route path="/studentresult" component={StudentResult} />
-
+            <Route path="/eresources" component={EResources} />
+            <Route path="/screensyllabus" component={ScreenSyllabus} />
             <Route path="/resultlist" component={ResultList} />
             <Route path="/result" component={Result} />
             <Route path="/gallery/:album_name" component={ImageInAlbum} />
