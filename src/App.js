@@ -3,13 +3,11 @@ import { Route, BrowserRouter, Switch, } from "react-router-dom";
 import Homescreen from "./pages/AdminScreen/Homescreen/Homescreen";
 import AccountSetting from "./pages/AdminScreen/Accounts/AccountSetting";
 import Syllabus from "./pages/AdminScreen/Syllabus/Syllabus";
-import ScreenSyllabus from "./pages/AdminScreen/Syllabus/ScreenSyllabus";
 import Gallery from "./pages/AdminScreen/Gallery/Gallery";
 import LoginPage from "./pages/AdminScreen/LoginPage/LoginPage";
 import ImageInAlbum from "./pages/AdminScreen/Gallery/ImageInAlbum";
 import CreateClass from "./pages/AdminScreen/Class/createClass";
 import CreateSubject from "./pages/AdminScreen/Class/createSubject";
-import Feedback from "./pages/AdminScreen/Feedback/Feedback";
 import TimeTable from "./pages/AdminScreen/TimeTable/TimeTable";
 
 import UserRouter from "./navigation/UserRouter";
@@ -42,8 +40,7 @@ const App = () => {
             {ExamRouter.map((element, index) => <Route key={index} {...element} />)}
             {/*<Route path="/formik" component={FormikForm} />*/}
 
-            <Route path="/feedback" component={Feedback} />
-            <Route path="/screensyllabus" component={ScreenSyllabus} />
+            
             <Route path="/class" component={CreateClass} />
             <Route path="/subject" component={CreateSubject} />
             <Route path="/approveresult" component={ApproveResult} />

@@ -38,7 +38,7 @@ const AccountSetting = (props) => {
         <div className="flexrow">
           <Drawer/>
           <div className="flexcolumn">
-            <Header/>
+            <Header {...props}/>
             <div className="form">
                 <h1 className="titleform">Account Settings</h1>
                 <Formik

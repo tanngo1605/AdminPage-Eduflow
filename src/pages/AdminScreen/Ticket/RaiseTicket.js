@@ -33,7 +33,7 @@ const RaiseTicket =(props)=> {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...props}/>
             <div className="form">
               <h1 className="titleform">Raise a ticket</h1>
               <Formik

@@ -36,7 +36,7 @@ const TeacherSearch = (props)=>{
         <div className="flexrow">
           <Drawer/>
           <div className="flexcolumn">
-            <Header/>
+            <Header {...props}/>
             <div className="form">
               
                 <h1 className="titleform">Teacher Info</h1>

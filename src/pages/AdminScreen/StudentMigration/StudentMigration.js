@@ -69,7 +69,7 @@ class StudentMigration extends Component {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...this.props}/>
             <div className="form">
               <h1 className="titleform">Student's migration</h1>
 

@@ -34,7 +34,7 @@ class TicketList extends Component {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...this.props}/>
             <div className="form">
               <h1 className="titleform">Raise a ticket</h1>
               <form className="flexrow" onChange={this.searchResult}>

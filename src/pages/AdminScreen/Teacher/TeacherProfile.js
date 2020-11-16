@@ -78,7 +78,7 @@ const TeacherProfile = (props) => {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...props}/>
             <div className="form">
               <h1 className="titleform">Teacher Profile </h1>
               <div className="flexrow">

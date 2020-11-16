@@ -56,7 +56,7 @@ const ChangePassword = (props) => {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...props}/>
             <div className="passScreen">
               <div className="containerChangePassword">
                 <img alt="" src={ppo1} className="imgField backgroundImg"/>

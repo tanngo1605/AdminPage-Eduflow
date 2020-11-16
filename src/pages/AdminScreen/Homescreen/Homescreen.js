@@ -88,7 +88,7 @@ class Homescreen extends Component {
     <div className='flexrow'>
       <Drawer/>
       <div className='flexcolumn'>
-          <Header/>
+          <Header {...this.props}/>
           <div className='flexrow' style={{marginTop:'2%'}}>
           {sections&&sections.map(item=>
             <div className='totalbox' key={item.roles}>

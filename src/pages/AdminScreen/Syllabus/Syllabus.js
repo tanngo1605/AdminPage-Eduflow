@@ -47,7 +47,7 @@ class Syllabus extends Component {
         <div style={{ display: "flex" }}>
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...this.props}/>
             <form
               className="form"
               onSubmit={this.handleSubmit}

@@ -176,7 +176,7 @@ class MoveStudent extends Component {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...this.props}/>
             <div className="form">
               <h1 className="titleform">Move students to another class</h1>
 

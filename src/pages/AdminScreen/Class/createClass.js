@@ -47,7 +47,7 @@ class createClass extends Component {
         <div className='flexrow'>
           <Drawer/>
           <div className='flexcolumn'>
-            <Header/>
+            <Header {...this.props}/>
             <form className='form' onSubmit={this.handleSubmit} id='create-course-form'>
               
                 <h1 className='titleform'>Create a new class</h1>

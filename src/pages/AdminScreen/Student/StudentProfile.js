@@ -85,7 +85,7 @@ const StudentProfile = (props) => {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...props}/>
             <div className="form">
               <h1 className="titleform">Student Profile </h1>
               <div className="flexrow">

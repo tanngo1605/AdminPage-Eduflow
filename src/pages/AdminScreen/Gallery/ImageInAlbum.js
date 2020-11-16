@@ -89,7 +89,7 @@ class ImageInAlbum extends Component {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...this.props}/>
             <div className="form">
               <div className="titleform">
                 {" "}

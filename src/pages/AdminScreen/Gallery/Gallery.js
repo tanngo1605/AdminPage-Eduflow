@@ -102,7 +102,7 @@ class Gallery extends Component {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header />
+            <Header {...this.props}/>
             <div className="form">
               <h1 className="titleform"> Gallery </h1>
               <button className="attachment" onClick={() => this.setState({ openmodal: true })}>

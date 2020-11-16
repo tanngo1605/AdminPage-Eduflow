@@ -44,7 +44,7 @@ const CreateEvent = (props) => {
         <div className="flexrow">
           <Drawer/>
           <div className="flexcolumn">
-            <Header/>
+            <Header {...props}/>
             <div className="form">
               <h1 className="titleform" style={marginBottom30vh}>Create an event for your class</h1>
               <Formik

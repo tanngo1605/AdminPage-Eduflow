@@ -9,10 +9,10 @@ import { NavLink } from "react-router-dom"
 
 const ApproveResult = (props) => {
     useEffect(()=>{
-        props.dispatch(loadData())
+        //props.dispatch(loadData())
     },[])
         
-    let students = props.students;
+    //let students = props.students;
 
     return (
         <div className="dashboard">

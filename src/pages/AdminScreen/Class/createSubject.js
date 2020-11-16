@@ -80,7 +80,7 @@ const CreateSubject = (props)=>{
         <div className='flexrow'>
           <Drawer/>
           <div className='flexcolumn'>
-            <Header/>
+            <Header {...props}/>
             <div className='form' >
               
                 <h1 className='titleform'>Create Subject</h1>

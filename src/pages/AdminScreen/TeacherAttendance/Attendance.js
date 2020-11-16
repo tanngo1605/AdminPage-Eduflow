@@ -53,7 +53,7 @@ class Attendance extends Component {
         <div className='flexrow'>
           <Drawer/>
           <div className='flexcolumn'>
-            <Header/>
+            <Header {...this.props}/>
             <div className='form'>
               
                 <h1 className='titleform'>Teacher's Attendance</h1>

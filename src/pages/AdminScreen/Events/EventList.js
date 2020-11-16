@@ -75,7 +75,7 @@ const EventList = (props) => {
         <div className='flexrow'>
           <Drawer/>
           <div className='flexcolumn'>
-            <Header/>
+            <Header {...props}/>
             <div className='form'>
                 <h1 className='titleform'>Event List</h1>
                 <Formik
