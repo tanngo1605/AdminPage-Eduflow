@@ -5,7 +5,7 @@ const addGalleryImages =  (schoolId,jwtToken,imagesInput) => {
     
     
     const inputData = JSON.stringify({
-      imageUrls:imageUrls
+      imageUrls
     })
 
 

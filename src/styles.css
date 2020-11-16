@@ -1,5 +1,82 @@
 /*------------------------------Teacher------------------------*/
+/*Show Menu Screen*/
+.teacheravacontainer{
+  position: absolute;
+  width: 250px;
+  display: inline-flex;
+  flex-direction: row
+}
+.teacherava{
+  width: 90px; 
+  height: 90px; 
+  margin-left: 3vw;
+  margin-top: 1.8vh;
+}
+.imageselection{
+  cursor: pointer; 
+  width: 200px; 
+  height: 200px; 
+  margin-left: 13vw; 
+  margin-top: 15vh
+}
+.textselection{
+  margin-left: 16.5vw;
+  margin-top: 5vh;
+  font-size:15
+}
+.inputsection{
+  width: 15%;
+  height: 4.5vh;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.3vw;
+  color: #262f56;
+}
+.inputshortbox{
+  width: 12vw;
+  height: 4.5vh;
+  
+  background: white;
+  box-shadow: 0vw 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
+  border: 0vw white;
+  border-radius: 0.5vw;
+  padding-left: 1.5vw;
+  margin-left:5vw;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+  resize: none;
+}
+/*Feedback*/
+.feedbackmodal{
+  position: relative;
+  width: 35vw;
+  height: 55vh;
+  top: 15vh;
+  left: 35vw;
+  outline: 0;
+  background: #ffffff;
+  border-radius: 1.5vw;
+  border: 0.1vw solid rgba(204, 204, 204, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0vw 0.9vw 1.8vw #e4e6e9;
+}
+.feedbackContent-content {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100px;
+}
 
+.textFeedback {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  margin-left: 4vw;
+  line-height: 29px;
+  color: #8c96ab;
+}
+/* Shared Styles*/
 .headerteacher{
   background-color: #ffffff;
   width: 120vw;
@@ -8,7 +85,8 @@
   display: flex;
   flex-direction: row;
 }
-/* Shared Styles*/
+
+
 .formTeacher {
   background: linear-gradient(
     180deg,
@@ -253,11 +331,11 @@
   margin-top: -1vw;
 }
 /*Galerry styles*/
-.Modal {
+.GalleryModal {
   position: relative;
   width: 35vw;
-  height: 68vh;
-  top: 18vh;
+  height: 72vh;
+  top: 12vh;
   left: 33vw;
   outline: 0;
   background: #ffffff;
@@ -416,6 +494,7 @@
   box-shadow: 0vw 0.9vw 1.8vw #e4e6e9;
   
 }
+
 /*Shared style*/
 .form {
   background: linear-gradient(
@@ -628,20 +707,7 @@ option {
   bottom: 35px;
 }
 
-.feedbackContent-content {
-  border-radius: 20px;
-  overflow: hidden;
-  height: 510px;
-}
 
-.textFeedback {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
-  color: #8c96ab;
-}
 input[type="checkbox"] {
   position: relative;
   cursor: pointer;

@@ -1,5 +1,5 @@
-import CreateEvent from "../pages/Events/CreateEvent";
-import EventList from "../pages/Events/EventList";
+import CreateEvent from "../pages/AdminScreen/Events/CreateEvent";
+import EventList from "../pages/AdminScreen/Events/EventList";
 
 const EventRouter = [
   {path:"/event/createevent",component:CreateEvent},

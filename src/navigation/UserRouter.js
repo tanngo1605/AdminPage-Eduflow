@@ -1,13 +1,13 @@
-import TeacherProfile from "../pages/Teacher/TeacherProfile";
-import TeacherSearch from "../pages/Teacher/TeacherSearch";
-import StudentSearch from "../pages/Student/StudentSearch";
-import StudentProfile from "../pages/Student/StudentProfile";
-import SchoolProfile from '../pages/Accounts/SchoolProfile'
-import MoveStudent from "../pages/StudentMigration/MoveStudent";
-import StudentMigration from "../pages/StudentMigration/StudentMigration";
-import Attendance from "../pages/TeacherAttendance/Attendance";
-import SearchAttendace from "../pages/TeacherAttendance/SearchAttendance";
-import EditAttendance from "../pages/TeacherAttendance/EditAttendance";
+import TeacherProfile from "../pages/AdminScreen/Teacher/TeacherProfile";
+import TeacherSearch from "../pages/AdminScreen/Teacher/TeacherSearch";
+import StudentSearch from "../pages/AdminScreen/Student/StudentSearch";
+import StudentProfile from "../pages/AdminScreen/Student/StudentProfile";
+import SchoolProfile from '../pages/AdminScreen/Accounts/SchoolProfile'
+import MoveStudent from "../pages/AdminScreen/StudentMigration/MoveStudent";
+import StudentMigration from "../pages/AdminScreen/StudentMigration/StudentMigration";
+import Attendance from "../pages/AdminScreen/TeacherAttendance/Attendance";
+import SearchAttendace from "../pages/AdminScreen/TeacherAttendance/SearchAttendance";
+import EditAttendance from "../pages/AdminScreen/TeacherAttendance/EditAttendance";
 
 const UserRouter = [
   {path:"/studentsearch",component:StudentSearch},

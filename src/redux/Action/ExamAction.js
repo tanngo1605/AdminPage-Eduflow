@@ -8,14 +8,14 @@ const addSchoolExam =  (schoolId,jwtToken,eventInput) => {
     console.log(eventInput)
     const inputData = JSON.stringify({
       
-      title: title,
+      title,
       class:classvalue,
-      section:section,
+      section,
       startTime: new Date(`${datefrom.toLocaleDateString()} ${startTime}`),
       endTime: new Date(`${dateto.toLocaleDateString()} ${endTime}`),
       
       description:'con me gi do',
-      attachment:attachment,
+      attachment,
       
       
     })

@@ -1,7 +1,7 @@
-import SchoolResults from "../pages/Results/SchoolResults";
-import ClassResults from "../pages/Results/ClassResults";
-import EnterMarks from "../pages/Results/EnterMarks";
-import Results from "../pages/Results/Results";
+import SchoolResults from "../pages/TeacherScreen/Results/SchoolResults";
+import ClassResults from "../pages/TeacherScreen/Results/ClassResults";
+import EnterMarks from "../pages/TeacherScreen/Results/EnterMarks";
+import Results from "../pages/TeacherScreen/Results/Results";
 const ResultRouter = [
   {path:"/schoolresults",component:SchoolResults},
   {path:"/classresults",component:ClassResults},
