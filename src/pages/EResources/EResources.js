@@ -178,26 +178,7 @@ class EResources extends Component {
                             <button className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)", marginLeft: "8vw" }}>PDF/Notes</button>
                             <button className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)", marginLeft: "8vw" }}>Web lines</button>
                         </div>
-                        {/* <div >
-                            {arrayOfPDF.map((pdf, index) =>
-                                <Document
-                                    file={pdf}
-                                    onLoadSuccess={this.onDocumentLoad.bind(this)}
-                                >
-                                    <Page
 
-                                        key={`page_${index + 1}`}
-                                        pageNumber={1}
-                                        scale={0.5}
-                                    />
-                                </Document>
-                            )}
-                            {arrayOfVideo.map((video, index) =>
-                                <Player autoplay fluid={false} width="50%" height={512} aspectRatio="auto" poster="/assets/chat_inactive.png" src={video}>
-                                    <BigPlayButton position="center" />
-                                </Player>
-                            )}
-                        </div> */}
                         <div style={{ width: "auto", display: "grid", gridTemplateColumns: "auto auto auto auto", margin: "5%" }}>
                             {arrayOfVideo.map((video, index) => {
                                 return (
