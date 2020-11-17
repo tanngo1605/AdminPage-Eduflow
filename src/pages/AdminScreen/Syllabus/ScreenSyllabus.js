@@ -1,8 +1,13 @@
 import React, { Component, useState } from "react";
 
 import { Scrollbars } from "react-custom-scrollbars";
+<<<<<<< HEAD:src/pages/Syllabus/ScreenSyllabus.js
+import Drawer from "../../component/Drawer/Drawer";
+import Header from "../../component/Header/HeaderAdmin";
+=======
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
+>>>>>>> fcfc2b66a0c4298ac4f1eec6f3def2628e72e623:src/pages/AdminScreen/Syllabus/ScreenSyllabus.js
 import "./SyllabusScreen.css";
 import { Document, Page } from "react-pdf";
 import PDFViewer from "pdf-viewer-reactjs";
@@ -243,21 +248,21 @@ class SyllabusAnother extends Component {
                               // value={(e) => this.onChange(e)}
                               // key={index + 1}
                               onChange={(e) => this.onChange(e, index + 1)}
-                              // onSubmit={(e) => this.changeSyllabus(e)}
+                            // onSubmit={(e) => this.changeSyllabus(e)}
                             />
                             {(item[1].edit = "Add")}
                           </React.Fragment>
                         ) : (
-                          <React.Fragment>
-                            <button
-                              id={index + 1}
-                              type="reset"
-                              onClick={(e) => this.onReset(e, index + 1)}
-                              style={{ display: "none" }}
-                            />
-                            {(item[1].edit = "Remove")}
-                          </React.Fragment>
-                        )}
+                            <React.Fragment>
+                              <button
+                                id={index + 1}
+                                type="reset"
+                                onClick={(e) => this.onReset(e, index + 1)}
+                                style={{ display: "none" }}
+                              />
+                              {(item[1].edit = "Remove")}
+                            </React.Fragment>
+                          )}
                       </label>
                     </div>
                   ))}
