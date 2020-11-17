@@ -6,12 +6,11 @@ import { Document, Page } from 'react-pdf';
 import { Player, ControlBar, BigPlayButton } from 'video-react';
 import 'video-react/dist/video-react.css';
 import VideoThumbnail from 'react-video-thumbnail';
-import { image300percent, image200percent, image100percent, image450percent, image130vw } from "../../styles/imageStyles";
-import { NavLink } from "react-router-dom"
-import { th, vi } from "date-fns/locale";
+import { pdfjs } from 'react-pdf';
+import { assign } from "lodash";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const arrayOfVideo = []
 const arrayOfPDF = []
-
 const customStyles = {
     content: {
         top: '50%',
@@ -32,6 +31,7 @@ const customStylesForPDF = {
         transform: 'translate(-50%, -50%)'
     }
 };
+const pageNumList = []
 class EResources extends Component {
     constructor(props) {
         super(props);
@@ -40,11 +40,14 @@ class EResources extends Component {
             showVideo: false,
             showPDF: false,
             file: null,
-            urlFile: null,
             numPages: null,
             pageNumber: null,
             scale: 1.0,
-            trigger: false
+            trigger: false,
+            showListVideo: false,
+            showListPDF: false,
+            toggleList: false,
+
         };
         this.handleOpenModal = this.handleOpenModal.bind(this)
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -52,11 +55,12 @@ class EResources extends Component {
         this.handleCloseVideo = this.handleCloseVideo.bind(this);
         this.handleOpenPDF = this.handleOpenPDF.bind(this);
         this.handleClosePDF = this.handleClosePDF.bind(this);
-
+        this.onDocumentLoad = this.onDocumentLoad.bind(this)
     }
     onDocumentLoad({ numPages }) {
         // console.log(numPages);
         this.setState({ pageNumber: numPages });
+
     }
     onPageNumber() {
         let a = [];
@@ -77,23 +81,32 @@ class EResources extends Component {
         this.setState({ showModal: false });
     }
     //video
-    handleOpenVideo() {
-        this.setState({ showVideo: true });
+    handleOpenVideo(video) {
+        this.setState({ showVideo: true, file: video });
     }
     handleCloseVideo() {
         this.setState({ showVideo: false });
     }
     //pdf
-    handleOpenPDF() {
-        this.setState({ showPDF: true });
+    handleOpenPDF(pdf) {
+        this.setState({ showPDF: true, file: pdf });
     }
     handleClosePDF() {
         this.setState({ showPDF: false });
     }
+    toggleChange = (e) => {
+        this.setState({ toggleList: true })
+        if (e.target.value === "video") {
+            this.setState({ showListVideo: true, showListPDF: false })
+        }
+        else if (e.target.value === "pdf") {
+            this.setState({ showListPDF: true, showListVideo: false })
+        }
+    }
     onDrop = (e) => {
         var reader = new FileReader();
         reader.readAsDataURL(e[0])
-        console.log(e[0]);
+        // console.log(e[0]);
     };
     handleChange(e) {
         this.setState({ file: URL.createObjectURL(e.target.files[0]) })
@@ -116,27 +129,8 @@ class EResources extends Component {
         console.log(e.target.value);
     }
 
-    // showPDF = () => {
-    //     return (
-    //         <div >
-    //             {arrayOfPDF.map((pdf, index) =>
-    //                 <Document
-    //                     file={pdf}
-    //                     onLoadSuccess={this.onDocumentLoad.bind(this)}
-    //                 >
-    //                     <Page
-
-    //                         key={`page_${index + 1}`}
-    //                         pageNumber={1}
-    //                         scale={0.5}
-    //                     />
-    //                 </Document>
-    //             )}
-    //         </div>
-    //     )
-    // }
     render() {
-        console.log(arrayOfVideo);
+
 
         return (
             <div className="dashboard">
@@ -144,7 +138,7 @@ class EResources extends Component {
                     <HeaderTeacher />
                     <div className="form" style={{ marginLeft: "2%" }}>
                         <div style={{ margin: "2%", }}>
-                            <h8>E-Resources</h8>
+                            <h2>E-Resources</h2>
                             <div className="flexrow">
                                 <div className="section" style={{ fontSize: "1.4vw", width: "20%" }}>Chapter/Topic name</div>
                                 <input className="shortbox" style={{ height: "8vh", width: "40vw" }} />
@@ -158,7 +152,7 @@ class EResources extends Component {
                         <div className="flexrow" style={{ marginTop: "2vh", marginLeft: "25vw" }}>
                             <button className="button" onClick={this.handleOpenModal} style={{ background: "#66C4E1" }}>+ ADD file</button>
                             <Modal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal} style={{ width: "100px" }}>
-                                <Dropzone onDrop={files => { files[0].type === "application/pdf" ? arrayOfPDF.push(URL.createObjectURL(files[0])) : arrayOfVideo.push(URL.createObjectURL(files[0])); console.log(files[0].type); this.setState({ file: URL.createObjectURL(files[0]), trigger: !this.state.trigger }) }} >
+                                <Dropzone onDrop={files => { files[0].type === "application/pdf" ? arrayOfPDF.push(URL.createObjectURL(files[0])) : arrayOfVideo.push(URL.createObjectURL(files[0])); console.log(files[0]); this.setState({ trigger: !this.state.trigger }) }} >
                                     {({ getRootProps, getInputProps }) => (
                                         <section className="flexcolumn" >
                                             <div {...getRootProps({})}>
@@ -168,132 +162,114 @@ class EResources extends Component {
                                         </section>
                                     )}
                                 </Dropzone>
-                                <input type="file" className="einput" onChange={(e) => this.handleChange(e)} style={{ display: "block" }} />
+                                {/* <input type="file" className="einput" onChange={(e) => this.handleChange(e)} style={{ display: "block" }} /> */}
 
                             </Modal>
                             <button className="button" style={{ background: "#66C4E1" }}>Delete file</button>
                         </div>
                         <div className="flexrow" style={{ marginTop: "4vh", marginLeft: "12vw" }}>
-                            <button className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)" }}>Video</button>
-                            <button className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)", marginLeft: "8vw" }}>PDF/Notes</button>
-                            <button className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)", marginLeft: "8vw" }}>Web lines</button>
+                            <button onClick={(e) => this.toggleChange(e)} className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)" }} value="video">Video</button>
+                            <button onClick={(e) => this.toggleChange(e)} className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)", marginLeft: "8vw" }} value="pdf">PDF/Notes</button>
+                            <button onClick={(e) => this.toggleChange(e)} className="button" style={{ color: "black", background: "white", boxShadow: "0px 1px 10px rgba(0, 0, 0, 0.1)", marginLeft: "8vw" }} value="weblines">Web lines</button>
                         </div>
 
-                        <div style={{ width: "auto", display: "grid", gridTemplateColumns: "auto auto auto auto", margin: "5%" }}>
-                            {arrayOfVideo.map((video, index) => {
-                                return (
-                                    <>
-                                        <div onClick={this.handleOpenVideo} style={{ cursor: "pointer", width: "120px", height: "80px" }}>
-                                            <VideoThumbnail
+                        <div style={{ width: "auto", display: "grid", gridTemplateColumns: "auto auto auto auto", margin: "5%", background: "white", overflowX: (this.state.toggleList && arrayOfPDF) || (this.state.toggleList && arrayOfVideo) ? "scroll" : "none" }}>
+                            {this.state.showListVideo
+                                ?
+                                arrayOfVideo.map((video, index) => {
+                                    return (
+                                        <>
+                                            <div onClick={() => this.handleOpenVideo(video)} key={index} style={{ cursor: "pointer", width: "120px", height: "80px" }}>
+                                                <VideoThumbnail
 
-                                                videoUrl={video}
-                                                width={120}
-                                                height={80}
-                                            />
-                                        </div>
-                                        <Modal isOpen={this.state.showVideo} onRequestClose={this.handleCloseVideo} style={customStyles}>
-                                            <div>
-                                                <Player fluid={false} width="100%" height={512} aspectRatio="auto" src={video}>
-                                                    <BigPlayButton position="center" />
-                                                </Player>
-                                            </div>
-                                        </Modal>
-                                    </>
-                                )
-                            }
-
-                            )}
-
-                            {arrayOfPDF.map((pdf) => {
-                                return (
-                                    <>
-                                        <div onClick={this.handleOpenPDF} style={{ width: "fit-content" }}>
-                                            <Document
-                                                file={pdf}
-                                                onLoadSuccess={this.onDocumentLoad.bind(this)}
-
-                                            >
-
-                                                <Page
-
-                                                    key={`page 1}`}
-                                                    pageNumber={1}
-                                                    height={80}
+                                                    videoUrl={video}
                                                     width={120}
-                                                // style={{ width: "10vw" }}
+                                                    height={100}
                                                 />
+                                            </div>
+                                            <Modal isOpen={this.state.showVideo} onRequestClose={this.handleCloseVideo} style={customStyles}>
+                                                <div>
+                                                    <Player fluid={false} width="100%" height={512} aspectRatio="auto" src={this.state.file}>
+                                                        <BigPlayButton position="center" />
+                                                    </Player>
+                                                </div>
+                                            </Modal>
+                                        </>
+                                    )
+                                }
 
+                                )
+                                :
+                                null
+                            }
+                            {
+                                this.state.showListPDF
+                                    ?
 
-
-
-                                            </Document>
-                                        </div>
-                                        {arrayOfPDF.map((pdf, index) =>
-                                            <Modal isOpen={this.state.showPDF} onRequestClose={this.handleClosePDF} style={customStylesForPDF}>
-
-                                                <div style={{ overflow: "scroll", height: "620px" }}>
-
-
+                                    arrayOfPDF.map((pdf, ind) => {
+                                        return (
+                                            console.clear(),
+                                            // console.log(pdf),
+                                            <>
+                                                <div onClick={() => this.handleOpenPDF(pdf)} style={{ width: "fit-content", marginBottom: "40px" }}>
+                                                    {console.log(pdf)}
                                                     <Document
                                                         file={pdf}
-                                                        onLoadSuccess={this.onDocumentLoad.bind(this)}
+                                                        onLoadSuccess={this.onDocumentLoad}
+
                                                     >
-                                                        {Array.from(new Array(this.state.pageNumber)).map(
-                                                            (item, index) => (
-                                                                <Page
-                                                                    key={`page_${index + 1}`}
-                                                                    pageNumber={index + 1}
-                                                                    scale={this.state.scale + 0.5}
-                                                                />
-                                                            )
-                                                        )}
+
+                                                        <Page
+
+                                                            key={ind.toString()}
+                                                            pageNumber={1}
+                                                            height={80}
+                                                            width={120}
+                                                        />
                                                     </Document>
+
                                                 </div>
+                                                <Modal key={ind} isOpen={this.state.showPDF} onRequestClose={this.handleClosePDF} style={customStylesForPDF}>
 
+                                                    <div style={{ overflow: "scroll", height: "620px" }}>
+                                                        {/* {console.clear()} */}
+                                                        {console.log(pdf)}
+                                                        <Document
+                                                            file={this.state.file}
+                                                            onLoadSuccess={this.onDocumentLoad}
+                                                        >
+                                                            {/* {console.log(pdf, ind)} */}
+                                                            {/* {console.log(pdf)} */}
+                                                            {/* {console.log(Array.from(new Array(pageNumList[ind])))} */}
+                                                            {Array.from(new Array(this.state.pageNumber)).map(
+                                                                (item, index) =>
+                                                                    (
+                                                                        <Page
 
+                                                                            key={`page_${index + 1}`}
+                                                                            pageNumber={index + 1} // sai
+                                                                            scale={this.state.scale + 0.5}
+                                                                        />
+                                                                    )
+                                                            )}
+                                                        </Document>
+                                                    </div>
+                                                </Modal>
+                                            </>
 
-                                                <button onClick={() => { this.setState({ showPDF: false }) }}>Exit{console.log(this.state.showPDF)}</button>
-                                            </Modal>
-                                        )}
-                                    </>
+                                        )
+                                    }
 
-                                )
+                                    )
+
+                                    :
+                                    null
                             }
 
-                            )}
                         </div>
 
 
-                        {/* <div onClick={this.handleOpenVideo} style={{ cursor: "pointer", width: "120px", height: "80px" }}>
-                            <VideoThumbnail
 
-                                videoUrl={this.state.file}
-                                // thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-                                width={120}
-                                height={80}
-                            />
-                        </div>
-                        <Modal isOpen={this.state.showVideo} onRequestClose={this.handleCloseVideo} style={customStyles}> */}
-                        {/* <Player autoplay fluid={false} width="50%" height={512} aspectRatio="auto" src={this.state.file}>
-                                    <BigPlayButton position="center" />
-                                </Player> */}
-                        {/* <Player> <source src={this.state.file} /></Player> */}
-
-                        {/* {arrayOfVideo.map((video, index) => {
-                                return (
-
-                                    <div >
-                                        <Player fluid={false} width="100%" height={512} aspectRatio="auto" src={video}>
-                                            <BigPlayButton position="center" />
-                                        </Player>
-                                    </div>
-                                )
-                            }
-
-                            )}
-
-
-                        </Modal> */}
 
 
 
@@ -301,9 +277,15 @@ class EResources extends Component {
 
 
                 </div>
+                {/* {console.clear()} */}
+                {/* {console.log(arrayOfPDF)} */}
             </div >
+
         );
+
+
     }
+
 }
 
 
