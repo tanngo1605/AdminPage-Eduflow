@@ -11,11 +11,13 @@ import {marginBottom20vh} from "../../../styles/marginStyles";
 
 const RaiseTicket =(props)=> {
   
-  const getUserInfo = () =>{
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getUserInfo(){
+      props.dispatch(getCurrentUser())
   }
-  useEffect(getUserInfo,[])
-
+    getUserInfo();
+  },[])
+  
   const handleSubmit = (event) => {
     try {
       //const userData = props.account.userData.userdata.data.data;

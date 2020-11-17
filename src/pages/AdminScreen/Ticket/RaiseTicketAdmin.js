@@ -12,11 +12,12 @@ import {marginBottom20vh} from "../../../styles/marginStyles"
 
 
 const RaiseTicketAdmin = (props)=> {
-  const getUserInfo = () =>{
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getUserInfo(){
+      props.dispatch(getCurrentUser())
   }
-  
-  useEffect(getUserInfo,[])
+    getUserInfo();
+  },[])
 
   
   const handleSubmit = (values) => {

@@ -23,12 +23,13 @@ const exams = [
 const Exam = (props) => {
   let [modalState, setModalState] = useState(false)
 
-  const getUserInfo = () => {
-    Modal.setAppElement("body");
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getUserInfo(){
+      Modal.setAppElement("body");
+      props.dispatch(getCurrentUser())
   }
-
-  useEffect(getUserInfo, [])
+    getUserInfo();
+  },[])
 
   const handleSubmit = (values) => {
     try {

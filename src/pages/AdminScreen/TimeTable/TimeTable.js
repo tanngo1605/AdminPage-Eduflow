@@ -96,7 +96,7 @@ const FormiForm = () => {
                             <div className='flexrow'>
                                 <Drawer />
                                 <div className='flexcolumn'>
-                                    <Header {...this.props}/>
+                                    <Header {...props}/>
                                     <div className='form' >
                                         <h1 className='titleform'>Time table</h1>
                                         <div className='flexcolumn' style={{ marginLeft: '1.5vw', marginTop: '3%' }}>

@@ -16,11 +16,12 @@ import "./password.css";
 
 const ChangePassword = (props) => {
   let [modalState,setModalState] = useState(false)
-  const getUserInfo = () =>{
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getUserInfo(){
+      props.dispatch(getCurrentUser())
   }
-
-  useEffect(getUserInfo,[]) 
+    getUserInfo();
+  },[])
 
 
   const handleSubmit = async (values) => {

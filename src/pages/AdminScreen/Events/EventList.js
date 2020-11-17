@@ -18,22 +18,24 @@ import {image580vw,image200percent,image100percent} from '../../../styles/imageS
 const EventList = (props) => {
   let [schoolEvent,setSchoolEvent]= useState([])
   let [filterschoolEvent,setFilterSchoolEvent] = useState([])
-  const getSchoolEventData = async ()=>{
-    props.dispatch(getCurrentUser())
   
-    try {
-      const userData=props.account.userData.userdata.data.data;
-      const schooleventdata = await getSchoolEvent(userData.school.uuid,userData.token)
-      
-      setFilterSchoolEvent( schooleventdata )
-      setSchoolEvent(schooleventdata)
-    }
-    catch(err){
-      console.log(err)
-    }
+  useEffect(()=>{
+    async function getSchoolEventData(){
+      props.dispatch(getCurrentUser())
+  
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const schooleventdata = await getSchoolEvent(userData.school.uuid,userData.token)
+        
+        setFilterSchoolEvent( schooleventdata )
+        setSchoolEvent(schooleventdata)
+      }
+      catch(err){
+        console.log(err)
+      }
   }
-
-  useEffect(getSchoolEventData,[])
+  getSchoolEventData();
+  },[])
 
 
   const deleteEvent = async (eventId)=>{

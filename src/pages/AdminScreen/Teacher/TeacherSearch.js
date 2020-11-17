@@ -15,10 +15,13 @@ import {image300percent,image200percent,image100percent,image130vw} from "../../
 
 const TeacherSearch = (props)=>{
 
-  const loaddata= () => {
-    props.dispatch(loadTeacherData());
+  
+  useEffect(()=>{
+      function getUserInfo(){
+        props.dispatch(loadTeacherData())
     }
-  useEffect(loaddata,[]) 
+      getUserInfo();
+  },[])
 
   const handleSearch =(values)=>{
     console.log(values)

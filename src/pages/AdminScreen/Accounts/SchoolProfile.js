@@ -14,21 +14,22 @@ import {image130vw} from "../../../styles/imageStyles"
 import {image40vwLeft10vw} from "../../../styles/imageMarginStyles"
 const SchoolProfile =  (props) => {
   const [schoolData,setSchoolData] = useState([])
-
-  const getSchoolData =  ()=>{
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getSchoolData(){
+      props.dispatch(getCurrentUser())
   
-    try {
-      const userData=props.account.userData.userdata.data.data;
-      const schooldata =  getSchoolInfo(userData.school.uuid,userData.token)
-      console.log(schooldata)
-      setSchoolData( schooldata )
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const schooldata =  getSchoolInfo(userData.school.uuid,userData.token)
+        console.log(schooldata)
+        setSchoolData( schooldata )
+      }
+        catch(err){
+          console.log(err)
+      }
     }
-      catch(err){
-    }
-  }
-
-  useEffect(getSchoolData,[]) 
+    getSchoolData();
+  },[])
 
   
   const displayImage = (propsForm) => {

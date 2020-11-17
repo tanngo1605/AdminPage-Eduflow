@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import Modal from "react-modal";
+import { withRouter } from "react-router";
 import StarRatings from "react-star-ratings";
 import { BsGear } from "react-icons/bs";
 import icons from "../../userData/Setting";
@@ -86,4 +87,4 @@ const Header = (props) => {
     
 )};
 
-export default Header;
+export default withRouter(Header);
