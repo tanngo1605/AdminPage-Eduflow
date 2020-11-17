@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect,useState} from "react";
 import { connect } from "react-redux"
 import { Formik,Form,Field} from "formik";
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
@@ -14,16 +14,23 @@ import {marginBottom20vh} from "../../../styles/marginStyles"
 
 
 const AddCircular = (props)=> {
-
-  const getUserInfo = () =>{
+  const [userData,setUserData] = useState(null)
+  const getUserInfo = () => {
     props.dispatch(getCurrentUser())
+    const userData = props.account.userData;
+    if (!userData) {
+      props.history.push('/')
+      alert("User needs to log in first");
+      return;
+    }
+    setUserData(userData.userdata.data.data)
+
   }
   useEffect(getUserInfo,[])
 
   const handleSubmit = (values) => {
-    
+
     try {
-      const userData = props.account.userData.userdata.data.data;
       addSchoolCircular(userData.school.uuid,userData.token,values);
       props.history.push("/circular/circularlist");
     }
@@ -31,11 +38,7 @@ const AddCircular = (props)=> {
       console.log(error)
       
     }
-    
-    
-    
   }
-
 
   return ( 
       <div className="dashboard">

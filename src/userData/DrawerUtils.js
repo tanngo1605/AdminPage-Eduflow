@@ -87,23 +87,15 @@ const drawercontent = [
     clicked: false,
 
   },
-  {
-    content: 'Communication',
-    activeimage: 'chat_inactive.png',
-    inactiveimage: "chat_inactive.png",
-    subcontent: [],
-    clicked: false,
+  //{
+  //  content: 'Fees',
+  //  web: 'fee',
+  //  activeimage: 'coin_inactive.png',
+  //  inactiveimage: "coin_inactive.png",
+   // subcontent: [],
+   // clicked: false,
 
-  },
-  {
-    content: 'Fees',
-    web: 'fee',
-    activeimage: 'coin_inactive.png',
-    inactiveimage: "coin_inactive.png",
-    subcontent: [],
-    clicked: false,
-
-  },
+  //},
   {
     content: 'School Profile',
     web: 'schoolprofile',

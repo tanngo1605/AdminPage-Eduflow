@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import StarRatings from "react-star-ratings";
 import { BsGear } from "react-icons/bs";
 import icons from "../../userData/Setting";
-import {marginTop20vh,marginBottom20vh,marginLeft20vw} from '../../styles/marginStyles'
+import {marginTop20vh,marginBottom20vh} from '../../styles/marginStyles'
 const Header = (props) => {
     const [showSetting, setSetting] = useState(false);
     const [feedbackModal,setfeedbackModal] = useState(false);
@@ -20,8 +20,10 @@ const Header = (props) => {
                 break
             case 'changepassword':
                 props.history.push("/changepassword")
+                break
             case 'raiseticket':
                 props.history.push("/raiseticket")
+                break
             default:
                 break
         }

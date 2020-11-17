@@ -11,7 +11,6 @@ import {intialTickedAdmin} from "../../../userData/InitialData/Ticket"
 import {marginBottom20vh} from "../../../styles/marginStyles"
 
 
-
 const RaiseTicketAdmin = (props)=> {
   const getUserInfo = () =>{
     props.dispatch(getCurrentUser())
