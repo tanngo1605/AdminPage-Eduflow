@@ -1,5 +1,5 @@
 import React, { useEffect, Component } from "react";
-import HeaderTeacher from "../../component/Header/HeaderTeacher";
+import HeaderTeacher from "../../../component/Header/HeaderTeacher";
 import Modal from 'react-modal';
 import Dropzone from "react-dropzone";
 import { Document, Page } from 'react-pdf';
@@ -21,6 +21,7 @@ const customStyles = {
         transform: 'translate(-50%, -50%)'
     }
 };
+
 const customStylesForPDF = {
     content: {
         top: '50%',
@@ -36,6 +37,9 @@ class EResources extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            btn1: false,
+            btn2: false,
+            btn3: false,
             showModal: false,
             showVideo: false,
             showPDF: false,
@@ -56,6 +60,9 @@ class EResources extends Component {
         this.handleOpenPDF = this.handleOpenPDF.bind(this);
         this.handleClosePDF = this.handleClosePDF.bind(this);
         this.onDocumentLoad = this.onDocumentLoad.bind(this)
+        this.toggleBtn1 = this.toggleBtn1.bind(this)
+        this.toggleBtn2 = this.toggleBtn2.bind(this)
+        this.toggleBtn3 = this.toggleBtn3.bind(this)
     }
     onDocumentLoad({ numPages }) {
         // console.log(numPages);
@@ -103,32 +110,17 @@ class EResources extends Component {
             this.setState({ showListPDF: true, showListVideo: false })
         }
     }
-    onDrop = (e) => {
-        var reader = new FileReader();
-        reader.readAsDataURL(e[0])
-        // console.log(e[0]);
-    };
-    handleChange(e) {
-        this.setState({ file: URL.createObjectURL(e.target.files[0]) })
-        console.log(e.target.files[0]);
-        var file = document.querySelector('.einput').files
-        // console.log(file);
-        // console.log(file[0]);
-        // console.log(file[0] instanceof Blob);
-        var reader = new FileReader();
-        console.log(reader.readAsText(file[0]));
-        // reader.onload = function () {
-        //     console.log(reader.result);
-        //     document.getElementById("display").src = reader.result;
-        //     // image editing
-        //     // ...
-        //     var blob = window.dataURLtoBlob(reader.result);
-        //     console.log(blob);
-        // }
-        console.log(e);
-        console.log(e.target.value);
-    }
 
+    toggleBtn1() {
+        console.log(this.state.btn1);
+        this.setState({ btn1: !this.state.btn1 })
+    }
+    toggleBtn2() {
+        this.setState({ btn2: !this.state.btn2 })
+    }
+    toggleBtn3() {
+        this.setState({ btn3: !this.state.btn3 })
+    }
     render() {
 
 
@@ -151,13 +143,29 @@ class EResources extends Component {
                         </div>
                         <div className="flexrow" style={{ marginTop: "2vh", marginLeft: "25vw" }}>
                             <button className="button" onClick={this.handleOpenModal} style={{ background: "#66C4E1" }}>+ ADD file</button>
-                            <Modal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal} style={{ width: "100px" }}>
+                            <Modal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal} className="GalleryModal">
+                                <div className="headermodal">Upload file </div>
+                                <div className="flexcolumn" style={{ marginLeft: "2vw", marginTop: "4vh" }}>
+
+                                    <p>
+                                        <input type="radio" id="test1" onChange={this.toggleBtn1} onClick={this.toggleBtn1} />
+                                        <label htmlFor="test1">Video</label>
+                                    </p>
+
+                                    <p><input type="radio" id="test2" onChange={this.toggleBtn2} onClick={this.toggleBtn1} />
+                                        <label htmlFor="test2">PDF / Notes</label></p>
+
+                                    <p> <input type="radio" id="test3" checked />
+                                        <label htmlFor="test3">Weblines</label></p>
+
+
+                                </div>
                                 <Dropzone onDrop={files => { files[0].type === "application/pdf" ? arrayOfPDF.push(URL.createObjectURL(files[0])) : arrayOfVideo.push(URL.createObjectURL(files[0])); console.log(files[0]); this.setState({ trigger: !this.state.trigger }) }} >
                                     {({ getRootProps, getInputProps }) => (
                                         <section className="flexcolumn" >
                                             <div {...getRootProps({})}>
                                                 <input {...getInputProps()} />
-                                                <button className="gallerybutton">Upload Album</button>
+                                                <button className="gallerybutton">Save</button>
                                             </div>
                                         </section>
                                     )}

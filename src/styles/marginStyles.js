@@ -35,16 +35,16 @@ const marginBottom130vhandTop30vh = {
   marginBottom: "13vh",
   marginTop: "3vh",
 };
-const marginLeft600vw ={
+const marginLeft600vw = {
   marginLeft: "60vw",
 }
-const marginLeft480vw ={
+const marginLeft480vw = {
   marginLeft: "48vw",
 }
-const marginLeft470vw ={
+const marginLeft470vw = {
   marginLeft: "47vw",
 }
-const marginLeft450vw ={
+const marginLeft450vw = {
   marginLeft: "45vw",
 }
 const marginLeft380vw = {
@@ -53,8 +53,8 @@ const marginLeft380vw = {
 const marginLeft320vw = {
   marginLeft: "32vw",
 };
-const marginLeft270vw ={
-  marginLeft:'27vw'
+const marginLeft270vw = {
+  marginLeft: '27vw'
 }
 const marginLeft260vw = {
   marginLeft: "26vw",
@@ -70,22 +70,22 @@ const marginLeft200vw = {
   marginLeft: "20vw",
 };
 const marginLeft150vw = {
-  marginLeft: "20vw",
+  marginLeft: "19vw",
 };
 const marginLeft130vw = {
   marginLeft: "13vw",
 };
-const marginLeft120vw={
-  marginLeft:"12vw"
+const marginLeft120vw = {
+  marginLeft: "12vw"
 }
 const marginLeft100vw = {
   marginLeft: "10vw",
 };
-const marginLeft80vw ={
-  marginLeft:"8vw"
+const marginLeft80vw = {
+  marginLeft: "8vw"
 }
-const marginLeft60vw ={
-  marginLeft:"6vw"
+const marginLeft60vw = {
+  marginLeft: "6vw"
 }
 const marginLeft55vw = {
   marginLeft: "5.5vw",
@@ -96,8 +96,8 @@ const marginLeft50vw = {
 const marginLeft20vw = {
   marginLeft: "2vw",
 };
-const marginLeft15vw={
-  marginLeft:'1.5vw'
+const marginLeft15vw = {
+  marginLeft: '1.5vw'
 }
 const marginTop220vh = {
   marginTop: "22vh",
@@ -121,11 +121,11 @@ const marginTop55vh = {
 const marginTop45vh = {
   marginTop: "4.5vh",
 };
-const marginTop20vh ={
-  marginTop:"2vh"
+const marginTop20vh = {
+  marginTop: "2vh"
 }
-const marginTop10vh ={
-  marginTop:"1vh"
+const marginTop10vh = {
+  marginTop: "1vh"
 }
 
 const fontsize12vw = {
@@ -143,14 +143,14 @@ const marginTop8vh = {
 };
 const labelStyle = {
   fontSize: "1vw",
-  
+
   width: "20vw",
 };
 
 
 export {
 
-  
+
   labelStyle,
   marginTop8vh,
   marginBottom130vhandTop30vh,

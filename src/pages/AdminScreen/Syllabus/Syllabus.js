@@ -47,7 +47,7 @@ class Syllabus extends Component {
         <div style={{ display: "flex" }}>
           <Drawer />
           <div className="flexcolumn">
-            <Header {...this.props}/>
+            <Header {...this.props} />
             <form
               className="form"
               onSubmit={this.handleSubmit}
@@ -75,14 +75,14 @@ class Syllabus extends Component {
                         </label>
                         <label
                           htmlFor="subject"
-                          style={{ marginLeft: "25vw" }}
+                          style={{ marginLeft: "15vw" }}
                           className="section"
                         >
                           Subject
                         </label>
                       </div>
 
-                      <div className="flexrow" style={{ marginTop: "5.5vh" }}>
+                      <div className="flexrow" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
                         <input
                           type="text"
                           id="class"
@@ -96,7 +96,7 @@ class Syllabus extends Component {
                           type="text"
                           id="subject"
                           className="shortbox"
-                          style={{ marginLeft: "25vw" }}
+                          style={{ marginLeft: "12vw" }}
                           placeholder="- Select"
                           onChange={(event) => this.handleChange(event, key)}
                         />
@@ -105,7 +105,7 @@ class Syllabus extends Component {
                           {({ getRootProps, getInputProps }) => (
                             <section
                               className="flexrow"
-                              style={{ marginLeft: "47vw" }}
+                              style={{ marginLeft: "12vw" }}
                             >
                               <div
                                 {...getRootProps({ className: "attachment" })}

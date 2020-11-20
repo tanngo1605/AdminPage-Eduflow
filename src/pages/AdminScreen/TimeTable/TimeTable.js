@@ -14,9 +14,11 @@ import {
     marginLeft130vw,
     marginLeft55vw,
     marginLeft60vw,
+    marginLeft120vw,
     marginTop55vh,
     marginTop45vh,
-    fontsize12vw
+    fontsize12vw,
+    marginBottom55vh
 } from '../../../styles/marginStyles'
 import './animation.css'
 import { image100vw } from '../../../styles/imageStyles'
@@ -43,94 +45,105 @@ for (let i = 0; i < numOfPeriods; i++) {
 }
 
 
-const FormiForm = () => {
-    addTimeTable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI",
-        {
-            period: "3",
-            day: "tuesday",
-            startTime: "22:22",
-            endTime: "22:22",
-            classvalue: "ONE",
-            section: "A"
-        });
+const FormiForm = (props) => {
+    try {
+        addTimeTable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI",
+            {
+                period: "3",
+                day: "tuesday",
+                startTime: "22:22",
+                endTime: "22:22",
+                classvalue: "ONE",
+                section: "A"
+            });
+    } catch (error) {
+        console.log(error);
+    }
+
 
     return (
 
         <div>
+            <div className='dashboard'>
+                <div className='flexrow'>
+                    <Drawer />
+                    <div className='flexcolumn'>
+                        <Header {...props} />
+                        <Formik
+                            enableReinitialize
+                            initialValues={{
+                                classvalue: '', section: '', day: '',
+                                period: arrayOfPeriods
+                            }}
+                            validationSchema={TimetableSchema}
+                            onSubmit={(values, actions) => {
+                                console.log(values);
+                                setTimeout(() => {
+                                    alert(JSON.stringify(values, null, 4));
 
+                                    // alert(JSON.stringify(values.period[0].startTime, null, 4))
+                                    actions.setSubmitting(false);
+                                }, 1000);
+                            }}
+                        >
+                            {props => (
 
-            <Formik
-                enableReinitialize
-                initialValues={{
-                    classvalue: '', section: '', day: '',
-                    period: arrayOfPeriods
-                }}
-                validationSchema={TimetableSchema}
-                onSubmit={(values, actions) => {
-                    console.log(values);
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 4));
-
-                        // alert(JSON.stringify(values.period[0].startTime, null, 4))
-                        actions.setSubmitting(false);
-                    }, 1000);
-                }}
-            >
-                {props => (
-                    // console.log(Array.of(props.values.period).map(el => console.log(el))),\
-                    // console.log(props.values),
-                    // console.log(addTimetable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI", {
-                    //     "period": "2",
-                    //     "day": "tuesday",
-                    //     "startTime": "22:22",
-                    //     "endTime": "22:22",
-                    //     "class": "ONE",
-                    //     "section": "A"
-
-                    // console.log(dataof()),
-                    // }).then(res => { console.log(res); })),
-                    <Form>
-
-                        <div className='dashboard'>
-                            <div className='flexrow'>
-                                <Drawer />
-                                <div className='flexcolumn'>
-                                    <Header {...this.props}/>
+                                <Form>
                                     <div className='form' >
                                         <h1 className='titleform'>Time table</h1>
                                         <div className='flexcolumn' style={{ marginLeft: '1.5vw', marginTop: '3%' }}>
                                             <div className='flexrow'>
-                                                <div className='flexrow' style={marginBottom20vh}>
+                                                <div className='flexrow' style={marginBottom55vh}>
                                                     {/* {console.log(props.errors.class)} */}
 
-                                                    <div className='flexrow'>
-                                                        <label className='section'>Enter Class</label>
-                                                        <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
-                                                            <option value="" defaultValue>{" "}-select-</option>
-                                                            {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
-                                                        </Field>
-                                                        {/* {props.errors.class && props.touched.class ? (
-                                                            <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
-                                                        ) : null} */}
-                                                        <ErrorMessage name="classvalue" />
-                                                        <label className="section" style={marginLeft60vw}>Enter Section</label>
-                                                        <Field as="select" name="section" className="shortbox" placeholder="Your section">
-                                                            <option value="" defaultValue>{" "}-select-</option>
-                                                            {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
-                                                        </Field>
-                                                        {props.errors.section && props.touched.section ?
+                                                    {/* <div className='flexrow'> */}
+                                                    <div className="flexcolumn">
+                                                        <div className="flexrow">
+                                                            <label className='section' style={{ width: "25%", marginRight: "5vw" }}>Enter Class</label>
+                                                            <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
+                                                                <option value="" defaultValue>{" "}-select-</option>
+                                                                {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                                                            </Field>
+                                                        </div>
+                                                        <div style={{ position: "absolute" }}>{props.errors.classvalue && props.touched.classvalue ?
                                                             (
-                                                                <div className="errMessOuter">
+                                                                <div className="errMessOuter" >
                                                                     <FcHighPriority className="iconErrMess" size="1.5vw" />
-                                                                    <ErrorMessage name="section" />
+                                                                    <ErrorMessage name="classvalue" />
                                                                 </div>
 
-                                                            ) : null}
-
-
+                                                            ) : null}</div>
 
                                                     </div>
+
+                                                    <div className="flexcolumn">
+                                                        <div className="flexrow">
+                                                            <label className="section" style={{ width: "25%", marginLeft: "5vw", marginRight: "5vw" }}>Enter Section</label>
+                                                            <Field as="select" name="section" className="shortbox" placeholder="Your section">
+                                                                <option value="" defaultValue>{" "}-select-</option>
+                                                                {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
+                                                            </Field>
+                                                        </div>
+                                                        <div style={{ position: "absolute" }}>
+                                                            {props.errors.section && props.touched.section ?
+                                                                (
+
+                                                                    <div className="errMessOuter" style={{ marginLeft: "6vw" }}>
+                                                                        <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                                                        <ErrorMessage name="section" />
+                                                                    </div>
+
+                                                                ) : null}
+                                                        </div>
+
+                                                    </div>
+
+
+
+
+
+                                                    {/* </div> */}
 
                                                     {/* <ErrorMessage name="class" /> */}
                                                     {/* <select className='shortbox' required onChange={props.handleChange} value={props.values.class} style={marginLeft130vw} id='class'>
@@ -142,87 +155,107 @@ const FormiForm = () => {
                                                 </div>
 
                                             </div>
-                                            <div className='flexrow' >
-                                                <label className='section'>Choose Day</label>
-                                                {/* <DatePickerField name='day' /> */}
+                                            <div className='flexcolumn' >
+                                                <div className="flexrow">
+                                                    <label className='section'>Choose Day</label>
+                                                    <DayPickerInput required name="day" id="day" className='shortbox' format="D/M/Y" onDayChange={(e) => props.setFieldValue('day', Intl.DateTimeFormat('en-GB').format(e))} value={props.values.day} placeholder='- select -' style={{ zIndex: "1" }} />
 
-                                                <DayPickerInput required className='shortbox' format="D/M/YYYY" onDayChange={(e) => props.setFieldValue('day', Intl.DateTimeFormat('en-GB').format(e))} value={props.values.day} placeholder='- select -' />
-                                                {/* {props.errors.day && props.touched.day ? (
-                                                    <div className="error" style={{ color: "red", fontSize: "12px", position: "relative", top: "40px", left: "200px", position: "absolute" }}>{props.errors.day}</div>
-                                                ) : null} */}
-                                                <div className="errMessOuter" style={props.errors.day ? null : { display: "none" }}>
-                                                    <FcHighPriority className="iconErrMess" size="1.5vw" />
-                                                    <ErrorMessage name="day" />
+                                                </div>
+                                                <div style={{ position: "absolute" }}>
+                                                    {props.errors.day && props.touched.day ?
+                                                        (
+                                                            <div className="errMessOuter">
+                                                                <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                                                <ErrorMessage name="day" />
+                                                            </div>
+
+                                                        ) : null}
                                                 </div>
 
 
                                             </div>
+
+
                                         </div>
+                                        <div className="flexcolumn">
+                                            <div className='tablelistArea' style={{ marginTop: '8vh', paddingTop: '2%', width: '75vw' }}>
 
-                                        <div className='tablelistArea' style={{ marginTop: '12vh', paddingTop: '2%', width: '75vw' }}>
-
-                                            <Scrollbars>
-                                                <FieldArray
-                                                    name="period"
-                                                    render={arrayHelper => (
-                                                        <div>
-                                                            {props.values.period.map(
-                                                                (el, index) =>
-
-
-                                                                    <div className='flexrow' key={index} style={Object.assign({}, marginBottom125vh, marginLeft55vw)}>
-                                                                        <div className='flexcolumn'>
-                                                                            <p className='section' style={fontsize12vw}>Period</p>
-                                                                            <p className='section' style={{ marginLeft: '1.2vw', marginTop: '5.5vh' }}>{index + 1}</p>
-                                                                        </div>
-                                                                        <div className='flexcolumn' style={marginLeft130vw} >
-                                                                            <label htmlFor='starttime' className='section'>Start time: </label>
+                                                <Scrollbars>
+                                                    <FieldArray
+                                                        name="period"
+                                                        render={arrayHelper => (
+                                                            <div>
+                                                                {props.values.period.map(
+                                                                    (el, index) =>
 
 
-                                                                            <Field type='time' name={`period[${index}].starttime`} className='shortbox' style={Object.assign({}, marginTop55vh, image100vw)} />
-                                                                            {/* <ErrorMessage className="errMess" name={`period[${index}].starttime`} /> */}
-                                                                            {/* <div className="errMess" >
+                                                                        <div className='flexrow' key={index} style={Object.assign({}, marginBottom125vh, marginLeft55vw)}>
+                                                                            <div className='flexcolumn'>
+                                                                                <p className='section' style={fontsize12vw}>Period</p>
+                                                                                <p className='section' style={{ marginLeft: '1.2vw' }}>{index + 1}</p>
+                                                                            </div>
+                                                                            <div className='flexcolumn' style={marginLeft130vw} >
+                                                                                <label htmlFor='starttime' className='section' style={{ width: "100%" }}>Start time: </label>
+
+
+                                                                                <Field type='time' name={`period[${index}].starttime`} className='shortbox' style={Object.assign({}, image100vw)} />
+                                                                                {/* <ErrorMessage className="errMess" name={`period[${index}].starttime`} /> */}
+                                                                                {/* <div className="errMess" >
                                                                                 <ErrorMessage name={`period[${index}].starttime`} />
                                                                             </div> */}
-                                                                            {/* {props.errors.period && props.touched.period ? <div>{props.errors.period[index].starttime}</div> : null} */}
+                                                                                {/* {props.errors.period && props.touched.period ? <div>{props.errors.period[index].starttime}</div> : null} */}
 
-                                                                        </div>
-                                                                        <div className='flexcolumn' style={marginLeft150vw}  >
+                                                                            </div>
+                                                                            <div className='flexcolumn' style={marginLeft150vw}  >
 
-                                                                            <label htmlFor='endtime' className='section'>End time: </label>
+                                                                                <label htmlFor='endtime' className='section' style={{ width: "100%" }}>End time: </label>
 
-                                                                            <Field type='time' name={`period[${index}].endtime`} className='shortbox' style={Object.assign({}, marginTop55vh, image100vw)} />
-                                                                            {/* {props.errors.endtime && <div>{props.errors.endtime}</div>} */}
-                                                                            {/* <div className="errMess" >
+                                                                                <Field type='time' name={`period[${index}].endtime`} className='shortbox' style={Object.assign({}, image100vw)} />
+                                                                                {/* {props.errors.endtime && <div>{props.errors.endtime}</div>} */}
+                                                                                {/* <div className="errMess" >
                                                                                 <ErrorMessage name={`period[${index}].endtime`} />
                                                                             </div> */}
-                                                                        </div>
-                                                                        <div className='flexcolumn' style={marginLeft200vw}>
-                                                                            <p className='section' style={fontsize12vw}>Subject</p>
-                                                                            <Field as="select" name={`period[${index}].subject`} className="shortbox" style={marginTop55vh}>
-                                                                                <option value="" defaultValue>{" "}-select-</option>
-                                                                                {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
-                                                                            </Field>
-                                                                            {/* <div className="errMess" >
+                                                                            </div>
+                                                                            <div className='flexcolumn' style={marginLeft200vw}>
+                                                                                <p className='section' style={fontsize12vw, { width: "100%" }}>Subject</p>
+                                                                                <Field as="select" name={`period[${index}].subject`} className="shortbox" >
+                                                                                    <option value="" defaultValue>{" "}-select-</option>
+                                                                                    {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
+                                                                                </Field>
+                                                                                {/* <div className="errMess" >
                                                                                 <ErrorMessage name={`period[${index}].subject`} />
                                                                             </div> */}
-                                                                            {/* <select className="shortbox" required id='subject' style={marginTop55vh} onChange={(event) => props.handleChange(event.target.value)} value={props.values.period[index].subject} > */}
-                                                                            {/* <option value="" defaultValue>{" "}-select-</option>
+                                                                                {/* <select className="shortbox" required id='subject' style={marginTop55vh} onChange={(event) => props.handleChange(event.target.value)} value={props.values.period[index].subject} > */}
+                                                                                {/* <option value="" defaultValue>{" "}-select-</option>
                                                                     {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)} */}
-                                                                            {/* </select>  */}
-                                                                        </div>
-                                                                    </div>)}
+                                                                                {/* </select>  */}
+                                                                            </div>
+                                                                        </div>)}
 
 
+                                                            </div>
+                                                        )} />
+                                                    <button className='buttonshownothing'
+                                                        onClick={() => { numOfPeriods = numOfPeriods + 1 }}
+                                                        style={{ fontSize: '1vw', marginLeft: '45%', marginBottom: '1vh', background: 'white' }}> + Add More </button>
+                                                </Scrollbars>
+
+
+                                                {/* <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" />
+                                            </>) : null}</div> */}
+                                            </div>
+                                            <div style={{ position: "absolute", top: "700px", left: "100px" }}>
+                                                {(props.errors.period && props.touched.period) ?
+                                                    (
+                                                        <div className="errMessOuter">
+                                                            <FcHighPriority className="iconErrMess" size="1.5vw" />
+                                                            {/* <ErrorMessage name="day" /> */}
+                                                            <div style={{ display: "contents", fontSize: "12px" }}>Need at least {numOfPeriods} period</div>
                                                         </div>
-                                                    )} />
-                                                <button className='buttonshownothing'
-                                                    onClick={() => { numOfPeriods = numOfPeriods + 1 }}
-                                                    style={{ fontSize: '1vw', marginLeft: '45%', marginBottom: '1vh', background: 'white' }}> + Add More </button>
-                                            </Scrollbars>
-                                            <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" /><div style={{ display: "contents" }}>Need at least {numOfPeriods} period</div></>) : null}</div>
-                                        </div>
 
+                                                    ) : null}
+                                            </div>
+                                        </div>
 
                                         <div className='flexrow' style={marginTop45vh}>
 
@@ -232,15 +265,16 @@ const FormiForm = () => {
 
 
                                     </div>
-                                </div>
 
-                            </div>
-                        </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
+                </div>
+            </div>
 
-                    </Form>
-                )}
-            </Formik>
-        </div >
+
+        </div>
     )
 
 }

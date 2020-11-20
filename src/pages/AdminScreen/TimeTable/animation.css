@@ -8,8 +8,8 @@
 }
 .errMessOuter {
     position: absolute;
-    padding-top: 4px;
-    padding-left: 8px;
+    padding-top: 2px;
+    padding-left: 5px;
     height: 30px;
     
     border: 1px solid #000000;
@@ -46,8 +46,8 @@
 
 }
 .iconErrMess {
-    position: relative;
-    
-    top:2.5px;
+    /* position: relative; */
+    /* top:2.5px; */
     size: 1.5vw;
+    margin-right: 10px;
 }

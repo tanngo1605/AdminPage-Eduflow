@@ -20,7 +20,7 @@ import ExamRouter from "./navigation/ExamRouter";
 import ResultList from "./pages/TeacherScreen/ApproveResult/Result"
 import ApproveResult from "./pages/TeacherScreen/ApproveResult/ApproveResult"
 import StudentResult from "./pages/TeacherScreen/ApproveResult/StudentResult"
-import EResources from './pages/EResources/EResources';
+import EResources from './pages/TeacherScreen/EResources/EResources';
 import "./App.css";
 import "./styles.css";
 import CircularRouter from "./navigation/CircularRouter";
