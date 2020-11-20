@@ -18,11 +18,12 @@ const CreateSubject = (props)=>{
 
   var [numperiod,setNumPeriod] = useState(6)
 
-  const getUserInfo = () =>{
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getUserInfo(){
+      props.dispatch(getCurrentUser())
   }
-
-  useEffect(getUserInfo,[])
+    getUserInfo();
+  },[])
 
   const assignSubject=()=>{
     let period=[];

@@ -1,13 +1,8 @@
 import React, { Component, useState } from "react";
 
 import { Scrollbars } from "react-custom-scrollbars";
-<<<<<<< HEAD:src/pages/Syllabus/ScreenSyllabus.js
-import Drawer from "../../component/Drawer/Drawer";
-import Header from "../../component/Header/HeaderAdmin";
-=======
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
->>>>>>> fcfc2b66a0c4298ac4f1eec6f3def2628e72e623:src/pages/AdminScreen/Syllabus/ScreenSyllabus.js
 import "./SyllabusScreen.css";
 import { Document, Page } from "react-pdf";
 import PDFViewer from "pdf-viewer-reactjs";

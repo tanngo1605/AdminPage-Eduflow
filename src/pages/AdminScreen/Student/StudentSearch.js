@@ -15,11 +15,13 @@ import {addaProfileAttachment,marginLeft100vw,marginTop20vh} from "../../../styl
 import {image300percent,image200percent,image100percent,image130vw} from "../../../styles/imageStyles";
 const StudentSearch = (props) => {
   
-  const loaddata= () => {
-    props.dispatch(loadData());
+    useEffect(()=>{
+      function getUserInfo(){
+        
+        props.dispatch(loadData())
     }
-    
-  useEffect(loaddata,[]) 
+      getUserInfo();
+    },[])
 
   
   const onDrop = (files) => {

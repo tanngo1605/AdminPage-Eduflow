@@ -16,21 +16,22 @@ import {addaProfileAttachment,marginLeft60vw,marginLeft20vw,marginTop20vh} from 
 import {image200percent,image150percent,image100percent} from '../../../styles/imageStyles'
 const CircularList = (props) => {
   let [circularData,setCircularData] = useState([])
-
-  const getCircularData = async ()=>{
-    props.dispatch(getCurrentUser())
   
-    try {
-      const userData=props.account.userData.userdata.data.data;
-      const circular = await getSchoolCircular(userData.school.uuid,userData.token)
-      setCircularData( circular )
-    }
-    catch(err){
-      console.log(err)
-    }
+  useEffect(()=>{
+    async function getCircularData(){
+      props.dispatch(getCurrentUser())
+  
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const circular = await getSchoolCircular(userData.school.uuid,userData.token)
+        setCircularData( circular )
+      }
+      catch(err){
+        console.log(err)
+      }
   }
-
-  useEffect(getCircularData,[])
+    getCircularData();
+  },[])
 
 
   

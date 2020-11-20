@@ -19,12 +19,14 @@ const CreateEvent = (props) => {
   
   let [modalState,setModalState] = useState(false)
 
-  const getUserInfo = () =>{
-    Modal.setAppElement("body");
-    props.dispatch(getCurrentUser())
+  useEffect(()=>{
+    function getUserInfo(){
+      Modal.setAppElement("body");
+      props.dispatch(getCurrentUser())
   }
+    getUserInfo();
+  },[])
 
-  useEffect(getUserInfo,[])
 
 
   const handleSubmit =  (values) => {

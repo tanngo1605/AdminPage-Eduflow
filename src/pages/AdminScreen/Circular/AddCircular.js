@@ -14,24 +14,30 @@ import {marginBottom20vh} from "../../../styles/marginStyles"
 
 
 const AddCircular = (props)=> {
-  const [userData,setUserData] = useState(null)
-  const getUserInfo = () => {
-    props.dispatch(getCurrentUser())
-    const userData = props.account.userData;
-    if (!userData) {
-      props.history.push('/')
-      alert("User needs to log in first");
-      return;
-    }
-    setUserData(userData.userdata.data.data)
+  const [userData,setUserData] = useState(null);
 
+  useEffect(()=>{
+    function getUserInfo(){
+      props.dispatch(getCurrentUser())
+      const user = props.account.userData;
+      console.log(user)
+      if (!user) {
+        console.log(user)
+        props.history.push('/')
+        alert("User needs to log in first");
+        return;
+      }
+      else 
+        setUserData(user)
   }
-  useEffect(getUserInfo,[])
+    getUserInfo();
+  },[])
 
   const handleSubmit = (values) => {
 
     try {
-      addSchoolCircular(userData.school.uuid,userData.token,values);
+      const user = userData.userdata.data.data
+      addSchoolCircular(user.school.uuid,user.token,values);
       props.history.push("/circular/circularlist");
     }
     catch(error) {

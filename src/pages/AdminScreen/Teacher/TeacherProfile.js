@@ -17,11 +17,12 @@ const TeacherProfile = (props) => {
   const [teacherData,setTeacherData] = useState(props.location.teacherdata?props.location.teacherdata:[])
   const [edit,setEdit] = useState(props.location.teacherdata?false:true)
   
-  const getUserInfo= () => {
-    props.dispatch(getCurrentUser());
+  useEffect(()=>{
+    function getUserInfo(){
+      props.dispatch(getCurrentUser())
   }
-
-  useEffect(getUserInfo,[]) 
+    getUserInfo();
+  },[])
 
   const displayImage = (propsForm) => {
     
