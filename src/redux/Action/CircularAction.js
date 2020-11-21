@@ -7,7 +7,7 @@ const addSchoolCircular =  (schoolId,jwtToken,circularInput) => {
     
     const inputData = JSON.stringify({
 
-      title: title,
+      title,
       url:URL.createObjectURL(attachment[0])
 
     })

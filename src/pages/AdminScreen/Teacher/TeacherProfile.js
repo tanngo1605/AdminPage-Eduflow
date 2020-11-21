@@ -57,13 +57,13 @@ const TeacherProfile = (props) => {
       if (edit) {
 
         
-        createUsers(userData.token,values,'student')
+        createUsers(userData.token,values,'teacher')
         
         
       }
       else{
 
-        createUsers(userData.token,values,'student')
+        createUsers(userData.token,values,'teacher')
         
       }
       props.history.push("/teachersearch");

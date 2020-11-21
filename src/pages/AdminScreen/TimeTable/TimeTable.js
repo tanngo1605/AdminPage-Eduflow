@@ -1,6 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Formik, Form, Field, FieldArray, useFormik, useFormikContext, ErrorMessage } from 'formik';
+import React,{useState,useEffect} from 'react';
+import { connect } from "react-redux"
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import { Formik, Form, Field, FieldArray, useFormik, ErrorMessage } from 'formik';
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../../component/Drawer/Drawer';
@@ -45,21 +46,35 @@ for (let i = 0; i < numOfPeriods; i++) {
 }
 
 
-const FormiForm = (props) => {
-    try {
-        addTimeTable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI",
-            {
+const TimeTable = (props) => {
+    
+
+    useEffect(()=>{
+        function getUserInfo(){
+          props.dispatch(getCurrentUser())
+      }
+        getUserInfo();
+      },[])
+
+    const handleSubmit = async (values) => {
+        try {
+            const userData = props.account.userData.userdata.data.data;
+            const currentValues = {
                 period: "3",
                 day: "tuesday",
                 startTime: "22:22",
                 endTime: "22:22",
                 classvalue: "ONE",
                 section: "A"
-            });
-    } catch (error) {
-        console.log(error);
-    }
+            };
+            await addTimeTable(userData.school.uuid,userData.token,currentValues)
+          }
+          catch(error) {
+            console.log(error)
+            
+        }
+      }
+    
 
 
     return (
@@ -78,13 +93,8 @@ const FormiForm = (props) => {
                             }}
                             validationSchema={TimetableSchema}
                             onSubmit={(values, actions) => {
-                                console.log(values);
-                                setTimeout(() => {
-                                    alert(JSON.stringify(values, null, 4));
-
-                                    // alert(JSON.stringify(values.period[0].startTime, null, 4))
-                                    actions.setSubmitting(false);
-                                }, 1000);
+                                handleSubmit(values);
+                                actions.resetForm();
                             }}
                         >
                             {props => (
@@ -178,7 +188,7 @@ const FormiForm = (props) => {
 
                                         </div>
                                         <div className="flexcolumn">
-                                            <div className='tablelistArea' style={{ marginTop: '8vh', paddingTop: '2%', width: '75vw' }}>
+                                            <div className='tablelistArea' style={{ marginTop: '2vh', paddingTop: '2%', width: '75vw',paddingLeft:'5vw' }}>
 
                                                 <Scrollbars>
                                                     <FieldArray
@@ -189,7 +199,7 @@ const FormiForm = (props) => {
                                                                     (el, index) =>
 
 
-                                                                        <div className='flexrow' key={index} style={Object.assign({}, marginBottom125vh, marginLeft55vw)}>
+                                                                        <div className='flexrow' key={index} style={marginBottom20vh}>
                                                                             <div className='flexcolumn'>
                                                                                 <p className='section' style={fontsize12vw}>Period</p>
                                                                                 <p className='section' style={{ marginLeft: '1.2vw' }}>{index + 1}</p>
@@ -279,5 +289,8 @@ const FormiForm = (props) => {
 
 }
 
-
-export default FormiForm
+const mapStateToProps = (state) => ({
+    account:state.account,
+  })
+  
+  export default React.memo(connect(mapStateToProps)(TimeTable));

@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 const loginAccount = async (userInput) => {
     const {schoolCode,username,password} = userInput;
     const inputData =JSON.stringify({
-      username: username,
-      password: password,
+      username,
+      password,
       role:"admin",
     })
     let userData= axios.post(`${ServerDomain}/auth/login`,inputData,{

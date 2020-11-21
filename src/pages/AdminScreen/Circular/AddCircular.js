@@ -20,9 +20,7 @@ const AddCircular = (props)=> {
     function getUserInfo(){
       props.dispatch(getCurrentUser())
       const user = props.account.userData;
-      console.log(user)
       if (!user) {
-        console.log(user)
         props.history.push('/')
         alert("User needs to log in first");
         return;

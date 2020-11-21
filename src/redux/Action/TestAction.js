@@ -6,11 +6,11 @@ const addTest =  (jwtToken,testInput) => {
     
     
     const inputData = JSON.stringify({
-      date: date,
-      section:section,
+      date,
+      section,
       class:classvalue,
-      name:name,
-      type:type
+      name,
+      type
     })
 
     axios.post(`${ServerDomain}/tests`,inputData,{
@@ -51,11 +51,11 @@ const addTestMarks =  (jwtToken,testMarkInput) => {
     
     
     const inputData = JSON.stringify({
-      date: date,
-      section:section,
+      date,
+      section,
       class:classvalue,
-      name:name,
-      type:type
+      name,
+      type
     })
     axios.post(`${ServerDomain}/tests`,inputData,{
                     headers: { 
