@@ -35,7 +35,7 @@ const studentProfileSchema = yup.object({
     .required(),
   alternatephoneno:yup.string()
     .required(),
-  image:yup.array()
+  image:yup.object(),
   
   
   

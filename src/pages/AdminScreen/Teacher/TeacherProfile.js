@@ -256,7 +256,7 @@ const TeacherProfile = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  teacher: state.teacher,
+  account: state.account,
 });
 
 export default React.memo(connect(mapStateToProps)(TeacherProfile));

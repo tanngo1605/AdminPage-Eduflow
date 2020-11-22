@@ -30,12 +30,11 @@ const loginAccount = async (userInput) => {
 const createUsers = (jwtToken,userInput,role) => {
   let inputData = {};
   
-  console.log(format(userInput.dob,`yyyy-MM-dd`))
   //fix date of birth tomorrow
   if (role ==='student')
       inputData = JSON.stringify({
             name:userInput.name,
-            email:"mmr337779999231@gmail.com",
+            email:"mmr337776699999@gmail.com",
             address:`${userInput.permaaddress}, ${userInput.permacity}, ${userInput.permastate}, ${userInput.permapcode}`,
             mobile:userInput.fathermobileno,
             fatherName:userInput.fathername,
@@ -45,7 +44,7 @@ const createUsers = (jwtToken,userInput,role) => {
             fatherMobile:userInput.fathermobileno,
             alternateMobile:userInput.alternatephoneno,
             admissionNo:userInput.admissnumber,
-            //dob:,
+            dob:format(userInput.dob,`yyyy-MM-dd`),
             isHosteler:"false",
             role:role,
             class:userInput.classvalue,
@@ -67,7 +66,7 @@ const createUsers = (jwtToken,userInput,role) => {
         })
         .catch(err=>{
               const error= "Something went wrong. Check your input again"
-              throw new Error(error)
+              alert(error)
         });
 
 }
