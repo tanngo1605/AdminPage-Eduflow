@@ -11,7 +11,7 @@ import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   account: AccountReducer,
-  event: EventReducer,
+  //event: EventReducer,
   ticket:TicketReducer,
   student:StudentReducer,
   teacher:TeacherReducer,

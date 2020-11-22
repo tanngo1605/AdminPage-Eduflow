@@ -21,7 +21,7 @@ const studentProfileInitialValue={
     teachername:"",
     fathermobileno:"",
     alternatephoneno:"",
-    image:[],
+    image:{},
 }
 
 const studentSearchInitialValue = {

@@ -8,6 +8,7 @@ import 'video-react/dist/video-react.css';
 import VideoThumbnail from 'react-video-thumbnail';
 import { pdfjs } from 'react-pdf';
 import { assign } from "lodash";
+import { marginBottom20vh, marginLeft250vw } from "../../../styles/marginStyles";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const arrayOfVideo = []
 const arrayOfPDF = []
@@ -130,18 +131,18 @@ class EResources extends Component {
                     <HeaderTeacher />
                     <div className="form" style={{ marginLeft: "2%" }}>
                         <div style={{ margin: "2%", }}>
-                            <h2>E-Resources</h2>
-                            <div className="flexrow">
-                                <div className="section" style={{ fontSize: "1.4vw", width: "20%" }}>Chapter/Topic name</div>
-                                <input className="shortbox" style={{ height: "8vh", width: "40vw" }} />
+                            <h3>E-Resources</h3>
+                            <div className="flexrow" style={marginBottom20vh}>
+                                <div className="inputsection">Chapter/Topic name</div>
+                                <input className="longbox" />
                             </div>
-                            <div className="flexrow" style={{ marginTop: "2vh" }}>
-                                <div className="section" style={{ fontSize: "1.4vw", width: "20%" }}>Description</div>
-                                <input className="shortbox" style={{ height: "12vh", width: "40vw" }} />
+                            <div className="flexrow" style={marginBottom20vh}>
+                                <div className="inputsection">Description</div>
+                                <input className="longbox" style={{height:'10vh'}}/>
                             </div>
 
                         </div>
-                        <div className="flexrow" style={{ marginTop: "2vh", marginLeft: "25vw" }}>
+                        <div className="flexrow" style={marginLeft250vw}>
                             <button className="button" onClick={this.handleOpenModal} style={{ background: "#66C4E1" }}>+ ADD file</button>
                             <Modal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal} className="GalleryModal">
                                 <div className="headermodal">Upload file </div>
