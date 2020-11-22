@@ -33,10 +33,10 @@ const App = () => {
           <Switch>
 
             {/* <FormikForm /> */}
-            {UserRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
-            {EventRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
-            {CircularRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
-            {PasswordRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
+            {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+            {EventRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+            {CircularRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+            {PasswordRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
             {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
             {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
             {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
@@ -49,7 +49,7 @@ const App = () => {
             <Route path="/studentresult" component={StudentResult} />
             <Route path="/eresources" component={EResources} />
             <Route path="/screensyllabus" component={Syllabus} />
-            <Route path="/resultlist" component={ResultList} />
+            <Route path="/result" component={ResultList} />
 
             <Route path="/gallery/:album_name" component={ImageInAlbum} />
             <Route path="/gallery" component={Gallery} />

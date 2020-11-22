@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, Field, FieldArray, useFormik, useFormikContext, ErrorMessage } from 'formik';
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../../component/Drawer/Drawer';
 import Header from '../../../component/Header/HeaderAdmin';
+import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+import { connect } from "react-redux";
+
 // import getTimeTableData from "../../../redux/Action/TimeTableAction"
 import {
     marginBottom125vh,
@@ -45,7 +48,14 @@ for (let i = 0; i < numOfPeriods; i++) {
 }
 
 
-const FormiForm = (props) => {
+const TimeTable = (props) => {
+    useEffect(() => {
+        function getUserInfo() {
+            props.dispatch(getCurrentUser())
+        }
+        getUserInfo();
+    }, [])
+
     try {
         addTimeTable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI",
@@ -60,7 +70,21 @@ const FormiForm = (props) => {
     } catch (error) {
         console.log(error);
     }
+    const handleSubmit = (values) => {
 
+        console.log(values);
+        try {
+            //   const userData =props.account.userData.userdata.data.data;
+            console.log(props);
+        }
+        catch (error) {
+            console.log(error)
+        }
+        //props.dispatch(modifystudentData({ value: values }));
+        //props.dispatch(addstudentData({ value: values }));
+
+
+    };
 
     return (
 
@@ -78,13 +102,14 @@ const FormiForm = (props) => {
                             }}
                             validationSchema={TimetableSchema}
                             onSubmit={(values, actions) => {
-                                console.log(values);
-                                setTimeout(() => {
-                                    alert(JSON.stringify(values, null, 4));
+                                handleSubmit(values)
+                                // console.log(values);
+                                // setTimeout(() => {
+                                //     alert(JSON.stringify(values, null, 4));
 
-                                    // alert(JSON.stringify(values.period[0].startTime, null, 4))
-                                    actions.setSubmitting(false);
-                                }, 1000);
+                                //     // alert(JSON.stringify(values.period[0].startTime, null, 4))
+                                //     actions.setSubmitting(false);
+                                // }, 1000);
                             }}
                         >
                             {props => (
@@ -278,6 +303,9 @@ const FormiForm = (props) => {
     )
 
 }
+const mapStateToProps = (state) => ({
+    account: state.account,
+});
 
-
-export default FormiForm
+export default React.memo(connect(mapStateToProps)(TimeTable));
+// export default TimeTable
