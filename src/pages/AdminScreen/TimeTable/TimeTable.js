@@ -1,19 +1,13 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Formik, Form, Field, FieldArray, useFormik, useFormikContext, ErrorMessage } from 'formik';
-=======
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux"
-import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
 import { Formik, Form, Field, FieldArray, useFormik, ErrorMessage } from 'formik';
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../../component/Drawer/Drawer';
 import Header from '../../../component/Header/HeaderAdmin';
-import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
-import { connect } from "react-redux";
+// import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+// import { connect } from "react-redux";
 
 // import getTimeTableData from "../../../redux/Action/TimeTableAction"
 import {
@@ -36,7 +30,7 @@ import { image100vw } from '../../../styles/imageStyles'
 
 import * as Yup from 'yup';
 import TimetableSchema from '../../../userData/ValidationSchema/TimeTableSchema';
-// import TimeTable from './TimeTable';
+// // import TimeTable from './TimeTable';
 import { FcHighPriority } from "react-icons/fc";
 import classes from '../../../userData/GlobalData/classData'
 import subjects from '../../../userData/GlobalData/subjectData'
@@ -56,7 +50,8 @@ for (let i = 0; i < numOfPeriods; i++) {
 
 
 const TimeTable = (props) => {
-<<<<<<< HEAD
+
+
     useEffect(() => {
         function getUserInfo() {
             props.dispatch(getCurrentUser())
@@ -64,62 +59,28 @@ const TimeTable = (props) => {
         getUserInfo();
     }, [])
 
-    try {
-        addTimeTable("5eb14baa-4784-40d1-98b1-425e3f3cd8cb",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZUlkIjozLCJzY2hvb2xJZCI6MSwiaWF0IjoxNjAzMDM2NDYxLCJleHAiOjE2MDMxMjI4NjF9._66N-jaHsrZ1jBYA2h_TI1F4Rn9thuhGA9GcixesDXI",
-            {
-=======
-    
-
-    useEffect(()=>{
-        function getUserInfo(){
-          props.dispatch(getCurrentUser())
-      }
-        getUserInfo();
-      },[])
-
     const handleSubmit = async (values) => {
         try {
             const userData = props.account.userData.userdata.data.data;
             const currentValues = {
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8
                 period: "3",
                 day: "tuesday",
                 startTime: "22:22",
                 endTime: "22:22",
                 classvalue: "ONE",
                 section: "A"
-<<<<<<< HEAD
-            });
-    } catch (error) {
-        console.log(error);
-    }
-    const handleSubmit = (values) => {
-
-        console.log(values);
-        try {
-            //   const userData =props.account.userData.userdata.data.data;
-            console.log(props);
+            };
+            await addTimeTable(userData.school.uuid, userData.token, currentValues)
         }
         catch (error) {
             console.log(error)
+
         }
-        //props.dispatch(modifystudentData({ value: values }));
-        //props.dispatch(addstudentData({ value: values }));
-=======
-            };
-            await addTimeTable(userData.school.uuid,userData.token,currentValues)
-          }
-          catch(error) {
-            console.log(error)
-            
-        }
-      }
-    
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8
+    }
 
 
-    };
+
+
 
     return (
 
@@ -137,19 +98,8 @@ const TimeTable = (props) => {
                             }}
                             validationSchema={TimetableSchema}
                             onSubmit={(values, actions) => {
-<<<<<<< HEAD
-                                handleSubmit(values)
-                                // console.log(values);
-                                // setTimeout(() => {
-                                //     alert(JSON.stringify(values, null, 4));
-
-                                //     // alert(JSON.stringify(values.period[0].startTime, null, 4))
-                                //     actions.setSubmitting(false);
-                                // }, 1000);
-=======
                                 handleSubmit(values);
                                 actions.resetForm();
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8
                             }}
                         >
                             {props => (
@@ -243,7 +193,7 @@ const TimeTable = (props) => {
 
                                         </div>
                                         <div className="flexcolumn">
-                                            <div className='tablelistArea' style={{ marginTop: '2vh', paddingTop: '2%', width: '75vw',paddingLeft:'5vw' }}>
+                                            <div className='tablelistArea' style={{ marginTop: '2vh', paddingTop: '2%', width: '75vw', paddingLeft: '5vw' }}>
 
                                                 <Scrollbars>
                                                     <FieldArray
@@ -343,17 +293,10 @@ const TimeTable = (props) => {
     )
 
 }
+
+
 const mapStateToProps = (state) => ({
     account: state.account,
-});
+})
 
-<<<<<<< HEAD
 export default React.memo(connect(mapStateToProps)(TimeTable));
-// export default TimeTable
-=======
-const mapStateToProps = (state) => ({
-    account:state.account,
-  })
-  
-  export default React.memo(connect(mapStateToProps)(TimeTable));
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8

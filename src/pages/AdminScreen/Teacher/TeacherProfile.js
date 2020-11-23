@@ -58,27 +58,15 @@ const TeacherProfile = (props) => {
 
       if (edit) {
 
-<<<<<<< HEAD
 
         createUsers(userData.token, values, 'teacher')
 
 
-=======
-        
-        createUsers(userData.token,values,'teacher')
-        
-        
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8
       }
       else {
 
         createUsers(userData.token, values, 'teacher')
 
-<<<<<<< HEAD
-=======
-        createUsers(userData.token,values,'teacher')
-        
->>>>>>> 422603cfe26aae4aa2d2b14ae5058b79e2dff7f8
       }
       props.history.push("/teachersearch");
     }
