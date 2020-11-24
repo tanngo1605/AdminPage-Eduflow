@@ -23,7 +23,7 @@ import StudentResult from "./pages/TeacherScreen/ApproveResult/StudentResult"
 import EResources from './pages/TeacherScreen/EResources/EResources';
 import "./App.css";
 import "./styles.css";
-import "tachyons"
+// import "tachyons"
 import CircularRouter from "./navigation/CircularRouter";
 const App = () => {
   return (
