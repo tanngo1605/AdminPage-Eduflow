@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, BrowserRouter, Switch, } from "react-router-dom";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 import Homescreen from "./pages/AdminScreen/Homescreen/Homescreen";
 import AccountSetting from "./pages/AdminScreen/Accounts/AccountSetting";
 import Syllabus from "./pages/AdminScreen/Syllabus/Syllabus";
@@ -9,7 +9,6 @@ import ImageInAlbum from "./pages/AdminScreen/Gallery/ImageInAlbum";
 import CreateClass from "./pages/AdminScreen/Class/createClass";
 import CreateSubject from "./pages/AdminScreen/Class/createSubject";
 import TimeTable from "./pages/AdminScreen/TimeTable/TimeTable";
-
 import UserRouter from "./navigation/UserRouter";
 import EventRouter from "./navigation/EventRouter";
 import PasswordRouter from "./navigation/PasswordRouter";
@@ -26,14 +25,15 @@ import "./styles.css";
 // import "tachyons"
 import CircularRouter from "./navigation/CircularRouter";
 const App = () => {
+  var x = document.cookie
+  console.log(x);
   return (
-    // <ScreenSyllabus />
     <div className="App">
       <Suspense fallback={<h1>Loading....</h1>}>
         <BrowserRouter >
           <Switch>
-
-            {/* <FormikForm /> */}
+            <Route exact path="/" component={LoginPage} />
+            {x === 'auth=1' ? <Route path="/homescreen" component={Homescreen} /> : <Redirect to={{ pathname: '/' }} />}
             {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
             {EventRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
             {CircularRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
@@ -41,9 +41,6 @@ const App = () => {
             {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
             {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
             {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
-            {/*<Route path="/formik" component={FormikForm} />*/}
-
-
             <Route path="/class" component={CreateClass} />
             <Route path="/subject" component={CreateSubject} />
             <Route path="/approveresult" component={ApproveResult} />
@@ -51,15 +48,11 @@ const App = () => {
             <Route path="/eresources" component={EResources} />
             <Route path="/screensyllabus" component={Syllabus} />
             <Route path="/result" component={ResultList} />
-
             <Route path="/gallery/:album_name" component={ImageInAlbum} />
             <Route path="/gallery" component={Gallery} />
             <Route path="/account" component={AccountSetting} />
             <Route path="/syllabus" component={Syllabus} />
             <Route path="/timetable" component={TimeTable} />
-            <Route path="/homescreen" component={Homescreen} />
-
-            <Route exact path="/" component={LoginPage} />
           </Switch>
 
         </BrowserRouter>

@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import InputField from "../InputField/InputField";
-
+// import jwt from "../../../node_modules/@types/"
 import "./LoginForm.styles.css";
 import { Spinner } from 'react-activity';
 import { setCurrentUser } from "../../redux/Stores/AccountReducer";
 import { loginAccount } from "../../redux/Action/UserAction";
 import 'react-activity/dist/react-activity.css';
+// import fakeAuth from "../../PriveRoute/fakeAuth"
+// const jwt = require('jsonwebtoken');
+// localStorage.setItem("auth", 0)
 class LoginForm extends Component {
   constructor(props) {
     super(props)
@@ -18,19 +21,31 @@ class LoginForm extends Component {
       isLoading: false,
     }
   }
-
   handleChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
   submitForm = async (event) => {
+    document.cookie = "auth=1"
     event.preventDefault();
     try {
-      this.setState({ isLoading: true })
 
+      this.setState({ isLoading: true })
       let userdata = await loginAccount(this.state);
+      if (document.cookie && (userdata !== '')) {
+        window.location.reload()
+        this.props.history.push("/homescreen")
+        window.location.reload()
+        this.props.history.push("/homescreen")
+
+      }
       console.log(userdata)
       this.props.dispatch(setCurrentUser({ userdata }))
+      // window.location.reload()
+      // if (count === 1) {
+      //   window.location.reload()
+      //   count++
+      // }
       this.props.history.push("/homescreen")
 
 
