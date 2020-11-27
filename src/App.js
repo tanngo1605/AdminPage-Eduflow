@@ -25,34 +25,46 @@ import "./styles.css";
 // import "tachyons"
 import CircularRouter from "./navigation/CircularRouter";
 const App = () => {
-  var x = document.cookie
-  console.log(x);
+  var x = document.cookie.replace(/auth=/g, "")
+  // console.log(x);
   return (
     <div className="App">
       <Suspense fallback={<h1>Loading....</h1>}>
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            {x === 'auth=1' ? <Route path="/homescreen" component={Homescreen} /> : <Redirect to={{ pathname: '/' }} />}
-            {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-            {EventRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-            {CircularRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-            {PasswordRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-            {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
-            {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
-            {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
-            <Route path="/class" component={CreateClass} />
-            <Route path="/subject" component={CreateSubject} />
-            <Route path="/approveresult" component={ApproveResult} />
-            <Route path="/studentresult" component={StudentResult} />
-            <Route path="/eresources" component={EResources} />
-            <Route path="/screensyllabus" component={Syllabus} />
-            <Route path="/result" component={ResultList} />
-            <Route path="/gallery/:album_name" component={ImageInAlbum} />
-            <Route path="/gallery" component={Gallery} />
-            <Route path="/account" component={AccountSetting} />
-            <Route path="/syllabus" component={Syllabus} />
-            <Route path="/timetable" component={TimeTable} />
+            {x === 'Admin' || x === 'SuperAdmin' ?
+              <React.Fragment>
+                <Route path="/homescreen" component={Homescreen} />
+                {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                {EventRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                {CircularRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                {PasswordRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
+                {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
+                {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
+                <Route path="/class" component={CreateClass} />
+                <Route path="/subject" component={CreateSubject} />
+                <Route path="/approveresult" component={ApproveResult} />
+                <Route path="/studentresult" component={StudentResult} />
+                <Route path="/eresources" component={EResources} />
+                <Route path="/screensyllabus" component={Syllabus} />
+                <Route path="/result" component={ResultList} />
+                <Route path="/gallery/:album_name" component={ImageInAlbum} />
+                <Route path="/gallery" component={Gallery} />
+                <Route path="/account" component={AccountSetting} />
+                <Route path="/syllabus" component={Syllabus} />
+                <Route path="/timetable" component={TimeTable} />
+              </React.Fragment>
+
+              : x === "Teacher" ? <>
+                <Route path="/result" component={ResultList} render={(props) => (<ResultList {...props} isTeacher={true} />)} />
+                <Route path="/approveresult" component={ApproveResult} />
+                <Route path="/studentresult" component={StudentResult} />
+                <Route path="/eresources" component={EResources} />
+
+              </> : <Redirect to={{ pathname: '/' }} />}
+
           </Switch>
 
         </BrowserRouter>

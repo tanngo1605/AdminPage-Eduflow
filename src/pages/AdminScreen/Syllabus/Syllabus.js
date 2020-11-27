@@ -4,6 +4,9 @@ import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
 import Dropzone from "react-dropzone";
+import subjects from '../../../userData/GlobalData/subjectData'
+// import sections from '../../../userData/GlobalData/sectionData'
+import classes from '../../../userData/GlobalData/classData'
 
 const syllabus = {
   1: { class: "", subject: "", files: null },
@@ -83,23 +86,27 @@ class Syllabus extends Component {
                       </div>
 
                       <div className="flexrow" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
-                        <input
-                          type="text"
+                        <select
                           id="class"
                           className="shortbox"
-                          style={{ marginLeft: "1.5vw" }}
-                          placeholder="- Select"
                           onChange={(event) => this.handleChange(event, key)}
-                        />
+                          style={{ marginLeft: "1.5vw" }}
+                        >
+                          <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
+                          {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                        </select>
 
-                        <input
-                          type="text"
+                        <select
                           id="subject"
                           className="shortbox"
-                          style={{ marginLeft: "12vw" }}
-                          placeholder="- Select"
                           onChange={(event) => this.handleChange(event, key)}
-                        />
+                          style={{ marginLeft: "12vw" }}
+                        >
+                          <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
+                          {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
+                        </select>
+
+
 
                         <Dropzone onDrop={(files) => this.onDrop(files, key)}>
                           {({ getRootProps, getInputProps }) => (

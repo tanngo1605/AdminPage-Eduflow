@@ -9,18 +9,19 @@ export const getCurrentUser = (payload) => ({
 });
 
 
-const accountReducer =   (state = {}, action) => {
-  switch(action.type){
+const accountReducer = (state = {}, action) => {
+  switch (action.type) {
     case "SET_USER":
       let userData = action.payload;
       console.log(userData)
-      return {...state,userData:userData}
+      console.log(state);
+      return { ...state, userData: userData }
 
     case "GET_CURRENT_USER":
-      
-      if (!state.userData) return {...state,userData:[]};
+      console.log(state);
+      if (!state.userData) return { ...state, userData: [] };
       console.log(state.userData)
-      return  (state);
+      return (state);
     default:
       return state
   }

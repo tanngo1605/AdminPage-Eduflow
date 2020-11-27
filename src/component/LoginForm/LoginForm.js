@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import InputField from "../InputField/InputField";
-// import jwt from "../../../node_modules/@types/"
 import "./LoginForm.styles.css";
 import { Spinner } from 'react-activity';
 import { setCurrentUser } from "../../redux/Stores/AccountReducer";
 import { loginAccount } from "../../redux/Action/UserAction";
 import 'react-activity/dist/react-activity.css';
-// import fakeAuth from "../../PriveRoute/fakeAuth"
-// const jwt = require('jsonwebtoken');
-// localStorage.setItem("auth", 0)
+import { RiBarcodeBoxLine } from "react-icons/ri";
+import { InputGroup, FormControl } from "react-bootstrap";
+
 class LoginForm extends Component {
   constructor(props) {
     super(props)
@@ -23,30 +22,43 @@ class LoginForm extends Component {
   }
   handleChange = (event) => {
     const { value, name } = event.target;
+    console.log(value, name);
     this.setState({ [name]: value });
   };
-  submitForm = async (event) => {
-    document.cookie = "auth=1"
-    event.preventDefault();
-    try {
+  /* 1 */
 
+  submitForm = async (event) => {
+    // event.preventDefault();
+    try {
       this.setState({ isLoading: true })
       let userdata = await loginAccount(this.state);
-      if (document.cookie && (userdata !== '')) {
-        window.location.reload()
-        this.props.history.push("/homescreen")
-        window.location.reload()
-        this.props.history.push("/homescreen")
+      console.log(userdata)
+      let roleOfUser = userdata.config.data.split(",")[2].replace(/"|}|:|role/g, "")
+      this.props.dispatch(setCurrentUser(userdata))
+
+      if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
+        document.cookie = `auth=${roleOfUser}`
+        // window.location.reload()
+        window.location.assign("http://localhost:3000/homescreen")
+        // this.props.history.push("/homescreen")
 
       }
-      console.log(userdata)
-      this.props.dispatch(setCurrentUser({ userdata }))
-      // window.location.reload()
-      // if (count === 1) {
-      //   window.location.reload()
-      //   count++
-      // }
-      this.props.history.push("/homescreen")
+      else if (userdata.status === 200 && roleOfUser === "Teacher") {
+        document.cookie = `auth=${roleOfUser}`
+        // window.location.reload()
+        // this.props.dispatch(setCurrentUser(userdata))
+        window.location.assign("http://localhost:3000/result")
+        // window.location.reload()
+        // this.props.history.push("/result")
+        // window.location.reload()
+        // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+        // window.location.reload()
+        // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+        // // window.location.reload()
+        // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+
+      }
+
 
 
     }
@@ -56,16 +68,35 @@ class LoginForm extends Component {
     }
 
   };
-
   render() {
     return (
       <div className="loginForm">
         <h3 className="title">LOGIN</h3>
-        <InputField
-          handleChange={this.handleChange}
-          name="role"
-          placeholder="Enter your role"
-        />
+        <InputGroup size="lg" style={{ width: "75%" }} className="mb-3">
+          <i style={{ position: "absolute", padding: "10px", zIndex: 1 }}>
+            <RiBarcodeBoxLine color="grey" />
+          </i>
+          <FormControl
+            as="select"
+            placeholder="Enter your role"
+            onChange={this.handleChange}
+            name="role"
+            required
+            style={{
+              paddingLeft: "40px",
+              boxShadow: "0px 3px 6px #00000029",
+              borderRadius: "10px",
+            }}
+            custom
+          >
+            <option value="" style={{ visibility: "hidden", display: "none" }}>Enter your role</option>
+            <option value="SuperAdmin">Super Admin</option>
+            <option value="Admin">Admin</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+          </FormControl>
+        </InputGroup>
+
         <InputField
           handleChange={this.handleChange}
           name="username"

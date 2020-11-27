@@ -117,7 +117,7 @@ const TimeTable = (props) => {
                                                         <div className="flexrow">
                                                             <label className='section' style={{ width: "25%", marginRight: "5vw" }}>Enter Class</label>
                                                             <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
-                                                                <option value="" defaultValue>{" "}-select-</option>
+                                                                <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
                                                                 {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
                                                             </Field>
                                                         </div>
@@ -136,7 +136,7 @@ const TimeTable = (props) => {
                                                         <div className="flexrow">
                                                             <label className="section" style={{ width: "25%", marginLeft: "5vw", marginRight: "5vw" }}>Enter Section</label>
                                                             <Field as="select" name="section" className="shortbox" placeholder="Your section">
-                                                                <option value="" defaultValue>{" "}-select-</option>
+                                                                <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
                                                                 {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
                                                             </Field>
                                                         </div>
@@ -234,7 +234,7 @@ const TimeTable = (props) => {
                                                                             <div className='flexcolumn' style={marginLeft200vw}>
                                                                                 <p className='section' style={fontsize12vw, { width: "100%" }}>Subject</p>
                                                                                 <Field as="select" name={`period[${index}].subject`} className="shortbox" >
-                                                                                    <option value="" defaultValue>{" "}-select-</option>
+                                                                                    <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
                                                                                     {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
                                                                                 </Field>
                                                                                 {/* <div className="errMess" >
@@ -259,7 +259,7 @@ const TimeTable = (props) => {
                                                 {/* <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" />
                                             </>) : null}</div> */}
                                             </div>
-                                            <div style={{ position: "absolute", top: "700px", left: "100px" }}>
+                                            <div style={{ position: "absolute", top: "660px", left: "100px" }}>
                                                 {(props.errors.period && props.touched.period) ?
                                                     (
                                                         <div className="errMessOuter">

@@ -6,7 +6,7 @@ import { RiBarcodeBoxLine } from "react-icons/ri";
 const icons = {
   username: <FaUserAlt color="grey" />,
   password: <GoKey color="grey" />,
-  schoolCode: <RiBarcodeBoxLine color="grey" />,
+  role: <RiBarcodeBoxLine color="grey" />,
 };
 
 const InputField = (props) => {

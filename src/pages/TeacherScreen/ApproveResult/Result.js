@@ -4,9 +4,10 @@ import { marginLeft20vw } from '../../../styles/marginStyles'
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
 
+var user = document.cookie.replace(/auth=/g, "")
 
 const ResultsList = (props) => {
-    console.log("-----------------")
+    // console.log("-----------------")
     useEffect(() => {
         function getUserInfo() {
             props.dispatch(getCurrentUser())
@@ -56,10 +57,14 @@ const ResultsList = (props) => {
             }
         }
     }
-    console.clear()
+    // console.clear()
     // console.log((props.account.userData.userdata.config.data).role);
     // console.log(props.account.userData.userdata.config.data);
-    let user = props.account.userData.userdata.config.data
+    // let user = props.account.userData.userdata.config.data
+
+
+    // console.log(getUserInfo());
+
     // let role = user.includes("Admin")
     // console.log(user, typeof user, role);
     return (
