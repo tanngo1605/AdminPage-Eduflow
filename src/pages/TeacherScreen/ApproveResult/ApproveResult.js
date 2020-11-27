@@ -1,17 +1,17 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import HeaderTeacher from "../../../component/Header/HeaderTeacher";
 //import { loadData } from "../../../redux/Stores/StudentReducer";
 import { connect } from "react-redux";
 import { image300percent } from "../../../styles/imageStyles";
-import {marginLeft50vw,marginLeft20vw} from '../../../styles/marginStyles'
+import { marginLeft50vw, marginLeft20vw } from '../../../styles/marginStyles'
 import { NavLink } from "react-router-dom"
 
 
 const ApproveResult = (props) => {
-    useEffect(()=>{
+    useEffect(() => {
         //props.dispatch(loadData())
-    },[])
-        
+    }, [])
+
     //let students = props.students;
 
     return (
@@ -22,12 +22,12 @@ const ApproveResult = (props) => {
                     <h3>Approve Result</h3>
                     <div className="flexrow" style={marginLeft50vw}>
                         <div className='section' >Exam name</div>
-                        <input className="shortbox"/>
+                        <input className="shortbox" />
                         <div className='section' style={marginLeft20vw}>Student name</div>
-                        <input className="shortbox"/>
+                        <input className="shortbox" />
                     </div>
                     <button className="button" style={{ marginLeft: "35vw", marginTop: "10vh", marginBottom: "3vh" }}>Search</button>
-                    <div className="tablelistArea" style={{width:'85vw'}}>
+                    <div className="tablelistArea" style={{ width: '85vw' }}>
                         <div className="headertableList">
                             <p style={image300percent}>S no</p>
                             <p style={image300percent}>Student</p>
@@ -48,18 +48,18 @@ const ApproveResult = (props) => {
                                     </div>
 
                                 </div>
-                                )}
+                            )}
 
 
-                            </div>
-                            
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+
             </div>
-        );
-    }
+        </div>
+    );
+}
 
 
 const mapStateToProps = (state) => ({

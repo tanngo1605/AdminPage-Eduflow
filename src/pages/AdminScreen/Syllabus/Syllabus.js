@@ -7,6 +7,9 @@ import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
 import Dropzone from "react-dropzone";
+import subjects from '../../../userData/GlobalData/subjectData'
+// import sections from '../../../userData/GlobalData/sectionData'
+import classes from '../../../userData/GlobalData/classData'
 
 const syllabus = {
   1: { class: "", subject: "", files: null },

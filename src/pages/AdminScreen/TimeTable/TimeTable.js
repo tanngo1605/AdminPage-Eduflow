@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux"
 
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
@@ -8,6 +8,9 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Drawer from '../../../component/Drawer/Drawer';
 import Header from '../../../component/Header/HeaderAdmin';
+// import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+// import { connect } from "react-redux";
+
 // import getTimeTableData from "../../../redux/Action/TimeTableAction"
 import {
     marginBottom20vh,
@@ -22,7 +25,7 @@ import './animation.css'
 import { image100vw } from '../../../styles/imageStyles'
 // import styled from '@emotion/styled';
 import TimetableSchema from '../../../userData/ValidationSchema/TimeTableSchema';
-// import TimeTable from './TimeTable';
+// // import TimeTable from './TimeTable';
 import { FcHighPriority } from "react-icons/fc";
 import addTimeTable from "../../../redux/Action/TimeTableAction"
 let numOfPeriods = 4
@@ -68,14 +71,16 @@ const TimeTable = (props) => {
                 classvalue: "ONE",
                 section: "A"
             };
-            await addTimeTable(userData.school.uuid,userData.token,currentValues)
-          }
-          catch(error) {
-            console.log(error)
-            
+            await addTimeTable(userData.school.uuid, userData.token, currentValues)
         }
-      }
-    
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+
+
+
 
 
     return (
@@ -189,7 +194,7 @@ const TimeTable = (props) => {
 
                                         </div>
                                         <div className="flexcolumn">
-                                            <div className='tablelistArea' style={{ marginTop: '2vh', paddingTop: '2%', width: '75vw',paddingLeft:'5vw' }}>
+                                            <div className='tablelistArea' style={{ marginTop: '2vh', paddingTop: '2%', width: '75vw', paddingLeft: '5vw' }}>
 
                                                 <Scrollbars>
                                                     <FieldArray
@@ -255,7 +260,7 @@ const TimeTable = (props) => {
                                                 {/* <div className="errMessOuter" style={{ top: "48vw", left: "20vw", display: props.errors.period ? null : "none" }}>{props.errors.period ? (<><FcHighPriority className="iconErrMess" size="1.5vw" />
                                             </>) : null}</div> */}
                                             </div>
-                                            <div style={{ position: "absolute", top: "700px", left: "100px" }}>
+                                            <div style={{ position: "absolute", top: "660px", left: "100px" }}>
                                                 {(props.errors.period && props.touched.period) ?
                                                     (
                                                         <div className="errMessOuter">
@@ -290,8 +295,9 @@ const TimeTable = (props) => {
 
 }
 
+
 const mapStateToProps = (state) => ({
-    account:state.account,
-  })
-  
-  export default React.memo(connect(mapStateToProps)(TimeTable));
+    account: state.account,
+})
+
+export default React.memo(connect(mapStateToProps)(TimeTable));
