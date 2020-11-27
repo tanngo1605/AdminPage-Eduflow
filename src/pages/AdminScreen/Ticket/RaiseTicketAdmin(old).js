@@ -1,48 +1,29 @@
-import React, {useEffect,useState} from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux"
 import { Formik,Form,Field} from "formik";
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import {addSchoolCircular} from "../../../redux/Action/CircularAction";
 import Dropzone from "react-dropzone";
 import { BsPlus } from "react-icons/bs";
 import Drawer from "../../../component/Drawer/Drawer"
 import Header from "../../../component/Header/HeaderAdmin"
-import {createCircularSchema} from "../../../userData/ValidationSchema/CircularSchema"
-import {initCreateCircular} from "../../../userData/InitialData/Circular"
+import {createTickedAdminScema} from "../../../userData/ValidationSchema/TicketSchema"
+import {intialTickedAdmin} from "../../../userData/InitialData/Ticket"
 import {marginBottom20vh} from "../../../styles/marginStyles"
 
 
-
-const AddCircular = (props)=> {
-  const [userData,setUserData] = useState(null);
-
+const RaiseTicketAdmin = (props)=> {
   useEffect(()=>{
     function getUserInfo(){
       props.dispatch(getCurrentUser())
-      const user = props.account.userData;
-      if (!user) {
-        props.history.push('/')
-        alert("User needs to log in first");
-        return;
-      }
-      else 
-        setUserData(user)
   }
     getUserInfo();
   },[])
 
+  
   const handleSubmit = (values) => {
 
-    try {
-      const user = userData.userdata.data.data
-      addSchoolCircular(user.school.uuid,user.token,values);
-      props.history.push("/circular/circularlist");
-    }
-    catch(error) {
-      console.log(error)
-      
-    }
   }
+
 
   return ( 
       <div className="dashboard">
@@ -52,11 +33,12 @@ const AddCircular = (props)=> {
             <Header {...props}/>
             <div className="form">
                 
-                <h1 className="titleform" style={marginBottom20vh}>Create a new circular</h1>
+                <h1 className="titleform">Raise a ticket(Admin)</h1>
                 <Formik
-                  initialValues={initCreateCircular}
-                  validationSchema={createCircularSchema}
+                  initialValues={intialTickedAdmin}
+                  validationSchema={createTickedAdminScema}
                   onSubmit={(values, actions) => {
+                    
                     handleSubmit(values);
                     actions.resetForm()
                 }}
@@ -64,18 +46,18 @@ const AddCircular = (props)=> {
                   {(props)=>(
                     <Form>
                       <div className="flexrow" style={marginBottom20vh}>
-                        <label htmlFor="title" className="section">Subject</label>
-                        <Field type="text" name="title" className="shortbox" placeholder="Type here"/>
+                        <label htmlFor="topic" className="section">Topic</label>
+                        <Field type="text" name="topic" className="shortbox" placeholder="Type here"/>
                       </div>
                       <div className="flexrow" style={marginBottom20vh}>
-                        <p className="section">Date</p>
-                        <p className="shortbox">{new Date().toLocaleDateString()}</p>
+                        <label htmlFor="desc" className="section">Description</label>
+                        <Field component='textarea' name="desc" className="shortbox" style={{height:'15vh'}}  placeholder="Type here"/>
                       </div>
                       <div className="flexrow">
                         <p className="section">Attachment </p>
                         <Dropzone name="attachment" onDrop={(files)=> props.setFieldValue("attachment",files)}>
                           {({getRootProps, getInputProps}) => (
-                            <section className="flexrow">
+                            <section className="flexrow" >
                               <div {...getRootProps({ className:"attachment"})}>
                                 <input {...getInputProps()} />
                                   <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon"/>
@@ -86,9 +68,9 @@ const AddCircular = (props)=> {
                           )}
                         </Dropzone>
                       </div>
-                      <div className="flexrow" style={{marginLeft:"15vw",marginTop:"15vh"}}>
+                      <div className="flexrow" style={{marginLeft:"15vw",marginTop:"45vh"}}>
                         <button type="submit" className="button">Save</button>
-                        <button type="reset" className="button">Reset</button>
+                        <button type="reset" value="Reset" className="button">Reset</button>
                   
                       </div>
                   </Form>
@@ -106,5 +88,5 @@ const mapStateToProps = (state) => ({
   account: state.account,
   
 })
-export default React.memo(connect(mapStateToProps)(AddCircular));
+export default React.memo(connect(mapStateToProps)(RaiseTicketAdmin));
 

@@ -1,29 +1,21 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
+import {request} from '../api'
 import { format } from 'date-fns';
 
 const loginAccount = async (userInput) => {
     const {schoolCode,username,password} = userInput;
-    const inputData =JSON.stringify({
+    const inputData = {
       username,
       password,
       role:"admin",
-    })
-    let userData= axios.post(`${ServerDomain}/auth/login`,inputData,{
-              headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-              },
-        })
-        .then( resData =>{
-              console.log(`Login ${username} success`)
-              return resData;
-        })
-        .catch( err =>{
-              const error= "Something went wrong. Check your input again"
-              throw new Error(error)
-        })
-  
+    }
+    let userData=   request().post(`/auth/login`,inputData)
+                              .then( resData =>{
+                                    console.log(`Login ${username} success`)
+                                    return resData;
+                              })
+                              
     return userData
 
 }

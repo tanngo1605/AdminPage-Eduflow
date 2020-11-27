@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux"
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSubject} from "../../../redux/Action/SchoolAction";
 import Drawer from '../../../component/Drawer/Drawer'
 import Header from '../../../component/Header/HeaderAdmin'
 import {Scrollbars} from 'react-custom-scrollbars';
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import subjects from '../../../userData/GlobalData/subjectData';
 import {marginBottom20vh, marginLeft20vw} from '../../../styles/marginStyles'
 import {image200percent,image150percent} from '../../../styles/imageStyles'
 let numberofperiod=5;
@@ -20,10 +22,22 @@ class Exam extends Component {
         task:{},
         
       },
+      subject:[],
       trigger:false,
     }  
   }
-
+  async componentDidMount(){
+      this.props.dispatch(getCurrentUser())
+      try {
+        const userData = this.props.account.userData.userdata.data.data;
+        const subjectData = await getSubject(userData.school.uuid)
+        
+        this.setState({subject:subjectData})
+      }
+      catch(err){
+        console.log(err)
+      }
+  }
   displayPeriod=()=>{
     let period=[];
     
@@ -35,18 +49,18 @@ class Exam extends Component {
             <input type='text' id='room' className='shortbox' style={{width:'8vw',marginLeft:'-3vw'}}  onChange={(event) => this.handleChange(event,i.toString())} />
             <select className="shortbox" required id='teacher' style={{width:'8vw',marginLeft:'7vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
               <option disabled value="" defaultValue>{" "}- select -</option>
-              {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
+              {this.state.subject && this.state.subject.map((subject,index)=><option key={index} value={subject.name}>{subject.name}</option>)}
               
             </select>
 
             <select className="shortbox" required id='teacher' style={{width:'8vw',marginLeft:'6vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
               <option disabled value="" defaultValue>{" "}- select -</option>
-              {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
+              {this.state.subject && this.state.subject.map((subject,index)=><option key={index} value={subject.name}>{subject.name}</option>)}
               
             </select>
             <select className="shortbox" required id='teacher' style={{width:'8vw',marginLeft:'6vw'}} onChange={(event) => this.handleChange(event,i.toString())}>
               <option disabled value="" defaultValue>{" "}- select -</option>
-              {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
+              {this.state.subject && this.state.subject.map((subject,index)=><option key={index} value={subject.name}>{subject.name}</option>)}
               
             </select>
       </div>)
@@ -67,8 +81,10 @@ class Exam extends Component {
   render() {
     
     return (
+
       <div className='dashboard'>
         <div className='flexrow'>
+        
           <Drawer/>
           <div className='flexcolumn'>
             <Header {...this.props}/>
@@ -120,5 +136,9 @@ class Exam extends Component {
   }
 }
 
-export default (Exam);
+const mapStateToProps = (state) => ({
+  account:state.account,
+})
+
+export default connect(mapStateToProps)(Exam);
 

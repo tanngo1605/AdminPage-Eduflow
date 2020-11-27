@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Formik,Form,Field} from "formik";
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass} from "../../../redux/Action/SchoolAction";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 import Drawer from "../../../component/Drawer/Drawer";
@@ -13,15 +14,25 @@ import {marginBottom20vh,marginLeft60vw,marginLeft20vw} from "../../../styles/ma
 import {image130vw,image50vw} from "../../../styles/imageStyles"
 import {image40vwLeft10vw,image95vwLeft30vw} from "../../../styles/imageMarginStyles"
 const StudentProfile = (props) => {
-  
-  const [studentData,setStudentData] = useState(props.location.studentdata?props.location.studentdata:[])
+  let [classsection,setClassSection] = useState([]); 
   const [edit,setEdit] = useState(props.location.studentdata?false:true)
-
+  const [studentData,setStudentData] = useState(props.location.studentdata?props.location.studentdata:[])
+  
+  
   useEffect(()=>{
-    function getUserInfo(){
+    async function getClassSection(){
       props.dispatch(getCurrentUser())
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+        
+        setClassSection( sectionclassData )
+      }
+      catch(err){
+        console.log(err)
+      }
   }
-    getUserInfo();
+    getClassSection();
   },[])
   
   const displayImage = (propsForm) => {
@@ -109,7 +120,7 @@ const StudentProfile = (props) => {
                   
                         <Form className="flexrow">
                          {displayImage(propsForm)}
-                         {console.log(propsForm.values)}
+                         
                          <div className="flexcolumn">
                           <div className="formforinfo">
                            <Scrollbars>
@@ -180,10 +191,16 @@ const StudentProfile = (props) => {
                             </div>
                             <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor="classvalue" className="section" style={image50vw}>Class</label>
-                              <Field type="text" name="classvalue" className="shortbox"  style={image95vwLeft30vw}  placeholder={studentData.name}/>
-                              <label htmlFor="section" className="section" style={marginLeft20vw} >Section</label>
-                              <Field type="text" name="section" className="shortbox" style={image95vwLeft30vw}  placeholder={studentData.name}/>
+                              <Field as="select" name="classvalue" className="shortbox" style={image95vwLeft30vw} placeholder={studentData.name}>
+                                <option value="" defaultValue>{" "}-select-</option>
+                                {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
+                              </Field>
                               
+                              <label htmlFor="section" className="section" style={marginLeft20vw} >Section</label>
+                              <Field as="select" name="section" className="shortbox" style={image95vwLeft30vw} placeholder={studentData.name} >
+                                <option value="" defaultValue>{" "}-select-</option>
+                                {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
+                              </Field>
                             </div>
                             <div className="flexrow" style={marginBottom20vh}>
                               <label htmlFor="teachername" className="section" style={image130vw}>Class Teacher Name</label>

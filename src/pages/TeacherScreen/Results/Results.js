@@ -1,10 +1,11 @@
-import React, { useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux';
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass} from "../../../redux/Action/SchoolAction";
 import { Formik,Form,Field} from "formik";
 import HeaderTeacher from "../../../component/Header/HeaderTeacher";
-import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import schoolSchema from "../../../userData/ValidationSchema/SchoolSchema"
-import schoolInitialValue from '../../../userData/InitialData/School'
+import {schoolSchema} from "../../../userData/ValidationSchema/SchoolSchema"
+import {schoolInitialValue} from '../../../userData/InitialData/School'
 import {
     marginBottom65vh,
     marginTop55vh,
@@ -13,18 +14,27 @@ import {
     marginLeft130vw,
     marginLeft100vw,
     marginLeft55vw} from "../../../styles/marginStyles";
-import classes from '../../../userData/GlobalData/classData'
-import sections from '../../../userData/GlobalData/sectionData'
 
 
 const ClassResults =  (props) => {
+  let [classsection,setClassSection] = useState([]);
   
-  const getUserInfo = () =>{
-    
-    props.dispatch(getCurrentUser())
-  }
 
-  useEffect(getUserInfo,[]) 
+  useEffect(()=>{
+    async function getClassSection(){
+        props.dispatch(getCurrentUser())
+        try {
+          const userData=props.account.userData.userdata.data.data;
+          const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+          
+          setClassSection( sectionclassData )
+        }
+        catch(err){
+          console.log(err)
+        }
+    }
+    getClassSection()
+  },[]) 
 
 
   const handleSubmit = (values) => {
@@ -72,15 +82,15 @@ const ClassResults =  (props) => {
                                 </div>
                                 <div className='flexrow' style={marginBottom65vh}>
                                     <label htmlFor="classvalue" className="section" style={marginLeft55vw}>Class</label>
-                                    <Field as="select" name="classvalue" className="shortbox"  style={marginLeft130vw} placeholder="Your class">
-                                        <option value="" defaultValue>{" "}-select-</option>
-                                        {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                                    <Field as="select" name="classvalue" className="shortbox" placeholder="Select Class">
+                                      <option value="" defaultValue>{" "}-select-</option>
+                                      {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
                                     </Field>
                                     {/* Section*/}
                                     <label htmlFor="section" className="section" style={marginLeft380vw}>Section</label>
-                                    <Field as="select" name="section" className="shortbox"  style={marginLeft450vw} placeholder="Your class">
-                                        <option value="" defaultValue>{" "}-select-</option>
-                                        {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
+                                    <Field as="select" name="section" className="shortbox" placeholder="Select Section">
+                                      <option value="" defaultValue>{" "}-select-</option>
+                                      {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
                                     </Field>
                                 </div>
                                 <div className='flexrow' style={marginBottom65vh}>

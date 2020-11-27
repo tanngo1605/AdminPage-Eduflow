@@ -1,11 +1,15 @@
 const drawercontent = [
   {
-    content: 'Students', web: 'student',
+    content: 'Students', 
+    web: 'student',
     activeimage: 'person_active.png',
     inactiveimage: "person_inactive.png",
     subcontent: [
+      { content: 'Add a student', web: 'student', clicked: false },
+      { content: 'Find a student', web: 'studentsearch', clicked: false },
       { content: 'Move student', web: 'movestudent', clicked: false },
       { content: 'Migration', web: 'studentmigration', clicked: false }
+      
     ],
     clicked: false,
 
@@ -15,7 +19,9 @@ const drawercontent = [
     web: 'teacher',
     activeimage: 'people_active.png',
     inactiveimage: "people_inactive.png",
-    subcontent: [{ content: 'Find a teacher', web: 'teachersearch', clicked: false }],
+    subcontent: [
+      { content: 'Add a teacher', web: 'teacher', clicked: false },
+      { content: 'Find a teacher', web: 'teachersearch', clicked: false }],
     clicked: false,
 
   },
@@ -73,6 +79,7 @@ const drawercontent = [
     activeimage: 'event_active.png',
     inactiveimage: "event_inactive.png",
     subcontent: [
+      { content: 'Find event', web: 'event', clicked: false },
       { content: 'Create event', web: 'event/createevent', clicked: false },
     ],
     clicked: false,
@@ -113,6 +120,18 @@ const drawercontent = [
     subcontent: [],
     clicked: false,
     key: 13
+  },
+  {
+    content: 'Classes',
+    web: 'class',
+    activeimage: 'exam_active.png',
+    inactiveimage: "exam_inactive.png",
+    subcontent: [
+      { content: 'Create Class', web: 'class', clicked: false },
+      { content: 'Create Subject', web: 'subject', clicked: false }
+    ],
+    clicked: false,
+    key: 14
   },
 ];
 export default drawercontent;

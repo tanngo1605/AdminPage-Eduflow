@@ -4,7 +4,6 @@ import TicketReducer from './TicketReducer';
 import TeacherReducer from './TeacherReducer';
 import StudentReducer from './StudentReducer';
 import GalleryReducer from './GalleryReducer';
-import ClassReducer from './ClassReducer';
 //import CircularReducer from './CircularReducer';
 import AttendanceReducer from './AttendanceReducer'
 import { combineReducers } from 'redux'
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   student:StudentReducer,
   teacher:TeacherReducer,
   image:GalleryReducer,
-  class:ClassReducer,
   //circular:CircularReducer,
   attendance:AttendanceReducer,
 });

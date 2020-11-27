@@ -6,8 +6,8 @@ import Syllabus from "./pages/AdminScreen/Syllabus/Syllabus";
 import Gallery from "./pages/AdminScreen/Gallery/Gallery";
 import LoginPage from "./pages/AdminScreen/LoginPage/LoginPage";
 import ImageInAlbum from "./pages/AdminScreen/Gallery/ImageInAlbum";
-import CreateClass from "./pages/AdminScreen/Class/createClass";
-import CreateSubject from "./pages/AdminScreen/Class/createSubject";
+import CreateClass from "./pages/AdminScreen/Class/CreateClass";
+import CreateSubject from "./pages/AdminScreen/Class/CreateSubject";
 import TimeTable from "./pages/AdminScreen/TimeTable/TimeTable";
 
 import UserRouter from "./navigation/UserRouter";
@@ -38,9 +38,9 @@ const App = () => {
             {EventRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
             {CircularRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
             {PasswordRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
-            {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
-            {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
-            {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
+            {ResultRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
+            {TicketRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
+            {ExamRouter.map(({path,component}, index) => <Route key={index} exact path={path} component={component} />)}
             {/*<Route path="/formik" component={FormikForm} />*/}
 
 

@@ -26,6 +26,19 @@ const schoolSchema = yup.object({
   alternatephoneno:yup.string()
     .required(),
 });
+const createSubjectSchema = yup.object({
+  name: yup.string()
+    .required(),
+  description:yup.string()
+  
+});
+const createClassSectionScema = yup.object({
+  classvalue: yup.string()
+      .required(),
+  section: yup.string()
+      .required(),
+  roomno: yup.string(),
+  teacher: yup.string()
 
-
-export  default schoolSchema;
+});
+export  {schoolSchema,createSubjectSchema,createClassSectionScema};

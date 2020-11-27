@@ -4,6 +4,7 @@
   font-size: 1vw;
   background-color: white;
   border:none;
+  z-index: 2;
   
 }
 
@@ -13,6 +14,7 @@
   padding-bottom: 1vw;
   user-select: none;
   border:none;
+  z-index: 2;
 }
 
 .DayPicker-Months {
@@ -36,6 +38,7 @@
   color:#6B7897;
   font-size: 1.2vw;
   border:none;
+  z-index: 2;
 
   
 }
@@ -54,6 +57,7 @@
   background-repeat: no-repeat;
   color: #8B9898;
   cursor: pointer;
+  
 }
 
 .DayPicker-NavButton:hover {
@@ -139,6 +143,7 @@
   vertical-align: middle;
   text-align: center;
   cursor: pointer;
+  
 }
 
 .DayPicker-WeekNumber {
@@ -172,6 +177,7 @@
   font-size: 0.875vw;
   cursor: pointer;
   
+  
 }
 
 /* Default modifiers */
@@ -179,6 +185,7 @@
 .DayPicker-Day--today {
   color: #D0021B;
   font-weight: 700;
+  
 
 }
 
@@ -225,6 +232,7 @@
 /* DayPickerInput */
 .DayPickerInput {
   display: inline-block;
+  
  
 }
   
@@ -267,6 +275,7 @@
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
+  
   
   
 }

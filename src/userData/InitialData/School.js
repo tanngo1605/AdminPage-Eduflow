@@ -12,4 +12,16 @@ const schoolInitialValue={
     alternatephoneno:"",
     image:null,
 }
-export default schoolInitialValue;
+const initialSubjectValue= {
+    name:"",
+    description:"",
+    
+}
+const initCreateClassSection= {
+    classvalue:"",
+    section:"",
+    roomno:"",
+    teacher:""
+    
+}
+export  {schoolInitialValue,initialSubjectValue,initCreateClassSection};

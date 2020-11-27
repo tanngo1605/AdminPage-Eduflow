@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import HeaderTeacher from "../../../component/Header/HeaderTeacher";
-import { loadData } from "../../../redux/Stores/StudentReducer";
+//import { loadData } from "../../../redux/Stores/StudentReducer";
 import { connect } from "react-redux";
 import { image300percent } from "../../../styles/imageStyles";
 import {marginLeft50vw,marginLeft20vw} from '../../../styles/marginStyles'

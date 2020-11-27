@@ -6,8 +6,8 @@ import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
 import {getSchoolInfo,updateSchoolInfo} from "../../../redux/Action/SchoolAction";
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import schoolSchema from "../../../userData/ValidationSchema/SchoolSchema"
-import schoolInitialValue from '../../../userData/InitialData/School'
+import {schoolSchema} from "../../../userData/ValidationSchema/SchoolSchema"
+import {schoolInitialValue} from '../../../userData/InitialData/School'
 import { FcHighPriority } from "react-icons/fc";
 import {marginBottom20vh,marginLeft60vw,marginLeft20vw,} from "../../../styles/marginStyles";
 import {image130vw} from "../../../styles/imageStyles"

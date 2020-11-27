@@ -4,21 +4,20 @@ import {Scrollbars} from 'react-custom-scrollbars';
 import { Formik,Form,Field} from "formik";
 import Drawer from '../../../component/Drawer/Drawer'
 import Header from '../../../component/Header/HeaderAdmin'
+import {getSectionAndClass} from "../../../redux/Action/SchoolAction";
 import {getSchoolEvent,searchSchoolEvent,deleteSchoolEvent} from "../../../redux/Action/EventAction";
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
 import {searchEventSchema} from "../../../userData/ValidationSchema/EventSchema"
 import {initialSearchEvent} from '../../../userData/InitialData/Event'
-import classes from '../../../userData/GlobalData/classData'
-import sections from '../../../userData/GlobalData/sectionData'
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import {marginLeft130vw,marginLeft60vw,marginLeft15vw,marginBottom20vh} from '../../../styles/marginStyles'
-import {image580vw,image200percent,image100percent} from '../../../styles/imageStyles'
+import {image580vw,image250percent,image200percent,image100percent} from '../../../styles/imageStyles'
 
 const EventList = (props) => {
   let [schoolEvent,setSchoolEvent]= useState([])
   let [filterschoolEvent,setFilterSchoolEvent] = useState([])
-  
+  let [classsection,setClassSection] = useState([]); 
   useEffect(()=>{
     async function getSchoolEventData(){
       props.dispatch(getCurrentUser())
@@ -26,9 +25,11 @@ const EventList = (props) => {
       try {
         const userData=props.account.userData.userdata.data.data;
         const schooleventdata = await getSchoolEvent(userData.school.uuid,userData.token)
-        
-        setFilterSchoolEvent( schooleventdata )
+        const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
         setSchoolEvent(schooleventdata)
+        setClassSection( sectionclassData )
+        setFilterSchoolEvent( schooleventdata )
+        
       }
       catch(err){
         console.log(err)
@@ -41,9 +42,8 @@ const EventList = (props) => {
   const deleteEvent = async (eventId)=>{
     try {
       const userData = props.account.userData.userdata.data.data;
-      await deleteSchoolEvent(userData.school.uuid,userData.token,eventId)
-      
-      const schooleventdata = await getSchoolEvent(userData.school.uuid,userData.token)
+      const schooleventdata = await deleteSchoolEvent(userData.school.uuid,userData.token,eventId)
+
       setSchoolEvent(schooleventdata)
       setFilterSchoolEvent( schooleventdata )
       
@@ -93,15 +93,15 @@ const EventList = (props) => {
                       <Form>
                         <div className='flexrow' style={marginBottom20vh}>
                           <label htmlFor="classvalue" className="section" >Enter Class</label>
-                          <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
+                          <Field as="select" name="classvalue" className="shortbox" placeholder="Select Class">
                             <option value="" defaultValue>{" "}-select-</option>
-                            {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                            {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
                           </Field>
                           {/* Section*/}
                           <label htmlFor="section" className="section" style={marginLeft60vw}>Enter Section</label>
-                          <Field as="select" name="section" className="shortbox" placeholder="Your section">
+                          <Field as="select" name="section" className="shortbox" placeholder="Select Section">
                             <option value="" defaultValue>{" "}-select-</option>
-                            {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
+                            {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
                           </Field>
                         </div>
                         <div className='flexrow' style={marginBottom20vh}> 
@@ -131,8 +131,7 @@ const EventList = (props) => {
                     <p style={image200percent}>From Date</p>
                     <p style={image200percent}>To Date</p>
                     <p style={image200percent}>Attachment</p>
-                    <p style={image100percent}>View</p>
-                    <p style={image100percent}>Edit</p>  
+                    <p style={image250percent}>Action</p> 
                   </div>
                   
                   <div className="bodytableList">
@@ -143,8 +142,8 @@ const EventList = (props) => {
                           <p style={image200percent}>{event.startTime}</p>
                           <p style={image200percent} className='textoverflowellipsis'>{event.endTime}</p>
                           <p style={image200percent} className='textoverflowellipsis'>{event.attachment}</p>
-                          <BsPencilSquare size={'1.1vw'} style={image100percent}/>
-                          <MdDeleteForever size={'1.3vw'} style={image100percent} onClick={()=>deleteEvent(event.id)}/>
+                          <BsPencilSquare size={'1.1vw'} className='itemcenter' style={image100percent}/>
+                          <MdDeleteForever size={'1.3vw'} className='itemcenter' style={image100percent} onClick={()=>deleteEvent(event.id)}/>
 
                         </div>
                     ))}

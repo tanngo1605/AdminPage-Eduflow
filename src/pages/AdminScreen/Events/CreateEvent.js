@@ -1,30 +1,37 @@
 import React, { useState,useEffect } from "react";
-import Modal from "react-modal";
 import { Formik,Form,Field} from "formik";
 import { connect } from "react-redux"
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass} from "../../../redux/Action/SchoolAction";
 import {addSchoolEvent} from "../../../redux/Action/EventAction";
 import Drawer from "../../../component/Drawer/Drawer"
 import Header from "../../../component/Header/HeaderAdmin"
 import Dropzone from "react-dropzone";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { BsPlus } from "react-icons/bs";
-import classes from '../../../userData/GlobalData/classData'
-import sections from '../../../userData/GlobalData/sectionData'
 import {createEventSchema} from "../../../userData/ValidationSchema/EventSchema"
 import {initialCreateEvent} from '../../../userData/InitialData/Event'
 import {marginLeft260vw,marginLeft60vw,marginBottom30vh,marginBottom20vh} from "../../../styles/marginStyles"
 
 const CreateEvent = (props) => {
   
-  let [modalState,setModalState] = useState(false)
-
+  //let [modalState,setModalState] = useState(false)
+  let [classsection,setClassSection] = useState([]);
   useEffect(()=>{
-    function getUserInfo(){
-      Modal.setAppElement("body");
+    async function getClassSection(){
+      //Modal.setAppElement("body");
       props.dispatch(getCurrentUser())
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+        
+        setClassSection( sectionclassData )
+      }
+      catch(err){
+        console.log(err)
+      }
   }
-    getUserInfo();
+  getClassSection();
   },[])
 
 
@@ -33,7 +40,7 @@ const CreateEvent = (props) => {
     try {
       const userData = props.account.userData.userdata.data.data;
       addSchoolEvent(userData.school.uuid,userData.token,values)
-      setModalState(true);
+      //setModalState(true);
     }
     catch(error) {
       console.log(error)
@@ -63,15 +70,15 @@ const CreateEvent = (props) => {
                       {/* Class*/}
                       <label htmlFor="classvalue" className="section">Class</label>
                       
-                      <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
+                      <Field as="select" name="classvalue" className="shortbox" placeholder="Select Class">
                         <option value="" defaultValue>{" "}-select-</option>
-                        {classes.map((eachclass,index)=><option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                        {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
                       </Field>
                       {/* Section*/}
                       <label htmlFor="section" className="section" style={marginLeft60vw}>Section</label>
-                      <Field as="select" name="section" className="shortbox" placeholder="Your section">
+                      <Field as="select" name="section" className="shortbox" placeholder="Select Section">
                         <option value="" defaultValue>{" "}-select-</option>
-                        {sections.map((section,index)=><option key={index} value={section.value}>{section.name}</option>)}
+                        {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
                       </Field>
                     </div>
                     <div className="flexrow" style={marginBottom20vh}>
@@ -125,12 +132,12 @@ const CreateEvent = (props) => {
                 
               
             </div>
-            <Modal isOpen={modalState} onRequestClose={()=>setModalState(false)} className="Modal"> 
+            {/*<Modal isOpen={modalState} onRequestClose={()=>setModalState(false)} className="eventmodal"> 
                 <div className="headermodal" style={{textAlign:"center",color:"#262F56",fontWeight:"bold"}}>Events</div>
-                <p style={{marginTop:"15%",textAlign:"center"}}>Event saved successfully</p>
-                <button className="button" onClick={()=>props.history.push("/event")} style={{marginTop:"5%",marginLeft:"29%"}}> Ok</button>
+                <p style={{marginTop:"5%",textAlign:"center"}}>Event saved successfully</p>
+                <button className="button" onClick={()=>props.history.push("/event")} style={{marginTop:"2%",marginLeft:"29%"}}> Ok</button>
      
-            </Modal>
+                        </Modal>*/}
           </div>
         
       </div>  
@@ -141,5 +148,5 @@ const mapStateToProps = (state) => ({
   account:state.account,
 })
 
-export default React.memo(connect(mapStateToProps)(CreateEvent));
+export default connect(mapStateToProps)(CreateEvent);
 

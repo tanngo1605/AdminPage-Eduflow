@@ -2,11 +2,8 @@ import React from "react";
 import HeaderTeacher from "../../../component/Header/HeaderTeacher";
 
 import { image300percent, image200percent} from "../../../styles/imageStyles";
-import { NavLink } from "react-router-dom"
-import {
-    marginLeft60vw,marginLeft50vw,marginTop20vh, marginTop45vh,
+import { marginLeft60vw,marginLeft50vw,marginTop20vh,} from '../../../styles/marginStyles'
 
-} from '../../../styles/marginStyles'
 const studentData =
     [
 
