@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux"
-
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
 import {getSectionAndClass,getSubject} from "../../../redux/Action/SchoolAction";
 import { Formik, Form, Field, FieldArray, useFormik, ErrorMessage } from 'formik';
@@ -234,7 +233,7 @@ const TimeTable = (props) => {
                                                                             </div>
                                                                             <div className='flexcolumn' style={marginLeft200vw}>
                                                                                 <p className='section' style={fontsize12vw, { width: "100%" }}>Subject</p>
-                                                                                <Field as="select" name={`period[${index}].subject`} className="shortbox" >
+                                                                                <Field as="select" name={`period[${index}].subject`} className="shortbox" placeholder="Select Subject" >
                                                                                     <option value="" defaultValue>{" "}-select-</option>
                                                                                     {subjects.map((subject, index) => <option key={index} value={subject.name}>{subject.name}</option>)}
                                                                                 </Field>

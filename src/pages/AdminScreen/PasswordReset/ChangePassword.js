@@ -26,12 +26,12 @@ const ChangePassword = (props) => {
 
   const handleSubmit = async (values) => {
     const {oldpassword,newpassword,confirmnewpass} = values
-    if (newpassword!=confirmnewpass){
+    if (newpassword!==confirmnewpass){
         alert("New password is not the same")
         props.history.push({pathname:"/changepassword"});
         
     }
-    if (oldpassword==newpassword){
+    if (oldpassword===newpassword){
       alert("New password is the same with old password")
       props.history.push({pathname:"/changepassword"});
       

@@ -13,7 +13,7 @@ import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import {studentSearchSchema} from "../../../userData/ValidationSchema/StudentSchema"
 import {studentSearchInitialValue} from '../../../userData/InitialData/Student'
-import * as xlsx from "xlsx";
+//import * as xlsx from "xlsx";
 import {addaProfileAttachment,marginLeft100vw,marginTop20vh} from "../../../styles/marginStyles"
 import {image300percent,image200percent,image100percent,image130vw} from "../../../styles/imageStyles";
 const StudentSearch = (props) => {
