@@ -1,7 +1,6 @@
-const initialSubjectValue= {
-    title:"",
-    attachment:{},
-    
+const initialSubjectValue = {
+    classvalue: '', section: '', subject: '', teacher: ''
+
 }
 
-export default initialSubjectValue ;
+export default initialSubjectValue;

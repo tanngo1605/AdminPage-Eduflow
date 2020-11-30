@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import InputField from "../InputField/InputField";
 import "./LoginForm.styles.css";
 import { Spinner } from 'react-activity';
-import { setCurrentUser } from "../../redux/Stores/AccountReducer";
+import { setCurrentUser, getCurrentUser } from "../../redux/Stores/AccountReducer";
 import { loginAccount } from "../../redux/Action/UserAction";
 import 'react-activity/dist/react-activity.css';
 import { RiBarcodeBoxLine } from "react-icons/ri";
@@ -29,35 +29,53 @@ class LoginForm extends Component {
 
   submitForm = async (event) => {
     // event.preventDefault();
+
     try {
       this.setState({ isLoading: true })
       let userdata = await loginAccount(this.state);
       console.log(userdata)
       let roleOfUser = userdata.config.data.split(",")[2].replace(/"|}|:|role/g, "")
+      // document.cookie = `auth=${roleOfUser}`
       this.props.dispatch(setCurrentUser(userdata))
-
-      if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
-        document.cookie = `auth=${roleOfUser}`
+      this.props.dispatch(getCurrentUser())
+      console.log(this.props);
+      if (this.props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Admin") {
+        sessionStorage.setItem('role', `${roleOfUser}`)
+        // sessionStorage.setItem('account', `${this.props.account}`)
         // window.location.reload()
-        window.location.assign("http://localhost:3000/homescreen")
         // this.props.history.push("/homescreen")
+        // window.location.reload()
+        // this.props.history.push("/homescreen")
+        // window.location.reload()
+        this.props.history.push("/homescreen")
 
       }
-      else if (userdata.status === 200 && roleOfUser === "Teacher") {
-        document.cookie = `auth=${roleOfUser}`
-        // window.location.reload()
-        // this.props.dispatch(setCurrentUser(userdata))
-        window.location.assign("http://localhost:3000/result")
-        // window.location.reload()
-        // this.props.history.push("/result")
-        // window.location.reload()
-        // this.props.history.push({ path: "/result", state: { userdata: userdata } })
-        // window.location.reload()
-        // this.props.history.push({ path: "/result", state: { userdata: userdata } })
-        // // window.location.reload()
-        // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      else if (this.props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Teacher") {
+        this.props.history.push("/homescreen")
 
       }
+      // if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
+      //   document.cookie = `auth=${roleOfUser}`
+      //   // window.location.reload()
+      //   window.location.assign("http://localhost:3000/homescreen")
+      //   // this.props.history.push("/homescreen")
+
+      // }
+      // else if (userdata.status === 200 && roleOfUser === "Teacher") {
+      //   document.cookie = `auth=${roleOfUser}`
+      //   // window.location.reload()
+      //   // this.props.dispatch(setCurrentUser(userdata))
+      //   window.location.assign("http://localhost:3000/result")
+      //   // window.location.reload()
+      //   // this.props.history.push("/result")
+      //   // window.location.reload()
+      //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      //   // window.location.reload()
+      //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      //   // // window.location.reload()
+      //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+
+      // }
 
 
 
@@ -68,7 +86,9 @@ class LoginForm extends Component {
     }
 
   };
+
   render() {
+    console.log(this.props);
     return (
       <div className="loginForm">
         <h3 className="title">LOGIN</h3>

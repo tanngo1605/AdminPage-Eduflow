@@ -2,17 +2,17 @@ import * as yup from "yup";
 
 const createCircularSchema = yup.object({
   title: yup.string()
-    .required(),
-  attachment:yup.array()
-    .required(),
-  
+    .required("Please fill out this field"),
+  attachment: yup.array()
+    .required("Please fill out this field"),
+
 });
 const listCircularSchema = yup.object({
   title: yup.string()
-    .required(),
+    .required("Please fill out this field"),
   date: yup.date()
-    .required(),
-  
+    .required("Please fill out this field"),
+
 });
 
-export  {createCircularSchema,listCircularSchema};
+export { createCircularSchema, listCircularSchema };

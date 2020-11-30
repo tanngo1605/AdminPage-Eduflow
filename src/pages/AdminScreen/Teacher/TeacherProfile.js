@@ -9,7 +9,7 @@ import Header from "../../../component/Header/HeaderAdmin";
 import { createUsers } from "../../../redux/Action/UserAction";
 import { teacherProfileSchema } from "../../../userData/ValidationSchema/TeacherSchema"
 import { teacherProfileInitialValue } from "../../../userData/InitialData/Teacher"
-import { marginBottom20vh, marginLeft20vw, marginLeft60vw, } from "../../../styles/marginStyles";
+import { marginBottom20vh, marginLeft20vw, marginLeft60vw, marginBottom55vh } from "../../../styles/marginStyles";
 import { image130vw } from "../../../styles/imageStyles"
 import { image40vwLeft10vw } from "../../../styles/imageMarginStyles"
 
@@ -105,16 +105,16 @@ const TeacherProfile = (props) => {
                         <div className="flexcolumn">
                           <div className="formforinfo">
                             <Scrollbars>
-                              <div className="flexrow" style={marginBottom20vh}>
-
+                              <div className="flexrow" style={propsForm.errors.name && propsForm.touched.name ? marginBottom55vh : marginBottom20vh}>
                                 <label htmlFor="name" className="section" style={image130vw}>Name</label>
                                 <Field type="text" name="name" className="shortbox" style={marginLeft60vw} placeholder={teacherData.name} />
                               </div>
-                              <div className="flexrow" style={marginBottom20vh}>
+                              <div className="flexrow" style={propsForm.errors.dob && propsForm.touched.dob ? marginBottom55vh : marginBottom20vh}>
                                 <label className="section" style={image130vw}>Date of birth</label>
                                 <DayPickerInput className="shortbox" name="dob" onDayChange={(day) => propsForm.setFieldValue("dob", day)} style={marginLeft60vw} inputProps={{ readOnly: true }} dayPickerProps={{ disabledDays: { after: new Date() } }} placeholder={teacherData.dateofbirth} />
+
                               </div>
-                              <div className="flexrow" style={marginBottom20vh}>
+                              <div className="flexrow" style={propsForm.errors.gender && propsForm.touched.gender ? marginBottom55vh : marginBottom20vh}>
                                 <label htmlFor="gender" className="section" style={image130vw}>Gender</label>
                                 <Field as="select" name="gender" className="shortbox" style={marginLeft60vw}>
                                   <option value="" defaultValue>{" "}{teacherData.gender}</option>

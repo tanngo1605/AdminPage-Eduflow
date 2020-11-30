@@ -4,6 +4,8 @@ import Header from '../../../component/Header/HeaderAdmin'
 import DayPicker from 'react-day-picker';
 import { Scrollbars } from 'react-custom-scrollbars';
 import './calendar.styles.css';
+import { connect } from 'react-redux';
+import { setCurrentUser, getCurrentUser } from "../../../redux/Stores/AccountReducer";
 
 const modifiers = {
   'Parents Meeting': new Date(2020, 7, 7),
@@ -83,6 +85,8 @@ class Homescreen extends Component {
 
   render() {
     console.log(this.props);
+
+    // console.log(JSON.parse(sessionStorage.getItem('account')));
     return (
 
       <div className='dashboard'>
@@ -169,6 +173,10 @@ class Homescreen extends Component {
     )
   }
 };
+const mapStateToProps = (state) => ({
+  account: state.account,
 
-export default Homescreen;
+})
+
+export default connect(mapStateToProps)(Homescreen);
 

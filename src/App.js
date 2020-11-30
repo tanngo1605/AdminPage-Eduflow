@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 import Homescreen from "./pages/AdminScreen/Homescreen/Homescreen";
 import AccountSetting from "./pages/AdminScreen/Accounts/AccountSetting";
@@ -23,17 +23,27 @@ import EResources from './pages/TeacherScreen/EResources/EResources';
 import "./App.css";
 import "./styles.css";
 // import "tachyons"
+import { setCurrentUser, getCurrentUser } from "../src/redux/Stores/AccountReducer";
 import CircularRouter from "./navigation/CircularRouter";
-const App = () => {
-  var x = document.cookie.replace(/auth=/g, "")
+import { connect } from "react-redux";
+
+const App = (props) => {
+  useEffect(() => {
+    function getUserInfo() {
+      props.dispatch(getCurrentUser())
+    }
+    getUserInfo();
+  }, [])
+  var x = sessionStorage.getItem('role')
   // console.log(x);
+  // var role = props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "")
   return (
     <div className="App">
       <Suspense fallback={<h1>Loading....</h1>}>
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            {x === 'Admin' || x === 'SuperAdmin' ?
+            {x === "Admin" ?
               <React.Fragment>
                 <Route path="/homescreen" component={Homescreen} />
                 {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
@@ -72,6 +82,8 @@ const App = () => {
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => ({
+  account: state.account,
+});
+export default connect(mapStateToProps)(App);
 //
