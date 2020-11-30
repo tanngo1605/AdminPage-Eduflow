@@ -4,6 +4,7 @@ import Dropzone from "react-dropzone";
 import Modal from "react-modal";
 import { connect } from "react-redux"
 import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass} from "../../../redux/Action/SchoolAction";
 import { addSchoolExam } from "../../../redux/Action/ExamAction";
 import { NavLink } from "react-router-dom"
 import DayPickerInput from "react-day-picker/DayPickerInput";
@@ -11,8 +12,6 @@ import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import Drawer from "../../../component/Drawer/Drawer"
 import Header from "../../../component/Header/HeaderAdmin"
-import classes from "../../../userData/GlobalData/classData"
-import sections from "../../../userData/GlobalData/sectionData"
 import ExamSchema from "../../../userData/ValidationSchema/ExamSchema"
 import examInitialValues from "../../../userData/InitialData/Exam"
 import { marginLeft20vw, marginBottom20vh } from "../../../styles/marginStyles"
@@ -21,14 +20,25 @@ const exams = [
   { exam: "Math", class: "VI", section: "TR", datefrom: "20/20/20" }
 ]
 const Exam = (props) => {
+  
   let [modalState, setModalState] = useState(false)
+  let [classsection,setClassSection] = useState([]); 
 
   useEffect(()=>{
-    function getUserInfo(){
+    async function getClassSection(){
       Modal.setAppElement("body");
       props.dispatch(getCurrentUser())
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+        
+        setClassSection( sectionclassData )
+      }
+      catch(err){
+        console.log(err)
+      }
   }
-    getUserInfo();
+    getClassSection();
   },[])
 
   const handleSubmit = (values) => {
@@ -46,6 +56,7 @@ const Exam = (props) => {
   return (
     <div className="dashboard">
       <div className="flexrow">
+        
         <Drawer />
         <div className="flexcolumn">
           <Header {...props}/>
@@ -68,16 +79,16 @@ const Exam = (props) => {
                   </div>
                   <div className="flexrow" style={marginBottom20vh}>
                     <label htmlFor="classvalue" className="section">Class</label>
-                    <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
-                      <option value="" defaultValue>{" "}-select-</option>
-                      {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                    <Field as="select" name="classvalue" className="shortbox"  placeholder="Select Class">
+                        <option value="" defaultValue>{" "}-select-</option>
+                        {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
                     </Field>
                     {/* Section*/}
                     <label htmlFor="section" className="section" style={marginLeft20vw}>Section</label>
-                    <Field as="select" name="section" className="shortbox" placeholder="Your class">
-                      <option value="" defaultValue>{" "}-select-</option>
-                      {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
-                    </Field>
+                     <Field as="select" name="section" className="shortbox" placeholder="Select Section">
+                        <option value="" defaultValue>{" "}-select-</option>
+                        {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
+                      </Field>
                   </div>
                   <div className="flexrow" style={marginBottom20vh}>
                     <label className="section">Date from: </label>

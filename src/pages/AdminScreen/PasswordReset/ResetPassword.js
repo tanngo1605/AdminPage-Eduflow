@@ -27,6 +27,7 @@ const ResetPassword = (props)=> {
         try {
             const prop = props.location;
             const userInput = {emailID:prop.emailID,OTP:prop.OTP,password:newpassword,confirmPassword:confirmnewpass}
+            console.log(userInput)
             await resetPassword(userInput);
             //send user OTP
             setModalState(true)

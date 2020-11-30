@@ -1,47 +1,26 @@
-import ServerDomain from "../../serverdomain";
-import axios from 'axios';
+import {request} from '../api'
 
 const addSchoolCircular =  (schoolId,jwtToken,circularInput) => {
     const {title,attachment} = circularInput;
-    
-    
     const inputData = JSON.stringify({
-
       title,
       url:URL.createObjectURL(attachment[0])
-
     })
 
-    axios.post(`${ServerDomain}/schools/${schoolId}/circulars`,inputData,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-          })
-          .then(resData=>{
-                    console.log("New Circulars has been created")
-          })
-          .catch(err=>{
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error(error)
-                    
-                    
-          });    
+    request(jwtToken).post(`/schools/${schoolId}/circulars`,inputData)
+                     .then(resData=>{
+                                alert("New circular has been created")
+                     })
+    
 }
 const getSchoolCircular = async (schoolId,jwtToken) => {
     
-    const circularData= await axios.get(`${ServerDomain}/schools/${schoolId}/circulars`,{
-                                headers: { 
-                                        "Content-Type":"application/json",
-                                        "Authorization":`Bearer ${jwtToken}`
-                                },
-                        })
-                        .catch(err=> {
-                                const error= "Something went wrong. Check your input again"
-                                throw new Error (error)
-                        })
+    const circularData= await request(jwtToken).get(`/schools/${schoolId}/circulars`)
+                                                .then(resData=> {
+                                                        return resData.data.data
+                                                })
     
-    return circularData.data.data;
+    return circularData;
  
 }
 export {addSchoolCircular,getSchoolCircular}

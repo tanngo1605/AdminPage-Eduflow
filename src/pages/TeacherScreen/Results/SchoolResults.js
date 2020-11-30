@@ -1,13 +1,14 @@
-import React, { useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux';
 import { Scrollbars } from "react-custom-scrollbars";
 import { Formik,Form,Field} from "formik";
 import HeaderTeacher from "../../../component/Header/HeaderTeacher";
 import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import schoolSchema from "../../../userData/ValidationSchema/SchoolSchema"
-import schoolInitialValue from '../../../userData/InitialData/School'
+import {getSubject} from "../../../redux/Action/SchoolAction";
+import {schoolSchema} from "../../../userData/ValidationSchema/SchoolSchema"
+import {schoolInitialValue} from '../../../userData/InitialData/School'
 import {marginTop55vh,marginLeft120vw,marginLeft55vw} from "../../../styles/marginStyles";
-import subjects from '../../../userData/GlobalData/subjectData'
+
 import {image300percent,image100percent} from '../../../styles/imageStyles'
 
 const studentArray = [
@@ -17,12 +18,24 @@ const studentArray = [
 const SchoolResults =  (props) => {
   
 
-  const getSchoolData = async ()=>{
-    props.dispatch(getCurrentUser())
+  let [subjects,setSubject] = useState([])
+  
 
-  }
-
-  useEffect(getSchoolData,[]) 
+  useEffect(()=>{
+    async function getSubjectData(){
+      props.dispatch(getCurrentUser())
+      try {
+        const userData=props.account.userData.userdata.data.data;
+        const subjectData = await getSubject(userData.school.uuid)
+        setSubject(subjectData)
+        
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+    getSubjectData()
+  },[]) 
 
 
   const handleSubmit = (values) => {
@@ -60,7 +73,7 @@ const SchoolResults =  (props) => {
                                 <label htmlFor="classvalue" className="section" style={marginLeft55vw} >Subject</label>
                                 <Field as="select" name="subject" className="shortbox"  style={marginLeft120vw} placeholder="Your section">
                                 <option value="" defaultValue>{" "}-select-</option>
-                                {subjects.map((subject,index)=><option key={index} value={subject.value}>{subject.subject}</option>)}
+                                {subjects.map((subject,index)=><option key={index} value={subject.name}>{subject.name}</option>)}
                                 </Field> 
                             </section>
                             

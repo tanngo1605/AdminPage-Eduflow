@@ -1,49 +1,43 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Formik,Form,Field} from "formik";
+
 import Dropzone from "react-dropzone";
 import { NavLink } from "react-router-dom";
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass} from "../../../redux/Action/SchoolAction";
 import {loadData,filterByValue,deleteData} from "../../../redux/Stores/StudentReducer";
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import {studentSearchSchema} from "../../../userData/ValidationSchema/StudentSchema"
 import {studentSearchInitialValue} from '../../../userData/InitialData/Student'
-import * as xlsx from "xlsx";
+//import * as xlsx from "xlsx";
 import {addaProfileAttachment,marginLeft100vw,marginTop20vh} from "../../../styles/marginStyles"
 import {image300percent,image200percent,image100percent,image130vw} from "../../../styles/imageStyles";
 const StudentSearch = (props) => {
-  
+    let [classsection,setClassSection] = useState([]); 
+
     useEffect(()=>{
-      function getUserInfo(){
+      async function getClassSection(){
         
         props.dispatch(loadData())
-    }
-      getUserInfo();
+        props.dispatch(getCurrentUser())
+        try {
+          const userData=props.account.userData.userdata.data.data;
+          const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+          
+          setClassSection( sectionclassData )
+        }
+        catch(err){
+          console.log(err)
+        }
+      }
+      getClassSection();
     },[])
 
-  
-  const onDrop = (files) => {
-    if (files.length === 0 || files.length > 1) return;
-    var f = files[0];
-    console.log(files);
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var data = e.target.result;
-      let readedData = xlsx.read(data, { type: "binary" });
-      const wsname = readedData.SheetNames[0];
-      const ws = readedData.Sheets[wsname];
 
-      /* Convert array to json*/
-      const dataParse = xlsx.utils.sheet_to_json(ws, { header: 1 });
-      console.log(dataParse);
-    };
-    reader.readAsBinaryString(f);
-    
-  };
-
-  
   const handleSearch = (event) => {
 
     
@@ -81,13 +75,20 @@ const StudentSearch = (props) => {
                       </div>
                         <div className="flexcolumn" style={marginLeft100vw}>
                           <label htmlFor="classvalur" className="section" style={image130vw}>Enter Class</label>
-                          <Field type="text" name="classvalue" className="shortbox" placeholder="Type here" />
+                          
+                          <Field as="select" name="classvalue" className="shortbox"  placeholder="Select class">
+                            <option value="" defaultValue>{" "}-select-</option>
+                            {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
+                          </Field>
                         </div>
                       </div>
                       <div className="flexrow" style={marginTop20vh}>
                         <div className="flexcolumn" style={marginLeft100vw}>
                           <label htmlFor="section" className="section" style={image130vw}>Enter Section</label>
-                          <Field type="text" name="section" className="shortbox" placeholder="Type here" />
+                          <Field as="select" name="section" className="shortbox" placeholder="Select Section">
+                            <option value="" defaultValue>{" "}-select-</option>
+                            {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
+                          </Field>
                         </div>
                         <div className="flexcolumn" style={marginLeft100vw}>
                           <label htmlFor="subject" className="section" style={image130vw}>Enter Subject</label>
@@ -155,6 +156,7 @@ const StudentSearch = (props) => {
 
 const mapStateToProps = (state) => ({
   student: state.student,
+  account: state.account
 });
 
 export default React.memo(connect(mapStateToProps)(StudentSearch));

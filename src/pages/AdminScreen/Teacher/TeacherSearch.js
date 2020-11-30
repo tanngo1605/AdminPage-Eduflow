@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import Dropzone from "react-dropzone"
 import { NavLink } from "react-router-dom"
 import Drawer from "../../../component/Drawer/Drawer"
 import Header from "../../../component/Header/HeaderAdmin"
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass,getSubject} from "../../../redux/Action/SchoolAction";
 import { loadTeacherData, deleteTeacherData } from "../../../redux/Stores/TeacherReducer";
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
@@ -12,15 +14,25 @@ import { teacherSearchScema } from "../../../userData/ValidationSchema/TeacherSc
 import { teacherSearchInitialValue } from "../../../userData/InitialData/Teacher"
 import { addaProfileAttachment, marginLeft100vw, marginTop20vh } from "../../../styles/marginStyles"
 import { image300percent, image200percent, image100percent, image130vw } from "../../../styles/imageStyles";
-import classes from '../../../userData/GlobalData/classData'
-import subjects from '../../../userData/GlobalData/subjectData'
-import sections from '../../../userData/GlobalData/sectionData'
+
+
 const TeacherSearch = (props) => {
-
-
+  let [classsection,setClassSection] = useState([]);
+  let [subjects,setSubject] = useState([])
   useEffect(() => {
-    function getUserInfo() {
+    async function getUserInfo() {
       props.dispatch(loadTeacherData())
+      props.dispatch(getCurrentUser())
+      try {
+          const userData=props.account.userData.userdata.data.data;
+          const subjectData = await getSubject(userData.school.uuid);
+          const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token);
+          setSubject(subjectData)
+          setClassSection( sectionclassData )
+      }
+      catch(err){
+          console.log(err)
+      }
     }
     getUserInfo();
   }, [])
@@ -62,25 +74,25 @@ const TeacherSearch = (props) => {
                     </div>
                     <div className="flexcolumn" style={marginLeft100vw}>
                       <label htmlFor="classvalur" className="section" style={image130vw}>Enter Class</label>
-                      <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
-                        <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                        {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                      <Field as="select" name="classvalue" className="shortbox"  placeholder="Select class">
+                        <option value="" defaultValue>{" "}-select-</option>
+                        {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
                       </Field>
                     </div>
                   </div>
                   <div className="flexrow" style={marginTop20vh}>
                     <div className="flexcolumn" style={marginLeft100vw}>
                       <label htmlFor="section" className="section" style={image130vw}>Enter Section</label>
-                      <Field as="select" name="section" className="shortbox" placeholder="Your section">
-                        <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                        {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
+                      <Field as="select" name="section" className="shortbox" placeholder="Select Section">
+                        <option value="" defaultValue>{" "}-select-</option>
+                        {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
                       </Field>
                     </div>
                     <div className="flexcolumn" style={marginLeft100vw}>
                       <label htmlFor="subject" className="section" style={image130vw}>Enter Subject</label>
-                      <Field as="select" name={`subject`} className="shortbox" >
+                      <Field as="select" name={`subject`} className="shortbox" placeholder="Select Subject">
                         <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                        {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
+                        {subjects.map((subject, index) => <option key={index} value={subject.name}>{subject.name}</option>)}
                       </Field>
                     </div>
                   </div>

@@ -1,31 +1,19 @@
-import ServerDomain from "../../serverdomain";
-import axios from 'axios';
+import {request} from '../api'
 
 const getSchoolInfo =  async (schoolId,jwtToken) => {
     
-
-    
-    const schoolData = await axios.get(`${ServerDomain}/schools/${schoolId}`,{
-                                headers: { 
-                                    "Content-Type":"application/json",
-                                    "Authorization":`Bearer ${jwtToken}`
-                                },
-                            })
-
-                            .catch(err=>{
-                                const error= "Something went wrong. Check your input again"
-                                throw new Error(error)
-                            });
-    return schoolData.data.data
-    
-    
-    
+    const schoolData = await request(jwtToken).get(`/schools/${schoolId}`)
+                                              .then(resData=>{
+                                                  return resData.data.data.otp
+                                              })
+                            
+    return schoolData 
 }
-const updateSchoolInfo =  (schoolId,jwtToken,updateInput) => {
+const updateSchoolInfo =  async (schoolId,jwtToken,updateInput) => {
     const {
-      name,
+    //  name,
       schoolname,
-      schoolcode,
+    //  schoolcode,
       permaaddress,
       permacity,
       permastate,
@@ -34,10 +22,11 @@ const updateSchoolInfo =  (schoolId,jwtToken,updateInput) => {
       schoolemail,
       contactnum,
       alternatephoneno,
-      image} = updateInput;
+   //   image
+    } = updateInput;
     
     
-    const inputData = JSON.stringify({
+    const inputData = {
 
       name: schoolname,
       email:schoolemail,
@@ -46,29 +35,13 @@ const updateSchoolInfo =  (schoolId,jwtToken,updateInput) => {
       affiliationCode:schoolweb,
       board:'nhieulammoi',
       landLine:alternatephoneno
-        
-
-    })
+    }
 
     console.log(inputData)
-    axios.put(`${ServerDomain}/schools/${schoolId}`,inputData,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-          })
-          .then(resData=>{
-                    console.log("School  has been updated")
-          })
-          .catch(err=>{
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error(error)
-                    
-                    
-          });
-    
-    
-    
+    await request(jwtToken).put(`/schools/${schoolId}`,inputData)
+                          .then(resData=>{
+                                    alert("Update school successfully")
+                          })   
 }
 const createSubject =  (schoolId,jwtToken,subjectInput) => {
   const {name,text} = subjectInput;
@@ -80,38 +53,48 @@ const createSubject =  (schoolId,jwtToken,subjectInput) => {
   })
 
   
-  axios.put(`${ServerDomain}/subjects`,inputData,{
-                  headers: { 
-                    "Content-Type":"application/json",
-                    "Authorization":`Bearer ${jwtToken}`
-                  },
-        })
-        .then(resData=>{
-                  console.log("Success creating a subject")
-        })
-        .catch(err=>{
-                  const error= "Something went wrong. Check your input again"               
-        });
+  request(jwtToken).post(`/subjects`,inputData)
+                   .then(resData=>{
+                        alert("New subject has been created")
+                    })
 }
 
-const getSubject =  async (schoolId,jwtToken) => {
-    
-
-    
-  const subjectData = await axios.get(`${ServerDomain}/subjects`,{
-                              headers: { 
-                                  "Content-Type":"application/json",
-                                  "Authorization":`Bearer ${jwtToken}`
-                              },
-                          })
-
-                          .catch(err=>{
-                              const error= "Something went wrong. Check your input again"
-                              throw new Error(error)
-                          });
-  return subjectData.data.data
+const getSubject =  async (jwtToken) => {
+ 
+  const subjectData = await request(jwtToken).get('/subjects',)
+                                            .then(resData=>{
+                                                return resData.data.data
+                                            })
+  return subjectData
   
   
   
 }
-export {getSchoolInfo,updateSchoolInfo,createSubject,getSubject}
+
+const getSectionAndClass =  async (schoolId,jwtToken) => {
+
+    const sectionAndClass =  await request(jwtToken).get(`/schools/${schoolId}/classes`)
+                                                    .then((resData)=>{
+                                                      return resData.data.data
+                                                    })
+   return sectionAndClass;
+    
+    
+}
+const addSectionAndClass =  (schoolId,jwtToken,sectionclassInput) => {
+
+    const {classvalue,section} = sectionclassInput;
+
+    const inputData = {
+      class:classvalue.toUpperCase(),
+      section:section.toUpperCase()
+    }
+    
+    request(jwtToken).post(`/schools/${schoolId}/classes`,inputData)
+                      .then(resData=>{
+                                alert("New Class has been created")
+                      })
+           
+}
+
+export {getSchoolInfo,updateSchoolInfo,createSubject,getSubject,getSectionAndClass,addSectionAndClass}

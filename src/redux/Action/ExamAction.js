@@ -1,58 +1,37 @@
-import ServerDomain from "../../serverdomain";
-import axios from 'axios';
-
+import {request} from '../api'
 
 const addSchoolExam =  (schoolId,jwtToken,eventInput) => {
-    const {title,classvalue,section,datefrom,dateto,startTime,endTime,attachment,description} = eventInput;
+    const {title,classvalue,section,datefrom,dateto,startTime,endTime,attachment,} = eventInput;
+    //description
     
-    console.log(eventInput)
-    const inputData = JSON.stringify({
-      
+    const inputData = {
       title,
       class:classvalue,
       section,
       startTime: new Date(`${datefrom.toLocaleDateString()} ${startTime}`),
       endTime: new Date(`${dateto.toLocaleDateString()} ${endTime}`),
-      
       description:'con me gi do',
       attachment,
-      
-      
-    })
+    }
 
     console.log(inputData)
-    axios.post(`${ServerDomain}/schools/${schoolId}/events`,inputData,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-          })
-          .then(resData=>{
-                    console.log("New Exams has been created")
-          })
-          .catch(err=>{
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error(error)
-                    
-          });
+    request(jwtToken).post(`/schools/${schoolId}/events`,inputData)
+                     .then(resData=>{
+                        alert("New exam has been created")
+                      })
+          
     
     
     
 }
 const getSchoolExam = async (schoolId,jwtToken) => {
     
-     const examData= await axios.get(`${ServerDomain}/schools/${schoolId}/events`,{
-                                headers: { 
-                                        "Content-Type":"application/json",
-                                        "Authorization":`Bearer ${jwtToken}`
-                                },
-                        })
-                        .catch(err=> {
-                                const error= "Something went wrong. Check your input again"
-                                throw new Error (error)
-                        })
+     const examData = await request(jwtToken).get(`/schools/${schoolId}/events`)
+                                             .then((resData)=>{
+                                                return resData.data.data
+                                              })
     
-    return examData.data.data;
+    return examData;
         
  
 }

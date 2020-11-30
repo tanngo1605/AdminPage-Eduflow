@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux"
 import { BsPlus, BsFillFolderFill } from "react-icons/bs";
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass,getSubject} from "../../../redux/Action/SchoolAction";
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
 import Dropzone from "react-dropzone";
-import subjects from '../../../userData/GlobalData/subjectData'
-// import sections from '../../../userData/GlobalData/sectionData'
-import classes from '../../../userData/GlobalData/classData'
 
 const syllabus = {
   1: { class: "", subject: "", files: null },
@@ -25,7 +25,21 @@ class Syllabus extends Component {
       3: { class: "", subject: "", files: null },
       4: { class: "", subject: "", files: null },
       5: { class: "", subject: "", files: null },
+      subject:[],
+      classsection:[]
     };
+  }
+  async componentDidMount(){
+    this.props.dispatch(getCurrentUser())
+    try {
+      const userData=this.props.account.userData.userdata.data.data;
+      const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+      const subjectData = await getSubject(userData.school.uuid)
+      this.setState({subject:subjectData,classsection:sectionclassData})
+    }
+    catch(err){
+      console.log(err)
+    }
   }
   onDrop = (files, key) => {
     let update = Object.assign({}, this.state[key], { files: files });
@@ -86,27 +100,19 @@ class Syllabus extends Component {
                       </div>
 
                       <div className="flexrow" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
-                        <select
-                          id="class"
-                          className="shortbox"
-                          onChange={(event) => this.handleChange(event, key)}
-                          style={{ marginLeft: "1.5vw" }}
-                        >
-                          <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                          {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                        
+                        <select className="shortbox" required id='class' style={{marginLeft: "1.5vw" }} onChange={(event) => this.handleChange(event,key)}>
+                          <option disabled value="" defaultValue>{" "}- select -</option>
+                          {this.state.classsection && this.state.classsection.map((classsection,index)=><option key={index} value={classsection.class}>{classsection.class}</option>)}
+                          
                         </select>
 
-                        <select
-                          id="subject"
-                          className="shortbox"
-                          onChange={(event) => this.handleChange(event, key)}
-                          style={{ marginLeft: "12vw" }}
-                        >
-                          <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                          {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
+                        
+                        <select className="shortbox" required id='class' style={{marginLeft: "12vw" }} onChange={(event) => this.handleChange(event,key)}>
+                          <option disabled value="" defaultValue>{" "}- select -</option>
+                          {this.state.subject && this.state.subject.map((subject,index)=><option key={index} value={subject.name}>{subject.name}</option>)}
+                          
                         </select>
-
-
 
                         <Dropzone onDrop={(files) => this.onDrop(files, key)}>
                           {({ getRootProps, getInputProps }) => (
@@ -152,4 +158,8 @@ class Syllabus extends Component {
     );
   }
 }
-export default Syllabus;
+const mapStateToProps = (state) => ({
+  account:state.account,
+})
+
+export default connect(mapStateToProps)(Syllabus);

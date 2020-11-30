@@ -17,9 +17,10 @@ const ForgetPassword =(props)=> {
       return 
     }
     try {
-      //const OTP = await forgetPassword(emailID);
+      const OTP = await forgetPassword(emailid);
       //send user OTP 
-      props.history.push({pathname:"/sendotp",emailID:emailid});
+      console.log(OTP)
+      props.history.push({pathname:"/sendotp",OTP:OTP,emailID:emailid});
       
     }
     catch(error) {

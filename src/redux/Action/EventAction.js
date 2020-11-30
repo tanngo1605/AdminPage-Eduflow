@@ -1,13 +1,19 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
-
+import {request} from '../api'
 
 const addSchoolEvent =  (schoolId,jwtToken,eventInput) => {
-    const {title,datefrom,dateto,startTime,endTime,attachment,description,classvalue,section} = eventInput;
-    
-    console.log(eventInput)
-    const inputData = JSON.stringify({
-      
+    const {title,
+      datefrom,
+      dateto,
+      startTime,
+      endTime,
+      //attachment,
+      description,
+      //classvalue,section
+    } = eventInput;
+ 
+    const inputData = {
       title,
       startTime: new Date(`${datefrom.toLocaleDateString()} ${startTime}`),
       endTime: new Date(`${dateto.toLocaleDateString()} ${endTime}`),
@@ -15,43 +21,22 @@ const addSchoolEvent =  (schoolId,jwtToken,eventInput) => {
       //class:classvalue,
       description,
       //attachment:attachment,
-      
-      
-    })
+    }
 
     console.log(inputData)
-    axios.post(`${ServerDomain}/schools/${schoolId}/events`,inputData,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-          })
-          .then(resData=>{
-                    console.log("New Events has been created")
-          })
-          .catch(err=>{
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error(error)
-                    
-          });
-    
-    
-    
+    request(jwtToken).post(`/schools/${schoolId}/events`,inputData)
+                      .then(resData=>{
+                                alert("New events has been created")
+                      })
 }
 const getSchoolEvent = async (schoolId,jwtToken) => {
   
-  const schoolEvent= await axios.get(`${ServerDomain}/schools/${schoolId}/events/`,{
-                        headers: { 
-                              "Content-Type":"application/json",
-                              "Authorization":`Bearer ${jwtToken}`
-                        },
-                      })
-                      .catch(err=> {
-                        const error= "Something went wrong. Check your input again"
-                        throw new Error (error)
-                      })
-  console.log(schoolEvent)
-  return schoolEvent.data.data;
+  const schoolEvent= await request(jwtToken).get(`/schools/${schoolId}/events/`)
+                                            .then((resData)=>{
+                                                return resData.data.data
+                                            })
+  
+  return schoolEvent;
  
 }
 const searchSchoolEvent = async (schoolId,jwtToken,eventInput) => {
@@ -80,23 +65,43 @@ const searchSchoolEvent = async (schoolId,jwtToken,eventInput) => {
 
   return searchResult.data.data
 }
-const deleteSchoolEvent = async (schoolId,jwtToken,eventId) => {
-  
-  await axios.delete(`${ServerDomain}/schools/${schoolId}/events/${eventId}`,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-        })
-        .then(resData=>{
-                    console.log(`Event ${eventId} has been deleted`)
-        })
-        .catch(err=> {
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error (error)
-        })
+const updateSchoolEvent = async (schoolId,jwtToken,eventId,eventInput) => {
+  const {title,
+    datefrom,
+    dateto,
+    startTime,
+    endTime,
+    //attachment,
+    description,
+    //classvalue,section
+  } = eventInput;
+
+  const inputData = {
+    title,
+    startTime: new Date(`${datefrom.toLocaleDateString()} ${startTime}`),
+    endTime: new Date(`${dateto.toLocaleDateString()} ${endTime}`),
+    //section: section,
+    //class:classvalue,
+    description,
+    //attachment:attachment,
+  }
+  await request(jwtToken).patch(`/schools/${schoolId}/events/${eventId}`,inputData)
+                    .then(resData=>{
+                            alert.log('Update event successfully')
+                    })
   
   
  
 }
-export {addSchoolEvent,getSchoolEvent,searchSchoolEvent,deleteSchoolEvent}
+const deleteSchoolEvent = async (schoolId,jwtToken,eventId) => {
+  
+  await request(jwtToken).delete(`/schools/${schoolId}/events/${eventId}`)
+                    .then(resData=>{
+                            console.log(`Event ${eventId} has been deleted`)
+                    })
+  const schoolEventData = await getSchoolEvent(schoolId,jwtToken)
+  return schoolEventData;
+  
+ 
+}
+export {addSchoolEvent,getSchoolEvent,searchSchoolEvent,deleteSchoolEvent,updateSchoolEvent}

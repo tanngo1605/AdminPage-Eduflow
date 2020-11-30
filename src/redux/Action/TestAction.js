@@ -1,50 +1,33 @@
 import ServerDomain from "../../serverdomain";
-import axios from 'axios';
-
+import {request} from '../api'
 const addTest =  (jwtToken,testInput) => {
     const {date,classvalue,section,name,type} = testInput;
-    
-    
-    const inputData = JSON.stringify({
+    const inputData = {
       date,
       section,
       class:classvalue,
       name,
       type
-    })
+    };
 
-    axios.post(`${ServerDomain}/tests`,inputData,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-          })
-          .then(resData=>{
-                    console.log("New Circulars has been created")
-          })
-          .catch(err=>{
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error(error)
-                    
-                    
-          });    
+    request(jwtToken).post(`${ServerDomain}/tests`,inputData)
+                     .then(resData=>{
+                        alert("New tests has been created")
+                      })
+   
 }
-const getTest = async (schoolId,jwtToken) => {
+const getTest = async (jwtToken,userInput) => {
+        const {classvalue,section}=userInput;
     
-    const testData= await axios.get(`${ServerDomain}/tests?class= & section=`,{
-                                headers: { 
-                                        "Content-Type":"application/json",
-                                        "Authorization":`Bearer ${jwtToken}`
-                                },
-                        })
-                        .catch(err=> {
-                                const error= "Something went wrong. Check your input again"
-                                throw new Error (error)
-                        })
+        const testData= await request(jwtToken).get(`/tests?class=${classvalue}&section=${section}`)
+                                                .then(resData=>{
+                                                        return resData.data.data
+                                                })
     
-    return testData.data.data;
+    return testData;
  
 }
+
 const addTestMarks =  (jwtToken,testMarkInput) => {
 
     const {date,classvalue,section,name,type} = testMarkInput;
@@ -57,36 +40,19 @@ const addTestMarks =  (jwtToken,testMarkInput) => {
       name,
       type
     })
-    axios.post(`${ServerDomain}/tests`,inputData,{
-                    headers: { 
-                      "Content-Type":"application/json",
-                      "Authorization":`Bearer ${jwtToken}`
-                    },
-          })
+    request(jwtToken).post('/tests',inputData)
           .then(resData=>{
-                    console.log("New Circulars has been created")
-          })
-          .catch(err=>{
-                    const error= "Something went wrong. Check your input again"
-                    throw new Error(error)
-                    
-                    
-          });    
+                    alert("New test mark has been created")
+          })  
 }
-const getTestMarks = async (schoolId,testID,jwtToken) => {
+const getTestMarks = async (testID,jwtToken) => {
     
-    const testMarksData= await axios.get(`${ServerDomain}/${testID}`,{
-                                headers: { 
-                                        "Content-Type":"application/json",
-                                        "Authorization":`Bearer ${jwtToken}`
-                                },
-                        })
-                        .catch(err=> {
-                                const error= "Something went wrong. Check your input again"
-                                throw new Error (error)
-                        })
+    const testMarksData= request(jwtToken).post(`/${testID}`)
+                                          .then(resData=>{
+                                                return resData.data.data
+                                        })
     
-    return testMarksData.data.data;
+    return testMarksData;
  
 }
 export {addTest,getTest,addTestMarks,getTestMarks}

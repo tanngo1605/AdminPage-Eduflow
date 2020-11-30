@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux"
-import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
+import {getSectionAndClass,getSubject} from "../../../redux/Action/SchoolAction";
 import { Formik, Form, Field, FieldArray, useFormik, ErrorMessage } from 'formik';
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -11,15 +12,10 @@ import Header from '../../../component/Header/HeaderAdmin';
 
 // import getTimeTableData from "../../../redux/Action/TimeTableAction"
 import {
-    marginBottom125vh,
     marginBottom20vh,
     marginLeft200vw,
     marginLeft150vw,
     marginLeft130vw,
-    marginLeft55vw,
-    marginLeft60vw,
-    marginLeft120vw,
-    marginTop55vh,
     marginTop45vh,
     fontsize12vw,
     marginBottom55vh
@@ -27,16 +23,9 @@ import {
 import './animation.css'
 import { image100vw } from '../../../styles/imageStyles'
 // import styled from '@emotion/styled';
-
-import * as Yup from 'yup';
 import TimetableSchema from '../../../userData/ValidationSchema/TimeTableSchema';
 // // import TimeTable from './TimeTable';
 import { FcHighPriority } from "react-icons/fc";
-import classes from '../../../userData/GlobalData/classData'
-import subjects from '../../../userData/GlobalData/subjectData'
-import sections from '../../../userData/GlobalData/sectionData'
-import ServerDomain from "../../../serverdomain";
-import axios from 'axios';
 import addTimeTable from "../../../redux/Action/TimeTableAction"
 let numOfPeriods = 4
 let arrayOfPeriods = []
@@ -50,14 +39,25 @@ for (let i = 0; i < numOfPeriods; i++) {
 
 
 const TimeTable = (props) => {
-
-
-    useEffect(() => {
-        function getUserInfo() {
+    
+    let [classsection,setClassSection] = useState([]); 
+    let [subjects,setSubject] = useState([])
+    useEffect(()=>{
+        async function getClassSection(){
             props.dispatch(getCurrentUser())
-        }
-        getUserInfo();
-    }, [])
+            try {
+              const userData=props.account.userData.userdata.data.data;
+              const subjectData = await getSubject(userData.school.uuid)
+              const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
+              setSubject(subjectData)
+              setClassSection( sectionclassData )
+            }
+            catch(err){
+              console.log(err)
+            }
+      }
+        getClassSection();
+      },[])
 
     const handleSubmit = async (values) => {
         try {
@@ -116,9 +116,9 @@ const TimeTable = (props) => {
                                                     <div className="flexcolumn">
                                                         <div className="flexrow">
                                                             <label className='section' style={{ width: "25%", marginRight: "5vw" }}>Enter Class</label>
-                                                            <Field as="select" name="classvalue" className="shortbox" placeholder="Your class">
-                                                                <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                                                                {classes.map((eachclass, index) => <option key={index} value={eachclass.value}>{eachclass.name}</option>)}
+                                                            <Field as="select" name="classvalue" className="shortbox"  placeholder="Select Class">
+                                                                <option value="" defaultValue>{" "}-select-</option>
+                                                                {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
                                                             </Field>
                                                         </div>
                                                         <div style={{ position: "absolute" }}>{props.errors.classvalue && props.touched.classvalue ?
@@ -135,9 +135,9 @@ const TimeTable = (props) => {
                                                     <div className="flexcolumn">
                                                         <div className="flexrow">
                                                             <label className="section" style={{ width: "25%", marginLeft: "5vw", marginRight: "5vw" }}>Enter Section</label>
-                                                            <Field as="select" name="section" className="shortbox" placeholder="Your section">
-                                                                <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                                                                {sections.map((section, index) => <option key={index} value={section.value}>{section.name}</option>)}
+                                                            <Field as="select" name="section" className="shortbox" placeholder="Select section">
+                                                                <option value="" defaultValue>{" "}-select-</option>
+                                                                {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
                                                             </Field>
                                                         </div>
                                                         <div style={{ position: "absolute" }}>
@@ -233,9 +233,9 @@ const TimeTable = (props) => {
                                                                             </div>
                                                                             <div className='flexcolumn' style={marginLeft200vw}>
                                                                                 <p className='section' style={fontsize12vw, { width: "100%" }}>Subject</p>
-                                                                                <Field as="select" name={`period[${index}].subject`} className="shortbox" >
-                                                                                    <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                                                                                    {subjects.map((subject, index) => <option key={index} value={subject.value}>{subject.subject}</option>)}
+                                                                                <Field as="select" name={`period[${index}].subject`} className="shortbox" placeholder="Select Subject" >
+                                                                                    <option value="" defaultValue>{" "}-select-</option>
+                                                                                    {subjects.map((subject, index) => <option key={index} value={subject.name}>{subject.name}</option>)}
                                                                                 </Field>
                                                                                 {/* <div className="errMess" >
                                                                                 <ErrorMessage name={`period[${index}].subject`} />

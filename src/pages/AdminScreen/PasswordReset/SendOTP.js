@@ -4,10 +4,14 @@ import OtpInput from "react-otp-input";
 import {marginLeft100vw,marginLeft120vw} from "../../../styles/marginStyles";
 const SendOTP =(props)=>  {
   const [OTP,setOTP] =useState("")
-  
+  const SendingOTP = props.location.OTP;
+  console.log(SendingOTP)
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.history.push({pathname:"/resetpassword",OTP:OTP,emailID:props.location.emailID});
+    if (SendingOTP === OTP)
+      props.history.push({pathname:"/resetpassword",OTP:OTP,emailID:props.location.emailID});
+    else 
+      alert('Wrong OTP!!!!')
   };
   
     

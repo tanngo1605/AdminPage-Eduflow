@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+import { getSectionAndClass } from "../../../redux/Action/SchoolAction";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 import Drawer from "../../../component/Drawer/Drawer";
@@ -15,15 +16,25 @@ import { image40vwLeft10vw, image95vwLeft30vw } from "../../../styles/imageMargi
 import { FcHighPriority } from "react-icons/fc";
 
 const StudentProfile = (props) => {
-
-  const [studentData, setStudentData] = useState(props.location.studentdata ? props.location.studentdata : [])
+  let [classsection, setClassSection] = useState([]);
   const [edit, setEdit] = useState(props.location.studentdata ? false : true)
+  const [studentData, setStudentData] = useState(props.location.studentdata ? props.location.studentdata : [])
+
 
   useEffect(() => {
-    function getUserInfo() {
+    async function getClassSection() {
       props.dispatch(getCurrentUser())
+      try {
+        const userData = props.account.userData.userdata.data.data;
+        const sectionclassData = await getSectionAndClass(userData.school.uuid, userData.token)
+
+        setClassSection(sectionclassData)
+      }
+      catch (err) {
+        console.log(err)
+      }
     }
-    getUserInfo();
+    getClassSection();
   }, [])
 
   const displayImage = (propsForm) => {
