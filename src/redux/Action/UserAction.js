@@ -1,6 +1,6 @@
 import ServerDomain from "../../serverdomain";
 import axios from 'axios';
-import {request} from '../api'
+import { request } from '../api'
 import { format } from 'date-fns';
 
 const loginAccount = async (userInput) => {
@@ -11,12 +11,12 @@ const loginAccount = async (userInput) => {
             role,
       }
       let userData = request().post(`${ServerDomain}/auth/login`, inputData)
-                              .then(resData => {
-                                    console.log(`Login ${username} success`)
-                                    console.log(resData.data);
-                                    return resData;
-                              })
-            
+            .then(resData => {
+                  console.log(`Login ${username} success`)
+                  console.log(resData.data);
+                  return resData;
+            })
+
 
       return userData
 
@@ -44,11 +44,11 @@ const createUsers = (jwtToken, userInput, role) => {
                   class: userInput.classvalue,
                   section: userInput.section
             }
-      request(jwtToken).post('/users',inputData)
-                  .then(resData => {
-                        console.log('New Users has been created')
-                  })
-                  
+      request(jwtToken).post('/users', inputData)
+            .then(resData => {
+                  console.log('New Users has been created')
+            })
+
 
 }
 

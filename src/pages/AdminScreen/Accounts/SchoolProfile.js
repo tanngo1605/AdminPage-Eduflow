@@ -4,17 +4,10 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
-<<<<<<< HEAD
 import { getSchoolInfo, updateSchoolInfo } from "../../../redux/Action/SchoolAction";
 import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
-import schoolSchema from "../../../userData/ValidationSchema/SchoolSchema"
-import schoolInitialValue from '../../../userData/InitialData/School'
-=======
-import {getSchoolInfo,updateSchoolInfo} from "../../../redux/Action/SchoolAction";
-import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import {schoolSchema} from "../../../userData/ValidationSchema/SchoolSchema"
-import {schoolInitialValue} from '../../../userData/InitialData/School'
->>>>>>> 84958e41f8034a5627fe0f92715d470ca7c0de49
+import { schoolSchema } from "../../../userData/ValidationSchema/SchoolSchema"
+import { schoolInitialValue } from '../../../userData/InitialData/School'
 import { FcHighPriority } from "react-icons/fc";
 import { marginBottom20vh, marginLeft60vw, marginLeft20vw, marginBottom55vh, marginBottom65vh, } from "../../../styles/marginStyles";
 import { image130vw } from "../../../styles/imageStyles"

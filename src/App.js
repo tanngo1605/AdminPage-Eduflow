@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 import Homescreen from "./pages/AdminScreen/Homescreen/Homescreen";
 import AccountSetting from "./pages/AdminScreen/Accounts/AccountSetting";
@@ -6,8 +6,8 @@ import Syllabus from "./pages/AdminScreen/Syllabus/Syllabus";
 import Gallery from "./pages/AdminScreen/Gallery/Gallery";
 import LoginPage from "./pages/AdminScreen/LoginPage/LoginPage";
 import ImageInAlbum from "./pages/AdminScreen/Gallery/ImageInAlbum";
-import CreateClass from "./pages/AdminScreen/Class/CreateClass";
-import CreateSubject from "./pages/AdminScreen/Class/CreateSubject";
+import CreateClass from "./pages/AdminScreen/Class/createClass";
+import CreateSubject from "./pages/AdminScreen/Class/createSubject";
 import TimeTable from "./pages/AdminScreen/TimeTable/TimeTable";
 import UserRouter from "./navigation/UserRouter";
 import EventRouter from "./navigation/EventRouter";
@@ -26,24 +26,22 @@ import "./styles.css";
 import { setCurrentUser, getCurrentUser } from "../src/redux/Stores/AccountReducer";
 import CircularRouter from "./navigation/CircularRouter";
 import { connect } from "react-redux";
-
 const App = (props) => {
-  useEffect(() => {
-    function getUserInfo() {
-      props.dispatch(getCurrentUser())
-    }
-    getUserInfo();
-  }, [])
-  var x = sessionStorage.getItem('role')
-  // console.log(x);
-  // var role = props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "")
+
+  // useEffect(() => {
+  //   function getUserInfo() {
+  //     props.dispatch(getCurrentUser())
+  //   }
+  //   getUserInfo();
+  // }, [])
+  var role = document.cookie.replace(/auth|=/g, "")
   return (
     <div className="App">
       <Suspense fallback={<h1>Loading....</h1>}>
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            {x === "Admin" ?
+            {role === "Admin" ?
               <React.Fragment>
                 <Route path="/homescreen" component={Homescreen} />
                 {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
@@ -67,7 +65,7 @@ const App = (props) => {
                 <Route path="/timetable" component={TimeTable} />
               </React.Fragment>
 
-              : x === "Teacher" ? <>
+              : role === "Teacher" ? <>
                 <Route path="/result" component={ResultList} render={(props) => (<ResultList {...props} isTeacher={true} />)} />
                 <Route path="/approveresult" component={ApproveResult} />
                 <Route path="/studentresult" component={StudentResult} />

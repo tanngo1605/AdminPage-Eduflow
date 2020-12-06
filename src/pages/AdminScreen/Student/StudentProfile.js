@@ -46,8 +46,8 @@ const StudentProfile = (props) => {
     );
 
     const image = propsForm.values.image;
-    console.log(typeof image)
-    console.log(image)
+    // console.log(typeof image)
+    // console.log(image)
     if (image.length > 1)
       return (
         <div className="profileimage">
@@ -69,6 +69,12 @@ const StudentProfile = (props) => {
   const handleSubmit = (values) => {
 
     console.log(values);
+    props.history.push(
+      {
+        pathname: '/studentsearch',
+        state: { detail: values }
+      }
+    );
     try {
       const userData = props.account.userData.userdata.data.data;
 
@@ -84,7 +90,7 @@ const StudentProfile = (props) => {
         createUsers(userData.token, values, "student")
 
       }
-      props.history.push("/studentsearch");
+
     }
     catch (error) {
       console.log(error)
@@ -119,7 +125,7 @@ const StudentProfile = (props) => {
                   >
 
                     {(propsForm) => (
-
+                      console.log(studentData),
                       <Form className="flexrow">
                         {displayImage(propsForm)}
                         {console.log(propsForm.values)}
@@ -288,6 +294,7 @@ const StudentProfile = (props) => {
 
                   </Formik>
                 ) : (
+
                     <div className="flexrow">
                       {displayImage(props)}
                       <div className="flexcolumn">
@@ -304,39 +311,48 @@ const StudentProfile = (props) => {
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div className="section" style={image130vw}>Admission Number</div>
-                              <div className="shortbox" style={marginLeft60vw}>{studentData.dateofbirth}</div>
+                              <div className="shortbox" style={marginLeft60vw}>{studentData.admissnumber}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div className="section" style={image130vw}>Gender</div>
                               <div className="shortbox" style={marginLeft60vw}>{studentData.gender}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
-                              <div className="section" style={image130vw}>Father"s name</div>
-                              <div className="shortbox" style={marginLeft60vw}>{studentData.dateofbirth}</div>
+                              <div className="section" style={image130vw}>Father's name</div>
+                              <div className="shortbox" style={marginLeft60vw}>{studentData.fathername}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div className="section" style={image130vw}>Mother"s name</div>
-                              <div className="shortbox" style={marginLeft60vw}>{studentData.dateofbirth}</div>
+                              <div className="shortbox" style={marginLeft60vw}>{studentData.mothername}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
-                              <div className="section" style={image130vw}>Father"s occupation</div>
-                              <div className="shortbox" style={marginLeft60vw}>{studentData.dateofbirth}</div>
+                              <div className="section" style={image130vw}>Father's occupation</div>
+                              <div className="shortbox" style={marginLeft60vw}>{studentData.fatheroccupation}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
-                              <div className="section" style={image130vw}>Mother"s occupation</div>
-                              <div className="shortbox" style={marginLeft60vw}>{studentData.dateofbirth}</div>
+                              <div className="section" style={image130vw}>Mother's occupation</div>
+                              <div className="shortbox" style={marginLeft60vw}>{studentData.motheroccupation}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div htmlFor="corresaddress" className="section" style={image130vw}>Correspondence Address</div>
-                              <div className="shortbox" style={{ marginLeft: "6vw", height: "15vh" }}>{studentData.dateofbirth}</div>
+                              <div className="shortbox" style={{ marginLeft: "6vw", height: "15vh" }}>{studentData.corresaddress}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div className="section" >City</div>
-                              <div className="shortbox" style={image40vwLeft10vw}>{studentData.gender}</div>
+                              <div className="shortbox" style={{
+                                width: '6vw',
+                                marginLeft: '1vw'
+                              }}>{studentData.key}</div>
                               <div htmlFor="state" className="section" style={marginLeft20vw} >State</div>
-                              <div className="shortbox" style={image40vwLeft10vw}>{studentData.gender}</div>
+                              <div className="shortbox" style={{
+                                width: '6vw',
+                                marginLeft: '1vw'
+                              }}>{studentData.key}</div>
                               <div htmlFor="Postcode" className="section" style={marginLeft20vw} >Postcode</div>
-                              <div className="shortbox" style={image40vwLeft10vw}>{studentData.gender}</div>
+                              <div className="shortbox" style={{
+                                width: '6vw',
+                                marginLeft: '1vw'
+                              }}>{studentData.gender}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div htmlFor="permaaddress" className="section" style={image130vw}>Permanent Address</div>
@@ -344,17 +360,26 @@ const StudentProfile = (props) => {
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div className="section">City</div>
-                              <div className="shortbox" style={image40vwLeft10vw}>{studentData.gender}</div>
+                              <div className="shortbox" style={{
+                                width: '6vw',
+                                marginLeft: '1vw'
+                              }}>{studentData.gender}</div>
                               <div className="section" style={marginLeft20vw} >State</div>
-                              <div className="shortbox" style={image40vwLeft10vw}>{studentData.gender}</div>
+                              <div className="shortbox" style={{
+                                width: '6vw',
+                                marginLeft: '1vw'
+                              }}>{studentData.gender}</div>
                               <div className="section" style={marginLeft20vw}>Postcode</div>
-                              <div className="shortbox" style={image40vwLeft10vw}>{studentData.gender}</div>
+                              <div className="shortbox" style={{
+                                width: '6vw',
+                                marginLeft: '1vw'
+                              }}>{studentData.gender}</div>
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>
                               <div className="section" style={image50vw}>Class</div>
                               <div className="shortbox" style={image95vwLeft30vw}>{studentData.gender}</div>
-                              <div className="section" >Section</div>
-                              <div className="shortbox" style={image95vwLeft30vw}>{studentData.gender}</div>
+                              <div className="section" style={marginLeft20vw}>Section</div>
+                              <div className="shortbox" style={image95vwLeft30vw}>{studentData.section}</div>
 
                             </section>
                             <section className="flexrow" style={marginBottom20vh}>

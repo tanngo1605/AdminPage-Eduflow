@@ -18,6 +18,7 @@ class LoginForm extends Component {
       username: "",
       password: "",
       isLoading: false,
+      trigger: false
     }
   }
   handleChange = (event) => {
@@ -39,43 +40,48 @@ class LoginForm extends Component {
       this.props.dispatch(setCurrentUser(userdata))
       this.props.dispatch(getCurrentUser())
       console.log(this.props);
-      if (this.props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Admin") {
-        sessionStorage.setItem('role', `${roleOfUser}`)
-        // sessionStorage.setItem('account', `${this.props.account}`)
-        // window.location.reload()
-        // this.props.history.push("/homescreen")
-        // window.location.reload()
-        // this.props.history.push("/homescreen")
-        // window.location.reload()
-        this.props.history.push("/homescreen")
 
-      }
-      else if (this.props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Teacher") {
-        this.props.history.push("/homescreen")
+      // this.props.history.push("/homescreen")
 
-      }
-      // if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
-      //   document.cookie = `auth=${roleOfUser}`
+      // if (this.props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Admin") {
+      //   sessionStorage.setItem('token', `${this.props.account.userData.data.data.token}`)
+      //   // this.setState({ trigger: !this.state.trigger })
+      //   // sessionStorage.setItem('account', `${this.props.account}`)
       //   // window.location.reload()
-      //   window.location.assign("http://localhost:3000/homescreen")
       //   // this.props.history.push("/homescreen")
+      //   // window.location.reload()
+      //   // this.props.history.push("/homescreen")
+      //   // window.location.reload()
+      //   // window.location.assign("http://localhost:3000/homescreen")
+      //   this.props.history.push("/homescreen")
 
       // }
-      // else if (userdata.status === 200 && roleOfUser === "Teacher") {
-      //   document.cookie = `auth=${roleOfUser}`
-      //   // window.location.reload()
-      //   // this.props.dispatch(setCurrentUser(userdata))
-      //   window.location.assign("http://localhost:3000/result")
-      //   // window.location.reload()
-      //   // this.props.history.push("/result")
-      //   // window.location.reload()
-      //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
-      //   // window.location.reload()
-      //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
-      //   // // window.location.reload()
-      //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      // else if (this.props.account.userData.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Teacher") {
+      //   this.props.history.push("/homescreen")
 
       // }
+      if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
+        document.cookie = `auth=${roleOfUser}`
+        //   // window.location.reload()
+        window.location.assign("http://localhost:3000/homescreen")
+        //   // this.props.history.push("/homescreen")
+
+      }
+      else if (userdata.status === 200 && roleOfUser === "Teacher") {
+        document.cookie = `auth=${roleOfUser}`
+        //   // window.location.reload()
+        //   // this.props.dispatch(setCurrentUser(userdata))
+        window.location.assign("http://localhost:3000/result")
+        //   // window.location.reload()
+        //   // this.props.history.push("/result")
+        //   // window.location.reload()
+        //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+        //   // window.location.reload()
+        //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+        //   // // window.location.reload()
+        //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+
+      }
 
 
 
