@@ -60,14 +60,14 @@ class LoginForm extends Component {
       //   this.props.history.push("/homescreen")
 
       // }
-      if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
+      if (userdata.status === 200 && (roleOfUser === "admin" || roleOfUser === "superAdmin")) {
         document.cookie = `auth=${roleOfUser}`
         //   // window.location.reload()
         window.location.assign("http://localhost:3000/homescreen")
         //   // this.props.history.push("/homescreen")
 
       }
-      else if (userdata.status === 200 && roleOfUser === "Teacher") {
+      else if (userdata.status === 200 && roleOfUser === "teacher") {
         document.cookie = `auth=${roleOfUser}`
         //   // window.location.reload()
         //   // this.props.dispatch(setCurrentUser(userdata))
@@ -116,10 +116,10 @@ class LoginForm extends Component {
             custom
           >
             <option value="" style={{ visibility: "hidden", display: "none" }}>Enter your role</option>
-            <option value="SuperAdmin">Super Admin</option>
-            <option value="Admin">Admin</option>
-            <option value="Teacher">Teacher</option>
-            <option value="Student">Student</option>
+            <option value="superAdmin">Super Admin</option>
+            <option value="admin">Admin</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
           </FormControl>
         </InputGroup>
 

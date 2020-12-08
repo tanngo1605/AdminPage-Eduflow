@@ -41,7 +41,7 @@ const App = (props) => {
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            {role === "Admin" ?
+            {role === "admin" ?
               <React.Fragment>
                 <Route path="/homescreen" component={Homescreen} />
                 {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
@@ -65,7 +65,7 @@ const App = (props) => {
                 <Route path="/timetable" component={TimeTable} />
               </React.Fragment>
 
-              : role === "Teacher" ? <>
+              : role === "teacher" ? <>
                 <Route path="/result" component={ResultList} render={(props) => (<ResultList {...props} isTeacher={true} />)} />
                 <Route path="/approveresult" component={ApproveResult} />
                 <Route path="/studentresult" component={StudentResult} />
