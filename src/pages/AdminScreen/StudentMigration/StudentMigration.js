@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "../../../component/Drawer/Drawer";
 import Header from "../../../component/Header/HeaderAdmin";
-import {marginTop45vh,} from "../../../styles/marginStyles";
+import { marginTop45vh, } from "../../../styles/marginStyles";
 
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
-import { el } from "date-fns/locale";
+// import { el } from "date-fns/locale";
 import { loadMoveStudentData } from '../../../redux/Stores/StudentReducer';
 class StudentMigration extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class StudentMigration extends Component {
         <div className="flexrow">
           <Drawer />
           <div className="flexcolumn">
-            <Header {...this.props}/>
+            <Header {...this.props} />
             <div className="form">
               <h1 className="titleform">Student's migration</h1>
 

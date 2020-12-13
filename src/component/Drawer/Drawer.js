@@ -72,8 +72,9 @@ class Drawer extends Component {
                                         :
                                         <img src={require('../../assets/' + item.inactiveimage)} alt={item.imagedescription} style={{ width: '8%', height: '8%', marginLeft: '1vw', marginTop: '0.2vw' }} />
                                     }
-
-                                    <NavLink exact to={'/' + item.web} style={{ color: '#FFFFFF', fontSize: '85%', marginTop: '0.1vw', marginLeft: '1.5vw' }}>{item.content}</NavLink>
+                                    {item.content === "Students" || item.content === "Teacher" ? <div style={{ color: '#FFFFFF', fontSize: '85%', marginTop: '0.1vw', marginLeft: '1.5vw' }}>{item.content}</div> : <NavLink exact to={'/' + item.web} style={{ color: '#FFFFFF', fontSize: '85%', marginTop: '0.1vw', marginLeft: '1.5vw' }}>{item.content}</NavLink>
+                                    }
+                                    {/* <NavLink exact to={'/' + item.web} style={{ color: '#FFFFFF', fontSize: '85%', marginTop: '0.1vw', marginLeft: '1.5vw' }}>{item.content}</NavLink> */}
                                     {this.Show(item.content)}
 
                                 </div>

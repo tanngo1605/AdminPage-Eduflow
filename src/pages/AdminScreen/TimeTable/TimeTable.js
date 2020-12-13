@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux"
-import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import {getSectionAndClass,getSubject} from "../../../redux/Action/SchoolAction";
+import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+import { getSectionAndClass, getSubject } from "../../../redux/Action/SchoolAction";
 import { Formik, Form, Field, FieldArray, useFormik, ErrorMessage } from 'formik';
 import { Scrollbars } from 'react-custom-scrollbars';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -27,6 +27,8 @@ import TimetableSchema from '../../../userData/ValidationSchema/TimeTableSchema'
 // // import TimeTable from './TimeTable';
 import { FcHighPriority } from "react-icons/fc";
 import addTimeTable from "../../../redux/Action/TimeTableAction"
+import { IoIosArrowDown } from "react-icons/io";
+
 let numOfPeriods = 4
 let arrayOfPeriods = []
 for (let i = 0; i < numOfPeriods; i++) {
@@ -39,29 +41,29 @@ for (let i = 0; i < numOfPeriods; i++) {
 
 
 const TimeTable = (props) => {
-    
-    let [classsection,setClassSection] = useState([]); 
-    let [subjects,setSubject] = useState([])
-    useEffect(()=>{
-        async function getClassSection(){
+
+    let [classsection, setClassSection] = useState([]);
+    let [subjects, setSubject] = useState([])
+    useEffect(() => {
+        async function getClassSection() {
             props.dispatch(getCurrentUser())
             try {
-              const userData=props.account.userData.userdata.data.data;
-              const subjectData = await getSubject(userData.school.uuid)
-              const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token)
-              setSubject(subjectData)
-              setClassSection( sectionclassData )
+                const userData = props.account.userData.data.data;
+                const subjectData = await getSubject(userData.school.uuid)
+                const sectionclassData = await getSectionAndClass(userData.school.uuid, userData.token)
+                setSubject(subjectData)
+                setClassSection(sectionclassData)
             }
-            catch(err){
-              console.log(err)
+            catch (err) {
+                console.log(err)
             }
-      }
+        }
         getClassSection();
-      },[])
+    }, [])
 
     const handleSubmit = async (values) => {
         try {
-            const userData = props.account.userData.userdata.data.data;
+            const userData = props.account.userData.data.data;
             const currentValues = {
                 period: "3",
                 day: "tuesday",
@@ -103,7 +105,7 @@ const TimeTable = (props) => {
                             }}
                         >
                             {props => (
-
+                                console.log(props),
                                 <Form>
                                     <div className='form' >
                                         <h1 className='titleform'>Time table</h1>
@@ -115,10 +117,12 @@ const TimeTable = (props) => {
                                                     {/* <div className='flexrow'> */}
                                                     <div className="flexcolumn">
                                                         <div className="flexrow">
+                                                            <IoIosArrowDown size={'1.5vw'} color="black" style={{ position: "absolute", top: "29vh", left: "45.5vw" }} />
+
                                                             <label className='section' style={{ width: "25%", marginRight: "5vw" }}>Enter Class</label>
-                                                            <Field as="select" name="classvalue" className="shortbox"  placeholder="Select Class">
+                                                            <Field as="select" name="classvalue" className="shortbox" placeholder="Select Class">
                                                                 <option value="" defaultValue>{" "}-select-</option>
-                                                                {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
+                                                                {classsection && classsection.map((e, index) => <option key={index} value={e.class}>{e.class}</option>)}
                                                             </Field>
                                                         </div>
                                                         <div style={{ position: "absolute" }}>{props.errors.classvalue && props.touched.classvalue ?
@@ -134,10 +138,12 @@ const TimeTable = (props) => {
 
                                                     <div className="flexcolumn">
                                                         <div className="flexrow">
+                                                            <IoIosArrowDown size={'1.5vw'} color="black" style={{ position: "absolute", top: "29vh", left: "81.5vw" }} />
+
                                                             <label className="section" style={{ width: "25%", marginLeft: "5vw", marginRight: "5vw" }}>Enter Section</label>
                                                             <Field as="select" name="section" className="shortbox" placeholder="Select section">
                                                                 <option value="" defaultValue>{" "}-select-</option>
-                                                                {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
+                                                                {classsection.map((e, index) => <option key={index} value={e.section}>{e.section}</option>)}
                                                             </Field>
                                                         </div>
                                                         <div style={{ position: "absolute" }}>

@@ -16,16 +16,18 @@ import { studentSearchInitialValue } from '../../../userData/InitialData/Student
 //import * as xlsx from "xlsx";
 import { addaProfileAttachment, marginLeft100vw, marginTop20vh } from "../../../styles/marginStyles"
 import { image300percent, image200percent, image100percent, image130vw } from "../../../styles/imageStyles";
+import { IoIosArrowDown } from "react-icons/io";
+
 const StudentSearch = (props) => {
   let [classsection, setClassSection] = useState([]);
-
+  let [trigger, setTrigger] = useState(false)
   useEffect(() => {
     async function getClassSection() {
 
       props.dispatch(loadData())
       props.dispatch(getCurrentUser())
       try {
-        const userData = props.account.userData.userdata.data.data;
+        const userData = props.account.userData.data.data;
         const sectionclassData = await getSectionAndClass(userData.school.uuid, userData.token)
 
         setClassSection(sectionclassData)
@@ -58,7 +60,7 @@ const StudentSearch = (props) => {
           <div className='form'>
 
             <h1 className='titleform'>Student Info</h1>
-            <NavLink exact to={{ pathname: '/student/profile' }} className='attachment' style={addaProfileAttachment}>
+            <NavLink exact to={{ pathname: '/student' }} className='attachment' style={addaProfileAttachment}>
               <BsPlus color="white" size={'1.5vw'} className='attachmentplusicon' />
               <p style={{ color: '#FFFFFF' }}> Add a student </p>
             </NavLink>
@@ -70,11 +72,13 @@ const StudentSearch = (props) => {
                 <Form className="flexcolumn" onChange={() => handleSearch(propsForm.values)} style={{ marginBottom: "5vh" }}>
                   <div className="flexrow">
                     <div className="flexcolumn" style={marginLeft100vw} >
-                      <label htmlFor="name" className="section" style={image130vw}>Enter Student"s Name </label>
+                      <label htmlFor="name" className="section" style={image130vw}>Enter Student's Name </label>
                       <Field type="text" name="name" className="shortbox" placeholder="Type here" />
                     </div>
                     <div className="flexcolumn" style={marginLeft100vw}>
-                      <label htmlFor="classvalur" className="section" style={image130vw}>Enter Class</label>
+                      <IoIosArrowDown size={'1.5vw'} color="black" style={{ position: "absolute", top: "34.5vh", left: "74vw" }} />
+
+                      <label htmlFor="classvalue" className="section" style={image130vw}>Enter Class</label>
 
                       <Field as="select" name="classvalue" className="shortbox" placeholder="Select class">
                         <option value="" defaultValue>{" "}-select-</option>
@@ -85,7 +89,8 @@ const StudentSearch = (props) => {
                   <div className="flexrow" style={marginTop20vh}>
                     <div className="flexcolumn" style={marginLeft100vw}>
                       <label htmlFor="section" className="section" style={image130vw}>Enter Section</label>
-                      <Field as="select" name="section" className="shortbox" placeholder="Select Section">
+                      <IoIosArrowDown size={'1.5vw'} color="black" style={{ position: "absolute", top: "46.5vh", left: "44vw" }} />
+                      <Field as="select" name="section" className="shortbox" placeholder="Select Section" onClick={(e) => setTrigger(!trigger)}>
                         <option value="" defaultValue>{" "}-select-</option>
                         {classsection.map((e, index) => <option key={index} value={e.section}>{e.section}</option>)}
                       </Field>

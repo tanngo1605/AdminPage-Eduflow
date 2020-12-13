@@ -1,15 +1,14 @@
 const drawercontent = [
   {
-    content: 'Students', 
+    content: 'Students',
     web: 'student',
     activeimage: 'person_active.png',
     inactiveimage: "person_inactive.png",
     subcontent: [
-      { content: 'Add a student', web: 'student', clicked: false },
       { content: 'Find a student', web: 'studentsearch', clicked: false },
       { content: 'Move student', web: 'movestudent', clicked: false },
       { content: 'Migration', web: 'studentmigration', clicked: false }
-      
+
     ],
     clicked: false,
 
@@ -99,8 +98,8 @@ const drawercontent = [
   //  web: 'fee',
   //  activeimage: 'coin_inactive.png',
   //  inactiveimage: "coin_inactive.png",
-   // subcontent: [],
-   // clicked: false,
+  // subcontent: [],
+  // clicked: false,
 
   //},
   {

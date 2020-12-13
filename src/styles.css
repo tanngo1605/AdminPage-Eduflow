@@ -912,3 +912,25 @@ height: 39px;
     -webkit-transform: scale(1);
     transform: scale(1);
 }
+
+/* .selectstyle::before{
+  content: '  >';
+  font: 17px "Consolas", monospace;
+  color: #333;
+  position: relative;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+} */
+
+/* .selectstyle::after{
+  content: '\f078';
+  font: 17px "Consolas", monospace;
+  color: #333;
+  position: relative;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+} */

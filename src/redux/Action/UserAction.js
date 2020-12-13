@@ -14,6 +14,7 @@ const loginAccount = async (userInput) => {
             .then(resData => {
                   console.log(`Login ${username} success`)
                   console.log(resData.data);
+
                   return resData;
             })
 
@@ -28,7 +29,7 @@ const createUsers = (jwtToken, userInput, role) => {
       if (role === 'student')
             inputData = {
                   name: userInput.name,
-                  email: "mmr337776699999@gmail.com",
+                  email: userInput.email,
                   address: `${userInput.permaaddress}, ${userInput.permacity}, ${userInput.permastate}, ${userInput.permapcode}`,
                   mobile: userInput.fathermobileno,
                   fatherName: userInput.fathername,
@@ -37,14 +38,14 @@ const createUsers = (jwtToken, userInput, role) => {
                   fatherOccupation: userInput.fatheroccupation,
                   fatherMobile: userInput.fathermobileno,
                   alternateMobile: userInput.alternatephoneno,
-                  admissionNo: userInput.admissnumber,
+                  admissionNo: Number(userInput.admissnumber),
                   dob: format(userInput.dob, `yyyy-MM-dd`),
-                  isHosteler: "false",
+                  isHosteler: false,
                   role: role,
                   class: userInput.classvalue,
                   section: userInput.section
             }
-      request(jwtToken).post('/users', inputData)
+      request(jwtToken).post(`${ServerDomain}/users`, inputData)
             .then(resData => {
                   console.log('New Users has been created')
             })

@@ -76,7 +76,7 @@ const StudentReducer = (state = [], action) => {
     //   ]
     case 'LOAD_STUDENT_DATA':
       const students = [
-        { name: "Adam", classvalue: "V", section: "H", rollno: '25', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '41321321', admission: '5464', image: null, ticked: false, key: '1' },
+        { name: "Adam", classvalue: "V", dob: "13-11-1999", admissnumber: "1", section: "H", rollno: '25', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '41321321', admission: '5464', image: null, ticked: false, key: '1' },
         { name: "Akhil", classvalue: "V", section: "H", rollno: '24', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '3000', admission: '40', image: null, ticked: false, key: '2' },
         { name: "Adin", classvalue: "H", section: "TL", rollno: '23', address: '', classteacher: '', fathername: '', mothername: '', gender: '3211321', fatheroccupation: '312312', fathermobileno: '321312', othermobileno: '3000', admission: '40', image: null, ticked: false, key: '3' },
       ]

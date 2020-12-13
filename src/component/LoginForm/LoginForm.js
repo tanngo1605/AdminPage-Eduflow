@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import InputField from "../InputField/InputField";
@@ -25,21 +25,60 @@ class LoginForm extends Component {
     const { value, name } = event.target;
     console.log(value, name);
     this.setState({ [name]: value });
+
   };
   /* 1 */
 
-  submitForm = async (event) => {
+  submitForm = (event) => {
     // event.preventDefault();
 
     try {
       this.setState({ isLoading: true })
-      let userdata = await loginAccount(this.state);
-      console.log(userdata)
-      let roleOfUser = userdata.config.data.split(",")[2].replace(/"|}|:|role/g, "")
+      let userdata = loginAccount(this.state);
+      userdata.then((data) => {
+        this.props.dispatch(setCurrentUser(data))
+        if (data.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "admin") {
+          // window.location.reload()
+          // this.props.history.push("/homescreen")
+          // window.location.reload()
+          window.location.assign("http://localhost:3000/homescreen")
+        }
+        else if (data.config.data.split(",")[2].replace(/"|}|:|role/g, "") === "teacher") {
+          window.location.assign("http://localhost:3000/result")
+        }
+        this.props.dispatch(getCurrentUser())
+        console.log(this.props);
+        sessionStorage.setItem('userdata', JSON.stringify(data))
+
+
+      })
+      // if (JSON.parse(sessionStorage.getItem('userdata')).config.data.split(",")[2].replace(/"|}|:|role/g, "") === "Admin") {
+      //   window.location.reload()
+      //   this.props.history.push("/homescreen")
+      //   // window.location.assign("http://localhost:3000/homescreen")        // window.location.reload()
+      //   window.location.reload()
+      //   this.props.history.push("/homescreen")
+      //   window.location.reload()
+      //   this.props.history.push("/homescreen")
+      //   window.location.reload()
+      //   this.props.history.push("/homescreen")
+      //   // window.location.assign("http://localhost:3000/homescreen")
+      //   // this.props.history.push("/homescreen")
+      // }
+      // console.log(userdata.then((data) => {
+      //   this.props.dispatch(setCurrentUser(data))
+      //   this.props.dispatch(getCurrentUser())
+      //   console.log(this.props);
+      //   sessionStorage.setItem('userdata', JSON.stringify(data))
+      //   let a = sessionStorage.getItem('userdata')
+      //   console.log(JSON.parse(a));
+      // }))
+      // let roleOfUser = userdata.config.data.split(",")[2].replace(/"|}|:|role/g, "")
       // document.cookie = `auth=${roleOfUser}`
-      this.props.dispatch(setCurrentUser(userdata))
-      this.props.dispatch(getCurrentUser())
-      console.log(this.props);
+      // this.props.dispatch(setCurrentUser(userdata))
+      // this.props.dispatch(getCurrentUser())
+      // console.log(this.props);
+
 
       // this.props.history.push("/homescreen")
 
@@ -60,28 +99,30 @@ class LoginForm extends Component {
       //   this.props.history.push("/homescreen")
 
       // }
-      if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
-        document.cookie = `auth=${roleOfUser}`
-        //   // window.location.reload()
-        window.location.assign("http://localhost:3000/homescreen")
-        //   // this.props.history.push("/homescreen")
+      // if (userdata.status === 200 && (roleOfUser === "Admin" || roleOfUser === "SuperAdmin")) {
+      //   document.cookie = `auth=${roleOfUser}`
 
-      }
-      else if (userdata.status === 200 && roleOfUser === "Teacher") {
-        document.cookie = `auth=${roleOfUser}`
-        //   // window.location.reload()
-        //   // this.props.dispatch(setCurrentUser(userdata))
-        window.location.assign("http://localhost:3000/result")
-        //   // window.location.reload()
-        //   // this.props.history.push("/result")
-        //   // window.location.reload()
-        //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
-        //   // window.location.reload()
-        //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
-        //   // // window.location.reload()
-        //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      //   // window.location.reload()
+      //   this.props.location.state("/homescreen", { state: userdata })
+      //   // window.location.assign("http://localhost:3000/homescreen")
+      //   // this.props.history.push("/homescreen")
 
-      }
+      // }
+      // else if (userdata.status === 200 && roleOfUser === "Teacher") {
+      //   document.cookie = `auth=${roleOfUser}`
+      //   //   // window.location.reload()
+      //   //   // this.props.dispatch(setCurrentUser(userdata))
+      //   window.location.assign("http://localhost:3000/result")
+      //   //   // window.location.reload()
+      //   //   // this.props.history.push("/result")
+      //   //   // window.location.reload()
+      //   //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      //   //   // window.location.reload()
+      //   //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+      //   //   // // window.location.reload()
+      //   //   // this.props.history.push({ path: "/result", state: { userdata: userdata } })
+
+      // }
 
 
 
@@ -116,10 +157,10 @@ class LoginForm extends Component {
             custom
           >
             <option value="" style={{ visibility: "hidden", display: "none" }}>Enter your role</option>
-            <option value="SuperAdmin">Super Admin</option>
-            <option value="Admin">Admin</option>
-            <option value="Teacher">Teacher</option>
-            <option value="Student">Student</option>
+            <option value="superadmin">Super Admin</option>
+            <option value="admin">Admin</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
           </FormControl>
         </InputGroup>
 

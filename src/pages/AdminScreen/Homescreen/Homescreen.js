@@ -53,7 +53,9 @@ class Homescreen extends Component {
       trigger: false,
     }
   }
-
+  componentDidMount() {
+    this.props.dispatch(setCurrentUser(JSON.parse(sessionStorage.getItem('userdata'))))
+  }
   handleClick(e, condition, index, array) {
     e.preventDefault();
     if (!condition) {

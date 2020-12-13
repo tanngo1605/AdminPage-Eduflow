@@ -1,12 +1,12 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import Dropzone from "react-dropzone"
 import { NavLink } from "react-router-dom"
 import Drawer from "../../../component/Drawer/Drawer"
 import Header from "../../../component/Header/HeaderAdmin"
-import {getCurrentUser} from "../../../redux/Stores/AccountReducer";
-import {getSectionAndClass,getSubject} from "../../../redux/Action/SchoolAction";
+import { getCurrentUser } from "../../../redux/Stores/AccountReducer";
+import { getSectionAndClass, getSubject } from "../../../redux/Action/SchoolAction";
 import { loadTeacherData, deleteTeacherData } from "../../../redux/Stores/TeacherReducer";
 import { BsPencilSquare, BsPlus } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
@@ -14,24 +14,25 @@ import { teacherSearchScema } from "../../../userData/ValidationSchema/TeacherSc
 import { teacherSearchInitialValue } from "../../../userData/InitialData/Teacher"
 import { addaProfileAttachment, marginLeft100vw, marginTop20vh } from "../../../styles/marginStyles"
 import { image300percent, image200percent, image100percent, image130vw } from "../../../styles/imageStyles";
+import { IoIosArrowDown } from "react-icons/io";
 
 
 const TeacherSearch = (props) => {
-  let [classsection,setClassSection] = useState([]);
-  let [subjects,setSubject] = useState([])
+  let [classsection, setClassSection] = useState([]);
+  let [subjects, setSubject] = useState([])
   useEffect(() => {
     async function getUserInfo() {
       props.dispatch(loadTeacherData())
       props.dispatch(getCurrentUser())
       try {
-          const userData=props.account.userData.userdata.data.data;
-          const subjectData = await getSubject(userData.school.uuid);
-          const sectionclassData = await getSectionAndClass(userData.school.uuid,userData.token);
-          setSubject(subjectData)
-          setClassSection( sectionclassData )
+        const userData = props.account.userData.userdata.data.data;
+        const subjectData = await getSubject(userData.school.uuid);
+        const sectionclassData = await getSectionAndClass(userData.school.uuid, userData.token);
+        setSubject(subjectData)
+        setClassSection(sectionclassData)
       }
-      catch(err){
-          console.log(err)
+      catch (err) {
+        console.log(err)
       }
     }
     getUserInfo();
@@ -57,7 +58,7 @@ const TeacherSearch = (props) => {
           <div className="form">
 
             <h1 className="titleform">Teacher Info</h1>
-            <NavLink exact to={{ pathname: "/teacher/profile" }} className="attachment" style={addaProfileAttachment}>
+            <NavLink exact to={{ pathname: "/teacher" }} className="attachment" style={addaProfileAttachment}>
               <BsPlus color="white" size={"1.5vw"} className="attachmentplusicon" />
               <p style={{ color: "#FFFFFF" }}> Add a teacher </p>
             </NavLink>
@@ -73,27 +74,30 @@ const TeacherSearch = (props) => {
                       <Field type="text" name="name" className="shortbox" placeholder="Type here" />
                     </div>
                     <div className="flexcolumn" style={marginLeft100vw}>
-                      <label htmlFor="classvalur" className="section" style={image130vw}>Enter Class</label>
-                      <Field as="select" name="classvalue" className="shortbox"  placeholder="Select class">
+                      <IoIosArrowDown size={'1.5vw'} color="black" style={{ position: "absolute", top: "34.5vh", left: "74vw" }} />
+
+                      <label htmlFor="classvalue" className="section" style={image130vw}>Enter Class</label>
+
+                      <Field as="select" name="classvalue" className="shortbox" placeholder="Select class">
                         <option value="" defaultValue>{" "}-select-</option>
-                        {classsection&&classsection.map((e,index)=><option key={index} value={e.class}>{e.class}</option>)}
+                        {classsection && classsection.map((e, index) => <option key={index} value={e.class}>{e.class}</option>)}
                       </Field>
                     </div>
                   </div>
                   <div className="flexrow" style={marginTop20vh}>
                     <div className="flexcolumn" style={marginLeft100vw}>
                       <label htmlFor="section" className="section" style={image130vw}>Enter Section</label>
+                      <IoIosArrowDown size={'1.5vw'} color="black" style={{ position: "absolute", top: "46.5vh", left: "44vw" }} />
+
                       <Field as="select" name="section" className="shortbox" placeholder="Select Section">
                         <option value="" defaultValue>{" "}-select-</option>
-                        {classsection.map((e,index)=><option key={index} value={e.section}>{e.section}</option>)}
+                        {classsection.map((e, index) => <option key={index} value={e.section}>{e.section}</option>)}
                       </Field>
                     </div>
                     <div className="flexcolumn" style={marginLeft100vw}>
                       <label htmlFor="subject" className="section" style={image130vw}>Enter Subject</label>
-                      <Field as="select" name={`subject`} className="shortbox" placeholder="Select Subject">
-                        <option value="" defaultValue style={{ visibility: "hidden", display: "none" }}>{" "}-select-</option>
-                        {subjects.map((subject, index) => <option key={index} value={subject.name}>{subject.name}</option>)}
-                      </Field>
+                      <Field type="text" name="subject" className="shortbox" placeholder="Type here" />
+
                     </div>
                   </div>
                   <div className="flexrow" style={{ marginTop: "3vh", marginLeft: "21vw" }}>
@@ -141,7 +145,7 @@ const TeacherSearch = (props) => {
                       <MdDeleteForever size="1.5vw" onClick={() => props.dispatch(deleteTeacherData(teacher))} />
                     </div>
                     <div className="itemcenter" style={image200percent}>
-                      <NavLink exact to={{ pathname: "/teacher/profile", teacherdata: teacher }}>
+                      <NavLink exact to={{ pathname: "/teacher", teacherdata: teacher }}>
                         <BsPencilSquare size="1.3vw" color="black" />
                       </NavLink>
                     </div>

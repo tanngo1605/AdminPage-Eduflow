@@ -34,44 +34,53 @@ const App = (props) => {
   //   }
   //   getUserInfo();
   // }, [])
-  var role = document.cookie.replace(/auth|=/g, "")
+  // var dataOfUser = 
+  // console.log(dataOfUser.config.data.split(",")[2].replace(/"|}|:|role/g, ""));
+
+  // var role = document.cookie.replace(/auth|=/g, "")
   return (
     <div className="App">
       <Suspense fallback={<h1>Loading....</h1>}>
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            {role === "Admin" ?
-              <React.Fragment>
-                <Route path="/homescreen" component={Homescreen} />
-                {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-                {EventRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-                {CircularRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-                {PasswordRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
-                {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
-                {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
-                {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
-                <Route path="/class" component={CreateClass} />
-                <Route path="/subject" component={CreateSubject} />
-                <Route path="/approveresult" component={ApproveResult} />
-                <Route path="/studentresult" component={StudentResult} />
-                <Route path="/eresources" component={EResources} />
-                <Route path="/screensyllabus" component={Syllabus} />
-                <Route path="/result" component={ResultList} />
-                <Route path="/gallery/:album_name" component={ImageInAlbum} />
-                <Route path="/gallery" component={Gallery} />
-                <Route path="/account" component={AccountSetting} />
-                <Route path="/syllabus" component={Syllabus} />
-                <Route path="/timetable" component={TimeTable} />
-              </React.Fragment>
+            {JSON.parse(sessionStorage.getItem('userdata'))
+              ?
+              JSON.parse(sessionStorage.getItem('userdata')).config.data.split(",")[2].replace(/"|}|:|role/g, "") === "admin" ?
+                <React.Fragment>
+                  <Route path="/homescreen" component={Homescreen} />
+                  {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                  {EventRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                  {CircularRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                  {PasswordRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
+                  {ResultRouter.map((element, index) => <Route key={index} exact {...element} />)}
+                  {TicketRouter.map((element, index) => <Route key={index} exact {...element} />)}
+                  {ExamRouter.map((element, index) => <Route key={index} exact {...element} />)}
+                  <Route path="/class" component={CreateClass} />
+                  <Route path="/subject" component={CreateSubject} />
+                  <Route path="/approveresult" component={ApproveResult} />
+                  <Route path="/studentresult" component={StudentResult} />
+                  <Route path="/eresources" component={EResources} />
+                  <Route path="/screensyllabus" component={Syllabus} />
+                  <Route path="/result" component={ResultList} />
+                  <Route path="/gallery/:album_name" component={ImageInAlbum} />
+                  <Route path="/gallery" component={Gallery} />
+                  <Route path="/account" component={AccountSetting} />
+                  <Route path="/syllabus" component={Syllabus} />
+                  <Route path="/timetable" component={TimeTable} />
+                </React.Fragment>
 
-              : role === "Teacher" ? <>
-                <Route path="/result" component={ResultList} render={(props) => (<ResultList {...props} isTeacher={true} />)} />
-                <Route path="/approveresult" component={ApproveResult} />
-                <Route path="/studentresult" component={StudentResult} />
-                <Route path="/eresources" component={EResources} />
+                : JSON.parse(sessionStorage.getItem('userdata')).config.data.split(",")[2].replace(/"|}|:|role/g, "") === "teacher"
+                  ?
+                  <>
+                    <Route path="/result" component={ResultList} />
+                    <Route path="/approveresult" component={ApproveResult} />
+                    <Route path="/studentresult" component={StudentResult} />
+                    <Route path="/eresources" component={EResources} />
+                  </>
+                  : null
+              : <Redirect to={{ pathname: '/' }} />}
 
-              </> : <Redirect to={{ pathname: '/' }} />}
 
           </Switch>
 

@@ -27,7 +27,7 @@ const CreateClass = (props) => {
   const handleSubmit = (values) => {
 
     try {
-      const userData = props.account.userData.userdata.data.data;
+      const userData = props.account.userData.data.data;
       addSectionAndClass(userData.school.uuid, userData.token, values)
     }
     catch (error) {
